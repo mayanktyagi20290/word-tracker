@@ -1,0 +1,15 @@
+{
+  "rewrites": [
+    { "source": "/word-frequency-counter", "destination": "/word-frequency-counter.html" },
+    { "source": "/long-tail-keyword-finder", "destination": "/long-tail-keyword-finder.html" },
+    { "source": "/wh-questions-generator", "destination": "/wh-questions-generator.html" },
+    { "source": "/nlp-entity-extractor", "destination": "/nlp-entity-extractor.html" },
+    { "source": "/content-optimization-checker", "destination": "/content-optimization-checker.html" },
+    { "source": "/seo-readability-highlighter", "destination": "/seo-readability-highlighter.html" },
+    { "source": "/competitor-keyword-gap-analysis", "destination": "/competitor-keyword-gap-analysis.html" },
+    { "source": "/seo-structure-checker", "destination": "/seo-structure-checker.html" },
+    { "source": "/search-intent-checker", "destination": "/search-intent-checker.html" },
+    { "source": "/export-seo-report", "destination": "/export-seo-report.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
