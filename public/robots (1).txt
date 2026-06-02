@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://word-tracker-eight.vercel.app/sitemap.xml
