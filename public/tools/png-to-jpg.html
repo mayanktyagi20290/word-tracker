@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>PNG to JPG Converter &mdash; Convert PNG to JPG Free | SEOTriggers</title>
+<meta name="description" content="Free PNG to JPG converter. Convert PNG images to JPG/JPEG in your browser — set quality, batch convert, no upload and no signup."/>
+<link rel="canonical" href="https://seotriggers.com/tools/png-to-jpg"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Free PNG to JPG Converter | SEOTriggers"/>
+<meta property="og:description" content="Free PNG to JPG converter. Convert PNG images to JPG/JPEG in your browser — set quality, batch convert, no upload and no signup."/>
+<meta property="og:url" content="https://seotriggers.com/tools/png-to-jpg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:920px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:700px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .drop{border:2px dashed #cfc8ee;border-radius:16px;background:#faf9ff;padding:40px 20px;text-align:center;cursor:pointer;transition:all .15s;}
+  .drop:hover,.drop.drag{border-color:var(--violet);background:#f3f0fe;}
+  .drop .big{font-size:18px;font-weight:700;color:var(--ink);}
+  .drop .sm{font-size:13px;color:var(--slate);margin-top:5px;}
+  .qctl{display:none;align-items:center;gap:12px;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:13px 16px;margin-top:14px;}
+  .qctl.on{display:flex;}
+  .qctl label{font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap;}
+  .qctl input{flex:1;accent-color:var(--violet);}
+  .results{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+  .item{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:12px 14px;}
+  .item img{width:54px;height:54px;object-fit:cover;border-radius:9px;background:#f1eefc;}
+  .item .nm{font-size:13.5px;font-weight:600;color:var(--ink);word-break:break-all;}
+  .item .meta{font-size:12.5px;color:var(--slate);margin-top:3px;}
+  .item .meta b{color:var(--indigo);}
+  .mini{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;padding:8px 14px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;white-space:nowrap;}
+  .mini:disabled{opacity:.5;cursor:default;}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;}
+  .btn-primary{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">&#9889;</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> &rsaquo; <a href="/tools">Tools</a> &rsaquo; PNG to JPG Converter</p>
+    <div class="tool-head">
+      <h1>PNG to JPG Converter</h1>
+      <p class="lead">Convert PNG images to JPG instantly, with control over quality. Drop as many files as you like &mdash; everything runs on your device, so nothing is uploaded.</p>
+    </div>
+    <div class="usp">
+      <span>&#10003; No upload &mdash; runs in your browser</span><span>&#10003; Batch convert</span><span>&#10003; Instant</span><span>&#10003; Free, no signup</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <div class="big">&#128247; Drop PNG images here or click to choose</div>
+      <div class="sm">Multiple files supported &middot; nothing leaves your device</div>
+      <input type="file" id="file" accept="image/*" multiple style="display:none"/>
+    </div>
+
+    <div class="qctl" id="qctl">
+      <label>JPG quality <span id="qval">92%</span></label>
+      <input type="range" id="quality" min="40" max="100" value="92"/>
+    </div>
+
+    <div class="results" id="results"></div>
+    <div class="bar" id="bar" style="display:none;">
+      <button class="btn btn-primary" id="dlAll" type="button">Download all</button>
+      <button class="btn btn-ghost" id="clear" type="button">Clear</button>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to convert PNG to JPG</h2>
+    <p>Drop one or more PNG files onto the box (or click to browse). Set the JPG quality, and each image is converted instantly. Transparent areas in a PNG become white in a JPG, since JPG doesn't support transparency. Use <strong>Download all</strong> for the whole batch.</p>
+
+    <h2>Why convert PNG to JPG?</h2><p>JPG files are usually much smaller than PNG for photographs, which makes pages load faster and fits upload-size limits. The trade-off is that JPG is lossy and has no transparency. Lower the quality slider for smaller files, or keep it near 90% for near-identical results.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I convert PNG to JPG?</h3>
+    <p>Drop your PNG files onto the box above, choose a quality level, and each image is converted to JPG in your browser, ready to download individually or all at once.</p>
+    <h3>What happens to a transparent PNG background?</h3>
+    <p>JPG does not support transparency, so any transparent area is filled with white in the converted JPG. If you need transparency, keep the file as PNG.</p>
+    <h3>Does converting reduce quality?</h3>
+    <p>JPG is lossy, so there is a small quality trade-off for a much smaller file. At 90% quality the difference is usually invisible; lower it for smaller files.</p>
+    <h3>Are my images uploaded to a server?</h3>
+    <p>No. Conversion runs entirely in your browser, so your images never leave your device — faster and more private than tools that upload your files.</p>
+    <h3>Can I convert many PNGs at once?</h3>
+    <p>Yes. Drop multiple files, convert them together, and use Download all. There's no limit and no signup.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/jpg-to-png">JPG to PNG Converter &rarr;</a>
+      <a href="/tools/image-compressor">Image Compressor &rarr;</a>
+      <a href="/tools/image-resizer">Image Resizer &rarr;</a>
+      <a href="/tools">Browse all free tools &rarr;</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">&#9889;</span><div><b style="color:#fff">SEOTriggers</b> &mdash; Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">&copy; 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var OUT='image/jpeg', EXT='jpg', LOSSY=true;
+  var $=function(id){return document.getElementById(id);};
+  var drop=$('drop'), fileEl=$('file'), results=$('results'), bar=$('bar'),
+      qctl=$('qctl'), qEl=$('quality'), qval=$('qval');
+  var items=[], idc=0, t;
+  if(LOSSY) qctl.classList.add('on');
+
+  function fmt(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+  function baseName(n){ return n.replace(/\.[^.]+$/,''); }
+  function loadImage(f){ return new Promise(function(res,rej){ var u=URL.createObjectURL(f), im=new Image(); im.onload=function(){res({img:im,url:u});}; im.onerror=function(){rej(new Error('x'));}; im.src=u; }); }
+  function toBlob(cv){ return new Promise(function(res){ cv.toBlob(function(b){res(b);}, OUT, LOSSY?qEl.value/100:undefined); }); }
+
+  async function convert(it){
+    var cv=document.createElement('canvas'); cv.width=it.img.naturalWidth; cv.height=it.img.naturalHeight;
+    var cx=cv.getContext('2d');
+    if(LOSSY){ cx.fillStyle='#fff'; cx.fillRect(0,0,cv.width,cv.height); }
+    cx.drawImage(it.img,0,0);
+    var b=await toBlob(cv);
+    if(!b){ it.status='error'; return; }
+    if(it.outUrl) URL.revokeObjectURL(it.outUrl);
+    it.blob=b; it.newSize=b.size; it.outUrl=URL.createObjectURL(b); it.status='done';
+  }
+
+  function renderItem(it){
+    var meta = it.status==='done'
+      ? '<span>'+fmt(it.origSize)+' &rarr; <b>'+fmt(it.newSize)+'</b></span> &middot; <span>'+EXT.toUpperCase()+'</span>'
+      : it.status==='error' ? '<span style="color:#d33">Could not convert</span>' : '<span>Converting&hellip;</span>';
+    it.el.innerHTML='<img src="'+it.url+'" alt=""/>'+
+      '<div><div class="nm">'+baseName(it.name)+'.'+EXT+'</div><div class="meta">'+meta+'</div></div>'+
+      '<button class="mini" '+(it.status==='done'?'':'disabled')+'>Download</button>';
+    it.el.querySelector('.mini').onclick=function(){ if(it.status!=='done')return;
+      var a=document.createElement('a'); a.href=it.outUrl; a.download=baseName(it.name)+'.'+EXT; a.click(); };
+  }
+
+  async function processAll(){
+    for(var i=0;i<items.length;i++){ var it=items[i]; it.status='working'; renderItem(it);
+      try{ await convert(it); }catch(e){ it.status='error'; } renderItem(it); }
+    bar.style.display=items.length?'flex':'none';
+  }
+  async function addFiles(list){
+    for(var i=0;i<list.length;i++){ var f=list[i]; if(!/^image\//.test(f.type)) continue;
+      var it={id:++idc,file:f,name:f.name,origSize:f.size,status:'working'};
+      try{ var L=await loadImage(f); it.img=L.img; it.url=L.url; }catch(e){ it.status='error'; }
+      it.el=document.createElement('div'); it.el.className='item'; results.appendChild(it.el); items.push(it); renderItem(it);
+    }
+    processAll();
+  }
+
+  drop.addEventListener('click',function(){ fileEl.click(); });
+  fileEl.addEventListener('change',function(){ addFiles(fileEl.files); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('drag');}); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('drag');}); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+  if(qEl) qEl.addEventListener('input',function(){ qval.textContent=qEl.value+'%'; clearTimeout(t); t=setTimeout(processAll,150); });
+  $('dlAll').addEventListener('click',function(){ var d=items.filter(function(i){return i.status==='done';}),k=0;
+    (function nx(){ if(k>=d.length)return; var it=d[k++]; var a=document.createElement('a'); a.href=it.outUrl; a.download=baseName(it.name)+'.'+EXT; a.click(); setTimeout(nx,350); })(); });
+  $('clear').addEventListener('click',function(){ items.forEach(function(i){ if(i.url)URL.revokeObjectURL(i.url); if(i.outUrl)URL.revokeObjectURL(i.outUrl); }); items=[]; results.innerHTML=''; bar.style.display='none'; });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PNG to JPG Converter",
+      "url": "https://seotriggers.com/tools/png-to-jpg",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "description": "Free PNG to JPG converter. Convert PNG images to JPG/JPEG in your browser - set quality, batch convert, no upload and no signup."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://seotriggers.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Tools",
+          "item": "https://seotriggers.com/tools"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "PNG to JPG Converter",
+          "item": "https://seotriggers.com/tools/png-to-jpg"
+        }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert PNG to JPG?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Drop your PNG files onto the box above, choose a quality level, and each image is converted to JPG in your browser, ready to download individually or all at once."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What happens to a transparent PNG background?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JPG does not support transparency, so any transparent area is filled with white in the converted JPG. If you need transparency, keep the file as PNG."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does converting reduce quality?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "JPG is lossy, so there is a small quality trade-off for a much smaller file. At 90% quality the difference is usually invisible; lower it for smaller files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are my images uploaded to a server?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Conversion runs entirely in your browser, so your images never leave your device \u2014 faster and more private than tools that upload your files."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I convert many PNGs at once?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Drop multiple files, convert them together, and use Download all. There's no limit and no signup."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
