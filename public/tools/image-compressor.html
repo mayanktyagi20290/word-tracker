@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free Image Compressor — Compress JPG, PNG &amp; WebP Online | SEOTriggers</title>
+<meta name="description" content="Free online image compressor. Reduce JPG, PNG and WebP file size, or compress to an exact KB target. Batch compress, no upload, no signup — runs in your browser."/>
+<link rel="canonical" href="https://seotriggers.com/tools/image-compressor"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Free Image Compressor — JPG, PNG &amp; WebP | SEOTriggers"/>
+<meta property="og:description" content="Compress images in your browser. Reduce file size or hit an exact KB target. Batch, free, no upload."/>
+<meta property="og:url" content="https://seotriggers.com/tools/image-compressor"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:980px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:720px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .drop{border:2px dashed #cfc8ee;border-radius:16px;background:#faf9ff;padding:38px 20px;text-align:center;cursor:pointer;transition:all .15s;}
+  .drop:hover,.drop.drag{border-color:var(--violet);background:#f3f0fe;}
+  .drop .big{font-size:17px;font-weight:700;color:var(--ink);}
+  .drop .sm{font-size:13px;color:var(--slate);margin-top:5px;}
+  .controls{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;margin-top:16px;}
+  .ctl label.fld{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 7px;}
+  .seg{display:flex;background:#f1eefc;border-radius:10px;padding:3px;gap:3px;}
+  .seg button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:600;font-size:13px;color:var(--slate);padding:8px;border-radius:8px;cursor:pointer;}
+  .seg button.on{background:#fff;color:var(--indigo);box-shadow:0 1px 3px rgba(80,70,200,.18);}
+  select,input[type=number]{width:100%;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff;outline:none;box-sizing:border-box;}
+  select:focus,input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  input[type=range]{width:100%;accent-color:var(--violet);}
+  .qhint{font-size:12px;color:var(--slate);display:flex;justify-content:space-between;margin-top:4px;}
+  .results{margin-top:18px;display:flex;flex-direction:column;gap:10px;}
+  .item{display:grid;grid-template-columns:54px 1fr auto;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:12px 14px;}
+  .item img{width:54px;height:54px;object-fit:cover;border-radius:9px;background:#f1eefc;}
+  .item .nm{font-size:13.5px;font-weight:600;color:var(--ink);word-break:break-all;}
+  .item .meta{font-size:12.5px;color:var(--slate);margin-top:3px;}
+  .item .save{color:var(--indigo);font-weight:700;}
+  .mini{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13px;padding:8px 14px;border-radius:9px;background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;white-space:nowrap;}
+  .mini:disabled{opacity:.5;cursor:default;}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:11px 20px;border-radius:11px;}
+  .btn-primary{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  .summary{font-size:13px;color:var(--slate);margin-top:10px;}
+  @media(max-width:680px){.controls{grid-template-columns:1fr;}.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Image Compressor</p>
+    <div class="tool-head">
+      <h1>Image Compressor</h1>
+      <p class="lead">Shrink JPG, PNG and WebP images by quality or to an exact KB target. Compress as many as you like at once — your images are processed entirely on your device and never uploaded.</p>
+    </div>
+    <div class="usp">
+      <span>✓ No upload — 100% in your browser</span><span>✓ Batch compress</span><span>✓ Compress to exact KB</span><span>✓ Free, no signup</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <div class="big">📷 Drop images here or click to choose</div>
+      <div class="sm">JPG, PNG, WebP · multiple files supported · nothing leaves your device</div>
+      <input type="file" id="file" accept="image/*" multiple style="display:none"/>
+    </div>
+
+    <div class="controls">
+      <div class="ctl">
+        <label class="fld">Compression mode</label>
+        <div class="seg" id="mode">
+          <button data-mode="quality" class="on" type="button">By quality</button>
+          <button data-mode="target" type="button">Target size (KB)</button>
+        </div>
+        <div id="qualityBox" style="margin-top:12px;">
+          <input type="range" id="quality" min="10" max="100" value="75"/>
+          <div class="qhint"><span>Smaller file</span><span id="qval">Quality 75%</span><span>Better quality</span></div>
+        </div>
+        <div id="targetBox" style="margin-top:12px;display:none;">
+          <input type="number" id="target" min="5" placeholder="e.g. 100" value="100"/>
+          <div class="qhint"><span>Target file size in KB</span></div>
+        </div>
+      </div>
+      <div class="ctl">
+        <label class="fld" for="format">Output format</label>
+        <select id="format">
+          <option value="same">Same as original</option>
+          <option value="image/jpeg">JPEG (smallest for photos)</option>
+          <option value="image/webp">WebP (modern, smaller)</option>
+          <option value="image/png">PNG (lossless)</option>
+        </select>
+        <label class="fld" for="maxw" style="margin-top:12px;">Max width (px) — optional</label>
+        <input type="number" id="maxw" min="16" placeholder="Leave blank to keep original size"/>
+      </div>
+    </div>
+
+    <div class="results" id="results"></div>
+    <div class="bar" id="bar" style="display:none;">
+      <button class="btn btn-primary" id="dlAll" type="button">Download all</button>
+      <button class="btn btn-ghost" id="clear" type="button">Clear</button>
+    </div>
+    <div class="summary" id="summary"></div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to compress an image</h2>
+    <p>Drop one or more images onto the box (or click to browse). Choose <strong>By quality</strong> and drag the slider, or switch to <strong>Target size</strong> and type a KB figure — the tool automatically finds the highest quality that fits, which is ideal when a form demands an image under 50&nbsp;KB, 100&nbsp;KB or 200&nbsp;KB. Optionally cap the width to shrink large photos further, then download each result or grab them all at once.</p>
+
+    <h2>Why compress images?</h2>
+    <p>Large images are the most common reason web pages load slowly, and page speed is a ranking and conversion factor. Compressing photos before you upload them keeps pages fast, saves bandwidth and storage, and gets you past upload-size limits on forms and portals — without a noticeable drop in quality.</p>
+
+    <h2>JPG, PNG or WebP — which should I pick?</h2>
+    <p><strong>JPEG</strong> gives the smallest files for photographs. <strong>WebP</strong> is a modern format that's usually 25–35% smaller than JPEG at the same quality and supports transparency, so it's the best choice for the web if you don't need older-browser support. <strong>PNG</strong> is lossless and best for graphics, logos and screenshots with sharp edges or transparency — its size is reduced mainly by lowering the dimensions rather than quality.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>Are my images uploaded to a server?</h3>
+    <p>No. Compression happens entirely in your browser using the Canvas API. Your images never leave your device, which is faster and far more private than tools that upload your files.</p>
+    <h3>How do I compress an image to a specific size like 50 KB?</h3>
+    <p>Switch to "Target size (KB)", enter your number, and the tool searches for the highest quality that stays under that size. If even the lowest quality is too large, reduce the max width as well.</p>
+    <h3>Is there a limit on file size or number of images?</h3>
+    <p>There's no artificial limit and no signup. Very large images use more memory because everything runs locally, but typical photos compress instantly.</p>
+    <h3>Does compressing reduce image quality?</h3>
+    <p>Lossy formats (JPEG, WebP) trade a little quality for much smaller files; at 70–80% quality the difference is usually invisible. PNG stays lossless.</p>
+    <h3>Is it free for commercial use?</h3>
+    <p>Yes. The compressed images are yours to use anywhere, with no watermark and no restrictions.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/qr-code-generator">QR Code Generator →</a>
+      <a href="/tools/word-counter">Word Counter →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var drop=$('drop'), fileEl=$('file'), results=$('results'), bar=$('bar'), summary=$('summary');
+  var modeWrap=$('mode'), qualityEl=$('quality'), qval=$('qval'), targetEl=$('target'),
+      qualityBox=$('qualityBox'), targetBox=$('targetBox'), formatEl=$('format'), maxwEl=$('maxw');
+  var mode='quality', items=[], idc=0, t;
+
+  function fmt(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+
+  function loadImage(file){
+    return new Promise(function(res,rej){
+      var url=URL.createObjectURL(file), img=new Image();
+      img.onload=function(){ res({img:img,url:url}); };
+      img.onerror=function(){ URL.revokeObjectURL(url); rej(new Error('bad image')); };
+      img.src=url;
+    });
+  }
+
+  function makeCanvas(img,maxW,type){
+    var w=img.naturalWidth, h=img.naturalHeight;
+    if(maxW && w>maxW){ h=Math.round(h*maxW/w); w=maxW; }
+    var cv=document.createElement('canvas'); cv.width=w; cv.height=h;
+    var cx=cv.getContext('2d');
+    if(type==='image/jpeg'){ cx.fillStyle='#fff'; cx.fillRect(0,0,w,h); }
+    cx.drawImage(img,0,0,w,h);
+    return cv;
+  }
+
+  function outType(file){
+    var f=formatEl.value;
+    if(f==='same'){ return (file && file.type && /png|jpeg|webp/.test(file.type)) ? file.type : 'image/jpeg'; }
+    return f;
+  }
+
+  function toBlob(cv,type,q){
+    return new Promise(function(res){ cv.toBlob(function(b){res(b);}, type, q); });
+  }
+
+  async function compressOne(it){
+    var type=outType(it.file);
+    var maxW=parseInt(maxwEl.value,10)||0;
+    var cv=makeCanvas(it.img,maxW,type);
+    var lossy=(type==='image/jpeg'||type==='image/webp');
+    var blob;
+
+    if(mode==='quality' || !lossy){
+      var q=lossy ? Math.max(.1,Math.min(1,qualityEl.value/100)) : undefined;
+      blob=await toBlob(cv,type,q);
+      // PNG target mode: downscale until under target
+      if(mode==='target' && !lossy){
+        var tgt=(parseInt(targetEl.value,10)||100)*1024, guard=0;
+        while(blob && blob.size>tgt && cv.width>32 && guard<12){
+          var nc=document.createElement('canvas'); nc.width=Math.round(cv.width*0.85); nc.height=Math.round(cv.height*0.85);
+          nc.getContext('2d').drawImage(cv,0,0,nc.width,nc.height); cv=nc;
+          blob=await toBlob(cv,type); guard++;
+        }
+      }
+    } else {
+      // target mode, lossy: binary-search quality
+      var target=(parseInt(targetEl.value,10)||100)*1024;
+      var lo=.05, hi=.96, best=null, mid;
+      for(var i=0;i<8;i++){
+        mid=(lo+hi)/2;
+        var b=await toBlob(cv,type,mid);
+        if(b && b.size<=target){ best=b; lo=mid; } else { hi=mid; }
+      }
+      blob=best;
+      // still too big at lowest quality -> downscale + retry
+      if(!blob){
+        var g=0;
+        var q2=.5;
+        while(!blob && cv.width>32 && g<10){
+          var n2=document.createElement('canvas'); n2.width=Math.round(cv.width*0.8); n2.height=Math.round(cv.height*0.8);
+          n2.getContext('2d').drawImage(cv,0,0,n2.width,n2.height); cv=n2;
+          var bb=await toBlob(cv,type,q2);
+          if(bb && bb.size<=target) blob=bb;
+          g++;
+        }
+        if(!blob) blob=await toBlob(cv,type,.4); // give best effort
+      }
+    }
+    if(!blob){ it.status='error'; return; }
+    it.blob=blob; it.newSize=blob.size; it.outType=type;
+    if(it.outUrl) URL.revokeObjectURL(it.outUrl);
+    it.outUrl=URL.createObjectURL(blob);
+    it.status='done';
+  }
+
+  function ext(type){ return type==='image/png'?'png':type==='image/webp'?'webp':'jpg'; }
+  function baseName(n){ return n.replace(/\.[^.]+$/,''); }
+
+  function renderItem(it){
+    var el=it.el;
+    var saved = it.origSize && it.newSize ? Math.max(0,Math.round((1-it.newSize/it.origSize)*100)) : 0;
+    var meta = it.status==='done'
+        ? '<span>'+fmt(it.origSize)+' → <b>'+fmt(it.newSize)+'</b></span> · <span class="save">−'+saved+'%</span>'
+        : it.status==='error' ? '<span style="color:#d33">Could not compress</span>' : '<span>Compressing…</span>';
+    el.innerHTML='<img src="'+(it.url)+'" alt=""/>'+
+      '<div><div class="nm">'+it.name+'</div><div class="meta">'+meta+'</div></div>'+
+      '<button class="mini" '+(it.status==='done'?'':'disabled')+'>Download</button>';
+    el.querySelector('.mini').onclick=function(){
+      if(it.status!=='done')return;
+      var a=document.createElement('a'); a.href=it.outUrl; a.download=baseName(it.name)+'-compressed.'+ext(it.outType); a.click();
+    };
+  }
+
+  function renderSummary(){
+    var done=items.filter(function(i){return i.status==='done';});
+    bar.style.display=items.length?'flex':'none';
+    if(!done.length){ summary.textContent=''; return; }
+    var o=done.reduce(function(a,i){return a+i.origSize;},0), n=done.reduce(function(a,i){return a+i.newSize;},0);
+    summary.innerHTML='Total: '+fmt(o)+' → <b>'+fmt(n)+'</b> · saved <b>'+Math.max(0,Math.round((1-n/o)*100))+'%</b> across '+done.length+' image'+(done.length>1?'s':'')+'.';
+  }
+
+  async function processAll(){
+    for(var i=0;i<items.length;i++){
+      var it=items[i];
+      it.status='working'; renderItem(it);
+      try{ await compressOne(it); }catch(e){ it.status='error'; }
+      renderItem(it); renderSummary();
+    }
+  }
+
+  async function addFiles(list){
+    for(var i=0;i<list.length;i++){
+      var f=list[i]; if(!/^image\//.test(f.type)) continue;
+      var it={id:++idc, file:f, name:f.name, origSize:f.size, status:'working'};
+      try{ var L=await loadImage(f); it.img=L.img; it.url=L.url; }catch(e){ it.status='error'; }
+      it.el=document.createElement('div'); it.el.className='item'; results.appendChild(it.el);
+      items.push(it); renderItem(it);
+    }
+    processAll();
+  }
+
+  // reprocess on settings change
+  function reprocess(){ clearTimeout(t); t=setTimeout(processAll,150); }
+  modeWrap.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-mode]'); if(!b) return;
+    mode=b.getAttribute('data-mode');
+    [].forEach.call(modeWrap.children,function(x){x.classList.toggle('on',x===b);});
+    qualityBox.style.display=mode==='quality'?'block':'none';
+    targetBox.style.display=mode==='target'?'block':'none';
+    if(items.length) processAll();
+  });
+  qualityEl.addEventListener('input',function(){ qval.textContent='Quality '+qualityEl.value+'%'; reprocess(); });
+  targetEl.addEventListener('input',reprocess);
+  formatEl.addEventListener('change',function(){ if(items.length) processAll(); });
+  maxwEl.addEventListener('input',reprocess);
+
+  // dropzone
+  drop.addEventListener('click',function(){ fileEl.click(); });
+  fileEl.addEventListener('change',function(){ addFiles(fileEl.files); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.add('drag'); }); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){ e.preventDefault(); drop.classList.remove('drag'); }); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+
+  $('dlAll').addEventListener('click',function(){
+    var done=items.filter(function(i){return i.status==='done';}), k=0;
+    (function next(){ if(k>=done.length)return; var it=done[k++];
+      var a=document.createElement('a'); a.href=it.outUrl; a.download=baseName(it.name)+'-compressed.'+ext(it.outType); a.click();
+      setTimeout(next,350);
+    })();
+  });
+  $('clear').addEventListener('click',function(){
+    items.forEach(function(i){ if(i.url)URL.revokeObjectURL(i.url); if(i.outUrl)URL.revokeObjectURL(i.outUrl); });
+    items=[]; results.innerHTML=''; renderSummary();
+  });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Image Compressor",
+      "url": "https://seotriggers.com/tools/image-compressor",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Compress JPG, PNG and WebP; compress to a target KB size; batch compression; resize; runs in the browser with no upload",
+      "description": "Free online image compressor that reduces JPG, PNG and WebP file size or compresses to an exact KB target, entirely in your browser with no upload."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Image Compressor", "item": "https://seotriggers.com/tools/image-compressor" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Are my images uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Compression happens entirely in your browser using the Canvas API. Your images never leave your device, which is faster and more private than tools that upload your files." } },
+        { "@type": "Question", "name": "How do I compress an image to a specific size like 50 KB?", "acceptedAnswer": { "@type": "Answer", "text": "Switch to Target size (KB), enter your number, and the tool searches for the highest quality that stays under that size. If even the lowest quality is too large, reduce the max width as well." } },
+        { "@type": "Question", "name": "Is there a limit on file size or number of images?", "acceptedAnswer": { "@type": "Answer", "text": "There is no artificial limit and no signup. Very large images use more memory because everything runs locally, but typical photos compress instantly." } },
+        { "@type": "Question", "name": "Does compressing reduce image quality?", "acceptedAnswer": { "@type": "Answer", "text": "Lossy formats like JPEG and WebP trade a little quality for much smaller files; at 70 to 80 percent quality the difference is usually invisible. PNG stays lossless." } },
+        { "@type": "Question", "name": "Is it free for commercial use?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The compressed images are yours to use anywhere, with no watermark and no restrictions." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
