@@ -18,6 +18,7 @@
     { "source": "/tools/jpg-to-png", "destination": "/tools/jpg-to-png.html" },
     { "source": "/tools/png-to-jpg", "destination": "/tools/png-to-jpg.html" },
     { "source": "/tools/pdf-merger", "destination": "/tools/pdf-merger.html" },
+    { "source": "/tools/pdf-splitter", "destination": "/tools/pdf-splitter.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
