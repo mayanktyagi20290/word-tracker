@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>SIP Calculator — Mutual Fund SIP Returns Calculator (with Step-Up) | SEOTriggers</title>
+<meta name="description" content="Free SIP calculator for mutual fund investments. Enter monthly amount, expected return and tenure to see your invested amount, estimated returns and total value — with optional annual step-up."/>
+<link rel="canonical" href="https://seotriggers.com/tools/sip-calculator"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="SIP Calculator — Mutual Fund SIP Returns | SEOTriggers"/>
+<meta property="og:description" content="Calculate SIP maturity value, invested amount and returns, with optional step-up. Free and instant."/>
+<meta property="og:url" content="https://seotriggers.com/tools/sip-calculator"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:900px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .layout{display:grid;grid-template-columns:1fr 300px;gap:20px;align-items:start;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:20px;}
+  .ctl{margin-bottom:20px;}
+  .ctl .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px;}
+  .ctl label{font-size:13.5px;font-weight:700;color:var(--ink);}
+  .valbox{display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:9px;padding:5px 10px;background:#fff;}
+  .valbox span{color:var(--slate);font-weight:700;font-size:14px;}
+  .valbox input{border:none;outline:none;font-family:inherit;font-size:15px;font-weight:700;color:var(--indigo);width:90px;text-align:right;background:transparent;}
+  input[type=range]{width:100%;accent-color:var(--violet);}
+  .result{display:flex;flex-direction:column;gap:14px;}
+  .fvBox{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;border-radius:16px;padding:20px;text-align:center;}
+  .fvBox .l{font-size:12.5px;opacity:.85;font-weight:600;}
+  .fvBox .v{font-size:30px;font-weight:800;letter-spacing:-.5px;margin-top:3px;}
+  .donut{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px;}
+  .legend{font-size:12.5px;color:var(--slate);}
+  .legend .row{display:flex;align-items:center;gap:7px;margin:5px 0;}
+  .dot{width:11px;height:11px;border-radius:3px;}
+  .legend b{color:var(--ink);}
+  .tots{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:4px 16px;}
+  .totrow{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--border);font-size:13.5px;}
+  .totrow:last-child{border-bottom:none;}
+  .totrow b{color:var(--ink);}
+  h2.sec{font-size:16px;font-weight:800;color:var(--ink);margin:26px 0 12px;}
+  table{width:100%;border-collapse:collapse;font-size:13px;background:var(--surface);border:1px solid var(--border);border-radius:12px;overflow:hidden;}
+  th,td{padding:9px 12px;text-align:right;border-bottom:1px solid var(--border);}
+  th:first-child,td:first-child{text-align:left;}
+  th{background:#faf9ff;color:var(--slate);font-weight:700;font-size:12px;}
+  @media(max-width:740px){.layout{grid-template-columns:1fr;}.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › SIP Calculator</p>
+    <div class="tool-head">
+      <h1>SIP Calculator</h1>
+      <p class="lead">Estimate the maturity value of a mutual fund SIP. Enter your monthly investment, expected return and tenure to see how much you invest, your estimated returns and the total value — with an optional annual step-up.</p>
+    </div>
+
+    <div class="layout">
+      <div class="panel">
+        <div class="ctl">
+          <div class="top"><label>Monthly investment</label><div class="valbox"><span>₹</span><input type="number" id="amt" value="10000"/></div></div>
+          <input type="range" id="amtR" min="500" max="200000" step="500" value="10000"/>
+        </div>
+        <div class="ctl">
+          <div class="top"><label>Expected return rate (% p.a.)</label><div class="valbox"><input type="number" id="rate" value="12" step="0.5"/><span>%</span></div></div>
+          <input type="range" id="rateR" min="1" max="30" step="0.5" value="12"/>
+        </div>
+        <div class="ctl">
+          <div class="top"><label>Time period (years)</label><div class="valbox"><input type="number" id="yrs" value="10"/><span>yr</span></div></div>
+          <input type="range" id="yrsR" min="1" max="40" step="1" value="10"/>
+        </div>
+        <div class="ctl">
+          <div class="top"><label>Annual step-up (optional)</label><div class="valbox"><input type="number" id="step" value="0" step="1"/><span>%</span></div></div>
+          <input type="range" id="stepR" min="0" max="25" step="1" value="0"/>
+        </div>
+      </div>
+
+      <div class="result">
+        <div class="fvBox"><div class="l">Total value</div><div class="v" id="fv">—</div></div>
+        <div class="donut">
+          <svg width="92" height="92" viewBox="0 0 42 42">
+            <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#4f46e5" stroke-width="6"/>
+            <circle cx="21" cy="21" r="15.9155" fill="none" stroke="#7c3aed" stroke-width="6" id="arc" stroke-dasharray="0 100" transform="rotate(-90 21 21)"/>
+          </svg>
+          <div class="legend">
+            <div class="row"><span class="dot" style="background:#4f46e5"></span>Invested: <b id="lInv">—</b></div>
+            <div class="row"><span class="dot" style="background:#7c3aed"></span>Returns: <b id="lRet">—</b></div>
+          </div>
+        </div>
+        <div class="tots">
+          <div class="totrow"><span>Invested amount</span><b id="tInv">—</b></div>
+          <div class="totrow"><span>Estimated returns</span><b id="tRet">—</b></div>
+          <div class="totrow"><span>Total value</span><b id="tTot">—</b></div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="sec">Year-by-year growth</h2>
+    <table id="tbl"><thead><tr><th>Year</th><th>Invested</th><th>Value</th><th>Returns</th></tr></thead><tbody id="tblBody"></tbody></table>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How SIP returns are calculated</h2>
+    <p>A SIP (Systematic Investment Plan) invests a fixed amount every month, and each instalment earns compounding returns until maturity. The future value uses the formula <strong>FV = P × [((1+i)<sup>n</sup> − 1) ÷ i] × (1+i)</strong>, where <strong>P</strong> is the monthly amount, <strong>i</strong> is the monthly return (annual rate ÷ 12 ÷ 100) and <strong>n</strong> is the number of months. Because earlier instalments compound for longer, the returns grow faster the longer you stay invested.</p>
+
+    <h2>What is a step-up SIP?</h2>
+    <p>A step-up (or top-up) SIP increases your monthly investment by a fixed percentage each year — useful as your income grows. Set the annual step-up above to see how even a small yearly increase can significantly raise your maturity value. The return rate is an assumption, not a guarantee; actual mutual fund returns vary with the market.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How are SIP returns calculated?</h3>
+    <p>Each monthly instalment is compounded at the expected rate until the end of the tenure, then summed. This calculator applies the standard SIP future-value formula instantly.</p>
+    <h3>How do I calculate a step-up SIP?</h3>
+    <p>Enter an annual step-up percentage. Your monthly amount rises by that percentage every year, and the calculator compounds each year's instalments accordingly.</p>
+    <h3>Is the expected return guaranteed?</h3>
+    <p>No. Mutual fund returns depend on market performance. The rate you enter is an assumption for estimation only; actual results will differ.</p>
+    <h3>Is my data stored anywhere?</h3>
+    <p>No. The calculation runs entirely in your browser; nothing you enter is uploaded or stored.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/emi-calculator">EMI Calculator →</a>
+      <a href="/tools/percentage-calculator">Percentage Calculator →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var amt=$('amt'),amtR=$('amtR'),rate=$('rate'),rateR=$('rateR'),yrs=$('yrs'),yrsR=$('yrsR'),step=$('step'),stepR=$('stepR');
+  function inr(n){ if(!isFinite(n)) return '—'; return '₹'+Math.round(n).toLocaleString('en-IN'); }
+
+  function calc(){
+    var P=parseFloat(amt.value)||0, annual=parseFloat(rate.value)||0, ny=parseInt(yrs.value,10)||0, s=parseFloat(step.value)||0;
+    var n=ny*12, i=annual/12/100;
+    if(P<=0||n<=0){ $('fv').textContent='—'; $('tblBody').innerHTML=''; return; }
+    var fv=0, amtCur=P, invested=0, body='';
+    for(var m=1;m<=n;m++){
+      fv=(fv+amtCur)*(1+i); invested+=amtCur;
+      if(m%12===0){
+        var yr=m/12, ret=fv-invested;
+        body+='<tr><td>'+yr+'</td><td>'+inr(invested)+'</td><td>'+inr(fv)+'</td><td>'+inr(ret)+'</td></tr>';
+        amtCur*=(1+s/100);
+      }
+    }
+    var returns=fv-invested;
+    $('fv').textContent=inr(fv);
+    $('tInv').textContent=inr(invested); $('tRet').textContent=inr(returns); $('tTot').textContent=inr(fv);
+    $('lInv').textContent=inr(invested); $('lRet').textContent=inr(returns);
+    var rp= fv>0 ? (returns/fv*100) : 0;
+    $('arc').setAttribute('stroke-dasharray', rp.toFixed(2)+' '+(100-rp).toFixed(2));
+    $('tblBody').innerHTML=body;
+  }
+  function sync(a,b){ a.addEventListener('input',function(){ b.value=a.value; calc(); }); }
+  sync(amt,amtR); sync(amtR,amt); sync(rate,rateR); sync(rateR,rate); sync(yrs,yrsR); sync(yrsR,yrs); sync(step,stepR); sync(stepR,step);
+  calc();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "SIP Calculator",
+      "url": "https://seotriggers.com/tools/sip-calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "SIP maturity value; invested amount and estimated returns; optional annual step-up; year-by-year growth table",
+      "description": "Free SIP calculator that estimates mutual fund SIP maturity value, invested amount and returns, with optional step-up, entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "SIP Calculator", "item": "https://seotriggers.com/tools/sip-calculator" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How are SIP returns calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Each monthly instalment is compounded at the expected rate until the end of the tenure, then summed, using the standard SIP future-value formula." } },
+        { "@type": "Question", "name": "How do I calculate a step-up SIP?", "acceptedAnswer": { "@type": "Answer", "text": "Enter an annual step-up percentage. Your monthly amount rises by that percentage every year, and the calculator compounds each year's instalments accordingly." } },
+        { "@type": "Question", "name": "Is the expected return guaranteed?", "acceptedAnswer": { "@type": "Answer", "text": "No. Mutual fund returns depend on market performance. The rate you enter is an assumption for estimation only; actual results will differ." } },
+        { "@type": "Question", "name": "Is my data stored anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. The calculation runs entirely in your browser; nothing you enter is uploaded or stored." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
