@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Split PDF — Free PDF Splitter to Extract or Split PDF Pages | SEOTriggers</title>
+<meta name="description" content="Free PDF splitter. Extract specific pages or split a PDF into multiple files — all in your browser. No upload, no signup, no watermark."/>
+<link rel="canonical" href="https://seotriggers.com/tools/pdf-splitter"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Split PDF — Free PDF Splitter | SEOTriggers"/>
+<meta property="og:description" content="Extract pages or split a PDF into multiple files in your browser. No upload, no signup, no watermark."/>
+<meta property="og:url" content="https://seotriggers.com/tools/pdf-splitter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:880px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .drop{border:2px dashed #cfc8ee;border-radius:16px;background:#faf9ff;padding:40px 20px;text-align:center;cursor:pointer;transition:all .15s;}
+  .drop:hover,.drop.drag{border-color:var(--violet);background:#f3f0fe;}
+  .drop .big{font-size:18px;font-weight:700;color:var(--ink);}
+  .drop .sm{font-size:13px;color:var(--slate);margin-top:5px;}
+  .loaded{display:none;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;margin-top:16px;}
+  .loaded.on{display:block;}
+  .fileline{display:flex;justify-content:space-between;align-items:center;gap:12px;}
+  .fileline .nm{font-size:14px;font-weight:700;color:var(--ink);word-break:break-all;}
+  .fileline .meta{font-size:12.5px;color:var(--slate);margin-top:2px;}
+  .linkbtn{background:none;border:none;color:var(--violet);font-weight:600;font-size:13px;cursor:pointer;}
+  .seg{display:flex;background:#f1eefc;border-radius:10px;padding:3px;gap:3px;margin:16px 0 14px;}
+  .seg button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:600;font-size:13px;color:var(--slate);padding:9px;border-radius:8px;cursor:pointer;}
+  .seg button.on{background:#fff;color:var(--indigo);box-shadow:0 1px 3px rgba(80,70,200,.18);}
+  label.fld{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 7px;}
+  .txt,input[type=number]{width:100%;border:1px solid var(--border);border-radius:11px;padding:11px 13px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;outline:none;box-sizing:border-box;}
+  .txt:focus,input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .hint{font-size:12px;color:var(--slate);margin-top:6px;}
+  .grp{display:none;}.grp.on{display:block;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;padding:13px 24px;border-radius:11px;background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;margin-top:16px;}
+  .btn:disabled{opacity:.5;cursor:default;}
+  .status{font-size:13px;color:var(--slate);margin-top:10px;}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › PDF Splitter</p>
+    <div class="tool-head">
+      <h1>Split PDF</h1>
+      <p class="lead">Extract specific pages from a PDF, or split one PDF into several files. Everything runs in your browser — your document is never uploaded.</p>
+    </div>
+    <div class="usp">
+      <span>✓ No upload — runs in your browser</span><span>✓ Extract pages or split into files</span><span>✓ No watermark</span><span>✓ Free, no signup</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <div class="big">📄 Drop a PDF here or click to choose</div>
+      <div class="sm">One PDF · nothing leaves your device</div>
+      <input type="file" id="file" accept="application/pdf,.pdf" style="display:none"/>
+    </div>
+
+    <div class="loaded" id="loaded">
+      <div class="fileline">
+        <div><div class="nm" id="fname">—</div><div class="meta" id="fmeta">—</div></div>
+        <button class="linkbtn" id="change" type="button">Change file</button>
+      </div>
+
+      <div class="seg" id="mode">
+        <button data-mode="extract" class="on" type="button">Extract pages</button>
+        <button data-mode="split" type="button">Split into files</button>
+      </div>
+
+      <div class="grp on" data-grp="extract">
+        <label class="fld" for="ranges">Pages to extract</label>
+        <input class="txt" id="ranges" type="text" placeholder="e.g. 1-3, 5, 8-10"/>
+        <div class="hint">Use commas for single pages and hyphens for ranges. Leave blank for all pages.</div>
+        <button class="btn" id="doExtract" type="button">Extract pages</button>
+      </div>
+
+      <div class="grp" data-grp="split">
+        <label class="fld" for="every">Split every</label>
+        <input type="number" id="every" min="1" value="1"/>
+        <div class="hint">Number of pages per file. <b>1</b> = every page becomes its own PDF. Files are delivered as a ZIP.</div>
+        <button class="btn" id="doSplit" type="button">Split PDF</button>
+      </div>
+
+      <div class="status" id="status"></div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to split a PDF</h2>
+    <p>Add your PDF, then choose what you want to do. Use <strong>Extract pages</strong> to pull out specific pages or ranges — type something like <code>1-3, 5, 8-10</code> — and get a single new PDF with just those pages. Use <strong>Split into files</strong> to break the document into chunks of a set number of pages; set it to 1 to separate every page into its own file. The result downloads instantly, with multiple files delivered together as a ZIP.</p>
+
+    <h2>Separate PDF pages privately</h2>
+    <p>Unlike most online splitters that upload your file to a server, this tool does everything on your device using JavaScript. Your PDF — contracts, statements, scans — never leaves your computer, which is both more private and faster.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I extract pages from a PDF?</h3>
+    <p>Choose Extract pages, type the page numbers or ranges you want (for example 1-3, 5), and click Extract. A new PDF containing only those pages downloads right away.</p>
+    <h3>How do I split a PDF into multiple files?</h3>
+    <p>Choose Split into files, set how many pages each file should contain (1 for one page per file), and click Split PDF. The resulting files download together in a ZIP.</p>
+    <h3>How do I separate pages in a PDF document?</h3>
+    <p>Set "Split every" to 1 — each page becomes its own PDF, so every page is fully separated.</p>
+    <h3>Is my PDF uploaded anywhere?</h3>
+    <p>No. Splitting happens entirely in your browser, so your document is never uploaded — ideal for sensitive files.</p>
+    <h3>Will the split files have a watermark?</h3>
+    <p>No. The output PDFs are clean, with no watermark and no quality loss.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/pdf-merger">PDF Merger →</a>
+      <a href="/tools/image-compressor">Image Compressor →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var drop=$('drop'), fileEl=$('file'), loaded=$('loaded'), fname=$('fname'), fmeta=$('fmeta'),
+      modeWrap=$('mode'), rangesEl=$('ranges'), everyEl=$('every'), statusEl=$('status');
+  var file=null, bytes=null, total=0, baseName='document';
+
+  function ensure(name){ return new Promise(function(res,rej){ if(window[name]) return res();
+    var n=0, iv=setInterval(function(){ if(window[name]){clearInterval(iv);res();} else if(++n>120){clearInterval(iv);rej(new Error(name));} },100); }); }
+  function fmt(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+  function dl(blob,name){ var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download=name; a.click(); }
+
+  function parseRanges(str,total){
+    if(!str.trim()){ var all=[]; for(var i=0;i<total;i++) all.push(i); return all; }
+    var out=[], seen={};
+    str.split(',').forEach(function(part){
+      part=part.trim(); if(!part) return;
+      var m=part.match(/^(\d+)\s*-\s*(\d+)$/);
+      if(m){ var a=parseInt(m[1],10), b=parseInt(m[2],10); if(a>b){var t=a;a=b;b=t;}
+        for(var p=a;p<=b;p++){ if(p>=1&&p<=total&&!seen[p]){seen[p]=1;out.push(p-1);} } }
+      else if(/^\d+$/.test(part)){ var p2=parseInt(part,10); if(p2>=1&&p2<=total&&!seen[p2]){seen[p2]=1;out.push(p2-1);} }
+    });
+    return out;
+  }
+
+  async function loadFile(f){
+    if(!f || (f.type!=='application/pdf' && !/\.pdf$/i.test(f.name))) return;
+    file=f; baseName=f.name.replace(/\.pdf$/i,'');
+    statusEl.textContent='';
+    fname.textContent=f.name; fmeta.textContent=fmt(f.size)+' · reading…';
+    loaded.classList.add('on'); drop.style.display='none';
+    try{
+      await ensure('PDFLib');
+      bytes=await f.arrayBuffer();
+      var doc=await PDFLib.PDFDocument.load(bytes,{ignoreEncryption:true});
+      total=doc.getPageCount();
+      fmeta.textContent=fmt(f.size)+' · '+total+' page'+(total>1?'s':'');
+    }catch(e){ fmeta.textContent='Could not read this PDF.'; }
+  }
+
+  async function doExtract(){
+    if(!bytes) return;
+    var idx=parseRanges(rangesEl.value,total);
+    if(!idx.length){ statusEl.textContent='No valid pages in that range (document has '+total+' pages).'; return; }
+    statusEl.textContent='Extracting…';
+    try{
+      await ensure('PDFLib');
+      var src=await PDFLib.PDFDocument.load(bytes,{ignoreEncryption:true});
+      var out=await PDFLib.PDFDocument.create();
+      var pages=await out.copyPages(src, idx); pages.forEach(function(p){ out.addPage(p); });
+      var b=await out.save();
+      dl(new Blob([b],{type:'application/pdf'}), baseName+'-extracted.pdf');
+      statusEl.textContent='Done — extracted '+idx.length+' page'+(idx.length>1?'s':'')+'.';
+    }catch(e){ statusEl.textContent='Could not extract pages.'; }
+  }
+
+  async function doSplit(){
+    if(!bytes) return;
+    var n=Math.max(1,parseInt(everyEl.value,10)||1);
+    statusEl.textContent='Splitting…';
+    try{
+      await ensure('PDFLib'); await ensure('JSZip');
+      var src=await PDFLib.PDFDocument.load(bytes,{ignoreEncryption:true});
+      var parts=Math.ceil(total/n);
+      if(parts<=1){ statusEl.textContent='This PDF has '+total+' page'+(total>1?'s':'')+' — nothing to split at '+n+' per file.'; return; }
+      var zip=new JSZip(), part=0;
+      for(var start=0;start<total;start+=n){
+        part++;
+        var out=await PDFLib.PDFDocument.create();
+        var idx=[]; for(var i=start;i<Math.min(start+n,total);i++) idx.push(i);
+        var pages=await out.copyPages(src, idx); pages.forEach(function(p){ out.addPage(p); });
+        var b=await out.save();
+        var label = n===1 ? ('page-'+(start+1)) : ('part-'+part);
+        zip.file(baseName+'-'+label+'.pdf', b);
+        statusEl.textContent='Splitting… ('+part+'/'+parts+')';
+      }
+      var blob=await zip.generateAsync({type:'blob'});
+      dl(blob, baseName+'-split.zip');
+      statusEl.textContent='Done — '+parts+' files in '+baseName+'-split.zip';
+    }catch(e){ statusEl.textContent='Could not split this PDF.'; }
+  }
+
+  modeWrap.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-mode]'); if(!b)return;
+    var m=b.getAttribute('data-mode');
+    [].forEach.call(modeWrap.children,function(x){x.classList.toggle('on',x===b);});
+    [].forEach.call(document.querySelectorAll('.grp'),function(g){g.classList.toggle('on',g.getAttribute('data-grp')===m);});
+    statusEl.textContent='';
+  });
+  drop.addEventListener('click',function(){ fileEl.click(); });
+  fileEl.addEventListener('change',function(){ loadFile(fileEl.files[0]); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('drag');}); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('drag');}); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) loadFile(e.dataTransfer.files[0]); });
+  $('change').addEventListener('click',function(){ loaded.classList.remove('on'); drop.style.display='block'; file=null; bytes=null; });
+  $('doExtract').addEventListener('click',doExtract);
+  $('doSplit').addEventListener('click',doSplit);
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PDF Splitter",
+      "url": "https://seotriggers.com/tools/pdf-splitter",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Extract specific PDF pages; split a PDF into multiple files; runs in the browser with no upload; no watermark",
+      "description": "Free PDF splitter that extracts pages or splits a PDF into multiple files entirely in your browser, with no upload."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "PDF Splitter", "item": "https://seotriggers.com/tools/pdf-splitter" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I extract pages from a PDF?", "acceptedAnswer": { "@type": "Answer", "text": "Choose Extract pages, type the page numbers or ranges you want (for example 1-3, 5), and click Extract. A new PDF containing only those pages downloads right away." } },
+        { "@type": "Question", "name": "How do I split a PDF into multiple files?", "acceptedAnswer": { "@type": "Answer", "text": "Choose Split into files, set how many pages each file should contain (1 for one page per file), and click Split PDF. The resulting files download together in a ZIP." } },
+        { "@type": "Question", "name": "How do I separate pages in a PDF document?", "acceptedAnswer": { "@type": "Answer", "text": "Set Split every to 1 — each page becomes its own PDF, so every page is fully separated." } },
+        { "@type": "Question", "name": "Is my PDF uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Splitting happens entirely in your browser, so your document is never uploaded — ideal for sensitive files." } },
+        { "@type": "Question", "name": "Will the split files have a watermark?", "acceptedAnswer": { "@type": "Answer", "text": "No. The output PDFs are clean, with no watermark and no quality loss." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
