@@ -15,6 +15,7 @@
     { "source": "/tools/word-counter", "destination": "/tools/word-counter.html" },
     { "source": "/tools/character-counter", "destination": "/tools/character-counter.html" },
     { "source": "/tools/age-calculator", "destination": "/tools/age-calculator.html" },
+    { "source": "/tools/percentage-calculator", "destination": "/tools/percentage-calculator.html" },
     { "source": "/tools/image-compressor", "destination": "/tools/image-compressor.html" },
     { "source": "/tools/image-resizer", "destination": "/tools/image-resizer.html" },
     { "source": "/tools/jpg-to-png", "destination": "/tools/jpg-to-png.html" },
