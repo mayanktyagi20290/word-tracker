@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Character Counter — Count Characters Online with Limits | SEOTriggers</title>
+<meta name="description" content="Free character counter. Count characters with and without spaces, plus words, sentences and lines — with live limits for X/Twitter, SMS, meta tags and more. No signup."/>
+<link rel="canonical" href="https://seotriggers.com/tools/character-counter"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Character Counter — Count Characters Online | SEOTriggers"/>
+<meta property="og:description" content="Count characters with and without spaces, plus words and lines, with live limits for X, SMS and meta tags. Free, private."/>
+<meta property="og:url" content="https://seotriggers.com/tools/character-counter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:920px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .ta{width:100%;min-height:180px;border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-family:inherit;font-size:16px;color:var(--ink);background:var(--surface);resize:vertical;outline:none;line-height:1.7;transition:border-color .15s,box-shadow .15s;}
+  .ta:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 22px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:9px 18px;border-radius:10px;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet);}
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
+  .stat .v{font-size:28px;font-weight:800;color:var(--indigo);line-height:1.1;}
+  .stat.hero .v{font-size:34px;}
+  .stat.alt .v{color:var(--violet);}
+  .stat .l{font-size:13px;color:var(--slate);font-weight:600;margin-top:4px;}
+  h2.sec{font-size:16px;font-weight:800;color:var(--ink);margin:0 0 12px;}
+  .limits{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:8px;}
+  .lim{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:12px 14px;}
+  .lim .top{display:flex;justify-content:space-between;align-items:baseline;}
+  .lim .nm{font-size:13px;font-weight:700;color:var(--ink);}
+  .lim .ct{font-size:12.5px;color:var(--slate);font-weight:600;}
+  .lim .ct.over{color:#d33;}
+  .track{height:6px;background:var(--border);border-radius:99px;overflow:hidden;margin-top:8px;}
+  .fill{height:100%;background:linear-gradient(90deg,var(--violet),var(--indigo));border-radius:99px;transition:width .15s;}
+  .fill.over{background:#e5484d;}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}.limits{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Character Counter</p>
+    <div class="tool-head">
+      <h1>Character Counter</h1>
+      <p class="lead">Count characters as you type — with and without spaces — plus words, sentences and lines, and see live limits for X, SMS, meta tags and more. Nothing is uploaded; it all runs in your browser.</p>
+    </div>
+
+    <textarea id="ta" class="ta" placeholder="Type or paste your text here…" autofocus></textarea>
+    <div class="bar">
+      <button class="btn btn-ghost" id="copyBtn" type="button">Copy text</button>
+      <button class="btn btn-ghost" id="clearBtn" type="button">Clear</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat hero"><div class="v" id="chars">0</div><div class="l">Characters</div></div>
+      <div class="stat"><div class="v" id="charsNo">0</div><div class="l">Without spaces</div></div>
+      <div class="stat alt"><div class="v" id="words">0</div><div class="l">Words</div></div>
+      <div class="stat"><div class="v" id="sentences">0</div><div class="l">Sentences</div></div>
+      <div class="stat"><div class="v" id="lines">0</div><div class="l">Lines</div></div>
+      <div class="stat"><div class="v" id="paras">0</div><div class="l">Paragraphs</div></div>
+    </div>
+
+    <h2 class="sec">Platform limits</h2>
+    <div class="limits" id="limits"></div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How the character counter works</h2>
+    <p>The counter measures every character you type, including spaces, punctuation and line breaks — that's the <strong>Characters</strong> figure, and it's what platforms like X (Twitter) and SMS count against their limits. <strong>Without spaces</strong> removes all whitespace, which some forms and assignments ask for. It also shows words, sentences, lines and paragraphs so you can check length at a glance.</p>
+
+    <h2>Why character limits matter</h2>
+    <p>Many places cap how much text you can use: an SEO <strong>title tag</strong> is usually trimmed by Google after about 60 characters and a <strong>meta description</strong> after about 160; an <strong>X post</strong> allows 280; a single <strong>SMS</strong> is 160. Staying within these keeps your titles from being cut off in search results and your posts from being split or rejected. The live bars above turn red the moment you go over.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I count characters in a piece of text?</h3>
+    <p>Paste or type your text above. The Characters figure updates instantly and counts everything including spaces; the Without spaces figure excludes whitespace.</p>
+    <h3>Does the character count include spaces?</h3>
+    <p>Yes. The main Characters total includes spaces, punctuation and line breaks, matching how X and SMS count. A separate figure shows the count without spaces.</p>
+    <h3>What's the character limit for a tweet (X post)?</h3>
+    <p>A standard X post allows 280 characters. The live limit bar above shows how many you've used and how many remain.</p>
+    <h3>Is my text uploaded anywhere?</h3>
+    <p>No. Counting happens entirely in your browser, so your text never leaves your device.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/word-counter">Word Counter →</a>
+      <a href="/">SEOTriggers content analyzer →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ta=document.getElementById('ta');
+  var LIMITS=[
+    {nm:'X / Twitter post',max:280},
+    {nm:'SMS (single)',max:160},
+    {nm:'SEO title tag',max:60},
+    {nm:'Meta description',max:160},
+    {nm:'Instagram caption',max:2200},
+    {nm:'LinkedIn post',max:3000}
+  ];
+  var lwrap=document.getElementById('limits');
+  LIMITS.forEach(function(l,i){
+    var el=document.createElement('div'); el.className='lim';
+    el.innerHTML='<div class="top"><span class="nm">'+l.nm+'</span><span class="ct" id="ct'+i+'">0 / '+l.max+'</span></div><div class="track"><div class="fill" id="fl'+i+'" style="width:0%"></div></div>';
+    lwrap.appendChild(el);
+  });
+  function fmt(n){return n.toLocaleString();}
+  function update(){
+    var t=ta.value, trimmed=t.trim();
+    var chars=t.length, charsNo=t.replace(/\s/g,'').length;
+    var words=trimmed?trimmed.split(/\s+/).length:0;
+    var sentences=(trimmed.match(/[^.!?]+[.!?]+/g)||[]).length || (trimmed?1:0);
+    var lines=t===''?0:t.split(/\n/).length;
+    var paras=trimmed?trimmed.split(/\n{2,}/).filter(function(p){return p.trim().length>0;}).length:0;
+    document.getElementById('chars').textContent=fmt(chars);
+    document.getElementById('charsNo').textContent=fmt(charsNo);
+    document.getElementById('words').textContent=fmt(words);
+    document.getElementById('sentences').textContent=fmt(sentences);
+    document.getElementById('lines').textContent=fmt(lines);
+    document.getElementById('paras').textContent=fmt(paras);
+    LIMITS.forEach(function(l,i){
+      var over=chars>l.max, ct=document.getElementById('ct'+i), fl=document.getElementById('fl'+i);
+      ct.textContent=fmt(chars)+' / '+l.max+(over?(' (+'+fmt(chars-l.max)+')'):'');
+      ct.className='ct'+(over?' over':'');
+      fl.style.width=Math.min(100,(chars/l.max)*100)+'%';
+      fl.className='fill'+(over?' over':'');
+    });
+  }
+  ta.addEventListener('input',update);
+  document.getElementById('clearBtn').addEventListener('click',function(){ta.value='';update();ta.focus();});
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    if(!ta.value)return; ta.select();
+    try{navigator.clipboard.writeText(ta.value);}catch(e){document.execCommand('copy');}
+    var b=document.getElementById('copyBtn'),o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1200);
+  });
+  update();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Character Counter",
+      "url": "https://seotriggers.com/tools/character-counter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Count characters with and without spaces; words, sentences, lines; live limits for X, SMS, title tags and meta descriptions",
+      "description": "Free character counter that counts characters with and without spaces, plus words and lines, with live platform limits, entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Character Counter", "item": "https://seotriggers.com/tools/character-counter" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I count characters in a piece of text?", "acceptedAnswer": { "@type": "Answer", "text": "Paste or type your text into the box. The Characters figure updates instantly and counts everything including spaces; the Without spaces figure excludes whitespace." } },
+        { "@type": "Question", "name": "Does the character count include spaces?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The main Characters total includes spaces, punctuation and line breaks, matching how X and SMS count. A separate figure shows the count without spaces." } },
+        { "@type": "Question", "name": "What is the character limit for a tweet (X post)?", "acceptedAnswer": { "@type": "Answer", "text": "A standard X post allows 280 characters. The live limit bar shows how many you have used and how many remain." } },
+        { "@type": "Question", "name": "Is my text uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Counting happens entirely in your browser, so your text never leaves your device." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
