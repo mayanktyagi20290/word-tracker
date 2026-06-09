@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Merge PDF — Free PDF Merger to Combine PDF Files Online | SEOTriggers</title>
+<meta name="description" content="Free PDF merger. Combine multiple PDF files into one, reorder pages, and download — all in your browser. No upload, no signup, no watermark."/>
+<link rel="canonical" href="https://seotriggers.com/tools/pdf-merger"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Merge PDF — Free PDF Merger | SEOTriggers"/>
+<meta property="og:description" content="Combine multiple PDF files into one in your browser. Reorder, merge and download — no upload, no signup."/>
+<meta property="og:url" content="https://seotriggers.com/tools/pdf-merger"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:880px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .drop{border:2px dashed #cfc8ee;border-radius:16px;background:#faf9ff;padding:40px 20px;text-align:center;cursor:pointer;transition:all .15s;}
+  .drop:hover,.drop.drag{border-color:var(--violet);background:#f3f0fe;}
+  .drop .big{font-size:18px;font-weight:700;color:var(--ink);}
+  .drop .sm{font-size:13px;color:var(--slate);margin-top:5px;}
+  .list{margin-top:16px;display:flex;flex-direction:column;gap:10px;}
+  .row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:12px 14px;}
+  .row .ord{width:26px;height:26px;border-radius:7px;background:#efeafe;color:var(--indigo);font-weight:700;font-size:13px;display:flex;align-items:center;justify-content:center;}
+  .row .nm{font-size:13.5px;font-weight:600;color:var(--ink);word-break:break-all;}
+  .row .meta{font-size:12px;color:var(--slate);margin-top:2px;}
+  .acts{display:flex;gap:6px;}
+  .ico-btn{width:30px;height:30px;border:1px solid var(--border);background:#fff;border-radius:8px;cursor:pointer;font-size:13px;color:var(--slate);}
+  .ico-btn:hover{border-color:var(--violet);color:var(--violet);}
+  .ico-btn:disabled{opacity:.35;cursor:default;}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;align-items:center;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;padding:13px 24px;border-radius:11px;}
+  .btn-primary{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;}
+  .btn-primary:disabled{opacity:.5;cursor:default;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  .status{font-size:13px;color:var(--slate);}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › PDF Merger</p>
+    <div class="tool-head">
+      <h1>Merge PDF</h1>
+      <p class="lead">Combine multiple PDF files into a single document. Add your files, drag them into the order you want, and merge — everything happens in your browser, so your PDFs are never uploaded.</p>
+    </div>
+    <div class="usp">
+      <span>✓ No upload — runs in your browser</span><span>✓ Reorder before merging</span><span>✓ No watermark</span><span>✓ Free, no signup</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <div class="big">📄 Drop PDF files here or click to choose</div>
+      <div class="sm">Add two or more PDFs · nothing leaves your device</div>
+      <input type="file" id="file" accept="application/pdf,.pdf" multiple style="display:none"/>
+    </div>
+
+    <div class="list" id="list"></div>
+
+    <div class="bar" id="bar" style="display:none;">
+      <button class="btn btn-primary" id="merge" type="button">Merge PDFs</button>
+      <button class="btn btn-ghost" id="clear" type="button">Clear all</button>
+      <span class="status" id="status"></span>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to merge PDF files</h2>
+    <p>Click the box or drag your PDFs onto it to add them. Reorder the files with the up and down arrows so they combine in the right sequence, remove any you don't need, then press <strong>Merge PDFs</strong>. A single combined PDF downloads instantly. There's no upload, no watermark and no signup.</p>
+
+    <h2>Merge PDFs privately, in your browser</h2>
+    <p>Most online PDF mergers upload your documents to a server to combine them. This one doesn't — the merge runs entirely on your device using JavaScript, so confidential contracts, statements and scans never leave your computer. That's faster too, because there's nothing to upload or download from a server.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I merge multiple PDF files into one?</h3>
+    <p>Add all your PDFs, arrange them in the order you want with the arrows, and click Merge PDFs. The combined file downloads automatically.</p>
+    <h3>How do I combine two PDF files?</h3>
+    <p>Add both files, make sure they're in the right order, and press Merge PDFs — the two documents become a single PDF.</p>
+    <h3>Are my PDFs uploaded to a server?</h3>
+    <p>No. Merging happens entirely in your browser, so your documents are never uploaded — ideal for sensitive or confidential files.</p>
+    <h3>Is there a limit on the number or size of files?</h3>
+    <p>There's no signup and no artificial limit. Because everything runs locally, very large files use your device's memory, but typical documents merge in seconds.</p>
+    <h3>Will the merged PDF have a watermark?</h3>
+    <p>No. The combined PDF is clean, with no watermark and no quality loss.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/image-compressor">Image Compressor →</a>
+      <a href="/tools/jpg-to-png">JPG to PNG →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf-lib/1.17.1/pdf-lib.min.js" crossorigin="anonymous"></script>
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var drop=$('drop'), fileEl=$('file'), list=$('list'), bar=$('bar'), statusEl=$('status'), mergeBtn=$('merge');
+  var items=[], idc=0;
+
+  function ensureLib(){ return new Promise(function(res,rej){ if(window.PDFLib) return res();
+    var n=0, iv=setInterval(function(){ if(window.PDFLib){clearInterval(iv);res();} else if(++n>120){clearInterval(iv);rej(new Error('lib'));} },100); }); }
+  function fmt(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+
+  function renderList(){
+    list.innerHTML='';
+    items.forEach(function(it,i){
+      var el=document.createElement('div'); el.className='row';
+      el.innerHTML='<div class="ord">'+(i+1)+'</div>'+
+        '<div><div class="nm">'+it.name+'</div><div class="meta">'+fmt(it.size)+(it.pages?(' · '+it.pages+' page'+(it.pages>1?'s':'')):'')+'</div></div>'+
+        '<div class="acts">'+
+          '<button class="ico-btn up" '+(i===0?'disabled':'')+' title="Move up">↑</button>'+
+          '<button class="ico-btn down" '+(i===items.length-1?'disabled':'')+' title="Move down">↓</button>'+
+          '<button class="ico-btn rm" title="Remove">✕</button>'+
+        '</div>';
+      el.querySelector('.up').onclick=function(){ if(i>0){ var t=items[i-1];items[i-1]=items[i];items[i]=t; renderList(); } };
+      el.querySelector('.down').onclick=function(){ if(i<items.length-1){ var t=items[i+1];items[i+1]=items[i];items[i]=t; renderList(); } };
+      el.querySelector('.rm').onclick=function(){ items.splice(i,1); renderList(); };
+      list.appendChild(el);
+    });
+    bar.style.display=items.length?'flex':'none';
+    mergeBtn.disabled=items.length<2;
+    statusEl.textContent=items.length===1?'Add at least one more PDF to merge.':'';
+  }
+
+  async function addFiles(fl){
+    for(var i=0;i<fl.length;i++){
+      var f=fl[i];
+      if(f.type!=='application/pdf' && !/\.pdf$/i.test(f.name)) continue;
+      var it={id:++idc, name:f.name, size:f.size, file:f, pages:0};
+      items.push(it);
+    }
+    renderList();
+    // try to read page counts (needs lib)
+    try{
+      await ensureLib();
+      for(var j=0;j<items.length;j++){ var it=items[j]; if(it.pages) continue;
+        try{ var buf=await it.file.arrayBuffer(); var doc=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true}); it.pages=doc.getPageCount(); }catch(e){}
+      }
+      renderList();
+    }catch(e){}
+  }
+
+  async function doMerge(){
+    if(items.length<2) return;
+    mergeBtn.disabled=true; statusEl.textContent='Merging…';
+    try{
+      await ensureLib();
+      var out=await PDFLib.PDFDocument.create();
+      for(var i=0;i<items.length;i++){
+        var buf=await items[i].file.arrayBuffer();
+        var src=await PDFLib.PDFDocument.load(buf,{ignoreEncryption:true});
+        var pages=await out.copyPages(src, src.getPageIndices());
+        pages.forEach(function(p){ out.addPage(p); });
+        statusEl.textContent='Merging… ('+(i+1)+'/'+items.length+')';
+      }
+      var bytes=await out.save();
+      var blob=new Blob([bytes],{type:'application/pdf'});
+      var a=document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='merged.pdf'; a.click();
+      statusEl.textContent='Done — '+out.getPageCount()+' pages · '+fmt(blob.size);
+    }catch(e){
+      statusEl.textContent='Could not merge these files. Make sure they are valid PDFs.';
+    }
+    mergeBtn.disabled=items.length<2;
+  }
+
+  drop.addEventListener('click',function(){ fileEl.click(); });
+  fileEl.addEventListener('change',function(){ addFiles(fileEl.files); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('drag');}); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('drag');}); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) addFiles(e.dataTransfer.files); });
+  mergeBtn.addEventListener('click',doMerge);
+  $('clear').addEventListener('click',function(){ items=[]; renderList(); statusEl.textContent=''; });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "PDF Merger",
+      "url": "https://seotriggers.com/tools/pdf-merger",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Merge multiple PDF files into one; reorder files; runs in the browser with no upload; no watermark",
+      "description": "Free PDF merger that combines multiple PDF files into one entirely in your browser, with reordering and no upload."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "PDF Merger", "item": "https://seotriggers.com/tools/pdf-merger" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I merge multiple PDF files into one?", "acceptedAnswer": { "@type": "Answer", "text": "Add all your PDFs, arrange them in the order you want with the arrows, and click Merge PDFs. The combined file downloads automatically." } },
+        { "@type": "Question", "name": "How do I combine two PDF files?", "acceptedAnswer": { "@type": "Answer", "text": "Add both files, make sure they are in the right order, and press Merge PDFs — the two documents become a single PDF." } },
+        { "@type": "Question", "name": "Are my PDFs uploaded to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. Merging happens entirely in your browser, so your documents are never uploaded — ideal for sensitive or confidential files." } },
+        { "@type": "Question", "name": "Is there a limit on the number or size of files?", "acceptedAnswer": { "@type": "Answer", "text": "There is no signup and no artificial limit. Because everything runs locally, very large files use your device's memory, but typical documents merge in seconds." } },
+        { "@type": "Question", "name": "Will the merged PDF have a watermark?", "acceptedAnswer": { "@type": "Answer", "text": "No. The combined PDF is clean, with no watermark and no quality loss." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
