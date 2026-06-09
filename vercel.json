@@ -97,6 +97,10 @@
       "destination": "/tools/sip-calculator.html"
     },
     {
+      "source": "/tools/gst-calculator",
+      "destination": "/tools/gst-calculator.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
