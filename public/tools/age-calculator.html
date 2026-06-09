@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Age Calculator — Calculate Your Age in Years, Months &amp; Days | SEOTriggers</title>
+<meta name="description" content="Free age calculator. Enter your date of birth to get your exact age in years, months and days — plus total weeks, days, hours and your next birthday. Today's date fills in automatically."/>
+<link rel="canonical" href="https://seotriggers.com/tools/age-calculator"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Age Calculator — Calculate Your Exact Age | SEOTriggers"/>
+<meta property="og:description" content="Find your exact age in years, months and days, plus totals and your next birthday. Free, instant, in your browser."/>
+<meta property="og:url" content="https://seotriggers.com/tools/age-calculator"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:880px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .inputs{display:grid;grid-template-columns:1fr 1fr;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;}
+  label.fld{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 7px;}
+  input[type=date]{width:100%;border:1px solid var(--border);border-radius:11px;padding:11px 13px;font-family:inherit;font-size:15px;color:var(--ink);background:#fff;outline:none;box-sizing:border-box;}
+  input[type=date]:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .hint{font-size:12px;color:var(--slate);margin-top:6px;}
+  .result{display:none;margin-top:18px;}
+  .result.on{display:block;}
+  .hero{background:linear-gradient(135deg,#f3f0fe,#fdeffb);border:1px solid #e0d8fb;border-radius:16px;padding:24px;text-align:center;}
+  .hero .big{font-size:32px;font-weight:800;color:var(--ink);letter-spacing:-.5px;}
+  .hero .big span{color:var(--indigo);}
+  .hero .sub{font-size:13px;color:var(--slate);margin-top:6px;}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-top:14px;}
+  .cell{background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;}
+  .cell .v{font-size:22px;font-weight:800;color:var(--violet);}
+  .cell .l{font-size:12.5px;color:var(--slate);font-weight:600;margin-top:3px;}
+  .bday{margin-top:14px;background:var(--surface);border:1px solid var(--border);border-radius:13px;padding:14px 16px;font-size:14px;color:var(--ink);}
+  .bday b{color:var(--indigo);}
+  .err{display:none;margin-top:14px;background:#fde8e8;border:1px solid #f5b5b5;color:#b42318;border-radius:12px;padding:12px 16px;font-size:14px;}
+  .err.on{display:block;}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}.inputs{grid-template-columns:1fr;}.hero .big{font-size:25px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Age Calculator</p>
+    <div class="tool-head">
+      <h1>Age Calculator</h1>
+      <p class="lead">Enter your date of birth to see your exact age in years, months and days — plus total weeks, days and hours, and a countdown to your next birthday. Today's date is filled in for you automatically.</p>
+    </div>
+
+    <div class="inputs">
+      <div>
+        <label class="fld" for="dob">Date of birth</label>
+        <input type="date" id="dob"/>
+      </div>
+      <div>
+        <label class="fld" for="asof">Age at the date of</label>
+        <input type="date" id="asof"/>
+        <div class="hint">Defaults to today — change it to calculate age on any date.</div>
+      </div>
+    </div>
+
+    <div class="err" id="err"></div>
+
+    <div class="result" id="result">
+      <div class="hero">
+        <div class="big" id="ymd">—</div>
+        <div class="sub" id="bornsub"></div>
+      </div>
+      <div class="grid">
+        <div class="cell"><div class="v" id="tMonths">0</div><div class="l">Total months</div></div>
+        <div class="cell"><div class="v" id="tWeeks">0</div><div class="l">Total weeks</div></div>
+        <div class="cell"><div class="v" id="tDays">0</div><div class="l">Total days</div></div>
+        <div class="cell"><div class="v" id="tHours">0</div><div class="l">Total hours</div></div>
+        <div class="cell"><div class="v" id="tMin">0</div><div class="l">Total minutes</div></div>
+      </div>
+      <div class="bday" id="bday"></div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to calculate your age</h2>
+    <p>Pick your date of birth. Your age is calculated against today's date, which fills in automatically — but you can change the second date to find your age on any past or future day, such as a specific exam or eligibility date. The result shows your exact age as years, months and days, then the same span expressed as total months, weeks, days, hours and minutes.</p>
+
+    <h2>How the calculation works</h2>
+    <p>The calculator counts whole years from your birthday, then whole months, then the remaining days — handling leap years and months of different lengths correctly, so a birthday on the 31st or on 29 February is measured accurately. The totals are simply that same time span converted into other units.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I calculate my exact age?</h3>
+    <p>Enter your date of birth above. The tool instantly shows your age in years, months and days against today's date.</p>
+    <h3>Does it update to today's date automatically?</h3>
+    <p>Yes. The "Age at the date of" field is set to today when the page loads, so you just enter your birth date. You can change it to any date you like.</p>
+    <h3>How is age counted in months and days?</h3>
+    <p>It counts complete years first, then complete months, then leftover days, accounting for leap years and varying month lengths — the same way ages are calculated officially.</p>
+    <h3>Is anything sent to a server?</h3>
+    <p>No. The calculation runs entirely in your browser; no dates are uploaded or stored.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/word-counter">Word Counter →</a>
+      <a href="/tools/character-counter">Character Counter →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var dob=$('dob'), asof=$('asof'), result=$('result'), err=$('err');
+  var WD=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+  var MO=['January','February','March','April','May','June','July','August','September','October','November','December'];
+
+  function todayStr(){ var n=new Date(); var m=String(n.getMonth()+1).padStart(2,'0'), d=String(n.getDate()).padStart(2,'0'); return n.getFullYear()+'-'+m+'-'+d; }
+  asof.value=todayStr();
+  var maxToday=todayStr(); dob.max=maxToday;
+
+  function daysInMonth(y,m){ return new Date(y,m+1,0).getDate(); }
+  function addYMD(base,addY,addM){ var Mtot=base.getMonth()+addM; var Y=base.getFullYear()+addY+Math.floor(Mtot/12); var M=((Mtot%12)+12)%12; var day=Math.min(base.getDate(),daysInMonth(Y,M)); return new Date(Y,M,day); }
+  function fmt(n){ return n.toLocaleString(); }
+
+  function calc(){
+    err.classList.remove('on'); 
+    if(!dob.value || !asof.value){ result.classList.remove('on'); return; }
+    var from=new Date(dob.value+'T00:00:00'), to=new Date(asof.value+'T00:00:00');
+    if(isNaN(from)||isNaN(to)){ result.classList.remove('on'); return; }
+    if(to<from){ result.classList.remove('on'); err.textContent='The "age at" date is before the date of birth. Please check the dates.'; err.classList.add('on'); return; }
+
+    var y=0; while(addYMD(from,y+1,0)<=to) y++;
+    var m=0; while(addYMD(from,y,m+1)<=to) m++;
+    var anchor=addYMD(from,y,m);
+    var d=Math.round((to-anchor)/86400000);
+    var ms=to-from, totDays=Math.floor(ms/86400000);
+
+    $('ymd').innerHTML='<span>'+y+'</span> years, <span>'+m+'</span> months, <span>'+d+'</span> days';
+    $('bornsub').textContent='Born on a '+WD[from.getDay()]+', '+MO[from.getMonth()]+' '+from.getDate()+', '+from.getFullYear();
+    $('tMonths').textContent=fmt(y*12+m);
+    $('tWeeks').textContent=fmt(Math.floor(totDays/7));
+    $('tDays').textContent=fmt(totDays);
+    $('tHours').textContent=fmt(totDays*24);
+    $('tMin').textContent=fmt(totDays*24*60);
+
+    // next birthday relative to 'to'
+    var nb=new Date(to.getFullYear(),from.getMonth(),from.getDate());
+    if(nb<=to) nb=new Date(to.getFullYear()+1,from.getMonth(),from.getDate());
+    var nbDays=Math.ceil((nb-to)/86400000);
+    var turning=nb.getFullYear()-from.getFullYear();
+    $('bday').innerHTML='🎂 Next birthday in <b>'+nbDays+' day'+(nbDays===1?'':'s')+'</b> — '+WD[nb.getDay()]+', '+MO[nb.getMonth()]+' '+nb.getDate()+', '+nb.getFullYear()+' (turning '+turning+').';
+    result.classList.add('on');
+  }
+  dob.addEventListener('input',calc); dob.addEventListener('change',calc);
+  asof.addEventListener('input',calc); asof.addEventListener('change',calc);
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Age Calculator",
+      "url": "https://seotriggers.com/tools/age-calculator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Exact age in years, months and days; total weeks, days, hours and minutes; next birthday countdown; today's date auto-filled",
+      "description": "Free age calculator that gives your exact age in years, months and days plus totals and your next birthday, entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Age Calculator", "item": "https://seotriggers.com/tools/age-calculator" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I calculate my exact age?", "acceptedAnswer": { "@type": "Answer", "text": "Enter your date of birth. The tool instantly shows your age in years, months and days against today's date." } },
+        { "@type": "Question", "name": "Does it update to today's date automatically?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. The age-at date field is set to today when the page loads, so you just enter your birth date. You can change it to any date you like." } },
+        { "@type": "Question", "name": "How is age counted in months and days?", "acceptedAnswer": { "@type": "Answer", "text": "It counts complete years first, then complete months, then leftover days, accounting for leap years and varying month lengths — the same way ages are calculated officially." } },
+        { "@type": "Question", "name": "Is anything sent to a server?", "acceptedAnswer": { "@type": "Answer", "text": "No. The calculation runs entirely in your browser; no dates are uploaded or stored." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
