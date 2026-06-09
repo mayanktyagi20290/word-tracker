@@ -93,6 +93,10 @@
       "destination": "/tools/emi-calculator.html"
     },
     {
+      "source": "/tools/sip-calculator",
+      "destination": "/tools/sip-calculator.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
