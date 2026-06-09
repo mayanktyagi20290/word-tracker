@@ -11,7 +11,10 @@
     { "source": "/search-intent-checker", "destination": "/search-intent-checker.html" },
     { "source": "/export-seo-report", "destination": "/export-seo-report.html" },
     { "source": "/tools", "destination": "/tools/index.html" },
-    { "source": "/tools/:slug", "destination": "/tools/:slug.html" },
+    { "source": "/tools/qr-code-generator", "destination": "/tools/qr-code-generator.html" },
+    { "source": "/tools/word-counter", "destination": "/tools/word-counter.html" },
+    { "source": "/tools/image-compressor", "destination": "/tools/image-compressor.html" },
+    { "source": "/tools/image-resizer", "destination": "/tools/image-resizer.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
