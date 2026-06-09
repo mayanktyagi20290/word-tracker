@@ -17,6 +17,7 @@
     { "source": "/tools/image-resizer", "destination": "/tools/image-resizer.html" },
     { "source": "/tools/jpg-to-png", "destination": "/tools/jpg-to-png.html" },
     { "source": "/tools/png-to-jpg", "destination": "/tools/png-to-jpg.html" },
+    { "source": "/tools/pdf-merger", "destination": "/tools/pdf-merger.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
