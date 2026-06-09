@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Percentage Calculator — Calculate Percentage, Increase &amp; Difference | SEOTriggers</title>
+<meta name="description" content="Free percentage calculator. Work out a percentage of a number, what percent one number is of another, percentage increase or decrease, and percentage difference — instantly."/>
+<link rel="canonical" href="https://seotriggers.com/tools/percentage-calculator"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Percentage Calculator | SEOTriggers"/>
+<meta property="og:description" content="Calculate a percentage of a number, percentage change, increase, decrease and difference — free and instant."/>
+<meta property="og:url" content="https://seotriggers.com/tools/percentage-calculator"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:820px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:660px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:16px;}
+  .tab{border:1.5px solid var(--border);background:#fff;color:var(--slate);font-family:inherit;font-weight:600;font-size:13px;padding:8px 14px;border-radius:999px;cursor:pointer;transition:all .12s;}
+  .tab:hover{border-color:var(--violet);color:var(--violet);}
+  .tab.on{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;border-color:transparent;}
+  .card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;}
+  .qline{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:18px;color:var(--ink);font-weight:600;}
+  .qline input{width:96px;border:1px solid var(--border);border-radius:10px;padding:9px 11px;font-family:inherit;font-size:16px;color:var(--ink);text-align:center;outline:none;}
+  .qline input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .grp{display:none;}.grp.on{display:block;}
+  .res{margin-top:18px;background:linear-gradient(135deg,#f3f0fe,#fdeffb);border:1px solid #e0d8fb;border-radius:14px;padding:18px 20px;}
+  .res .big{font-size:26px;font-weight:800;color:var(--indigo);letter-spacing:-.3px;}
+  .res .exp{font-size:13px;color:var(--slate);margin-top:5px;}
+  @media(max-width:560px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}.qline{font-size:16px;}.qline input{width:80px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Percentage Calculator</p>
+    <div class="tool-head">
+      <h1>Percentage Calculator</h1>
+      <p class="lead">Calculate a percentage of a number, what percent one number is of another, percentage increase or decrease, and the percentage difference between two values — answers update as you type.</p>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab on" data-t="of" type="button">% of a number</button>
+      <button class="tab" data-t="iswhat" type="button">X is what % of Y</button>
+      <button class="tab" data-t="change" type="button">% change</button>
+      <button class="tab" data-t="diff" type="button">% difference</button>
+      <button class="tab" data-t="ofwhat" type="button">X is P% of what</button>
+    </div>
+
+    <div class="card">
+      <div class="grp on" data-g="of">
+        <div class="qline">What is <input type="number" id="of_p" value="20"/> % of <input type="number" id="of_x" value="150"/> ?</div>
+      </div>
+      <div class="grp" data-g="iswhat">
+        <div class="qline"><input type="number" id="iw_x" value="30"/> is what percent of <input type="number" id="iw_y" value="150"/> ?</div>
+      </div>
+      <div class="grp" data-g="change">
+        <div class="qline">From <input type="number" id="ch_a" value="120"/> to <input type="number" id="ch_b" value="150"/></div>
+      </div>
+      <div class="grp" data-g="diff">
+        <div class="qline">Difference between <input type="number" id="df_a" value="120"/> and <input type="number" id="df_b" value="150"/></div>
+      </div>
+      <div class="grp" data-g="ofwhat">
+        <div class="qline"><input type="number" id="ow_x" value="30"/> is <input type="number" id="ow_p" value="20"/> % of what?</div>
+      </div>
+
+      <div class="res">
+        <div class="big" id="resBig">—</div>
+        <div class="exp" id="resExp"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to calculate a percentage</h2>
+    <p>A percentage is a fraction out of 100. To find a percentage of a number, multiply the number by the percentage and divide by 100 — for example, 20% of 150 is 150 × 20 ÷ 100 = 30. To find what percent one number is of another, divide the first by the second and multiply by 100. This calculator does all of these for you and shows the working.</p>
+
+    <h2>Percentage increase, decrease and difference</h2>
+    <p><strong>Percentage change</strong> measures how much a value went up or down: subtract the old value from the new value, divide by the old value, and multiply by 100. A positive result is an increase, a negative one is a decrease. <strong>Percentage difference</strong> compares two numbers without either being a "starting" value: it divides the gap between them by their average, then multiplies by 100.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I calculate a percentage of a number?</h3>
+    <p>Multiply the number by the percentage and divide by 100. For example, 15% of 200 is 200 × 15 ÷ 100 = 30. Use the "% of a number" tab above.</p>
+    <h3>How do I calculate percentage increase?</h3>
+    <p>Subtract the original value from the new value, divide by the original value, and multiply by 100. The "% change" tab does this and tells you whether it's an increase or decrease.</p>
+    <h3>How do I find what percent one number is of another?</h3>
+    <p>Divide the first number by the second and multiply by 100. Use the "X is what % of Y" tab.</p>
+    <h3>What's the difference between percentage change and percentage difference?</h3>
+    <p>Percentage change is measured relative to a starting value (old to new). Percentage difference compares two numbers relative to their average, with no starting point — useful when neither value is "first".</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/age-calculator">Age Calculator →</a>
+      <a href="/tools/word-counter">Word Counter →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var tab='of';
+  function num(id){ var v=parseFloat($(id).value); return isNaN(v)?null:v; }
+  function fmt(n){ if(n===null||!isFinite(n)) return '—'; var r=Math.round(n*10000)/10000; return (r%1===0?r.toString():r.toFixed(4).replace(/0+$/,'').replace(/\.$/,'')); }
+  function setRes(big,exp){ $('resBig').textContent=big; $('resExp').textContent=exp||''; }
+
+  function calc(){
+    if(tab==='of'){ var p=num('of_p'),x=num('of_x'); if(p===null||x===null)return setRes('—','');
+      var r=p/100*x; setRes(fmt(p)+'% of '+fmt(x)+' = '+fmt(r), 'Calculation: '+fmt(x)+' × '+fmt(p)+' ÷ 100'); }
+    else if(tab==='iswhat'){ var X=num('iw_x'),Y=num('iw_y'); if(X===null||Y===null)return setRes('—','');
+      if(Y===0)return setRes('—','Cannot divide by zero.');
+      var r=X/Y*100; setRes(fmt(X)+' is '+fmt(r)+'% of '+fmt(Y), 'Calculation: '+fmt(X)+' ÷ '+fmt(Y)+' × 100'); }
+    else if(tab==='change'){ var a=num('ch_a'),b=num('ch_b'); if(a===null||b===null)return setRes('—','');
+      if(a===0)return setRes('—','Starting value cannot be zero.');
+      var r=(b-a)/a*100; var dir=r>0?'increase':r<0?'decrease':'no change';
+      setRes(fmt(Math.abs(r))+'% '+dir, 'From '+fmt(a)+' to '+fmt(b)+' · change of '+fmt(b-a)); }
+    else if(tab==='diff'){ var A=num('df_a'),B=num('df_b'); if(A===null||B===null)return setRes('—','');
+      var avg=(A+B)/2; if(avg===0)return setRes('—','Average of the two values is zero.');
+      var r=Math.abs(A-B)/Math.abs(avg)*100; setRes(fmt(r)+'% difference', 'Calculation: |'+fmt(A)+' − '+fmt(B)+'| ÷ average('+fmt(A)+', '+fmt(B)+') × 100'); }
+    else if(tab==='ofwhat'){ var ox=num('ow_x'),op=num('ow_p'); if(ox===null||op===null)return setRes('—','');
+      if(op===0)return setRes('—','Percentage cannot be zero.');
+      var r=ox/(op/100); setRes(fmt(ox)+' is '+fmt(op)+'% of '+fmt(r), 'Calculation: '+fmt(ox)+' ÷ ('+fmt(op)+' ÷ 100)'); }
+  }
+  $('tabs').addEventListener('click',function(e){ var b=e.target.closest('.tab'); if(!b)return;
+    tab=b.getAttribute('data-t');
+    [].forEach.call(document.querySelectorAll('.tab'),function(x){x.classList.toggle('on',x===b);});
+    [].forEach.call(document.querySelectorAll('.grp'),function(g){g.classList.toggle('on',g.getAttribute('data-g')===tab);});
+    calc();
+  });
+  [].forEach.call(document.querySelectorAll('.card input'),function(el){ el.addEventListener('input',calc); });
+  calc();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Percentage Calculator",
+      "url": "https://seotriggers.com/tools/percentage-calculator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Percentage of a number; what percent X is of Y; percentage increase and decrease; percentage difference; reverse percentage",
+      "description": "Free percentage calculator for a percentage of a number, percentage change, increase, decrease and difference, working entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Percentage Calculator", "item": "https://seotriggers.com/tools/percentage-calculator" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I calculate a percentage of a number?", "acceptedAnswer": { "@type": "Answer", "text": "Multiply the number by the percentage and divide by 100. For example, 15% of 200 is 200 × 15 ÷ 100 = 30." } },
+        { "@type": "Question", "name": "How do I calculate percentage increase?", "acceptedAnswer": { "@type": "Answer", "text": "Subtract the original value from the new value, divide by the original value, and multiply by 100. A positive result is an increase, a negative one a decrease." } },
+        { "@type": "Question", "name": "How do I find what percent one number is of another?", "acceptedAnswer": { "@type": "Answer", "text": "Divide the first number by the second and multiply by 100." } },
+        { "@type": "Question", "name": "What is the difference between percentage change and percentage difference?", "acceptedAnswer": { "@type": "Answer", "text": "Percentage change is measured relative to a starting value (old to new). Percentage difference compares two numbers relative to their average, with no starting point." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
