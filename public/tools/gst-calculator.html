@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GST Calculator — Add or Remove GST Online (India) | SEOTriggers</title>
+<meta name="description" content="Free GST calculator for India. Add GST to a price or remove GST from a GST-inclusive amount, across 5%, 12%, 18% and 28% slabs, with CGST and SGST split. Instant and private."/>
+<link rel="canonical" href="https://seotriggers.com/tools/gst-calculator"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="GST Calculator — Add or Remove GST (India) | SEOTriggers"/>
+<meta property="og:description" content="Add or remove GST across 5%, 12%, 18% and 28% slabs with CGST/SGST split. Free and instant."/>
+<meta property="og:url" content="https://seotriggers.com/tools/gst-calculator"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:760px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:640px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:22px;}
+  .seg{display:flex;background:#f1eefc;border-radius:10px;padding:3px;gap:3px;margin-bottom:18px;}
+  .seg button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:600;font-size:13.5px;color:var(--slate);padding:10px;border-radius:8px;cursor:pointer;}
+  .seg button.on{background:#fff;color:var(--indigo);box-shadow:0 1px 3px rgba(80,70,200,.18);}
+  label.fld{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 7px;}
+  .valbox{display:flex;align-items:center;gap:4px;border:1px solid var(--border);border-radius:11px;padding:9px 13px;background:#fff;}
+  .valbox span{color:var(--slate);font-weight:700;font-size:15px;}
+  .valbox input{border:none;outline:none;font-family:inherit;font-size:16px;font-weight:700;color:var(--ink);width:100%;background:transparent;}
+  .slabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0 6px;}
+  .slab{border:1.5px solid var(--border);background:#fff;color:var(--slate);font-family:inherit;font-weight:700;font-size:14px;padding:8px 16px;border-radius:10px;cursor:pointer;}
+  .slab.on{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;border-color:transparent;}
+  .custom{display:flex;align-items:center;gap:6px;margin-top:6px;font-size:13px;color:var(--slate);}
+  .custom input{width:70px;border:1px solid var(--border);border-radius:8px;padding:6px 9px;font-family:inherit;font-size:14px;text-align:center;outline:none;}
+  .res{margin-top:20px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:6px 18px;}
+  .rrow{display:flex;justify-content:space-between;align-items:center;padding:12px 0;border-bottom:1px solid var(--border);font-size:14px;color:var(--slate);}
+  .rrow:last-child{border-bottom:none;}
+  .rrow b{color:var(--ink);font-size:15px;}
+  .rrow.sub{font-size:13px;padding:8px 0 8px 16px;}
+  .rrow.total b{color:var(--indigo);font-size:20px;}
+  @media(max-width:560px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › GST Calculator</p>
+    <div class="tool-head">
+      <h1>GST Calculator</h1>
+      <p class="lead">Add GST to a price, or remove GST from a GST-inclusive amount, across India's 5%, 12%, 18% and 28% slabs — with the CGST and SGST split shown. Calculated instantly in your browser.</p>
+    </div>
+
+    <div class="panel">
+      <div class="seg" id="mode">
+        <button data-m="add" class="on" type="button">Add GST (exclusive → inclusive)</button>
+        <button data-m="remove" type="button">Remove GST (inclusive → base)</button>
+      </div>
+
+      <label class="fld" id="amtLabel" for="amt">Amount (excluding GST)</label>
+      <div class="valbox"><span>₹</span><input type="number" id="amt" value="1000"/></div>
+
+      <div class="slabs" id="slabs">
+        <button class="slab" data-r="5" type="button">5%</button>
+        <button class="slab on" data-r="18" type="button">18%</button>
+        <button class="slab" data-r="12" type="button">12%</button>
+        <button class="slab" data-r="28" type="button">28%</button>
+      </div>
+      <div class="custom">or custom rate <input type="number" id="rate" value="18" step="0.1"/> %</div>
+
+      <div class="res" id="res">
+        <div class="rrow"><span id="baseLbl">Base amount</span><b id="base">—</b></div>
+        <div class="rrow"><span>Total GST</span><b id="gst">—</b></div>
+        <div class="rrow sub"><span>CGST (half)</span><span id="cgst">—</span></div>
+        <div class="rrow sub"><span>SGST (half)</span><span id="sgst">—</span></div>
+        <div class="rrow total"><span id="totLbl">Total (incl. GST)</span><b id="tot">—</b></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to calculate GST</h2>
+    <p>To <strong>add GST</strong>, multiply the base amount by the GST rate and divide by 100 — that's the GST, which you add to the base for the total. To <strong>remove GST</strong> from a price that already includes it, divide the inclusive amount by (100 + rate) and multiply by 100 to get the base; the difference is the GST. For example, ₹1,180 including 18% GST has a base of ₹1,000 and ₹180 GST.</p>
+
+    <h2>CGST and SGST</h2>
+    <p>For sales within the same state (intra-state), GST is split equally into <strong>CGST</strong> (Central GST) and <strong>SGST</strong> (State GST) — so 18% becomes 9% CGST + 9% SGST. For sales between states (inter-state), the same total is charged as a single <strong>IGST</strong> instead. The calculator shows the equal split, which also equals the IGST total.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I calculate GST on an amount?</h3>
+    <p>Enter the amount and choose a slab (5%, 12%, 18% or 28%) or a custom rate. "Add GST" shows the GST and total; "Remove GST" extracts the base and GST from an inclusive price.</p>
+    <h3>How do I remove GST from a total?</h3>
+    <p>Switch to "Remove GST", enter the GST-inclusive amount, and pick the rate. The base amount is the inclusive total × 100 ÷ (100 + rate); the rest is GST.</p>
+    <h3>What are the GST slabs in India?</h3>
+    <p>The main GST rates are 5%, 12%, 18% and 28%, with some goods at 0% or 3%. Pick the slab that applies, or type a custom rate.</p>
+    <h3>What is the difference between CGST, SGST and IGST?</h3>
+    <p>Within a state, GST splits equally into CGST and SGST. Between states, the same total is charged as IGST. The total tax is the same either way.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/percentage-calculator">Percentage Calculator →</a>
+      <a href="/tools/emi-calculator">EMI Calculator →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var amt=$('amt'), rate=$('rate'), mode='add';
+  function inr(n){ if(!isFinite(n)) return '—'; return '₹'+(Math.round(n*100)/100).toLocaleString('en-IN',{maximumFractionDigits:2}); }
+
+  function calc(){
+    var a=parseFloat(amt.value)||0, r=parseFloat(rate.value)||0, base,gst,tot;
+    if(mode==='add'){ base=a; gst=a*r/100; tot=a+gst; }
+    else { tot=a; base=a*100/(100+r); gst=a-base; }
+    $('base').textContent=inr(base);
+    $('gst').textContent=inr(gst);
+    $('cgst').textContent=inr(gst/2);
+    $('sgst').textContent=inr(gst/2);
+    $('tot').textContent=inr(tot);
+  }
+  function setMode(m){
+    mode=m;
+    $('amtLabel').textContent = m==='add' ? 'Amount (excluding GST)' : 'Amount (including GST)';
+    $('baseLbl').textContent  = 'Base amount';
+    $('totLbl').textContent   = m==='add' ? 'Total (incl. GST)' : 'GST-inclusive amount';
+    calc();
+  }
+  $('mode').addEventListener('click',function(e){ var b=e.target.closest('button[data-m]'); if(!b)return;
+    [].forEach.call(this.children,function(x){x.classList.toggle('on',x===b);}); setMode(b.getAttribute('data-m')); });
+  $('slabs').addEventListener('click',function(e){ var b=e.target.closest('.slab'); if(!b)return;
+    [].forEach.call(this.children,function(x){x.classList.toggle('on',x===b);}); rate.value=b.getAttribute('data-r'); calc(); });
+  rate.addEventListener('input',function(){ [].forEach.call($('slabs').children,function(x){x.classList.toggle('on',x.getAttribute('data-r')===rate.value);}); calc(); });
+  amt.addEventListener('input',calc);
+  calc();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "GST Calculator",
+      "url": "https://seotriggers.com/tools/gst-calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Add or remove GST; 5%, 12%, 18% and 28% slabs; custom rate; CGST and SGST split",
+      "description": "Free GST calculator for India that adds GST to a price or removes GST from an inclusive amount, with CGST and SGST split, entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "GST Calculator", "item": "https://seotriggers.com/tools/gst-calculator" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I calculate GST on an amount?", "acceptedAnswer": { "@type": "Answer", "text": "Enter the amount and choose a slab (5%, 12%, 18% or 28%) or a custom rate. Add GST shows the GST and total; Remove GST extracts the base and GST from an inclusive price." } },
+        { "@type": "Question", "name": "How do I remove GST from a total?", "acceptedAnswer": { "@type": "Answer", "text": "Switch to Remove GST, enter the GST-inclusive amount, and pick the rate. The base amount is the inclusive total times 100 divided by (100 + rate); the rest is GST." } },
+        { "@type": "Question", "name": "What are the GST slabs in India?", "acceptedAnswer": { "@type": "Answer", "text": "The main GST rates are 5%, 12%, 18% and 28%, with some goods at 0% or 3%. Pick the slab that applies, or type a custom rate." } },
+        { "@type": "Question", "name": "What is the difference between CGST, SGST and IGST?", "acceptedAnswer": { "@type": "Answer", "text": "Within a state, GST splits equally into CGST and SGST. Between states, the same total is charged as IGST. The total tax is the same either way." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
