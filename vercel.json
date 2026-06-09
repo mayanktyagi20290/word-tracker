@@ -10,6 +10,8 @@
     { "source": "/seo-structure-checker", "destination": "/seo-structure-checker.html" },
     { "source": "/search-intent-checker", "destination": "/search-intent-checker.html" },
     { "source": "/export-seo-report", "destination": "/export-seo-report.html" },
+    { "source": "/tools", "destination": "/tools/index.html" },
+    { "source": "/tools/:slug", "destination": "/tools/:slug.html" },
     { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
