@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free Image Resizer — Resize Images Online by Pixels or % | SEOTriggers</title>
+<meta name="description" content="Free online image resizer. Resize JPG, PNG &amp; WebP by exact pixels, percentage or ready-made social presets. Lock aspect ratio, no upload, no signup — runs in your browser."/>
+<link rel="canonical" href="https://seotriggers.com/tools/image-resizer"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Free Image Resizer — Resize Images Online | SEOTriggers"/>
+<meta property="og:description" content="Resize images by pixels, percentage or social presets. Lock aspect ratio, free, no upload — runs in your browser."/>
+<meta property="og:url" content="https://seotriggers.com/tools/image-resizer"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:980px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:720px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 22px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .drop{border:2px dashed #cfc8ee;border-radius:16px;background:#faf9ff;padding:38px 20px;text-align:center;cursor:pointer;transition:all .15s;}
+  .drop:hover,.drop.drag{border-color:var(--violet);background:#f3f0fe;}
+  .drop .big{font-size:17px;font-weight:700;color:var(--ink);}
+  .drop .sm{font-size:13px;color:var(--slate);margin-top:5px;}
+  .editor{display:none;grid-template-columns:1fr 330px;gap:20px;align-items:start;margin-top:16px;}
+  .editor.on{display:grid;}
+  .pv{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:16px;display:flex;flex-direction:column;align-items:center;gap:12px;}
+  .pv canvas{max-width:100%;max-height:420px;border-radius:10px;background:repeating-conic-gradient(#eee 0 25%,#fff 0 50%) 50%/18px 18px;}
+  .pv .dim{font-size:13px;color:var(--slate);}
+  .pv .dim b{color:var(--ink);}
+  .panel{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:18px;}
+  label.fld{display:block;font-size:13px;font-weight:700;color:var(--ink);margin:0 0 7px;}
+  .seg{display:flex;background:#f1eefc;border-radius:10px;padding:3px;gap:3px;margin-bottom:14px;}
+  .seg button{flex:1;border:none;background:transparent;font-family:inherit;font-weight:600;font-size:13px;color:var(--slate);padding:8px;border-radius:8px;cursor:pointer;}
+  .seg button.on{background:#fff;color:var(--indigo);box-shadow:0 1px 3px rgba(80,70,200,.18);}
+  select,input[type=number]{width:100%;border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-family:inherit;font-size:14px;color:var(--ink);background:#fff;outline:none;box-sizing:border-box;}
+  select:focus,input:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .wh{display:grid;grid-template-columns:1fr 28px 1fr;gap:8px;align-items:end;}
+  .lockbtn{height:40px;border:1px solid var(--border);border-radius:9px;background:#fff;cursor:pointer;font-size:15px;}
+  .lockbtn.on{background:#efeafe;border-color:var(--violet);}
+  .grp{display:none;}.grp.on{display:block;}
+  .fld-sp{margin-top:13px;}
+  .toggle{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--ink);margin-top:6px;cursor:pointer;}
+  .toggle input{accent-color:var(--violet);}
+  .btn{width:100%;border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:15px;padding:13px;border-radius:11px;background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;margin-top:16px;}
+  .btn.ghost{background:#fff;border:1px solid var(--border);color:var(--slate);margin-top:8px;}
+  .outinfo{font-size:13px;color:var(--slate);text-align:center;margin-top:8px;}
+  @media(max-width:720px){.editor.on{grid-template-columns:1fr;}.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Image Resizer</p>
+    <div class="tool-head">
+      <h1>Image Resizer</h1>
+      <p class="lead">Resize any JPG, PNG or WebP by exact pixels, by percentage, or with a ready-made size for social profiles and documents. Lock the aspect ratio so nothing stretches — and your image never leaves your device.</p>
+    </div>
+    <div class="usp">
+      <span>✓ No upload — runs in your browser</span><span>✓ Pixels, % or presets</span><span>✓ Lock aspect ratio</span><span>✓ Free, no signup</span>
+    </div>
+
+    <div class="drop" id="drop">
+      <div class="big">🖼️ Drop an image here or click to choose</div>
+      <div class="sm">JPG, PNG, WebP · nothing leaves your device</div>
+      <input type="file" id="file" accept="image/*" style="display:none"/>
+    </div>
+
+    <div class="editor" id="editor">
+      <div class="pv">
+        <canvas id="cv"></canvas>
+        <div class="dim">Original: <b id="origDim">—</b> &nbsp;·&nbsp; New: <b id="newDim">—</b></div>
+      </div>
+
+      <div class="panel">
+        <div class="seg" id="mode">
+          <button data-mode="px" class="on" type="button">Pixels</button>
+          <button data-mode="pct" type="button">Percent</button>
+          <button data-mode="preset" type="button">Presets</button>
+        </div>
+
+        <div class="grp on" data-grp="px">
+          <label class="fld">Width × Height (px)</label>
+          <div class="wh">
+            <input type="number" id="w" min="1" placeholder="width"/>
+            <button class="lockbtn on" id="lock" type="button" title="Lock aspect ratio">🔒</button>
+            <input type="number" id="h" min="1" placeholder="height"/>
+          </div>
+        </div>
+
+        <div class="grp" data-grp="pct">
+          <label class="fld" for="pct">Scale</label>
+          <select id="pct">
+            <option value="25">25%</option><option value="50" selected>50%</option><option value="75">75%</option>
+            <option value="125">125%</option><option value="150">150%</option><option value="200">200%</option>
+          </select>
+        </div>
+
+        <div class="grp" data-grp="preset">
+          <label class="fld" for="preset">Common size</label>
+          <select id="preset">
+            <optgroup label="Social profile">
+              <option value="170x170">Facebook profile — 170×170</option>
+              <option value="851x315">Facebook cover — 851×315</option>
+              <option value="1080x1080">Instagram square — 1080×1080</option>
+              <option value="1080x1350">Instagram portrait — 1080×1350</option>
+              <option value="1080x1920">Instagram / WhatsApp story — 1080×1920</option>
+              <option value="1500x500">X (Twitter) header — 1500×500</option>
+              <option value="400x400">LinkedIn profile — 400×400</option>
+              <option value="1280x720">YouTube thumbnail — 1280×720</option>
+            </optgroup>
+            <optgroup label="Documents & screens">
+              <option value="600x600">Passport photo — 600×600 (2×2 in)</option>
+              <option value="413x531">Visa photo — 413×531</option>
+              <option value="1920x1080">Full HD — 1920×1080</option>
+              <option value="3840x2160">4K UHD — 3840×2160</option>
+            </optgroup>
+          </select>
+        </div>
+
+        <div class="fld-sp"><label class="fld" for="format">Output format</label>
+          <select id="format"><option value="same">Same as original</option><option value="image/jpeg">JPEG</option><option value="image/png">PNG</option><option value="image/webp">WebP</option></select>
+        </div>
+        <div class="fld-sp" id="qBox"><label class="fld" for="quality">Quality <span id="qval">90%</span></label><input type="range" id="quality" min="10" max="100" value="90" style="width:100%;accent-color:var(--violet)"/></div>
+
+        <button class="btn" id="dl" type="button">Download resized image</button>
+        <button class="btn ghost" id="change" type="button">Choose another image</button>
+        <div class="outinfo" id="outinfo"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to resize an image</h2>
+    <p>Select or drop an image, then choose how you want to resize it: type exact <strong>width and height in pixels</strong>, pick a <strong>percentage</strong> to scale up or down, or choose a ready-made <strong>preset</strong> such as a Facebook profile picture or passport photo. Keep the lock on to preserve the aspect ratio so the picture doesn't stretch, then download. Everything runs on your device — your image is never uploaded.</p>
+
+    <h2>Resize by pixels, percentage or preset</h2>
+    <p>Use <strong>pixels</strong> when a site or form asks for an exact size, <strong>percentage</strong> to quickly halve or double a photo while keeping its proportions, and <strong>presets</strong> when you need the right dimensions for a specific platform — Instagram, X, LinkedIn, YouTube thumbnails or ID photos — without memorising the numbers.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>How do I resize an image without losing quality?</h3>
+    <p>Reducing size keeps quality high. When exporting to JPEG or WebP, keep quality near 90%. Enlarging beyond the original dimensions will always soften detail, since there's no extra information to add.</p>
+    <h3>How do I resize an image to exact dimensions?</h3>
+    <p>Choose the Pixels mode, turn the aspect lock off if you need an exact non-proportional size, type your width and height, and download.</p>
+    <h3>Are my images uploaded anywhere?</h3>
+    <p>No. Resizing happens entirely in your browser. Unlike most resizers, nothing is sent to a server, which is faster and more private.</p>
+    <h3>What's the difference between resizing and compressing?</h3>
+    <p>Resizing changes the pixel dimensions (width and height); compressing reduces file size at the same dimensions. For a target file size, use our <a href="/tools/image-compressor">Image Compressor</a> instead.</p>
+    <h3>Which formats are supported?</h3>
+    <p>JPG, PNG and WebP for both input and output. You can also convert between them while resizing by choosing a different output format.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/image-compressor">Image Compressor →</a>
+      <a href="/tools/qr-code-generator">QR Code Generator →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var drop=$('drop'), fileEl=$('file'), editor=$('editor'), cv=$('cv'), cx=cv.getContext('2d');
+  var modeWrap=$('mode'), wEl=$('w'), hEl=$('h'), lockEl=$('lock'), pctEl=$('pct'), presetEl=$('preset'),
+      formatEl=$('format'), qBox=$('qBox'), qEl=$('quality'), qval=$('qval'),
+      origDim=$('origDim'), newDim=$('newDim'), outinfo=$('outinfo');
+  var img=null, origW=0, origH=0, aspect=1, locked=true, mode='px', srcType='image/png', t;
+
+  function fmt(b){ if(b<1024) return b+' B'; if(b<1048576) return (b/1024).toFixed(1)+' KB'; return (b/1048576).toFixed(2)+' MB'; }
+
+  function targetDims(){
+    if(mode==='pct'){ var s=parseInt(pctEl.value,10)/100; return [Math.max(1,Math.round(origW*s)), Math.max(1,Math.round(origH*s))]; }
+    if(mode==='preset'){ var p=presetEl.value.split('x'); return [parseInt(p[0],10), parseInt(p[1],10)]; }
+    return [Math.max(1,parseInt(wEl.value,10)||origW), Math.max(1,parseInt(hEl.value,10)||origH)];
+  }
+  function outType(){ var f=formatEl.value; if(f==='same') return /png|jpeg|webp/.test(srcType)?srcType:'image/png'; return f; }
+  function lossy(){ var ty=outType(); return ty==='image/jpeg'||ty==='image/webp'; }
+
+  function render(){
+    if(!img) return;
+    var d=targetDims(), tw=d[0], th=d[1];
+    cv.width=tw; cv.height=th;
+    var ty=outType();
+    cx.clearRect(0,0,tw,th);
+    if(ty==='image/jpeg'){ cx.fillStyle='#fff'; cx.fillRect(0,0,tw,th); }
+    cx.drawImage(img,0,0,tw,th);
+    newDim.textContent=tw+' × '+th+' px';
+    qBox.style.display=lossy()?'block':'none';
+    estimate();
+  }
+
+  function estimate(){
+    clearTimeout(t); t=setTimeout(function(){
+      cv.toBlob(function(b){ if(b) outinfo.textContent='Output: '+fmt(b.size)+' · '+cv.width+'×'+cv.height; }, outType(), lossy()?qEl.value/100:undefined);
+    },120);
+  }
+
+  function setW(v){ wEl.value=v; if(locked) hEl.value=Math.max(1,Math.round(v/aspect)); }
+  function setH(v){ hEl.value=v; if(locked) wEl.value=Math.max(1,Math.round(v*aspect)); }
+
+  function loadFile(f){
+    if(!f||!/^image\//.test(f.type)) return;
+    srcType=f.type;
+    var url=URL.createObjectURL(f), im=new Image();
+    im.onload=function(){
+      img=im; origW=im.naturalWidth; origH=im.naturalHeight; aspect=origW/origH;
+      origDim.textContent=origW+' × '+origH+' px';
+      wEl.value=origW; hEl.value=origH;
+      editor.classList.add('on'); drop.style.display='none';
+      render();
+    };
+    im.src=url;
+  }
+
+  modeWrap.addEventListener('click',function(e){
+    var b=e.target.closest('button[data-mode]'); if(!b)return;
+    mode=b.getAttribute('data-mode');
+    [].forEach.call(modeWrap.children,function(x){x.classList.toggle('on',x===b);});
+    [].forEach.call(document.querySelectorAll('.grp'),function(g){g.classList.toggle('on',g.getAttribute('data-grp')===mode);});
+    render();
+  });
+  wEl.addEventListener('input',function(){ setW(parseInt(wEl.value,10)||1); render(); });
+  hEl.addEventListener('input',function(){ setH(parseInt(hEl.value,10)||1); render(); });
+  lockEl.addEventListener('click',function(){ locked=!locked; lockEl.classList.toggle('on',locked); lockEl.textContent=locked?'🔒':'🔓'; });
+  pctEl.addEventListener('change',render);
+  presetEl.addEventListener('change',render);
+  formatEl.addEventListener('change',render);
+  qEl.addEventListener('input',function(){ qval.textContent=qEl.value+'%'; estimate(); });
+
+  $('dl').addEventListener('click',function(){
+    if(!img)return;
+    cv.toBlob(function(b){ if(!b)return;
+      var ext=outType()==='image/png'?'png':outType()==='image/webp'?'webp':'jpg';
+      var a=document.createElement('a'); a.href=URL.createObjectURL(b); a.download='resized-'+cv.width+'x'+cv.height+'.'+ext; a.click();
+    }, outType(), lossy()?qEl.value/100:undefined);
+  });
+  $('change').addEventListener('click',function(){ editor.classList.remove('on'); drop.style.display='block'; img=null; });
+
+  drop.addEventListener('click',function(){ fileEl.click(); });
+  fileEl.addEventListener('change',function(){ loadFile(fileEl.files[0]); fileEl.value=''; });
+  ['dragenter','dragover'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.add('drag');}); });
+  ['dragleave','drop'].forEach(function(ev){ drop.addEventListener(ev,function(e){e.preventDefault();drop.classList.remove('drag');}); });
+  drop.addEventListener('drop',function(e){ if(e.dataTransfer&&e.dataTransfer.files) loadFile(e.dataTransfer.files[0]); });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Image Resizer",
+      "url": "https://seotriggers.com/tools/image-resizer",
+      "applicationCategory": "MultimediaApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Resize images by pixels, percentage or social presets; lock aspect ratio; convert format; runs in the browser with no upload",
+      "description": "Free online image resizer to resize JPG, PNG and WebP by exact pixels, percentage or ready-made presets, entirely in your browser with no upload."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Image Resizer", "item": "https://seotriggers.com/tools/image-resizer" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I resize an image without losing quality?", "acceptedAnswer": { "@type": "Answer", "text": "Reducing size keeps quality high. When exporting to JPEG or WebP, keep quality near 90%. Enlarging beyond the original dimensions will always soften detail, since there is no extra information to add." } },
+        { "@type": "Question", "name": "How do I resize an image to exact dimensions?", "acceptedAnswer": { "@type": "Answer", "text": "Choose the Pixels mode, turn the aspect lock off if you need an exact non-proportional size, type your width and height, and download." } },
+        { "@type": "Question", "name": "Are my images uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. Resizing happens entirely in your browser. Unlike most resizers, nothing is sent to a server, which is faster and more private." } },
+        { "@type": "Question", "name": "What is the difference between resizing and compressing?", "acceptedAnswer": { "@type": "Answer", "text": "Resizing changes the pixel dimensions; compressing reduces file size at the same dimensions. For a target file size, use the Image Compressor instead." } },
+        { "@type": "Question", "name": "Which formats are supported?", "acceptedAnswer": { "@type": "Answer", "text": "JPG, PNG and WebP for both input and output. You can also convert between them while resizing by choosing a different output format." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
