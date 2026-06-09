@@ -13,6 +13,7 @@
     { "source": "/tools", "destination": "/tools/index.html" },
     { "source": "/tools/qr-code-generator", "destination": "/tools/qr-code-generator.html" },
     { "source": "/tools/word-counter", "destination": "/tools/word-counter.html" },
+    { "source": "/tools/character-counter", "destination": "/tools/character-counter.html" },
     { "source": "/tools/image-compressor", "destination": "/tools/image-compressor.html" },
     { "source": "/tools/image-resizer", "destination": "/tools/image-resizer.html" },
     { "source": "/tools/jpg-to-png", "destination": "/tools/jpg-to-png.html" },
