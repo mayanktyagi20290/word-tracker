@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>JSON Formatter &amp; Validator — Format, Beautify &amp; Minify JSON Online | SEOTriggers</title>
+<meta name="description" content="Free JSON formatter and validator. Beautify, minify and validate JSON online with clear error messages. Choose indentation, copy or download — runs in your browser, nothing uploaded."/>
+<link rel="canonical" href="https://seotriggers.com/tools/json-formatter"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="JSON Formatter &amp; Validator | SEOTriggers"/>
+<meta property="og:description" content="Beautify, minify and validate JSON online with error messages. Free, private — runs in your browser."/>
+<meta property="og:url" content="https://seotriggers.com/tools/json-formatter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:1040px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 14px;max-width:720px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .usp{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px;}
+  .usp span{font-size:12.5px;font-weight:600;color:var(--indigo);background:#efeafe;border:1px solid #e0d8fb;border-radius:999px;padding:5px 12px;}
+  .toolbar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-bottom:12px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:13.5px;padding:9px 16px;border-radius:10px;}
+  .btn-primary{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet);}
+  select{border:1px solid var(--border);border-radius:9px;padding:8px 11px;font-family:inherit;font-size:13.5px;color:var(--ink);background:#fff;outline:none;}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .col h3{font-size:13px;font-weight:700;color:var(--slate);margin:0 0 7px;}
+  textarea,pre.out{width:100%;height:380px;border:1px solid var(--border);border-radius:13px;padding:14px 16px;font-family:ui-monospace,'SF Mono',Menlo,Consolas,monospace;font-size:13.5px;line-height:1.6;color:var(--ink);background:var(--surface);outline:none;box-sizing:border-box;resize:vertical;tab-size:2;}
+  textarea:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  pre.out{overflow:auto;white-space:pre;margin:0;}
+  .status{margin-top:10px;font-size:13.5px;font-weight:600;padding:10px 14px;border-radius:10px;display:none;}
+  .status.ok{display:block;background:#e7f7ee;color:#1a7f43;border:1px solid #b6e6c9;}
+  .status.bad{display:block;background:#fde8e8;color:#b42318;border:1px solid #f5b5b5;}
+  .outbar{display:flex;gap:8px;margin-top:10px;}
+  @media(max-width:720px){.grid{grid-template-columns:1fr;}.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:24px;}textarea,pre.out{height:260px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › JSON Formatter</p>
+    <div class="tool-head">
+      <h1>JSON Formatter &amp; Validator</h1>
+      <p class="lead">Paste JSON to beautify, minify or validate it. Errors are pinpointed with a clear message, and everything runs in your browser — your data is never uploaded.</p>
+    </div>
+    <div class="usp">
+      <span>✓ Format &amp; minify</span><span>✓ Validate with error position</span><span>✓ Nothing uploaded — safe &amp; private</span><span>✓ Free, no signup</span>
+    </div>
+
+    <div class="toolbar">
+      <button class="btn btn-primary" id="format" type="button">Format / Beautify</button>
+      <button class="btn btn-ghost" id="minify" type="button">Minify</button>
+      <button class="btn btn-ghost" id="validate" type="button">Validate</button>
+      <select id="indent"><option value="2">2 spaces</option><option value="4">4 spaces</option><option value="tab">Tab</option></select>
+      <button class="btn btn-ghost" id="sample" type="button">Sample</button>
+      <button class="btn btn-ghost" id="clear" type="button">Clear</button>
+    </div>
+
+    <div class="grid">
+      <div class="col">
+        <h3>Input</h3>
+        <textarea id="in" placeholder='Paste JSON here, e.g. {"name":"SEOTriggers","tools":15,"free":true}' spellcheck="false"></textarea>
+      </div>
+      <div class="col">
+        <h3>Output</h3>
+        <pre class="out" id="out"></pre>
+        <div class="outbar">
+          <button class="btn btn-ghost" id="copy" type="button">Copy</button>
+          <button class="btn btn-ghost" id="download" type="button">Download .json</button>
+        </div>
+      </div>
+    </div>
+    <div class="status" id="status"></div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <h2>How to use the JSON formatter</h2>
+    <p>Paste your JSON into the input box and click <strong>Format / Beautify</strong> to get clean, indented JSON that's easy to read, or <strong>Minify</strong> to strip all whitespace for the smallest possible size. <strong>Validate</strong> checks whether the JSON is well-formed and, if not, shows exactly what's wrong. Choose 2 spaces, 4 spaces or tabs for indentation, then copy or download the result.</p>
+
+    <h2>Is this JSON formatter safe?</h2>
+    <p>Yes. Unlike many online formatters that send your JSON to a server, this tool processes everything locally in your browser with JavaScript. Nothing you paste — including API responses, tokens or config — is uploaded, logged or stored, which makes it safe for sensitive data.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>What does a JSON formatter do?</h3>
+    <p>It re-indents JSON so it's readable (beautify), or removes whitespace to shrink it (minify), and checks that the structure is valid.</p>
+    <h3>How do I validate JSON?</h3>
+    <p>Paste it and click Validate. If it's valid you'll see a confirmation; if not, you'll get an error message indicating the problem so you can fix it.</p>
+    <h3>Is it safe to use an online JSON formatter?</h3>
+    <p>This one is, because it runs entirely in your browser and never uploads your data. Be cautious with tools that process JSON on a server, especially for sensitive content.</p>
+    <h3>What's the difference between beautify and minify?</h3>
+    <p>Beautify adds indentation and line breaks for readability; minify removes them to make the file as small as possible for transfer or storage.</p>
+
+    <div class="related">
+      <h3>Related tools</h3>
+      <a href="/tools/word-counter">Word Counter →</a>
+      <a href="/tools/character-counter">Character Counter →</a>
+      <a href="/tools">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var inEl=$('in'), out=$('out'), status=$('status');
+  function indentVal(){ var v=$('indent').value; return v==='tab'?'\t':parseInt(v,10); }
+  function setStatus(ok,msg){ status.className='status '+(ok?'ok':'bad'); status.textContent=msg; }
+  function clearStatus(){ status.className='status'; status.textContent=''; }
+
+  function parse(){ return JSON.parse(inEl.value); }
+
+  function format(){
+    if(!inEl.value.trim()){ out.textContent=''; clearStatus(); return; }
+    try{ var obj=parse(); out.textContent=JSON.stringify(obj,null,indentVal()); setStatus(true,'✓ Valid JSON — formatted.'); }
+    catch(e){ out.textContent=''; setStatus(false,'✗ Invalid JSON: '+e.message); }
+  }
+  function minify(){
+    if(!inEl.value.trim()){ out.textContent=''; clearStatus(); return; }
+    try{ var obj=parse(); var min=JSON.stringify(obj); out.textContent=min; setStatus(true,'✓ Valid JSON — minified ('+min.length+' chars).'); }
+    catch(e){ out.textContent=''; setStatus(false,'✗ Invalid JSON: '+e.message); }
+  }
+  function validate(){
+    if(!inEl.value.trim()){ clearStatus(); return; }
+    try{ parse(); setStatus(true,'✓ Valid JSON.'); }
+    catch(e){ setStatus(false,'✗ Invalid JSON: '+e.message); }
+  }
+
+  $('format').addEventListener('click',format);
+  $('minify').addEventListener('click',minify);
+  $('validate').addEventListener('click',validate);
+  $('indent').addEventListener('change',function(){ if(out.textContent && status.classList.contains('ok')) format(); });
+  $('sample').addEventListener('click',function(){ inEl.value='{"site":"SEOTriggers","tools":["word-counter","qr-code-generator","json-formatter"],"free":true,"count":15,"meta":{"private":true,"upload":false}}'; format(); });
+  $('clear').addEventListener('click',function(){ inEl.value=''; out.textContent=''; clearStatus(); inEl.focus(); });
+  $('copy').addEventListener('click',function(){ if(!out.textContent)return; try{navigator.clipboard.writeText(out.textContent);}catch(e){}
+    var b=$('copy'),o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1200); });
+  $('download').addEventListener('click',function(){ if(!out.textContent)return;
+    var a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([out.textContent],{type:'application/json'})); a.download='formatted.json'; a.click(); });
+  // live validation as you type (light)
+  var t; inEl.addEventListener('input',function(){ clearTimeout(t); t=setTimeout(validate,300); });
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "JSON Formatter & Validator",
+      "url": "https://seotriggers.com/tools/json-formatter",
+      "applicationCategory": "DeveloperApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "featureList": "Beautify, minify and validate JSON; choose indentation; copy and download; runs in the browser with no upload",
+      "description": "Free JSON formatter and validator that beautifies, minifies and validates JSON with error messages, entirely in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "JSON Formatter", "item": "https://seotriggers.com/tools/json-formatter" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "What does a JSON formatter do?", "acceptedAnswer": { "@type": "Answer", "text": "It re-indents JSON so it is readable (beautify), or removes whitespace to shrink it (minify), and checks that the structure is valid." } },
+        { "@type": "Question", "name": "How do I validate JSON?", "acceptedAnswer": { "@type": "Answer", "text": "Paste it and click Validate. If it is valid you will see a confirmation; if not, you will get an error message indicating the problem so you can fix it." } },
+        { "@type": "Question", "name": "Is it safe to use an online JSON formatter?", "acceptedAnswer": { "@type": "Answer", "text": "This one is, because it runs entirely in your browser and never uploads your data. Be cautious with tools that process JSON on a server, especially for sensitive content." } },
+        { "@type": "Question", "name": "What is the difference between beautify and minify?", "acceptedAnswer": { "@type": "Answer", "text": "Beautify adds indentation and line breaks for readability; minify removes them to make the file as small as possible for transfer or storage." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
