@@ -105,6 +105,10 @@
       "destination": "/tools/json-formatter.html"
     },
     {
+      "source": "/tools/password-generator",
+      "destination": "/tools/password-generator.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
