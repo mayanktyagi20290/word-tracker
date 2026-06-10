@@ -101,6 +101,10 @@
       "destination": "/tools/gst-calculator.html"
     },
     {
+      "source": "/tools/json-formatter",
+      "destination": "/tools/json-formatter.html"
+    },
+    {
       "source": "/(.*)",
       "destination": "/index.html"
     }
