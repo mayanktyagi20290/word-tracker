@@ -1,0 +1,117 @@
+{
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/word-frequency-counter",
+      "destination": "/word-frequency-counter.html"
+    },
+    {
+      "source": "/long-tail-keyword-finder",
+      "destination": "/long-tail-keyword-finder.html"
+    },
+    {
+      "source": "/wh-questions-generator",
+      "destination": "/wh-questions-generator.html"
+    },
+    {
+      "source": "/nlp-entity-extractor",
+      "destination": "/nlp-entity-extractor.html"
+    },
+    {
+      "source": "/content-optimization-checker",
+      "destination": "/content-optimization-checker.html"
+    },
+    {
+      "source": "/seo-readability-highlighter",
+      "destination": "/seo-readability-highlighter.html"
+    },
+    {
+      "source": "/competitor-keyword-gap-analysis",
+      "destination": "/competitor-keyword-gap-analysis.html"
+    },
+    {
+      "source": "/seo-structure-checker",
+      "destination": "/seo-structure-checker.html"
+    },
+    {
+      "source": "/search-intent-checker",
+      "destination": "/search-intent-checker.html"
+    },
+    {
+      "source": "/export-seo-report",
+      "destination": "/export-seo-report.html"
+    },
+    {
+      "source": "/tools",
+      "destination": "/tools/index.html"
+    },
+    {
+      "source": "/tools/qr-code-generator",
+      "destination": "/tools/qr-code-generator.html"
+    },
+    {
+      "source": "/tools/word-counter",
+      "destination": "/tools/word-counter.html"
+    },
+    {
+      "source": "/tools/character-counter",
+      "destination": "/tools/character-counter.html"
+    },
+    {
+      "source": "/tools/age-calculator",
+      "destination": "/tools/age-calculator.html"
+    },
+    {
+      "source": "/tools/percentage-calculator",
+      "destination": "/tools/percentage-calculator.html"
+    },
+    {
+      "source": "/tools/image-compressor",
+      "destination": "/tools/image-compressor.html"
+    },
+    {
+      "source": "/tools/image-resizer",
+      "destination": "/tools/image-resizer.html"
+    },
+    {
+      "source": "/tools/jpg-to-png",
+      "destination": "/tools/jpg-to-png.html"
+    },
+    {
+      "source": "/tools/png-to-jpg",
+      "destination": "/tools/png-to-jpg.html"
+    },
+    {
+      "source": "/tools/pdf-merger",
+      "destination": "/tools/pdf-merger.html"
+    },
+    {
+      "source": "/tools/pdf-splitter",
+      "destination": "/tools/pdf-splitter.html"
+    },
+    {
+      "source": "/tools/emi-calculator",
+      "destination": "/tools/emi-calculator.html"
+    },
+    {
+      "source": "/tools/sip-calculator",
+      "destination": "/tools/sip-calculator.html"
+    },
+    {
+      "source": "/tools/gst-calculator",
+      "destination": "/tools/gst-calculator.html"
+    },
+    {
+      "source": "/tools/json-formatter",
+      "destination": "/tools/json-formatter.html"
+    },
+    {
+      "source": "/tools/password-generator",
+      "destination": "/tools/password-generator.html"
+    },
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
