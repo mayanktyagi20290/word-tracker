@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Free Word Counter — Count Words, Characters & Reading Time | SEOTriggers</title>
+<meta name="description" content="Free online word counter. Instantly count words, characters, sentences, paragraphs and reading time as you type. No signup, no limits — runs privately in your browser."/>
+<link rel="canonical" href="https://seotriggers.com/tools/word-counter"/>
+<meta name="robots" content="index, follow"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Free Word Counter — Count Words & Characters | SEOTriggers"/>
+<meta property="og:description" content="Count words, characters, sentences, paragraphs and reading time instantly. Free, private, no signup."/>
+<meta property="og:url" content="https://seotriggers.com/tools/word-counter"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="/legal.css"/>
+<style>
+  .tool-wrap{max-width:920px;margin:0 auto;padding:40px 20px 8px;}
+  .tool-head h1{font-size:32px;font-weight:800;letter-spacing:-.5px;margin:0 0 8px;}
+  .tool-head .lead{font-size:17px;color:#33364a;margin:0 0 22px;max-width:680px;}
+  .crumb{font-size:13px;color:var(--slate);margin:0 0 16px;}
+  .crumb a{color:var(--slate);font-weight:600;}
+  .ta{width:100%;min-height:200px;border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-family:inherit;font-size:16px;color:var(--ink);background:var(--surface);resize:vertical;outline:none;line-height:1.7;transition:border-color .15s,box-shadow .15s;}
+  .ta:focus{border-color:var(--violet);box-shadow:0 0 0 3px #ede9fe;}
+  .bar{display:flex;gap:10px;flex-wrap:wrap;margin:12px 0 22px;}
+  .btn{border:none;cursor:pointer;font-family:inherit;font-weight:700;font-size:14px;padding:9px 18px;border-radius:10px;transition:opacity .15s,background .15s;}
+  .btn-primary{background:linear-gradient(135deg,var(--violet),var(--indigo));color:#fff;}
+  .btn-primary:hover{opacity:.92;}
+  .btn-ghost{background:#fff;border:1px solid var(--border);color:var(--slate);}
+  .btn-ghost:hover{border-color:var(--violet);color:var(--violet);}
+  .stats{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px;margin-bottom:8px;}
+  .stat{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;}
+  .stat .v{font-size:28px;font-weight:800;color:var(--indigo);line-height:1.1;}
+  .stat.alt .v{color:var(--violet);}
+  .stat .l{font-size:13px;color:var(--slate);font-weight:600;margin-top:4px;}
+  .stat .s{font-size:11px;color:#9a98ad;margin-top:2px;}
+  @media(max-width:600px){.tool-wrap{padding:28px 16px 4px;}.tool-head h1{font-size:25px;}.stat .v{font-size:24px;}}
+</style>
+</head>
+<body>
+<header class="nav">
+  <a class="brand" href="/"><span class="mark">⚡</span>SEO<span>Triggers</span></a>
+  <nav><a href="/">Tool</a><a href="/tools">Tools</a><a href="/blog">Blog</a><a href="/about">About</a><a class="cta" href="/">Open Analyzer</a></nav>
+</header>
+
+<main>
+  <div class="tool-wrap">
+    <p class="crumb"><a href="/">Home</a> › <a href="/tools">Tools</a> › Word Counter</p>
+    <div class="tool-head">
+      <h1>Word Counter</h1>
+      <p class="lead">Type or paste your text below to count words, characters, sentences, paragraphs and reading time — instantly and privately. Nothing is uploaded; everything runs in your browser.</p>
+    </div>
+
+    <textarea id="ta" class="ta" placeholder="Start typing or paste your text here…" autofocus></textarea>
+    <div class="bar">
+      <button class="btn btn-ghost" id="copyBtn" type="button">Copy text</button>
+      <button class="btn btn-ghost" id="clearBtn" type="button">Clear</button>
+      <button class="btn btn-primary" id="analyzeBtn" type="button" onclick="location.href='/word-frequency-counter'">Deep keyword analysis →</button>
+    </div>
+
+    <div class="stats">
+      <div class="stat"><div class="v" id="words">0</div><div class="l">Words</div></div>
+      <div class="stat"><div class="v" id="chars">0</div><div class="l">Characters</div><div class="s" id="charsNo">0 without spaces</div></div>
+      <div class="stat"><div class="v" id="sentences">0</div><div class="l">Sentences</div></div>
+      <div class="stat"><div class="v" id="paras">0</div><div class="l">Paragraphs</div></div>
+      <div class="stat alt"><div class="v" id="read">0s</div><div class="l">Reading time</div><div class="s">at 200 wpm</div></div>
+      <div class="stat alt"><div class="v" id="speak">0s</div><div class="l">Speaking time</div><div class="s">at 130 wpm</div></div>
+    </div>
+  </div>
+
+  <div class="legal-wrap" style="padding-top:8px;">
+    <div class="cta-box">
+      <h3>Need keyword density, not just a count?</h3>
+      <p>This tool counts words. To see your keyword density, top phrases and over-optimization warnings, run your text through the full analyzer.</p>
+      <a class="btn" href="/word-frequency-counter">Open Word Frequency Counter</a>
+    </div>
+
+    <h2>How the word counter works</h2>
+    <p>A <strong>word</strong> is any run of non-space characters, so the counter splits your text on spaces and line breaks and counts the pieces. <strong>Characters</strong> are counted both with and without spaces, which matters when you're writing for a strict character limit such as a meta description (around 155 characters) or a tweet. <strong>Sentences</strong> are detected by full stops, question marks and exclamation marks, and <strong>paragraphs</strong> by blank lines between blocks of text.</p>
+    <p>Reading and speaking times are estimates: most adults read around 200 words per minute silently and speak around 130 words per minute aloud, so the counter divides your word count by those rates.</p>
+
+    <h2>Why word count matters for SEO and writing</h2>
+    <p>Search engines don't reward length for its own sake, but thin pages rarely cover a topic well enough to rank. Knowing your word count helps you hit a sensible target for the query you're targeting, stay within character limits for titles and descriptions, and keep essays, posts and assignments to a required length without guessing.</p>
+
+    <h2>Frequently asked questions</h2>
+    <h3>Is this word counter free?</h3>
+    <p>Yes. It's completely free with no signup, no word limit and no ads interrupting the count. You can use it as often as you like.</p>
+    <h3>Is my text uploaded anywhere?</h3>
+    <p>No. All counting happens in your browser using JavaScript. Your text never leaves your device and is never sent to a server.</p>
+    <h3>How is reading time calculated?</h3>
+    <p>Reading time is your total word count divided by 200 words per minute, the average silent reading speed for adults. Speaking time uses 130 words per minute.</p>
+    <h3>Does it count words without spaces or with extra spaces?</h3>
+    <p>The counter ignores extra spaces and blank lines, so accidental double spaces or trailing line breaks won't inflate your word count.</p>
+
+    <div class="related">
+      <h3>Related tools &amp; guides</h3>
+      <a href="/word-frequency-counter">Word Frequency &amp; Keyword Density Counter →</a>
+      <a href="/tools">Browse all free tools →</a>
+      <a href="/blog/what-is-keyword-density">Guide: What is keyword density? →</a>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-brand"><span class="mark">⚡</span><div><b style="color:#fff">SEOTriggers</b> — Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div></div>
+    <div class="footer-cols">
+      <div><h4>Product</h4><a href="/">SEO Tool</a><a href="/tools">Free Tools</a><a href="/blog">Blog</a></div>
+      <div><h4>Company</h4><a href="/about">About Us</a><a href="/contact">Contact Us</a><a href="/editorial-policy">Editorial Policy</a></div>
+      <div><h4>Legal</h4><a href="/privacy-policy">Privacy Policy</a><a href="/terms">Terms &amp; Conditions</a><a href="/disclaimer">Disclaimer</a><a href="/dmca">DMCA Policy</a></div>
+    </div>
+    <div class="footer-copy">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var ta=document.getElementById('ta');
+  function fmt(n){return n.toLocaleString();}
+  function dur(sec){if(sec<60)return Math.max(0,Math.round(sec))+'s';var m=Math.floor(sec/60),s=Math.round(sec%60);return m+'m'+(s?' '+s+'s':'');}
+  function update(){
+    var t=ta.value;
+    var trimmed=t.trim();
+    var words=trimmed?trimmed.split(/\s+/).length:0;
+    var chars=t.length;
+    var charsNo=t.replace(/\s/g,'').length;
+    var sentences=(trimmed.match(/[^.!?]+[.!?]+/g)||[]).length || (trimmed?1:0);
+    var paras=trimmed?trimmed.split(/\n{2,}/).filter(function(p){return p.trim().length>0;}).length:0;
+    document.getElementById('words').textContent=fmt(words);
+    document.getElementById('chars').textContent=fmt(chars);
+    document.getElementById('charsNo').textContent=fmt(charsNo)+' without spaces';
+    document.getElementById('sentences').textContent=fmt(sentences);
+    document.getElementById('paras').textContent=fmt(paras);
+    document.getElementById('read').textContent=dur(words/200*60);
+    document.getElementById('speak').textContent=dur(words/130*60);
+  }
+  ta.addEventListener('input',update);
+  document.getElementById('clearBtn').addEventListener('click',function(){ta.value='';update();ta.focus();});
+  document.getElementById('copyBtn').addEventListener('click',function(){
+    if(!ta.value)return;
+    ta.select();
+    try{navigator.clipboard.writeText(ta.value);}catch(e){document.execCommand('copy');}
+    var b=document.getElementById('copyBtn');var o=b.textContent;b.textContent='Copied!';setTimeout(function(){b.textContent=o;},1200);
+  });
+  update();
+})();
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Word Counter",
+      "url": "https://seotriggers.com/tools/word-counter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Any",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "description": "Free online word counter. Count words, characters, sentences, paragraphs and reading time instantly in your browser."
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+        { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+        { "@type": "ListItem", "position": 3, "name": "Word Counter", "item": "https://seotriggers.com/tools/word-counter" }
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Is this word counter free?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. It's completely free with no signup, no word limit and no ads interrupting the count." } },
+        { "@type": "Question", "name": "Is my text uploaded anywhere?", "acceptedAnswer": { "@type": "Answer", "text": "No. All counting happens in your browser using JavaScript. Your text never leaves your device and is never sent to a server." } },
+        { "@type": "Question", "name": "How is reading time calculated?", "acceptedAnswer": { "@type": "Answer", "text": "Reading time is your total word count divided by 200 words per minute, the average silent reading speed for adults. Speaking time uses 130 words per minute." } },
+        { "@type": "Question", "name": "Does it count words without spaces or with extra spaces?", "acceptedAnswer": { "@type": "Answer", "text": "The counter ignores extra spaces and blank lines, so accidental double spaces or trailing line breaks won't inflate your word count." } }
+      ]
+    }
+  ]
+}
+</script>
+</body>
+</html>
