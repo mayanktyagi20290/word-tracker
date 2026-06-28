@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Days Between Dates Calculator — Count Days, Weeks & Months | SEOTriggers</title>
+  <meta name="description" content="Free days between dates calculator. Count exact days, weeks, months and years between any two dates. Includes business days, quick presets and a timeline view." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools/days-between-dates" />
+  <meta property="og:title" content="Days Between Dates Calculator | SEOTriggers" />
+  <meta property="og:description" content="Count days, weeks, months and years between two dates. Includes business days, quick presets and timeline. Free, instant, no signup." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools/days-between-dates" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-STNE1RFPKY');</script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #94a3b8; max-width: 900px; margin: 0 auto; width: 100%; }
+    .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    .breadcrumb a:hover { color: #6366f1; }
+    .breadcrumb span { margin: 0 6px; }
+
+    main { flex: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 64px; width: 100%; }
+    h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+
+    /* ── Calculator card ── */
+    .calc-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+
+    /* Date inputs row */
+    .dates-row { display: grid; grid-template-columns: 1fr 48px 1fr; gap: 16px; align-items: end; margin-bottom: 20px; }
+    @media(max-width:580px){ .dates-row { grid-template-columns: 1fr; } .swap-col { display: flex; justify-content: center; } }
+
+    .date-field label { display: block; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .date-field input[type=date] {
+      width: 100%; padding: 10px 14px; border: 1.5px solid #e2e8f0; border-radius: 9px;
+      font-size: 15px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none;
+      transition: border-color .2s; background: #fff; cursor: pointer;
+    }
+    .date-field input[type=date]:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; }
+
+    .swap-col { display: flex; align-items: flex-end; justify-content: center; padding-bottom: 2px; }
+    .swap-btn { width: 44px; height: 44px; border: 1.5px solid #e2e8f0; border-radius: 9px; background: #f8fafc; cursor: pointer; font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all .15s; }
+    .swap-btn:hover { border-color: #6366f1; background: #eef2ff; }
+
+    /* Options row */
+    .options-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #f1f5f9; }
+    .check-label { display: flex; align-items: center; gap: 7px; font-size: 13px; color: #475569; cursor: pointer; user-select: none; }
+    .check-label input { accent-color: #6366f1; width: 15px; height: 15px; }
+
+    /* Quick presets */
+    .presets-label { font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 8px; }
+    .presets { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .preset-btn { padding: 6px 14px; border: 1.5px solid #e2e8f0; border-radius: 7px; background: #fff; color: #475569; font-size: 12px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .preset-btn:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+
+    /* Results */
+    .results-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px,1fr)); gap: 12px; margin-bottom: 20px; }
+    .result-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; text-align: center; transition: border-color .2s; }
+    .result-box.primary { background: #eef2ff; border-color: #c7d2fe; }
+    .result-box .r-value { font-size: 28px; font-weight: 700; color: #0f172a; line-height: 1.1; margin-bottom: 4px; }
+    .result-box.primary .r-value { color: #4f46e5; }
+    .result-box .r-label { font-size: 12px; color: #94a3b8; font-weight: 500; }
+
+    /* Timeline bar */
+    .timeline-wrap { margin-top: 16px; }
+    .timeline-label { font-size: 12px; font-weight: 600; color: #64748b; margin-bottom: 8px; display: flex; justify-content: space-between; }
+    .timeline-track { background: #f1f5f9; border-radius: 99px; height: 8px; overflow: hidden; position: relative; }
+    .timeline-fill { height: 100%; background: linear-gradient(90deg, #6366f1, #8b5cf6); border-radius: 99px; transition: width .4s ease; }
+    .timeline-dates { display: flex; justify-content: space-between; font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    /* Business days info */
+    .biz-row { background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 9px; padding: 12px 16px; margin-top: 12px; display: flex; align-items: center; gap: 10px; font-size: 13px; color: #15803d; display: none; }
+    .biz-row strong { font-weight: 700; }
+
+    /* Empty state */
+    .empty-state { text-align: center; padding: 32px 0; color: #94a3b8; font-size: 14px; display: none; }
+
+    /* ── Content sections ── */
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .section p, .section li { font-size: 14px; color: #475569; line-height: 1.8; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 6px; }
+    .section code { background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; color: #6366f1; }
+
+    .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; }
+    .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q:hover { background: #f8fafc; border-radius: 10px; }
+    .faq-q .arrow { color: #94a3b8; transition: transform .2s; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; color: #475569; line-height: 1.8; }
+    .faq-a.open { display: block; }
+
+    .related-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+    .related-link { padding: 8px 16px; background: #f1f5f9; border-radius: 8px; font-size: 13px; color: #6366f1; text-decoration: none; font-weight: 500; }
+    .related-link:hover { background: #eef2ff; }
+
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+    @media(max-width:640px){ .footer-cols { grid-template-columns: 1fr 1fr; } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://seotriggers.com/">Home</a><span>›</span>
+  <a href="https://seotriggers.com/tools">Tools</a><span>›</span>
+  Days Between Dates
+</div>
+
+<main>
+  <h1>Days Between Dates Calculator</h1>
+  <p class="subtitle">Count the exact number of days, weeks, months and years between any two dates. Includes business days, quick presets and a progress timeline.</p>
+
+  <div class="calc-card">
+
+    <!-- Quick presets -->
+    <div class="presets-label">Quick presets</div>
+    <div class="presets">
+      <button class="preset-btn" onclick="setPreset('last30')">Last 30 days</button>
+      <button class="preset-btn" onclick="setPreset('last90')">Last 90 days</button>
+      <button class="preset-btn" onclick="setPreset('ytd')">Year to date</button>
+      <button class="preset-btn" onclick="setPreset('last1y')">Last 1 year</button>
+      <button class="preset-btn" onclick="setPreset('last5y')">Last 5 years</button>
+      <button class="preset-btn" onclick="setPreset('next30')">Next 30 days</button>
+      <button class="preset-btn" onclick="setPreset('next90')">Next 90 days</button>
+      <button class="preset-btn" onclick="setPreset('next1y')">Next 1 year</button>
+    </div>
+
+    <!-- Date inputs -->
+    <div class="dates-row">
+      <div class="date-field">
+        <label>Start date</label>
+        <input type="date" id="start-date" onchange="calculate()" />
+      </div>
+      <div class="swap-col">
+        <button class="swap-btn" onclick="swapDates()" title="Swap dates">⇄</button>
+      </div>
+      <div class="date-field">
+        <label>End date</label>
+        <input type="date" id="end-date" onchange="calculate()" />
+      </div>
+    </div>
+
+    <!-- Options -->
+    <div class="options-row">
+      <label class="check-label">
+        <input type="checkbox" id="opt-include-end" onchange="calculate()" />
+        Include end date
+      </label>
+      <label class="check-label">
+        <input type="checkbox" id="opt-biz" onchange="calculate()" />
+        Show business days (Mon–Fri)
+      </label>
+    </div>
+
+    <!-- Empty state -->
+    <div class="empty-state" id="empty-state" style="display:block;">
+      Select start and end dates above to calculate
+    </div>
+
+    <!-- Results -->
+    <div id="results-wrap" style="display:none;">
+      <div class="results-grid">
+        <div class="result-box primary">
+          <div class="r-value" id="res-days">—</div>
+          <div class="r-label">Days</div>
+        </div>
+        <div class="result-box">
+          <div class="r-value" id="res-weeks">—</div>
+          <div class="r-label">Weeks</div>
+        </div>
+        <div class="result-box">
+          <div class="r-value" id="res-months">—</div>
+          <div class="r-label">Months</div>
+        </div>
+        <div class="result-box">
+          <div class="r-value" id="res-years">—</div>
+          <div class="r-label">Years</div>
+        </div>
+        <div class="result-box">
+          <div class="r-value" id="res-hours">—</div>
+          <div class="r-label">Hours</div>
+        </div>
+        <div class="result-box">
+          <div class="r-value" id="res-minutes">—</div>
+          <div class="r-label">Minutes</div>
+        </div>
+      </div>
+
+      <!-- Business days -->
+      <div class="biz-row" id="biz-row">
+        📅 Business days (Mon–Fri): <strong id="res-biz">—</strong> &nbsp;·&nbsp; Weekends: <strong id="res-weekends">—</strong>
+      </div>
+
+      <!-- Timeline -->
+      <div class="timeline-wrap">
+        <div class="timeline-label">
+          <span id="tl-from">—</span>
+          <span id="tl-pct" style="color:#6366f1; font-weight:600;"></span>
+          <span id="tl-to">—</span>
+        </div>
+        <div class="timeline-track">
+          <div class="timeline-fill" id="tl-fill" style="width:0%"></div>
+        </div>
+        <div class="timeline-dates">
+          <span id="tl-start-label"></span>
+          <span id="tl-today-label" style="color:#6366f1;"></span>
+          <span id="tl-end-label"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- How it works -->
+  <div class="section">
+    <h2>How to calculate days between dates</h2>
+    <p>Select your start and end dates above — the tool calculates the difference instantly. By default it counts the start date but not the end date (the same way most date calculators work). Tick <strong>Include end date</strong> to add one extra day to the count.</p>
+    <p style="margin-top:10px;">The calculation subtracts the start date from the end date in milliseconds, then converts to days. Weeks are days ÷ 7 (rounded down). Months are the number of complete calendar months. Years are complete calendar years.</p>
+  </div>
+
+  <!-- When to use -->
+  <div class="section">
+    <h2>Common uses for this calculator</h2>
+    <ul>
+      <li><strong>Project deadlines</strong> — count exactly how many days remain before a project, exam, or event.</li>
+      <li><strong>Contract periods</strong> — verify notice periods, lease durations, or subscription lengths in days.</li>
+      <li><strong>Age in days</strong> — find out how many days old you are by entering your birth date as the start date.</li>
+      <li><strong>Pregnancy</strong> — count how many days since a last menstrual period or conception date.</li>
+      <li><strong>Business billing</strong> — calculate the number of days in a billing period or invoice payment window.</li>
+      <li><strong>Fitness challenges</strong> — track how many days into a 30-day or 90-day challenge you are.</li>
+      <li><strong>Legal deadlines</strong> — count business days for response windows, filing deadlines, or notice periods.</li>
+      <li><strong>Anniversary</strong> — find out how many days since a special date like a wedding or milestone.</li>
+    </ul>
+  </div>
+
+  <!-- Business days -->
+  <div class="section">
+    <h2>Business days vs. calendar days</h2>
+    <p>Calendar days count every day including weekends and public holidays. Business days count only Monday to Friday. Toggle <strong>Show business days</strong> above to see both.</p>
+    <p style="margin-top:10px;">Note: this calculator counts Mon–Fri as business days but does not account for public holidays, which vary by country and region. For legal or contractual purposes, always verify the specific holiday schedule that applies to your situation.</p>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many days are between two dates?<span class="arrow">▾</span></div>
+      <div class="faq-a">Enter your start and end dates in the calculator above. The result shows the exact number of days, weeks, months and years between them. You can also toggle to include or exclude the end date.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I count days between dates in Excel?<span class="arrow">▾</span></div>
+      <div class="faq-a">In Excel, subtract the start date from the end date: <code>=B1-A1</code> where A1 is the start date and B1 is the end date. Format the result cell as a number to see the day count. For business days only, use <code>=NETWORKDAYS(A1,B1)</code>.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is today 5 years ago?<span class="arrow">▾</span></div>
+      <div class="faq-a">Use the "Last 5 years" preset above — it sets the start date to exactly 5 years before today and the end date to today, showing you the number of days in that span. You can also enter any past date manually to compare with today.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I subtract dates to find the difference?<span class="arrow">▾</span></div>
+      <div class="faq-a">The simplest way is to use this calculator — just enter both dates. Manually, convert both dates to a day number (Julian Day Number), then subtract. This automatically handles months of different lengths and leap years.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many calendar days are in a year?<span class="arrow">▾</span></div>
+      <div class="faq-a">A regular year has 365 days. A leap year (divisible by 4, except century years not divisible by 400) has 366 days. On average, a year is 365.2425 days long, which is why we add a leap day every 4 years to keep the calendar in sync with the solar year.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does the calculator include weekends?<span class="arrow">▾</span></div>
+      <div class="faq-a">By default it counts all calendar days including weekends. Toggle <strong>Show business days</strong> to also see the count excluding Saturdays and Sundays. Note that public holidays are not excluded — they vary by country and are not included in this calculation.</div>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://seotriggers.com/tools/age-calculator" class="related-link">Age Calculator →</a>
+      <a href="https://seotriggers.com/tools/percentage-calculator" class="related-link">Percentage Calculator →</a>
+      <a href="https://seotriggers.com/tools/emi-calculator" class="related-link">EMI Calculator →</a>
+      <a href="https://seotriggers.com/tools" class="related-link">Browse all tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://seotriggers.com/tools/days-between-dates",
+      "url": "https://seotriggers.com/tools/days-between-dates",
+      "name": "Days Between Dates Calculator — Count Days, Weeks & Months | SEOTriggers",
+      "description": "Free days between dates calculator. Count exact days, weeks, months and years between any two dates. Includes business days and quick presets.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+          { "@type": "ListItem", "position": 3, "name": "Days Between Dates" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How many days are between two dates?", "acceptedAnswer": { "@type": "Answer", "text": "Enter your start and end dates in the calculator. The result shows the exact days, weeks, months and years between them." } },
+        { "@type": "Question", "name": "How do I count days between dates in Excel?", "acceptedAnswer": { "@type": "Answer", "text": "Subtract the start date from the end date: =B1-A1. Format the result as a number. For business days use =NETWORKDAYS(A1,B1)." } },
+        { "@type": "Question", "name": "Does the calculator include weekends?", "acceptedAnswer": { "@type": "Answer", "text": "By default it counts all calendar days. Toggle Show business days to see the count excluding Saturdays and Sundays." } }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Days Between Dates Calculator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://seotriggers.com/tools/days-between-dates"
+    }
+  ]
+}
+</script>
+
+<script>
+// ── Helpers ──────────────────────────────────────────────────────────────────
+function today() {
+  return new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate());
+}
+function toDateInput(d) {
+  return d.toISOString().split('T')[0];
+}
+function parseDate(str) {
+  const [y,m,d] = str.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+function fmt(d) {
+  return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+}
+function fmtNum(n) {
+  return Math.abs(n).toLocaleString();
+}
+
+// ── Init default dates ───────────────────────────────────────────────────────
+const t = today();
+const startDefault = new Date(t); startDefault.setDate(t.getDate() - 30);
+document.getElementById('start-date').value = toDateInput(startDefault);
+document.getElementById('end-date').value   = toDateInput(t);
+
+// ── Presets ──────────────────────────────────────────────────────────────────
+function setPreset(key) {
+  const t = today();
+  let s, e;
+  if (key === 'last30')  { s = new Date(t); s.setDate(t.getDate()-30);     e = t; }
+  if (key === 'last90')  { s = new Date(t); s.setDate(t.getDate()-90);     e = t; }
+  if (key === 'ytd')     { s = new Date(t.getFullYear(),0,1);               e = t; }
+  if (key === 'last1y')  { s = new Date(t); s.setFullYear(t.getFullYear()-1); e = t; }
+  if (key === 'last5y')  { s = new Date(t); s.setFullYear(t.getFullYear()-5); e = t; }
+  if (key === 'next30')  { s = t; e = new Date(t); e.setDate(t.getDate()+30); }
+  if (key === 'next90')  { s = t; e = new Date(t); e.setDate(t.getDate()+90); }
+  if (key === 'next1y')  { s = t; e = new Date(t); e.setFullYear(t.getFullYear()+1); }
+  document.getElementById('start-date').value = toDateInput(s);
+  document.getElementById('end-date').value   = toDateInput(e);
+  calculate();
+}
+
+// ── Swap ─────────────────────────────────────────────────────────────────────
+function swapDates() {
+  const s = document.getElementById('start-date');
+  const e = document.getElementById('end-date');
+  [s.value, e.value] = [e.value, s.value];
+  calculate();
+}
+
+// ── Business days ─────────────────────────────────────────────────────────────
+function countBusinessDays(start, end) {
+  let count = 0;
+  const cur = new Date(start);
+  while (cur <= end) {
+    const day = cur.getDay();
+    if (day !== 0 && day !== 6) count++;
+    cur.setDate(cur.getDate() + 1);
+  }
+  return count;
+}
+
+// ── Main calculate ────────────────────────────────────────────────────────────
+function calculate() {
+  const sv = document.getElementById('start-date').value;
+  const ev = document.getElementById('end-date').value;
+  const includeEnd = document.getElementById('opt-include-end').checked;
+  const showBiz    = document.getElementById('opt-biz').checked;
+
+  if (!sv || !ev) {
+    document.getElementById('empty-state').style.display = 'block';
+    document.getElementById('results-wrap').style.display = 'none';
+    return;
+  }
+
+  let start = parseDate(sv);
+  let end   = parseDate(ev);
+
+  // Always show result even if end < start
+  let s = start <= end ? start : end;
+  let e = start <= end ? end   : start;
+  if (includeEnd) { e = new Date(e); e.setDate(e.getDate() + 1); }
+
+  const diffMs   = e - s;
+  const diffDays = Math.round(diffMs / 86400000);
+
+  const weeks   = Math.floor(diffDays / 7);
+  const hours   = diffDays * 24;
+  const minutes = diffDays * 24 * 60;
+
+  // Months & years (calendar-accurate)
+  let months = (e.getFullYear() - s.getFullYear()) * 12 + (e.getMonth() - s.getMonth());
+  if (e.getDate() < s.getDate()) months--;
+  if (months < 0) months = 0;
+  const years = Math.floor(months / 12);
+
+  // Set results
+  document.getElementById('res-days').textContent    = fmtNum(diffDays);
+  document.getElementById('res-weeks').textContent   = fmtNum(weeks);
+  document.getElementById('res-months').textContent  = fmtNum(months);
+  document.getElementById('res-years').textContent   = fmtNum(years);
+  document.getElementById('res-hours').textContent   = fmtNum(hours);
+  document.getElementById('res-minutes').textContent = fmtNum(minutes);
+
+  // Business days
+  const bizRow = document.getElementById('biz-row');
+  if (showBiz) {
+    const endForBiz = includeEnd ? e : new Date(e.getTime() - 86400000);
+    const biz = countBusinessDays(s, endForBiz);
+    const weekends = diffDays - biz;
+    document.getElementById('res-biz').textContent      = fmtNum(biz);
+    document.getElementById('res-weekends').textContent = fmtNum(weekends);
+    bizRow.style.display = 'flex';
+  } else {
+    bizRow.style.display = 'none';
+  }
+
+  // Timeline — show where today falls
+  const t = today();
+  let pct = 0;
+  let todayLabel = '';
+  if (t >= s && t <= e) {
+    pct = Math.round(((t - s) / (e - s)) * 100);
+    todayLabel = `Today (${pct}%)`;
+  } else if (t < s) {
+    pct = 0; todayLabel = 'Future';
+  } else {
+    pct = 100; todayLabel = 'Past';
+  }
+  document.getElementById('tl-fill').style.width = pct + '%';
+  document.getElementById('tl-from').textContent = fmt(s);
+  document.getElementById('tl-to').textContent   = fmt(e);
+  document.getElementById('tl-pct').textContent  = '';
+  document.getElementById('tl-start-label').textContent = fmt(s);
+  document.getElementById('tl-today-label').textContent = todayLabel;
+  document.getElementById('tl-end-label').textContent   = fmt(e);
+
+  document.getElementById('empty-state').style.display  = 'none';
+  document.getElementById('results-wrap').style.display = 'block';
+}
+
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  const open = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  if (!open) { ans.classList.add('open'); el.classList.add('open'); }
+}
+
+// Init
+calculate();
+</script>
+</body>
+</html>
