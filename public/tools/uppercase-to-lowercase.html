@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Uppercase to Lowercase Converter — Free Online Text Case Changer | SEOTriggers</title>
+  <meta name="description" content="Free uppercase to lowercase converter. Paste any text and instantly convert it to lowercase, UPPERCASE, Title Case, Sentence case, or camelCase. Works entirely in your browser." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools/uppercase-to-lowercase" />
+  <meta property="og:title" content="Uppercase to Lowercase Converter — Free Online Text Case Changer | SEOTriggers" />
+  <meta property="og:description" content="Instantly convert text to lowercase, uppercase, title case, sentence case and more. Free, private, runs in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools/uppercase-to-lowercase" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-STNE1RFPKY');
+  </script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Nav (same as site) ── */
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; display: flex; align-items: center; gap: 6px; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+    .nav-cta:hover { background: #4f46e5; color: #fff !important; }
+
+    /* ── Breadcrumb ── */
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #94a3b8; max-width: 900px; margin: 0 auto; width: 100%; }
+    .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    .breadcrumb a:hover { color: #6366f1; }
+    .breadcrumb span { margin: 0 6px; }
+
+    /* ── Main ── */
+    main { flex: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 64px; width: 100%; }
+
+    h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #64748b; margin-bottom: 28px; line-height: 1.6; }
+
+    /* ── Tool card ── */
+    .tool-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+
+    /* ── Case buttons ── */
+    .case-buttons { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+    .case-btn { padding: 7px 16px; border-radius: 8px; border: 1.5px solid #e2e8f0; background: #f8fafc; color: #475569; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .case-btn:hover { border-color: #6366f1; color: #6366f1; background: #eef2ff; }
+    .case-btn.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+
+    /* ── Textareas ── */
+    .textarea-wrap { position: relative; }
+    textarea { width: 100%; height: 180px; border: 1.5px solid #e2e8f0; border-radius: 10px; padding: 14px 16px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1e293b; resize: vertical; outline: none; transition: border-color .2s; background: #fff; line-height: 1.7; }
+    textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; }
+    textarea[readonly] { background: #f8fafc; cursor: default; }
+    .textarea-label { font-size: 12px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+
+    /* ── Action row ── */
+    .action-row { display: flex; gap: 10px; margin-top: 12px; flex-wrap: wrap; align-items: center; }
+    .btn { padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .btn-primary { background: #6366f1; color: #fff; }
+    .btn-primary:hover { background: #4f46e5; }
+    .btn-ghost { background: transparent; color: #64748b; border: 1.5px solid #e2e8f0; }
+    .btn-ghost:hover { border-color: #6366f1; color: #6366f1; }
+    .btn-danger { background: transparent; color: #ef4444; border: 1.5px solid #fee2e2; }
+    .btn-danger:hover { background: #fef2f2; }
+    .copy-feedback { font-size: 13px; color: #22c55e; font-weight: 500; display: none; }
+
+    /* ── Stats bar ── */
+    .stats-bar { display: flex; gap: 20px; flex-wrap: wrap; padding: 12px 0; border-top: 1px solid #f1f5f9; margin-top: 16px; }
+    .stat-item { font-size: 12px; color: #94a3b8; }
+    .stat-item strong { color: #475569; }
+
+    /* ── Output area ── */
+    .output-wrap { margin-top: 20px; }
+    .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+
+    /* ── Content sections ── */
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .section p, .section li { font-size: 14px; color: #475569; line-height: 1.8; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 6px; }
+
+    /* ── FAQ ── */
+    .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
+    .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; background: #fff; user-select: none; }
+    .faq-q:hover { background: #f8fafc; }
+    .faq-q .arrow { color: #94a3b8; font-size: 18px; transition: transform .2s; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; color: #475569; line-height: 1.8; background: #fff; }
+    .faq-a.open { display: block; }
+
+    /* ── Related tools ── */
+    .related-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+    .related-link { padding: 8px 16px; background: #f1f5f9; border-radius: 8px; font-size: 13px; color: #6366f1; text-decoration: none; font-weight: 500; }
+    .related-link:hover { background: #eef2ff; }
+
+    /* ── Footer ── */
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+
+    /* Schema JSON-LD */
+    @media (max-width: 640px) {
+      h1 { font-size: 22px; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+      .nav-links { gap: 14px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- Nav -->
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<!-- Breadcrumb -->
+<div class="breadcrumb">
+  <a href="https://seotriggers.com/">Home</a>
+  <span>›</span>
+  <a href="https://seotriggers.com/tools">Tools</a>
+  <span>›</span>
+  Uppercase to Lowercase Converter
+</div>
+
+<main>
+  <h1>Uppercase to Lowercase Converter</h1>
+  <p class="subtitle">Paste any text and instantly convert it to lowercase, UPPERCASE, Title Case, Sentence case, or camelCase. Works entirely in your browser — nothing is sent to any server.</p>
+
+  <!-- Tool Card -->
+  <div class="tool-card">
+    <!-- Case buttons -->
+    <div class="case-buttons">
+      <button class="case-btn active" data-mode="lower" onclick="setMode(this)">lowercase</button>
+      <button class="case-btn" data-mode="upper" onclick="setMode(this)">UPPERCASE</button>
+      <button class="case-btn" data-mode="title" onclick="setMode(this)">Title Case</button>
+      <button class="case-btn" data-mode="sentence" onclick="setMode(this)">Sentence case</button>
+      <button class="case-btn" data-mode="camel" onclick="setMode(this)">camelCase</button>
+      <button class="case-btn" data-mode="pascal" onclick="setMode(this)">PascalCase</button>
+      <button class="case-btn" data-mode="snake" onclick="setMode(this)">snake_case</button>
+      <button class="case-btn" data-mode="kebab" onclick="setMode(this)">kebab-case</button>
+      <button class="case-btn" data-mode="alternate" onclick="setMode(this)">aLtErNaTiNg</button>
+      <button class="case-btn" data-mode="inverse" onclick="setMode(this)">iNVERSE</button>
+    </div>
+
+    <!-- Input -->
+    <div class="textarea-label">Input text</div>
+    <div class="textarea-wrap">
+      <textarea id="input" placeholder="Paste or type your text here…" oninput="convert()"></textarea>
+    </div>
+
+    <div class="action-row">
+      <button class="btn btn-ghost" onclick="clearAll()">Clear</button>
+      <div class="stat-item" style="margin-left:auto;">
+        <strong id="char-count">0</strong> chars &nbsp;·&nbsp; <strong id="word-count">0</strong> words
+      </div>
+    </div>
+
+    <!-- Output -->
+    <div class="output-wrap">
+      <div class="output-header">
+        <div class="textarea-label">Output</div>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span class="copy-feedback" id="copy-feedback">Copied!</span>
+          <button class="btn btn-primary" onclick="copyOutput()">Copy to clipboard</button>
+          <button class="btn btn-ghost" onclick="downloadOutput()">Download .txt</button>
+        </div>
+      </div>
+      <textarea id="output" readonly placeholder="Your converted text will appear here…"></textarea>
+    </div>
+  </div>
+
+  <!-- How to use -->
+  <div class="section">
+    <h2>How to use the converter</h2>
+    <p>Type or paste your text into the input box above. The tool converts it instantly — no button press needed. Choose your desired case from the buttons at the top, then copy the result or download it as a text file.</p>
+    <ul style="margin-top:12px;">
+      <li><strong>lowercase</strong> — converts every letter to lower case (e.g. <em>hello world</em>)</li>
+      <li><strong>UPPERCASE</strong> — converts every letter to upper case (e.g. <em>HELLO WORLD</em>)</li>
+      <li><strong>Title Case</strong> — capitalizes the first letter of each major word (e.g. <em>Hello World</em>)</li>
+      <li><strong>Sentence case</strong> — capitalizes only the first letter of each sentence</li>
+      <li><strong>camelCase</strong> — removes spaces, first word lower, rest capitalised (e.g. <em>helloWorld</em>)</li>
+      <li><strong>PascalCase</strong> — like camelCase but first word also capitalised (e.g. <em>HelloWorld</em>)</li>
+      <li><strong>snake_case</strong> — replaces spaces with underscores, all lowercase (e.g. <em>hello_world</em>)</li>
+      <li><strong>kebab-case</strong> — replaces spaces with hyphens, all lowercase (e.g. <em>hello-world</em>)</li>
+    </ul>
+  </div>
+
+  <!-- When to use -->
+  <div class="section">
+    <h2>When would you use a text case converter?</h2>
+    <p>There are many situations where quickly changing the case of text saves time:</p>
+    <ul style="margin-top:12px;">
+      <li>You accidentally typed a long email or document with Caps Lock on and need to fix it without retyping.</li>
+      <li>You are copying headings or titles from a source that used all caps and need them in title case for your article.</li>
+      <li>You are a developer who needs to format variable names in camelCase, snake_case, or kebab-case consistently.</li>
+      <li>You are writing SEO meta titles or headings and want to apply title case formatting quickly across multiple entries.</li>
+      <li>You received a spreadsheet in all-uppercase and need it normalised to sentence case before publishing.</li>
+    </ul>
+  </div>
+
+  <!-- How it works -->
+  <div class="section">
+    <h2>How the conversion works</h2>
+    <p>All conversion happens directly in your browser using JavaScript. No text is ever uploaded to a server, stored, or logged. The tool processes your input character by character:</p>
+    <ul style="margin-top:12px;">
+      <li><strong>Lowercase / Uppercase:</strong> Uses the built-in <code>toLowerCase()</code> and <code>toUpperCase()</code> string methods, which correctly handle Unicode characters including accented letters.</li>
+      <li><strong>Title Case:</strong> Capitalises the first letter of each word. Short conjunctions and prepositions (a, an, the, in, of, on…) are kept lowercase unless they start the string.</li>
+      <li><strong>Sentence case:</strong> Splits text by sentence-ending punctuation and capitalises the first letter of each new sentence.</li>
+      <li><strong>Code cases (camel, Pascal, snake, kebab):</strong> Strips punctuation, splits on spaces and existing casing boundaries, then reassembles in the target format.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How do I convert uppercase to lowercase online?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        Paste your text into the box above and select the <strong>lowercase</strong> button. The tool instantly converts all capital letters to small letters. You can then copy the result with the Copy button.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is my text saved or sent anywhere?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        No. The conversion runs entirely in your browser. Nothing you type is sent to any server or stored in any database. You can even use the tool offline once the page has loaded.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Does it work with accented characters and other languages?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        Yes. The converter uses JavaScript's native Unicode-aware case methods, so accented letters like é, ñ, ü, and characters from other Latin-script languages convert correctly.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        What is the difference between Title Case and Sentence case?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        Title Case capitalises the first letter of every major word — used in headlines and article titles. Sentence case only capitalises the first word of each sentence — the standard format for body text and most social media posts.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Can I use this for programming variable names?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        Yes. The camelCase, PascalCase, snake_case, and kebab-case options are designed exactly for that. Paste a plain English phrase and get back a correctly formatted variable or CSS class name instantly.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        Is there a character limit?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        No hard limit. Because processing happens in your browser, very large texts (hundreds of thousands of characters) may take a moment on slower devices, but the tool handles typical documents and articles instantly.
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        How do I change uppercase to lowercase in Word or Google Docs?
+        <span class="arrow">▾</span>
+      </div>
+      <div class="faq-a">
+        In Microsoft Word, select the text and press <strong>Shift + F3</strong> to cycle between cases. In Google Docs, go to Format → Text → Capitalization. Alternatively, paste your text into this tool, convert it, and paste it back — especially useful if you need a case format that Word doesn't support natively, like snake_case.
+      </div>
+    </div>
+  </div>
+
+  <!-- Related tools -->
+  <div class="section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://seotriggers.com/tools/word-counter" class="related-link">Word Counter →</a>
+      <a href="https://seotriggers.com/tools/character-counter" class="related-link">Character Counter →</a>
+      <a href="https://seotriggers.com/tools/json-formatter" class="related-link">JSON Formatter →</a>
+      <a href="https://seotriggers.com/tools" class="related-link">Browse all free tools →</a>
+    </div>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Schema JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://seotriggers.com/tools/uppercase-to-lowercase",
+      "url": "https://seotriggers.com/tools/uppercase-to-lowercase",
+      "name": "Uppercase to Lowercase Converter — Free Online Text Case Changer | SEOTriggers",
+      "description": "Free uppercase to lowercase converter. Paste any text and instantly convert it to lowercase, UPPERCASE, Title Case, Sentence case, or camelCase.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+          { "@type": "ListItem", "position": 3, "name": "Uppercase to Lowercase Converter" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I convert uppercase to lowercase online?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Paste your text into the box and select the lowercase button. The tool instantly converts all capital letters to small letters." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my text saved or sent anywhere?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The conversion runs entirely in your browser. Nothing you type is sent to any server or stored in any database." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between Title Case and Sentence case?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Title Case capitalises the first letter of every major word — used in headlines. Sentence case only capitalises the first word of each sentence." }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I change uppercase to lowercase in Word or Google Docs?",
+          "acceptedAnswer": { "@type": "Answer", "text": "In Microsoft Word, select the text and press Shift + F3. In Google Docs, go to Format → Text → Capitalization. Or paste your text into this tool and convert it instantly." }
+        }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Uppercase to Lowercase Converter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://seotriggers.com/tools/uppercase-to-lowercase"
+    }
+  ]
+}
+</script>
+
+<script>
+  let currentMode = 'lower';
+
+  const TITLE_SKIP = new Set(['a','an','the','and','but','or','nor','for','so','yet','at','by','in','of','on','to','up','as','is','it']);
+
+  function setMode(btn) {
+    document.querySelectorAll('.case-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentMode = btn.dataset.mode;
+    convert();
+  }
+
+  function convert() {
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    const text = input.value;
+
+    // Stats
+    document.getElementById('char-count').textContent = text.length.toLocaleString();
+    document.getElementById('word-count').textContent = text.trim() ? text.trim().split(/\s+/).length.toLocaleString() : 0;
+
+    if (!text) { output.value = ''; return; }
+
+    let result = '';
+    switch (currentMode) {
+      case 'lower':
+        result = text.toLowerCase();
+        break;
+      case 'upper':
+        result = text.toUpperCase();
+        break;
+      case 'title':
+        result = text.toLowerCase().replace(/\b\w+\b/g, (w, i, str) => {
+          // Keep small words lowercase unless start of string or after : or .
+          const before = str.slice(0, str.indexOf(w)).trimEnd();
+          const isStart = before.length === 0 || /[:.!?]$/.test(before);
+          if (!isStart && TITLE_SKIP.has(w)) return w;
+          return w.charAt(0).toUpperCase() + w.slice(1);
+        });
+        break;
+      case 'sentence':
+        result = text.toLowerCase().replace(/(^\s*\w|[.!?]\s+\w)/g, c => c.toUpperCase());
+        break;
+      case 'camel':
+        result = text.trim().toLowerCase()
+          .replace(/[^a-z0-9]+(.)/gi, (_, c) => c.toUpperCase())
+          .replace(/^[A-Z]/, c => c.toLowerCase());
+        break;
+      case 'pascal':
+        result = text.trim().toLowerCase()
+          .replace(/(^\w|[^a-z0-9]+\w)/gi, c => c.replace(/[^a-z0-9]/gi,'').toUpperCase());
+        break;
+      case 'snake':
+        result = text.trim().toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_|_$/g, '');
+        break;
+      case 'kebab':
+        result = text.trim().toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+        break;
+      case 'alternate':
+        result = text.split('').map((c, i) => i % 2 === 0 ? c.toLowerCase() : c.toUpperCase()).join('');
+        break;
+      case 'inverse':
+        result = text.split('').map(c => c === c.toUpperCase() ? c.toLowerCase() : c.toUpperCase()).join('');
+        break;
+    }
+    output.value = result;
+  }
+
+  function copyOutput() {
+    const output = document.getElementById('output');
+    if (!output.value) return;
+    navigator.clipboard.writeText(output.value).then(() => {
+      const fb = document.getElementById('copy-feedback');
+      fb.style.display = 'inline';
+      setTimeout(() => fb.style.display = 'none', 2000);
+    });
+  }
+
+  function downloadOutput() {
+    const text = document.getElementById('output').value;
+    if (!text) return;
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([text], { type: 'text/plain' }));
+    a.download = 'converted-text.txt';
+    a.click();
+  }
+
+  function clearAll() {
+    document.getElementById('input').value = '';
+    document.getElementById('output').value = '';
+    document.getElementById('char-count').textContent = '0';
+    document.getElementById('word-count').textContent = '0';
+  }
+
+  function toggleFaq(el) {
+    const ans = el.nextElementSibling;
+    const isOpen = ans.classList.contains('open');
+    // close all
+    document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+    document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+    if (!isOpen) {
+      ans.classList.add('open');
+      el.classList.add('open');
+    }
+  }
+</script>
+</body>
+</html>
