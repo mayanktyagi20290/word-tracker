@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Robots.txt Generator — Free Online Tool | SEOTriggers</title>
+  <meta name="description" content="Free robots.txt generator. Set crawl rules for Google, Bing, AI bots (GPTBot, ClaudeBot, PerplexityBot) and more. Download your robots.txt file instantly." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools/robots-txt-generator" />
+  <meta property="og:title" content="Robots.txt Generator — Free Online Tool | SEOTriggers" />
+  <meta property="og:description" content="Generate a robots.txt file instantly. Block or allow search bots, AI crawlers, set crawl delay, and add your sitemap URL. Free, no signup." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools/robots-txt-generator" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-STNE1RFPKY');</script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #94a3b8; max-width: 960px; margin: 0 auto; width: 100%; }
+    .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    .breadcrumb a:hover { color: #6366f1; }
+    .breadcrumb span { margin: 0 6px; }
+
+    main { flex: 1; max-width: 960px; margin: 0 auto; padding: 0 24px 64px; width: 100%; }
+    h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #64748b; margin-bottom: 28px; line-height: 1.6; }
+
+    /* ── Two-col layout ── */
+    .tool-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 24px; }
+    @media(max-width:720px){ .tool-layout { grid-template-columns: 1fr; } }
+
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 20px; }
+    .card h2 { font-size: 14px; font-weight: 700; color: #0f172a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px; }
+
+    /* ── Form elements ── */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 13px; font-weight: 600; color: #475569; margin-bottom: 6px; }
+    .field input[type=text], .field input[type=url], .field select {
+      width: 100%; padding: 9px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px;
+      font-size: 13px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none;
+      transition: border-color .2s; background: #fff;
+    }
+    .field input:focus, .field select:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; }
+    .field .hint { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    /* ── Bot table ── */
+    .bot-section { margin-bottom: 16px; }
+    .bot-section-title { font-size: 12px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; padding-bottom: 6px; border-bottom: 1px solid #f1f5f9; }
+    .bot-row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 10px; padding: 7px 0; border-bottom: 1px solid #f8fafc; }
+    .bot-row:last-child { border-bottom: none; }
+    .bot-name { font-size: 13px; color: #1e293b; font-weight: 500; }
+    .bot-meta { font-size: 11px; color: #94a3b8; }
+    .toggle-group { display: flex; border: 1.5px solid #e2e8f0; border-radius: 8px; overflow: hidden; }
+    .toggle-group button { padding: 5px 12px; font-size: 12px; font-weight: 600; border: none; cursor: pointer; font-family: 'Inter', sans-serif; background: #fff; color: #94a3b8; transition: all .15s; }
+    .toggle-group button.active-allow { background: #dcfce7; color: #16a34a; }
+    .toggle-group button.active-block { background: #fee2e2; color: #dc2626; }
+    .toggle-group button:not(:last-child) { border-right: 1.5px solid #e2e8f0; }
+
+    /* ── Disallow paths ── */
+    .path-rows { display: flex; flex-direction: column; gap: 6px; margin-bottom: 10px; }
+    .path-row { display: flex; gap: 6px; }
+    .path-row input { flex: 1; padding: 7px 10px; border: 1.5px solid #e2e8f0; border-radius: 7px; font-size: 13px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none; }
+    .path-row input:focus { border-color: #6366f1; }
+    .path-row button { padding: 7px 10px; border: 1.5px solid #fee2e2; border-radius: 7px; background: #fff; color: #ef4444; font-size: 14px; cursor: pointer; }
+    .add-path-btn { font-size: 13px; color: #6366f1; background: none; border: 1.5px dashed #c7d2fe; border-radius: 7px; padding: 7px 14px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; width: 100%; }
+    .add-path-btn:hover { background: #eef2ff; }
+
+    /* ── Output ── */
+    .output-card { background: #0f172a; border-radius: 12px; padding: 20px; margin-bottom: 24px; }
+    .output-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+    .output-title { font-size: 13px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: .5px; }
+    .output-actions { display: flex; gap: 8px; }
+    .btn-sm { padding: 6px 14px; border-radius: 7px; font-size: 12px; font-weight: 600; cursor: pointer; border: none; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .btn-copy { background: #6366f1; color: #fff; }
+    .btn-copy:hover { background: #4f46e5; }
+    .btn-dl { background: #1e293b; color: #94a3b8; border: 1px solid #334155; }
+    .btn-dl:hover { color: #fff; border-color: #6366f1; }
+    .copy-ok { font-size: 12px; color: #22c55e; display: none; }
+    pre#output { color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; white-space: pre; overflow-x: auto; min-height: 120px; }
+    .line-comment { color: #64748b; }
+    .line-ua { color: #a78bfa; }
+    .line-allow { color: #4ade80; }
+    .line-disallow { color: #f87171; }
+    .line-sitemap { color: #60a5fa; }
+    .line-delay { color: #fbbf24; }
+
+    /* ── Info badge ── */
+    .badge-new { display: inline-block; font-size: 10px; font-weight: 700; background: #dbeafe; color: #1d4ed8; border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+    .badge-ai { display: inline-block; font-size: 10px; font-weight: 700; background: #f3e8ff; color: #7c3aed; border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: middle; }
+
+    /* ── Content ── */
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .section p, .section li { font-size: 14px; color: #475569; line-height: 1.8; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 6px; }
+    .section code { background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; color: #6366f1; }
+
+    /* ── Example box ── */
+    .example-box { background: #0f172a; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+    .example-box pre { color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; }
+
+    /* ── FAQ ── */
+    .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; }
+    .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q:hover { background: #f8fafc; border-radius: 10px; }
+    .faq-q .arrow { color: #94a3b8; transition: transform .2s; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; color: #475569; line-height: 1.8; }
+    .faq-a.open { display: block; }
+
+    .related-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+    .related-link { padding: 8px 16px; background: #f1f5f9; border-radius: 8px; font-size: 13px; color: #6366f1; text-decoration: none; font-weight: 500; }
+    .related-link:hover { background: #eef2ff; }
+
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 960px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+    @media(max-width:640px){ .footer-cols { grid-template-columns: 1fr 1fr; } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://seotriggers.com/">Home</a><span>›</span>
+  <a href="https://seotriggers.com/tools">Tools</a><span>›</span>
+  Robots.txt Generator
+</div>
+
+<main>
+  <h1>Robots.txt Generator</h1>
+  <p class="subtitle">Generate a robots.txt file for your website in seconds. Control which search engines and AI crawlers can access your content — then download and upload to your site root.</p>
+
+  <div class="tool-layout">
+
+    <!-- LEFT: Settings -->
+    <div>
+      <!-- Default crawl -->
+      <div class="card" style="margin-bottom:16px;">
+        <h2>Default rule</h2>
+        <div class="field">
+          <label>All bots not listed below</label>
+          <div class="toggle-group" style="width:fit-content;">
+            <button id="def-allow" class="active-allow" onclick="setDefault('allow')">Allow all</button>
+            <button id="def-block" onclick="setDefault('block')">Block all</button>
+          </div>
+          <div class="hint">Applies to every crawler not explicitly listed.</div>
+        </div>
+        <div class="field">
+          <label>Crawl delay (seconds)</label>
+          <select id="crawl-delay" onchange="generate()">
+            <option value="">No delay (recommended)</option>
+            <option value="5">5 seconds</option>
+            <option value="10">10 seconds</option>
+            <option value="30">30 seconds</option>
+            <option value="60">60 seconds</option>
+          </select>
+          <div class="hint">Googlebot ignores crawl-delay. Bing and Yandex respect it.</div>
+        </div>
+        <div class="field">
+          <label>Sitemap URL</label>
+          <input type="url" id="sitemap-url" placeholder="https://example.com/sitemap.xml" oninput="generate()" />
+          <div class="hint">Add your XML sitemap URL so bots can find it automatically.</div>
+        </div>
+      </div>
+
+      <!-- Disallow paths -->
+      <div class="card">
+        <h2>Disallow paths</h2>
+        <div class="path-rows" id="path-rows">
+          <div class="path-row">
+            <input type="text" placeholder="/wp-admin/" oninput="generate()" />
+            <button onclick="removePath(this)" title="Remove">✕</button>
+          </div>
+        </div>
+        <button class="add-path-btn" onclick="addPath()">+ Add path</button>
+        <div class="hint" style="margin-top:8px;">Paths are relative to root. Must start with <code>/</code>. Example: <code>/private/</code></div>
+      </div>
+    </div>
+
+    <!-- RIGHT: Bot controls -->
+    <div class="card" style="overflow-y:auto; max-height:600px;">
+      <h2>Bot rules</h2>
+
+      <div class="bot-section">
+        <div class="bot-section-title">Search engines</div>
+        <div id="bots-search"></div>
+      </div>
+
+      <div class="bot-section">
+        <div class="bot-section-title">AI crawlers <span class="badge-ai">2026</span></div>
+        <div id="bots-ai"></div>
+      </div>
+
+      <div class="bot-section">
+        <div class="bot-section-title">Social & others</div>
+        <div id="bots-social"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div class="output-card">
+    <div class="output-header">
+      <span class="output-title">robots.txt output</span>
+      <div class="output-actions">
+        <span class="copy-ok" id="copy-ok">Copied!</span>
+        <button class="btn-sm btn-copy" onclick="copyOutput()">Copy</button>
+        <button class="btn-sm btn-dl" onclick="downloadOutput()">Download robots.txt</button>
+      </div>
+    </div>
+    <pre id="output"></pre>
+  </div>
+
+  <!-- How to use -->
+  <div class="section">
+    <h2>How to use this generator</h2>
+    <p>Fill in the settings on the left and the robots.txt file updates in real time. When you're happy with the output:</p>
+    <ul style="margin-top:10px;">
+      <li>Click <strong>Download robots.txt</strong> to save the file.</li>
+      <li>Upload it to the <strong>root directory</strong> of your website — e.g. <code>https://example.com/robots.txt</code></li>
+      <li>That's it. Search engines check this location automatically on every crawl.</li>
+    </ul>
+  </div>
+
+  <!-- What is robots.txt -->
+  <div class="section">
+    <h2>What is a robots.txt file?</h2>
+    <p>A robots.txt file is a plain text file placed at the root of your website that tells web crawlers which pages or sections they are allowed or not allowed to crawl. It follows the Robots Exclusion Protocol (REP) — an informal standard respected by all major search engines.</p>
+    <p style="margin-top:10px;">A basic robots.txt file looks like this:</p>
+    <div class="example-box"><pre>User-agent: *
+Disallow: /private/
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml</pre></div>
+    <p style="margin-top:10px;"><code>User-agent: *</code> means "all crawlers". <code>Disallow: /private/</code> tells them not to crawl anything inside that folder. <code>Allow: /</code> explicitly permits everything else.</p>
+  </div>
+
+  <!-- AI bots 2026 -->
+  <div class="section">
+    <h2>AI crawlers in 2026 — what's new</h2>
+    <p>In 2026, a growing number of AI companies crawl the web to train large language models. Unlike traditional search bots, these crawlers don't send traffic back to your site. Many site owners now block them to protect their content from being used as training data without permission.</p>
+    <p style="margin-top:10px;">Key AI crawlers you may want to control:</p>
+    <ul style="margin-top:10px;">
+      <li><strong>GPTBot</strong> — OpenAI's training crawler. Block with <code>User-agent: GPTBot</code> / <code>Disallow: /</code></li>
+      <li><strong>ClaudeBot</strong> — Anthropic's crawler used for Claude training data.</li>
+      <li><strong>PerplexityBot</strong> — Perplexity AI's crawler for its answer engine.</li>
+      <li><strong>Google-Extended</strong> — Google's opt-out token for Gemini and Vertex AI training (separate from Googlebot).</li>
+      <li><strong>CCBot</strong> — Common Crawl, used by many AI companies as a training data source.</li>
+      <li><strong>Bytespider</strong> — ByteDance (TikTok parent) crawler, increasingly used for AI training.</li>
+    </ul>
+    <p style="margin-top:10px;">Blocking these bots does <strong>not</strong> affect your Google or Bing search rankings — they use separate bots (Googlebot, Bingbot).</p>
+  </div>
+
+  <!-- Common directives -->
+  <div class="section">
+    <h2>Robots.txt directives explained</h2>
+    <ul>
+      <li><code>User-agent</code> — Specifies the crawler the rule applies to. Use <code>*</code> for all bots.</li>
+      <li><code>Disallow</code> — Tells the bot not to crawl a specific path. <code>Disallow: /</code> blocks the entire site.</li>
+      <li><code>Allow</code> — Explicitly permits a path, even if a parent directory is disallowed.</li>
+      <li><code>Crawl-delay</code> — Requests the bot to wait N seconds between requests. Not supported by Googlebot.</li>
+      <li><code>Sitemap</code> — Points crawlers to your XML sitemap. Can appear anywhere in the file.</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Where do I put the robots.txt file?<span class="arrow">▾</span></div>
+      <div class="faq-a">Always at the root of your domain — <code>https://yourdomain.com/robots.txt</code>. It must be accessible without authentication. Placing it in a subfolder (e.g. <code>/blog/robots.txt</code>) does nothing — crawlers only check the root.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does blocking bots in robots.txt prevent indexing?<span class="arrow">▾</span></div>
+      <div class="faq-a">Disallowing a URL tells Googlebot not to <em>crawl</em> it, but Google can still <em>index</em> it if the URL is linked from another page. To prevent indexing entirely, use a <code>noindex</code> meta tag or X-Robots-Tag HTTP header instead.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Should I block GPTBot and other AI crawlers?<span class="arrow">▾</span></div>
+      <div class="faq-a">It depends. Blocking AI training crawlers (GPTBot, ClaudeBot, CCBot) prevents your content from being used to train large language models without your consent. It does not affect your Google or Bing rankings. Many publishers block them as a precaution.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is an empty robots.txt file OK?<span class="arrow">▾</span></div>
+      <div class="faq-a">Yes. An empty robots.txt file — or no file at all — means all crawlers are allowed everywhere. That is fine for most sites. You only need rules when you want to restrict something.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I have multiple User-agent blocks?<span class="arrow">▾</span></div>
+      <div class="faq-a">Yes. You can add as many <code>User-agent</code> blocks as you need, each with their own Allow/Disallow rules. The generator above handles this automatically when you set individual bot rules.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does robots.txt affect page speed or Core Web Vitals?<span class="arrow">▾</span></div>
+      <div class="faq-a">No. Robots.txt only controls crawler access — it has no effect on how fast your pages load or your Core Web Vitals scores.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I test if my robots.txt is working?<span class="arrow">▾</span></div>
+      <div class="faq-a">Use Google Search Console → Settings → robots.txt — it shows your live file and lets you test URLs against it. You can also visit <code>yourdomain.com/robots.txt</code> directly in a browser to confirm the file is live.</div>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://seotriggers.com/tools/word-counter" class="related-link">Word Counter →</a>
+      <a href="https://seotriggers.com/tools/uppercase-to-lowercase" class="related-link">Case Converter →</a>
+      <a href="https://seotriggers.com/tools/json-formatter" class="related-link">JSON Formatter →</a>
+      <a href="https://seotriggers.com/tools" class="related-link">Browse all tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://seotriggers.com/tools/robots-txt-generator",
+      "url": "https://seotriggers.com/tools/robots-txt-generator",
+      "name": "Robots.txt Generator — Free Online Tool | SEOTriggers",
+      "description": "Free robots.txt generator. Set crawl rules for Google, Bing, AI bots (GPTBot, ClaudeBot, PerplexityBot) and more. Download your robots.txt file instantly.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+          { "@type": "ListItem", "position": 3, "name": "Robots.txt Generator" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "Where do I put the robots.txt file?", "acceptedAnswer": { "@type": "Answer", "text": "Always at the root of your domain — https://yourdomain.com/robots.txt. Placing it in a subfolder does nothing." } },
+        { "@type": "Question", "name": "Should I block GPTBot and other AI crawlers?", "acceptedAnswer": { "@type": "Answer", "text": "Blocking AI training crawlers prevents your content from being used to train large language models. It does not affect your Google or Bing rankings." } },
+        { "@type": "Question", "name": "Does blocking bots in robots.txt prevent indexing?", "acceptedAnswer": { "@type": "Answer", "text": "Disallowing a URL stops Googlebot from crawling it, but Google can still index it if the URL is linked from another page. Use noindex to prevent indexing entirely." } }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Robots.txt Generator",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://seotriggers.com/tools/robots-txt-generator"
+    }
+  ]
+}
+</script>
+
+<script>
+// ── Bot definitions ──────────────────────────────────────────────────────────
+const BOTS = {
+  search: [
+    { id: 'Googlebot',        name: 'Googlebot',         meta: 'Google Search' },
+    { id: 'Googlebot-Image',  name: 'Googlebot-Image',   meta: 'Google Images' },
+    { id: 'Bingbot',          name: 'Bingbot',           meta: 'Microsoft Bing' },
+    { id: 'Slurp',            name: 'Yahoo Slurp',       meta: 'Yahoo Search' },
+    { id: 'DuckDuckBot',      name: 'DuckDuckBot',       meta: 'DuckDuckGo' },
+    { id: 'Baiduspider',      name: 'Baiduspider',       meta: 'Baidu' },
+    { id: 'YandexBot',        name: 'YandexBot',         meta: 'Yandex' },
+  ],
+  ai: [
+    { id: 'GPTBot',           name: 'GPTBot',            meta: 'OpenAI training' },
+    { id: 'Google-Extended',  name: 'Google-Extended',   meta: 'Gemini / Vertex AI' },
+    { id: 'ClaudeBot',        name: 'ClaudeBot',         meta: 'Anthropic / Claude' },
+    { id: 'PerplexityBot',    name: 'PerplexityBot',     meta: 'Perplexity AI' },
+    { id: 'CCBot',            name: 'CCBot',             meta: 'Common Crawl' },
+    { id: 'Bytespider',       name: 'Bytespider',        meta: 'ByteDance / TikTok' },
+    { id: 'anthropic-ai',     name: 'anthropic-ai',      meta: 'Anthropic web agent' },
+    { id: 'ChatGPT-User',     name: 'ChatGPT-User',      meta: 'ChatGPT browsing' },
+    { id: 'omgili',           name: 'omgili / Diffbot',  meta: 'AI data mining' },
+  ],
+  social: [
+    { id: 'facebookexternalhit', name: 'Facebookbot',   meta: 'Meta / Facebook' },
+    { id: 'Twitterbot',          name: 'Twitterbot',    meta: 'X / Twitter' },
+    { id: 'LinkedInBot',         name: 'LinkedInBot',   meta: 'LinkedIn' },
+    { id: 'ia_archiver',         name: 'Alexa / Archive', meta: 'Wayback Machine' },
+  ]
+};
+
+// State: 'default' | 'allow' | 'block'
+const botState = {};
+
+function buildBotRow(bot) {
+  botState[bot.id] = 'default';
+  const div = document.createElement('div');
+  div.className = 'bot-row';
+  div.innerHTML = `
+    <div>
+      <div class="bot-name">${bot.name}</div>
+      <div class="bot-meta">${bot.meta}</div>
+    </div>
+    <div class="toggle-group">
+      <button id="btn-allow-${bot.id}" onclick="setBotState('${bot.id}','allow')" title="Allow">✓</button>
+      <button id="btn-def-${bot.id}" class="active-allow" onclick="setBotState('${bot.id}','default')" title="Default" style="background:#f1f5f9;color:#64748b;">–</button>
+      <button id="btn-block-${bot.id}" onclick="setBotState('${bot.id}','block')" title="Block">✕</button>
+    </div>`;
+  return div;
+}
+
+function setBotState(id, state) {
+  botState[id] = state;
+  // Reset all 3 buttons
+  const btnAllow = document.getElementById('btn-allow-' + id);
+  const btnDef   = document.getElementById('btn-def-' + id);
+  const btnBlock = document.getElementById('btn-block-' + id);
+  btnAllow.className = '';
+  btnDef.className   = '';
+  btnBlock.className = '';
+  btnDef.style.background = '#f1f5f9';
+  btnDef.style.color = '#64748b';
+  if (state === 'allow') { btnAllow.className = 'active-allow'; }
+  else if (state === 'block') { btnBlock.className = 'active-block'; }
+  else { btnDef.style.background = '#e2e8f0'; btnDef.style.color = '#475569'; }
+  generate();
+}
+
+// Init bots
+Object.entries(BOTS).forEach(([group, bots]) => {
+  const container = document.getElementById('bots-' + group);
+  bots.forEach(bot => container.appendChild(buildBotRow(bot)));
+});
+
+// ── Default setting ──────────────────────────────────────────────────────────
+let defaultRule = 'allow';
+function setDefault(val) {
+  defaultRule = val;
+  document.getElementById('def-allow').className = val === 'allow' ? 'active-allow' : '';
+  document.getElementById('def-block').className = val === 'block' ? 'active-block' : '';
+  generate();
+}
+
+// ── Paths ────────────────────────────────────────────────────────────────────
+function addPath() {
+  const row = document.createElement('div');
+  row.className = 'path-row';
+  row.innerHTML = `<input type="text" placeholder="/folder/" oninput="generate()" /><button onclick="removePath(this)" title="Remove">✕</button>`;
+  document.getElementById('path-rows').appendChild(row);
+}
+function removePath(btn) {
+  btn.parentElement.remove();
+  generate();
+}
+
+// ── Generate ─────────────────────────────────────────────────────────────────
+function generate() {
+  const delay   = document.getElementById('crawl-delay').value;
+  const sitemap = document.getElementById('sitemap-url').value.trim();
+  const paths   = [...document.querySelectorAll('#path-rows input')].map(i => i.value.trim()).filter(Boolean);
+
+  let lines = [];
+
+  // Comment header
+  lines.push({ type: 'comment', text: '# Generated by SEOTriggers Robots.txt Generator' });
+  lines.push({ type: 'comment', text: '# https://seotriggers.com/tools/robots-txt-generator' });
+  lines.push({ type: 'blank' });
+
+  // Default rule block (User-agent: *)
+  lines.push({ type: 'ua',      text: 'User-agent: *' });
+  if (defaultRule === 'block') {
+    lines.push({ type: 'disallow', text: 'Disallow: /' });
+  } else {
+    paths.forEach(p => lines.push({ type: 'disallow', text: `Disallow: ${p}` }));
+    if (paths.length === 0) lines.push({ type: 'allow', text: 'Allow: /' });
+    if (delay) lines.push({ type: 'delay', text: `Crawl-delay: ${delay}` });
+  }
+  lines.push({ type: 'blank' });
+
+  // Individual bot overrides
+  const allBots = [...BOTS.search, ...BOTS.ai, ...BOTS.social];
+  allBots.forEach(bot => {
+    const state = botState[bot.id];
+    if (state === 'default') return;
+    lines.push({ type: 'ua', text: `User-agent: ${bot.id}` });
+    if (state === 'allow') {
+      lines.push({ type: 'allow', text: 'Allow: /' });
+    } else {
+      lines.push({ type: 'disallow', text: 'Disallow: /' });
+    }
+    lines.push({ type: 'blank' });
+  });
+
+  // Sitemap
+  if (sitemap) {
+    lines.push({ type: 'sitemap', text: `Sitemap: ${sitemap}` });
+  }
+
+  // Render with syntax highlighting
+  const colorMap = { comment: '#64748b', ua: '#a78bfa', allow: '#4ade80', disallow: '#f87171', delay: '#fbbf24', sitemap: '#60a5fa' };
+  const html = lines.map(l => {
+    if (l.type === 'blank') return '';
+    const color = colorMap[l.type] || '#e2e8f0';
+    return `<span style="color:${color}">${escHtml(l.text)}</span>`;
+  }).join('\n');
+
+  document.getElementById('output').innerHTML = html || '<span style="color:#475569"># Start configuring above…</span>';
+
+  // Plain text for copy/download
+  window._plainOutput = lines.map(l => l.type === 'blank' ? '' : l.text).join('\n');
+}
+
+function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function copyOutput() {
+  if (!window._plainOutput) return;
+  navigator.clipboard.writeText(window._plainOutput).then(() => {
+    const el = document.getElementById('copy-ok');
+    el.style.display = 'inline';
+    setTimeout(() => el.style.display = 'none', 2000);
+  });
+}
+
+function downloadOutput() {
+  if (!window._plainOutput) return;
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(new Blob([window._plainOutput], { type: 'text/plain' }));
+  a.download = 'robots.txt';
+  a.click();
+}
+
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  const open = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  if (!open) { ans.classList.add('open'); el.classList.add('open'); }
+}
+
+// Initial render
+generate();
+</script>
+</body>
+</html>
