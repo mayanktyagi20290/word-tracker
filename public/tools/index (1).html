@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Online Tools — Word Counter, Calculators, Converters | SEOTriggers</title>
+  <meta name="description" content="A growing collection of free, no-signup online tools from SEOTriggers — word counter, calculators, converters, SEO tools and more. Everything runs privately in your browser." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools" />
+  <meta property="og:title" content="Free Online Tools | SEOTriggers" />
+  <meta property="og:description" content="Free, fast, no-signup online tools. Word counter, calculators, converters and more — all in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-STNE1RFPKY');</script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    /* ── Nav ── */
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+
+    /* ── Hero ── */
+    .hero { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 40px 24px 32px; text-align: center; }
+    .hero h1 { font-size: 32px; font-weight: 700; color: #0f172a; margin-bottom: 10px; }
+    .hero p { font-size: 16px; color: #64748b; max-width: 560px; margin: 0 auto 20px; line-height: 1.7; }
+
+    /* ── Search ── */
+    .search-wrap { max-width: 480px; margin: 0 auto; position: relative; }
+    .search-wrap input { width: 100%; padding: 12px 20px 12px 44px; border: 1.5px solid #e2e8f0; border-radius: 99px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none; transition: border-color .2s; background: #f8fafc; }
+    .search-wrap input:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; background: #fff; }
+    .search-icon { position: absolute; left: 16px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 16px; pointer-events: none; }
+
+    /* ── Main ── */
+    main { flex: 1; max-width: 1080px; margin: 0 auto; padding: 32px 24px 64px; width: 100%; }
+
+    /* ── Category filter tabs ── */
+    .filter-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+    .filter-tab { padding: 7px 16px; border-radius: 99px; border: 1.5px solid #e2e8f0; background: #fff; color: #64748b; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .filter-tab.active, .filter-tab:hover { background: #6366f1; color: #fff; border-color: #6366f1; }
+
+    /* ── Section heading ── */
+    .section-head { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; margin-top: 8px; }
+    .section-head h2 { font-size: 15px; font-weight: 700; color: #0f172a; }
+    .section-head .count { font-size: 12px; color: #94a3b8; background: #f1f5f9; padding: 2px 8px; border-radius: 99px; }
+    .section-divider { border: none; border-top: 1px solid #f1f5f9; margin-bottom: 14px; }
+
+    /* ── Tools grid ── */
+    .tools-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 12px; margin-bottom: 32px; }
+
+    /* ── Tool card ── */
+    .tool-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 20px; text-decoration: none; color: inherit; display: flex; align-items: flex-start; gap: 14px; transition: all .15s; }
+    .tool-card:hover { border-color: #6366f1; box-shadow: 0 4px 12px rgba(99,102,241,.12); transform: translateY(-1px); }
+    .tool-icon { font-size: 24px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+    .tool-info { min-width: 0; }
+    .tool-name { font-size: 14px; font-weight: 600; color: #0f172a; margin-bottom: 4px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .tool-desc { font-size: 12px; color: #64748b; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .tool-card.hidden { display: none; }
+
+    /* ── No results ── */
+    .no-results { text-align: center; padding: 48px; color: #94a3b8; font-size: 14px; display: none; }
+
+    /* ── Footer ── */
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 1080px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+
+    @media(max-width:640px){
+      .hero h1 { font-size: 24px; }
+      .tools-grid { grid-template-columns: 1fr 1fr; }
+      .footer-cols { grid-template-columns: 1fr 1fr; }
+    }
+    @media(max-width:400px){
+      .tools-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Free Online Tools</h1>
+  <p>Fast, free tools that run entirely in your browser — no signup, no limits, nothing uploaded. Built by the SEOTriggers team.</p>
+  <div class="search-wrap">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="search-input" placeholder="Search tools…" oninput="filterTools()" />
+  </div>
+</div>
+
+<main>
+
+  <!-- Filter tabs -->
+  <div class="filter-tabs">
+    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (24)</button>
+    <button class="filter-tab" data-cat="text" onclick="setFilter(this)">✍️ Text</button>
+    <button class="filter-tab" data-cat="calculator" onclick="setFilter(this)">🧮 Calculators</button>
+    <button class="filter-tab" data-cat="converter" onclick="setFilter(this)">🔄 Converters</button>
+    <button class="filter-tab" data-cat="image" onclick="setFilter(this)">🖼️ Image</button>
+    <button class="filter-tab" data-cat="pdf" onclick="setFilter(this)">📄 PDF</button>
+    <button class="filter-tab" data-cat="seo" onclick="setFilter(this)">📈 SEO</button>
+  </div>
+
+  <!-- No results -->
+  <div class="no-results" id="no-results">No tools found for "<span id="search-term"></span>"</div>
+
+  <!-- ── TEXT TOOLS ── -->
+  <div class="section-wrap" data-section="text">
+    <div class="section-head">
+      <h2>✍️ Text Tools</h2>
+      <span class="count">5 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/word-counter" class="tool-card" data-cat="text" data-name="word counter">
+        <span class="tool-icon">🔤</span>
+        <div class="tool-info">
+          <div class="tool-name">Word Counter</div>
+          <div class="tool-desc">Count words, characters, sentences, paragraphs and reading time as you type.</div>
+        </div>
+      </a>
+
+      <a href="/tools/character-counter" class="tool-card" data-cat="text" data-name="character counter">
+        <span class="tool-icon">🔢</span>
+        <div class="tool-info">
+          <div class="tool-name">Character Counter</div>
+          <div class="tool-desc">Count characters with/without spaces, plus live limits for X, SMS & meta tags.</div>
+        </div>
+      </a>
+
+      <a href="/tools/uppercase-to-lowercase" class="tool-card" data-cat="text" data-name="uppercase lowercase case converter text">
+        <span class="tool-icon">🔡</span>
+        <div class="tool-info">
+          <div class="tool-name">Case Converter</div>
+          <div class="tool-desc">Convert text to lowercase, UPPERCASE, Title Case, camelCase, snake_case and more.</div>
+        </div>
+      </a>
+
+      <a href="/tools/lorem-ipsum-generator" class="tool-card" data-cat="text" data-name="lorem ipsum generator placeholder text dummy">
+        <span class="tool-icon">📝</span>
+        <div class="tool-info">
+          <div class="tool-name">Lorem Ipsum Generator</div>
+          <div class="tool-desc">Generate placeholder text by paragraphs, sentences, words or characters. Copy as plain text or HTML.</div>
+        </div>
+      </a>
+
+      <a href="/tools/binary-converter" class="tool-card" data-cat="converter" data-name="binary converter text hex decimal">
+        <span class="tool-icon">💻</span>
+        <div class="tool-info">
+          <div class="tool-name">Binary Converter</div>
+          <div class="tool-desc">Convert text ↔ binary, decimal ↔ binary, hex ↔ binary and more. All in one tool.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── CALCULATORS ── -->
+  <div class="section-wrap" data-section="calculator">
+    <div class="section-head">
+      <h2>🧮 Calculators</h2>
+      <span class="count">9 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/age-calculator" class="tool-card" data-cat="calculator" data-name="age calculator birthday date">
+        <span class="tool-icon">🎂</span>
+        <div class="tool-info">
+          <div class="tool-name">Age Calculator</div>
+          <div class="tool-desc">Exact age in years, months & days, plus next birthday — today auto-filled.</div>
+        </div>
+      </a>
+
+      <a href="/tools/percentage-calculator" class="tool-card" data-cat="calculator" data-name="percentage calculator percent">
+        <span class="tool-icon">％</span>
+        <div class="tool-info">
+          <div class="tool-name">Percentage Calculator</div>
+          <div class="tool-desc">% of a number, % change, increase/decrease & difference — live.</div>
+        </div>
+      </a>
+
+      <a href="/tools/days-between-dates" class="tool-card" data-cat="calculator" data-name="days between dates date calculator">
+        <span class="tool-icon">📅</span>
+        <div class="tool-info">
+          <div class="tool-name">Days Between Dates</div>
+          <div class="tool-desc">Count days, weeks, months and years between two dates. Includes business days and quick presets.</div>
+        </div>
+      </a>
+
+      <a href="/tools/interest-calculator" class="tool-card" data-cat="calculator" data-name="interest calculator compound simple">
+        <span class="tool-icon">💰</span>
+        <div class="tool-info">
+          <div class="tool-name">Compound Interest Calculator</div>
+          <div class="tool-desc">Simple & compound interest with monthly contributions. Year-by-year growth chart included.</div>
+        </div>
+      </a>
+
+      <a href="/tools/discount-calculator" class="tool-card" data-cat="calculator" data-name="discount calculator percent off sale price">
+        <span class="tool-icon">🏷️</span>
+        <div class="tool-info">
+          <div class="tool-name">Discount Calculator</div>
+          <div class="tool-desc">Find percent off, final price, original price or discount %. Stacked discounts & bulk table included.</div>
+        </div>
+      </a>
+
+      <a href="/tools/sip-calculator" class="tool-card" data-cat="calculator" data-name="sip calculator mutual fund investment">
+        <span class="tool-icon">📈</span>
+        <div class="tool-info">
+          <div class="tool-name">SIP Calculator</div>
+          <div class="tool-desc">Mutual fund SIP maturity, returns & step-up with yearly growth.</div>
+        </div>
+      </a>
+
+      <a href="/tools/gst-calculator" class="tool-card" data-cat="calculator" data-name="gst calculator india tax">
+        <span class="tool-icon">🧾</span>
+        <div class="tool-info">
+          <div class="tool-name">GST Calculator</div>
+          <div class="tool-desc">Add or remove GST (India) across 5/12/18/28% with CGST/SGST split.</div>
+        </div>
+      </a>
+
+      <a href="/tools/emi-calculator" class="tool-card" data-cat="calculator" data-name="emi calculator loan home car">
+        <span class="tool-icon">💳</span>
+        <div class="tool-info">
+          <div class="tool-name">EMI Calculator</div>
+          <div class="tool-desc">Home, car & personal loan EMI with interest & yearly breakdown.</div>
+        </div>
+      </a>
+
+      <a href="/tools/password-generator" class="tool-card" data-cat="text" data-name="password generator strong random">
+        <span class="tool-icon">🔐</span>
+        <div class="tool-info">
+          <div class="tool-name">Password Generator</div>
+          <div class="tool-desc">Strong random passwords of any length — generated securely, never stored.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── CONVERTERS ── -->
+  <div class="section-wrap" data-section="converter">
+    <div class="section-head">
+      <h2>🔄 Converters</h2>
+      <span class="count">4 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/unit-converter" class="tool-card" data-cat="converter" data-name="unit converter length weight temperature volume speed">
+        <span class="tool-icon">📏</span>
+        <div class="tool-info">
+          <div class="tool-name">Unit Converter</div>
+          <div class="tool-desc">Convert length, weight, temperature, volume, area, speed, time & data — all in one tool.</div>
+        </div>
+      </a>
+
+      <a href="/tools/jpg-to-png" class="tool-card" data-cat="image converter" data-name="jpg to png image convert">
+        <span class="tool-icon">🔄</span>
+        <div class="tool-info">
+          <div class="tool-name">JPG to PNG</div>
+          <div class="tool-desc">Convert JPG/JPEG to lossless PNG — batch, instant, no upload.</div>
+        </div>
+      </a>
+
+      <a href="/tools/png-to-jpg" class="tool-card" data-cat="image converter" data-name="png to jpg image convert">
+        <span class="tool-icon">🔄</span>
+        <div class="tool-info">
+          <div class="tool-name">PNG to JPG</div>
+          <div class="tool-desc">Convert PNG to JPG with quality control — batch, no upload.</div>
+        </div>
+      </a>
+
+      <a href="/tools/json-formatter" class="tool-card" data-cat="converter text" data-name="json formatter validator beautify">
+        <span class="tool-icon">{ }</span>
+        <div class="tool-info">
+          <div class="tool-name">JSON Formatter</div>
+          <div class="tool-desc">Beautify, minify & validate JSON with error messages — nothing uploaded.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── IMAGE TOOLS ── -->
+  <div class="section-wrap" data-section="image">
+    <div class="section-head">
+      <h2>🖼️ Image Tools</h2>
+      <span class="count">3 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/image-compressor" class="tool-card" data-cat="image" data-name="image compressor compress jpg png webp">
+        <span class="tool-icon">📷</span>
+        <div class="tool-info">
+          <div class="tool-name">Image Compressor</div>
+          <div class="tool-desc">Compress JPG, PNG & WebP by quality or to an exact KB — no upload.</div>
+        </div>
+      </a>
+
+      <a href="/tools/image-resizer" class="tool-card" data-cat="image" data-name="image resizer resize pixels">
+        <span class="tool-icon">🖼️</span>
+        <div class="tool-info">
+          <div class="tool-name">Image Resizer</div>
+          <div class="tool-desc">Resize images by pixels, percentage or social presets — no upload.</div>
+        </div>
+      </a>
+
+      <a href="/tools/qr-code-generator" class="tool-card" data-cat="image" data-name="qr code generator qr">
+        <span class="tool-icon">🧾</span>
+        <div class="tool-info">
+          <div class="tool-name">QR Code Generator</div>
+          <div class="tool-desc">Turn any link or text into a QR code — custom colours, PNG & SVG download.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── PDF TOOLS ── -->
+  <div class="section-wrap" data-section="pdf">
+    <div class="section-head">
+      <h2>📄 PDF Tools</h2>
+      <span class="count">2 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/pdf-merger" class="tool-card" data-cat="pdf" data-name="pdf merger combine merge">
+        <span class="tool-icon">📄</span>
+        <div class="tool-info">
+          <div class="tool-name">PDF Merger</div>
+          <div class="tool-desc">Combine multiple PDFs into one, reorder before merging — no upload.</div>
+        </div>
+      </a>
+
+      <a href="/tools/pdf-splitter" class="tool-card" data-cat="pdf" data-name="pdf splitter split extract pages">
+        <span class="tool-icon">✂️</span>
+        <div class="tool-info">
+          <div class="tool-name">PDF Splitter</div>
+          <div class="tool-desc">Extract pages or split a PDF into multiple files — no upload.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── SEO TOOLS ── -->
+  <div class="section-wrap" data-section="seo">
+    <div class="section-head">
+      <h2>📈 SEO Tools</h2>
+      <span class="count">1 tool</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/robots-txt-generator" class="tool-card" data-cat="seo" data-name="robots txt generator seo crawl">
+        <span class="tool-icon">🤖</span>
+        <div class="tool-info">
+          <div class="tool-name">Robots.txt Generator</div>
+          <div class="tool-desc">Generate robots.txt with rules for Google, Bing & AI bots (GPTBot, ClaudeBot). Download instantly.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+let activeFilter = 'all';
+
+function setFilter(btn) {
+  document.querySelectorAll('.filter-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  activeFilter = btn.dataset.cat;
+  document.getElementById('search-input').value = '';
+  applyFilters('', activeFilter);
+}
+
+function filterTools() {
+  const q = document.getElementById('search-input').value.toLowerCase().trim();
+  document.getElementById('search-term').textContent = q;
+  applyFilters(q, activeFilter);
+}
+
+function applyFilters(query, cat) {
+  const cards = document.querySelectorAll('.tool-card');
+  let visible = 0;
+
+  cards.forEach(card => {
+    const name = card.dataset.name || '';
+    const cardCat = card.dataset.cat || '';
+    const matchesQuery = !query || name.includes(query);
+    const matchesCat = cat === 'all' || cardCat.includes(cat);
+    const show = matchesQuery && matchesCat;
+    card.classList.toggle('hidden', !show);
+    if (show) visible++;
+  });
+
+  // Show/hide sections
+  document.querySelectorAll('.section-wrap').forEach(sec => {
+    const secCards = sec.querySelectorAll('.tool-card:not(.hidden)');
+    sec.style.display = secCards.length > 0 ? '' : 'none';
+  });
+
+  document.getElementById('no-results').style.display = visible === 0 ? 'block' : 'none';
+}
+</script>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Free Online Tools — SEOTriggers",
+  "description": "A collection of free browser-based tools including word counter, calculators, converters, image tools, PDF tools and SEO utilities.",
+  "url": "https://seotriggers.com/tools",
+  "hasPart": [
+    { "@type": "SoftwareApplication", "name": "Word Counter", "url": "https://seotriggers.com/tools/word-counter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Case Converter", "url": "https://seotriggers.com/tools/uppercase-to-lowercase", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Binary Converter", "url": "https://seotriggers.com/tools/binary-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Lorem Ipsum Generator", "url": "https://seotriggers.com/tools/lorem-ipsum-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Unit Converter", "url": "https://seotriggers.com/tools/unit-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Compound Interest Calculator", "url": "https://seotriggers.com/tools/interest-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Discount Calculator", "url": "https://seotriggers.com/tools/discount-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Days Between Dates", "url": "https://seotriggers.com/tools/days-between-dates", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Robots.txt Generator", "url": "https://seotriggers.com/tools/robots-txt-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
+  ]
+}
+</script>
+</body>
+</html>
