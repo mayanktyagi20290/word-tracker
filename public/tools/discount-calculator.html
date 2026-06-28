@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Discount Calculator — Percent Off, Sale Price & More | SEOTriggers</title>
+  <meta name="description" content="Free discount calculator. Calculate percent off, final price, original price, or discount percentage. Includes bulk discount table and stacked discount calculator." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools/discount-calculator" />
+  <meta property="og:title" content="Discount Calculator — Percent Off & Sale Price | SEOTriggers" />
+  <meta property="og:description" content="Calculate discounts instantly. Find percent off, final price, original price or discount percentage. Bulk table and stacked discounts included." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools/discount-calculator" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-STNE1RFPKY');</script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #94a3b8; max-width: 900px; margin: 0 auto; width: 100%; }
+    .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    .breadcrumb a:hover { color: #6366f1; }
+    .breadcrumb span { margin: 0 6px; }
+
+    main { flex: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 64px; width: 100%; }
+    h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+
+    /* ── Mode tabs ── */
+    .mode-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .mode-tab { padding: 8px 18px; border-radius: 9px; border: 1.5px solid #e2e8f0; background: #fff; color: #64748b; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .mode-tab.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+    .mode-tab:hover:not(.active) { border-color: #6366f1; color: #6366f1; }
+
+    /* ── Card ── */
+    .card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+
+    /* ── Two col ── */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:620px){ .two-col { grid-template-columns: 1fr; } }
+
+    /* ── Fields ── */
+    .field { margin-bottom: 16px; }
+    .field label { display: block; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 6px; }
+    .input-wrap { display: flex; border: 1.5px solid #e2e8f0; border-radius: 9px; overflow: hidden; transition: border-color .2s; }
+    .input-wrap:focus-within { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; }
+    .input-prefix, .input-suffix { padding: 10px 12px; background: #f8fafc; font-size: 14px; color: #64748b; font-weight: 600; white-space: nowrap; }
+    .input-prefix { border-right: 1.5px solid #e2e8f0; }
+    .input-suffix { border-left: 1.5px solid #e2e8f0; }
+    .input-wrap input { flex: 1; padding: 10px 12px; border: none; font-size: 15px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none; background: #fff; min-width: 0; }
+    .field .hint { font-size: 11px; color: #94a3b8; margin-top: 4px; }
+
+    /* ── Result box ── */
+    .result-hero { background: linear-gradient(135deg, #6366f1, #8b5cf6); border-radius: 12px; padding: 24px; color: #fff; text-align: center; margin-bottom: 16px; }
+    .result-hero .r-label { font-size: 13px; opacity: .8; margin-bottom: 6px; font-weight: 500; }
+    .result-hero .r-value { font-size: 42px; font-weight: 700; line-height: 1; margin-bottom: 4px; }
+    .result-hero .r-sub { font-size: 14px; opacity: .75; }
+
+    .result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .result-box { background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 9px; padding: 12px 14px; }
+    .result-box .rb-label { font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; margin-bottom: 4px; }
+    .result-box .rb-value { font-size: 20px; font-weight: 700; color: #0f172a; }
+    .result-box.green { background: #f0fdf4; border-color: #bbf7d0; }
+    .result-box.green .rb-value { color: #16a34a; }
+    .result-box.red { background: #fef2f2; border-color: #fecaca; }
+    .result-box.red .rb-value { color: #dc2626; }
+
+    /* ── Stacked discounts ── */
+    .stack-row { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+    .stack-row input { flex: 1; padding: 9px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px; font-size: 14px; font-family: 'Inter', sans-serif; color: #1e293b; outline: none; }
+    .stack-row input:focus { border-color: #6366f1; }
+    .stack-row .stack-pct { font-size: 13px; color: #64748b; min-width: 20px; }
+    .remove-btn { width: 32px; height: 32px; border: 1.5px solid #fee2e2; border-radius: 7px; background: #fff; color: #ef4444; font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+    .add-stack-btn { font-size: 13px; color: #6366f1; background: none; border: 1.5px dashed #c7d2fe; border-radius: 7px; padding: 7px 14px; cursor: pointer; font-family: 'Inter', sans-serif; font-weight: 500; }
+    .add-stack-btn:hover { background: #eef2ff; }
+
+    /* ── Bulk table ── */
+    .bulk-table-wrap { overflow-x: auto; }
+    .bulk-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .bulk-table th { padding: 9px 14px; background: #f8fafc; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; text-align: right; border-bottom: 1px solid #e2e8f0; }
+    .bulk-table th:first-child { text-align: left; }
+    .bulk-table td { padding: 9px 14px; border-bottom: 1px solid #f1f5f9; text-align: right; color: #475569; }
+    .bulk-table td:first-child { text-align: left; font-weight: 600; color: #6366f1; }
+    .bulk-table td.save-col { color: #16a34a; font-weight: 600; }
+    .bulk-table td.price-col { color: #0f172a; font-weight: 700; }
+    .bulk-table tr:nth-child(even) td { background: #fafafa; }
+    .bulk-table tr:last-child td { border-bottom: none; }
+
+    /* ── Section ── */
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .section p, .section li { font-size: 14px; color: #475569; line-height: 1.8; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 6px; }
+    .section code { background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; color: #6366f1; }
+
+    .formula-box { background: #0f172a; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+    .formula-box pre { color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; }
+
+    .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; }
+    .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q:hover { background: #f8fafc; border-radius: 10px; }
+    .faq-q .arrow { color: #94a3b8; transition: transform .2s; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; color: #475569; line-height: 1.8; }
+    .faq-a.open { display: block; }
+
+    .related-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+    .related-link { padding: 8px 16px; background: #f1f5f9; border-radius: 8px; font-size: 13px; color: #6366f1; text-decoration: none; font-weight: 500; }
+    .related-link:hover { background: #eef2ff; }
+
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+    @media(max-width:640px){ .footer-cols { grid-template-columns: 1fr 1fr; } h1 { font-size: 22px; } .result-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://seotriggers.com/">Home</a><span>›</span>
+  <a href="https://seotriggers.com/tools">Tools</a><span>›</span>
+  Discount Calculator
+</div>
+
+<main>
+  <h1>Discount Calculator</h1>
+  <p class="subtitle">Calculate percent off, final price, original price, or discount percentage — instantly. Includes stacked discounts, bulk discount table, and fixed amount off.</p>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="percent-off" onclick="setMode(this)">% Off → Final Price</button>
+    <button class="mode-tab" data-mode="find-discount" onclick="setMode(this)">Find Discount %</button>
+    <button class="mode-tab" data-mode="find-original" onclick="setMode(this)">Find Original Price</button>
+    <button class="mode-tab" data-mode="stacked" onclick="setMode(this)">Stacked Discounts</button>
+    <button class="mode-tab" data-mode="bulk" onclick="setMode(this)">Bulk Table</button>
+  </div>
+
+  <!-- PANEL 1: % Off → Final Price -->
+  <div id="panel-percent-off">
+    <div class="card">
+      <div class="two-col">
+        <div>
+          <div class="field">
+            <label>Original Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="p1-original" value="100" min="0" oninput="calcPercentOff()" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Discount</label>
+            <div class="input-wrap">
+              <input type="number" id="p1-pct" value="20" min="0" max="100" step="0.1" oninput="calcPercentOff()" />
+              <span class="input-suffix">% off</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="result-hero">
+            <div class="r-label">Final price</div>
+            <div class="r-value" id="p1-final">$80.00</div>
+            <div class="r-sub" id="p1-sub">You save $20.00 (20%)</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-box green">
+              <div class="rb-label">You save</div>
+              <div class="rb-value" id="p1-saved">$20.00</div>
+            </div>
+            <div class="result-box">
+              <div class="rb-label">Discount amount</div>
+              <div class="rb-value" id="p1-amount">$20.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 2: Find Discount % -->
+  <div id="panel-find-discount" style="display:none;">
+    <div class="card">
+      <div class="two-col">
+        <div>
+          <div class="field">
+            <label>Original Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="p2-original" value="100" min="0" oninput="calcFindDiscount()" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Final / Sale Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="p2-final" value="75" min="0" oninput="calcFindDiscount()" />
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="result-hero">
+            <div class="r-label">Discount percentage</div>
+            <div class="r-value" id="p2-pct">25%</div>
+            <div class="r-sub" id="p2-sub">You save $25.00</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-box green">
+              <div class="rb-label">Amount saved</div>
+              <div class="rb-value" id="p2-saved">$25.00</div>
+            </div>
+            <div class="result-box">
+              <div class="rb-label">You pay</div>
+              <div class="rb-value" id="p2-pay">$75.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 3: Find Original Price -->
+  <div id="panel-find-original" style="display:none;">
+    <div class="card">
+      <div class="two-col">
+        <div>
+          <div class="field">
+            <label>Sale Price (after discount)</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="p3-sale" value="80" min="0" oninput="calcFindOriginal()" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Discount Applied</label>
+            <div class="input-wrap">
+              <input type="number" id="p3-pct" value="20" min="0" max="99" step="0.1" oninput="calcFindOriginal()" />
+              <span class="input-suffix">% off</span>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="result-hero">
+            <div class="r-label">Original price was</div>
+            <div class="r-value" id="p3-original">$100.00</div>
+            <div class="r-sub" id="p3-sub">You saved $20.00</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-box green">
+              <div class="rb-label">Amount saved</div>
+              <div class="rb-value" id="p3-saved">$20.00</div>
+            </div>
+            <div class="result-box">
+              <div class="rb-label">Sale price</div>
+              <div class="rb-value" id="p3-saleprice">$80.00</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PANEL 4: Stacked Discounts -->
+  <div id="panel-stacked" style="display:none;">
+    <div class="card">
+      <div class="two-col">
+        <div>
+          <div class="field">
+            <label>Original Price</label>
+            <div class="input-wrap">
+              <span class="input-prefix">$</span>
+              <input type="number" id="p4-original" value="200" min="0" oninput="calcStacked()" />
+            </div>
+          </div>
+          <div class="field">
+            <label>Discounts (applied in order)</label>
+            <div id="stack-rows">
+              <div class="stack-row">
+                <input type="number" value="20" min="0" max="100" step="0.1" placeholder="%" oninput="calcStacked()" />
+                <span class="stack-pct">%</span>
+                <button class="remove-btn" onclick="removeStack(this)">✕</button>
+              </div>
+              <div class="stack-row">
+                <input type="number" value="10" min="0" max="100" step="0.1" placeholder="%" oninput="calcStacked()" />
+                <span class="stack-pct">%</span>
+                <button class="remove-btn" onclick="removeStack(this)">✕</button>
+              </div>
+            </div>
+            <button class="add-stack-btn" onclick="addStack()" style="margin-top:8px;">+ Add another discount</button>
+            <div class="hint" style="margin-top:6px;">Each discount applies to the already-reduced price</div>
+          </div>
+        </div>
+        <div>
+          <div class="result-hero">
+            <div class="r-label">Final price after all discounts</div>
+            <div class="r-value" id="p4-final">$144.00</div>
+            <div class="r-sub" id="p4-sub">Total saving: $56.00 (28%)</div>
+          </div>
+          <div class="result-grid">
+            <div class="result-box green">
+              <div class="rb-label">Total saved</div>
+              <div class="rb-value" id="p4-saved">$56.00</div>
+            </div>
+            <div class="result-box red">
+              <div class="rb-label">Effective discount</div>
+              <div class="rb-value" id="p4-effective">28%</div>
+            </div>
+          </div>
+          <div id="stack-steps" style="margin-top:14px; font-size:13px; color:#475569; line-height:2;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="card" style="background:#eef2ff; border-color:#c7d2fe;">
+      <p style="font-size:13px; color:#4f46e5;"><strong>Note:</strong> Stacked discounts are NOT the same as adding percentages together. A 20% off followed by 10% off gives 28% total — not 30%. Each discount applies to the reduced price from the previous step.</p>
+    </div>
+  </div>
+
+  <!-- PANEL 5: Bulk Table -->
+  <div id="panel-bulk" style="display:none;">
+    <div class="card">
+      <div class="field" style="max-width:300px;">
+        <label>Original Price</label>
+        <div class="input-wrap">
+          <span class="input-prefix">$</span>
+          <input type="number" id="p5-original" value="100" min="0" oninput="calcBulk()" />
+        </div>
+      </div>
+      <div class="bulk-table-wrap">
+        <table class="bulk-table">
+          <thead>
+            <tr>
+              <th>Discount</th>
+              <th>You save</th>
+              <th>Final price</th>
+            </tr>
+          </thead>
+          <tbody id="bulk-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- How to calculate -->
+  <div class="section">
+    <h2>How to calculate discount percentage</h2>
+    <div class="formula-box"><pre>Discount % = ((Original Price − Sale Price) / Original Price) × 100
+
+Example: Original $120, Sale $90
+Discount % = ((120 − 90) / 120) × 100 = 25%</pre></div>
+
+    <p style="margin-top:12px;"><strong>Final price after % off:</strong></p>
+    <div class="formula-box"><pre>Final Price = Original Price × (1 − Discount% / 100)
+
+Example: $120 with 25% off
+Final Price = 120 × (1 − 0.25) = 120 × 0.75 = $90</pre></div>
+
+    <p style="margin-top:12px;"><strong>Original price from sale price:</strong></p>
+    <div class="formula-box"><pre>Original Price = Sale Price / (1 − Discount% / 100)
+
+Example: Sale price $90, discount was 25%
+Original Price = 90 / (1 − 0.25) = 90 / 0.75 = $120</pre></div>
+  </div>
+
+  <!-- Stacked explanation -->
+  <div class="section">
+    <h2>How do stacked discounts work?</h2>
+    <p>Stacked discounts apply one after another — each new discount is calculated on the already-reduced price, not the original. This means the combined effect is always less than simply adding the percentages.</p>
+    <p style="margin-top:10px;">Example: 20% off then 10% off on a $100 item:</p>
+    <ul style="margin-top:8px;">
+      <li>Step 1: $100 − 20% = <strong>$80</strong></li>
+      <li>Step 2: $80 − 10% = <strong>$72</strong></li>
+      <li>Total saved: $28 — effective discount 28%, not 30%</li>
+    </ul>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate percent off?<span class="arrow">▾</span></div>
+      <div class="faq-a">Multiply the original price by the discount percentage divided by 100, then subtract from the original. Example: $80 with 25% off → $80 × 0.25 = $20 saved → final price = $60. Or use the calculator above.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate the original price before discount?<span class="arrow">▾</span></div>
+      <div class="faq-a">Divide the sale price by (1 − discount/100). If you paid $75 after a 25% discount: original = $75 / 0.75 = $100. Use the "Find Original Price" tab above.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is 20% off then 10% off the same as 30% off?<span class="arrow">▾</span></div>
+      <div class="faq-a">No. Stacked discounts are not additive. 20% off then 10% off gives an effective 28% discount, not 30%. The second discount applies to the already-reduced price. Use the Stacked Discounts tab to calculate any combination.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How to calculate discount percentage in Excel?<span class="arrow">▾</span></div>
+      <div class="faq-a">Use the formula <code>=((A1-B1)/A1)*100</code> where A1 is the original price and B1 is the sale price. For the final price after a discount: <code>=A1*(1-C1/100)</code> where C1 is the discount percentage.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I calculate percentage off a price?<span class="arrow">▾</span></div>
+      <div class="faq-a">Divide the discount amount by the original price, then multiply by 100. Example: an item was $50, now $35. Discount = $15. Percentage off = (15/50) × 100 = 30% off.</div>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://seotriggers.com/tools/percentage-calculator" class="related-link">Percentage Calculator →</a>
+      <a href="https://seotriggers.com/tools/gst-calculator" class="related-link">GST Calculator →</a>
+      <a href="https://seotriggers.com/tools/interest-calculator" class="related-link">Interest Calculator →</a>
+      <a href="https://seotriggers.com/tools" class="related-link">Browse all tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://seotriggers.com/tools/discount-calculator",
+      "url": "https://seotriggers.com/tools/discount-calculator",
+      "name": "Discount Calculator — Percent Off, Sale Price & More | SEOTriggers",
+      "description": "Free discount calculator. Calculate percent off, final price, original price, or discount percentage. Includes stacked discounts and bulk table.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+          { "@type": "ListItem", "position": 3, "name": "Discount Calculator" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I calculate percent off?", "acceptedAnswer": { "@type": "Answer", "text": "Multiply the original price by the discount percentage divided by 100, then subtract from the original. Example: $80 with 25% off → $80 × 0.25 = $20 saved → final price $60." } },
+        { "@type": "Question", "name": "Is 20% off then 10% off the same as 30% off?", "acceptedAnswer": { "@type": "Answer", "text": "No. Stacked discounts give 28% total, not 30%. Each discount applies to the already-reduced price, not the original." } },
+        { "@type": "Question", "name": "How to calculate discount percentage in Excel?", "acceptedAnswer": { "@type": "Answer", "text": "Use =((A1-B1)/A1)*100 where A1 is original price and B1 is sale price." } }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Discount Calculator",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://seotriggers.com/tools/discount-calculator"
+    }
+  ]
+}
+</script>
+
+<script>
+function fmt(n) { return '$' + Math.abs(n).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2}); }
+
+// ── Mode switching ────────────────────────────────────────────────────────────
+const panels = ['percent-off','find-discount','find-original','stacked','bulk'];
+function setMode(btn) {
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const mode = btn.dataset.mode;
+  panels.forEach(p => document.getElementById('panel-' + p).style.display = p === mode ? '' : 'none');
+  if (mode === 'bulk') calcBulk();
+  if (mode === 'stacked') calcStacked();
+}
+
+// ── Panel 1: % Off → Final ────────────────────────────────────────────────────
+function calcPercentOff() {
+  const orig = parseFloat(document.getElementById('p1-original').value) || 0;
+  const pct  = parseFloat(document.getElementById('p1-pct').value) || 0;
+  const saved = orig * pct / 100;
+  const final = orig - saved;
+  document.getElementById('p1-final').textContent  = fmt(final);
+  document.getElementById('p1-saved').textContent  = fmt(saved);
+  document.getElementById('p1-amount').textContent = fmt(saved);
+  document.getElementById('p1-sub').textContent    = `You save ${fmt(saved)} (${pct}%)`;
+}
+
+// ── Panel 2: Find Discount % ──────────────────────────────────────────────────
+function calcFindDiscount() {
+  const orig  = parseFloat(document.getElementById('p2-original').value) || 0;
+  const final = parseFloat(document.getElementById('p2-final').value) || 0;
+  if (orig <= 0) return;
+  const saved = orig - final;
+  const pct   = (saved / orig) * 100;
+  document.getElementById('p2-pct').textContent   = Math.round(pct * 10)/10 + '%';
+  document.getElementById('p2-saved').textContent = fmt(saved);
+  document.getElementById('p2-pay').textContent   = fmt(final);
+  document.getElementById('p2-sub').textContent   = `You save ${fmt(saved)}`;
+}
+
+// ── Panel 3: Find Original ────────────────────────────────────────────────────
+function calcFindOriginal() {
+  const sale = parseFloat(document.getElementById('p3-sale').value) || 0;
+  const pct  = parseFloat(document.getElementById('p3-pct').value) || 0;
+  if (pct >= 100) return;
+  const orig  = sale / (1 - pct/100);
+  const saved = orig - sale;
+  document.getElementById('p3-original').textContent  = fmt(orig);
+  document.getElementById('p3-saved').textContent     = fmt(saved);
+  document.getElementById('p3-saleprice').textContent = fmt(sale);
+  document.getElementById('p3-sub').textContent       = `You saved ${fmt(saved)} (${pct}% off)`;
+}
+
+// ── Panel 4: Stacked ─────────────────────────────────────────────────────────
+function calcStacked() {
+  const orig = parseFloat(document.getElementById('p4-original').value) || 0;
+  const inputs = [...document.querySelectorAll('#stack-rows input')];
+  const pcts = inputs.map(i => parseFloat(i.value) || 0);
+
+  let price = orig;
+  let steps = [];
+  pcts.forEach((pct, i) => {
+    const before = price;
+    price = price * (1 - pct/100);
+    steps.push(`Step ${i+1}: ${fmt(before)} − ${pct}% = ${fmt(price)}`);
+  });
+
+  const saved = orig - price;
+  const effectivePct = orig > 0 ? ((saved/orig)*100).toFixed(1) : 0;
+
+  document.getElementById('p4-final').textContent     = fmt(price);
+  document.getElementById('p4-saved').textContent     = fmt(saved);
+  document.getElementById('p4-effective').textContent = effectivePct + '%';
+  document.getElementById('p4-sub').textContent       = `Total saving: ${fmt(saved)} (${effectivePct}%)`;
+  document.getElementById('stack-steps').innerHTML    = steps.join('<br>');
+}
+
+function addStack() {
+  const row = document.createElement('div');
+  row.className = 'stack-row';
+  row.innerHTML = `<input type="number" value="10" min="0" max="100" step="0.1" placeholder="%" oninput="calcStacked()" /><span class="stack-pct">%</span><button class="remove-btn" onclick="removeStack(this)">✕</button>`;
+  document.getElementById('stack-rows').appendChild(row);
+  calcStacked();
+}
+function removeStack(btn) {
+  if (document.querySelectorAll('#stack-rows .stack-row').length <= 1) return;
+  btn.parentElement.remove();
+  calcStacked();
+}
+
+// ── Panel 5: Bulk Table ───────────────────────────────────────────────────────
+function calcBulk() {
+  const orig = parseFloat(document.getElementById('p5-original').value) || 100;
+  const discounts = [5,10,15,20,25,30,35,40,45,50,60,70,75,80,90];
+  const tbody = document.getElementById('bulk-tbody');
+  tbody.innerHTML = discounts.map(pct => {
+    const saved = orig * pct / 100;
+    const final = orig - saved;
+    return `<tr>
+      <td>${pct}% off</td>
+      <td class="save-col">${fmt(saved)}</td>
+      <td class="price-col">${fmt(final)}</td>
+    </tr>`;
+  }).join('');
+}
+
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  const open = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  if (!open) { ans.classList.add('open'); el.classList.add('open'); }
+}
+
+// Init
+calcPercentOff();
+calcFindDiscount();
+calcFindOriginal();
+calcStacked();
+calcBulk();
+</script>
+</body>
+</html>
