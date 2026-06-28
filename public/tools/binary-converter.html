@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Converter — Text, Decimal & Hex to Binary | SEOTriggers</title>
+  <meta name="description" content="Free binary converter. Convert text to binary, binary to text, decimal to binary, hex to binary and more — all in one tool. Real-time, no signup." />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://seotriggers.com/tools/binary-converter" />
+  <meta property="og:title" content="Binary Converter — Text, Decimal & Hex to Binary | SEOTriggers" />
+  <meta property="og:description" content="Convert text to binary, binary to text, decimal to binary, binary to decimal, hex to binary and more. Free, instant, runs in your browser." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://seotriggers.com/tools/binary-converter" />
+
+  <!-- GA4 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-STNE1RFPKY');</script>
+
+  <link rel="stylesheet" href="/legal.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; min-height: 100vh; display: flex; flex-direction: column; }
+
+    .nav { background: #fff; border-bottom: 1px solid #e2e8f0; padding: 0 24px; height: 60px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
+    .nav-brand { font-weight: 700; font-size: 18px; color: #6366f1; text-decoration: none; }
+    .nav-links { display: flex; align-items: center; gap: 24px; }
+    .nav-links a { font-size: 14px; color: #64748b; text-decoration: none; font-weight: 500; }
+    .nav-links a:hover { color: #6366f1; }
+    .nav-cta { background: #6366f1; color: #fff !important; padding: 7px 16px; border-radius: 8px; font-size: 13px !important; }
+
+    .breadcrumb { padding: 12px 24px; font-size: 13px; color: #94a3b8; max-width: 900px; margin: 0 auto; width: 100%; }
+    .breadcrumb a { color: #94a3b8; text-decoration: none; }
+    .breadcrumb a:hover { color: #6366f1; }
+    .breadcrumb span { margin: 0 6px; }
+
+    main { flex: 1; max-width: 900px; margin: 0 auto; padding: 0 24px 64px; width: 100%; }
+    h1 { font-size: 28px; font-weight: 700; color: #0f172a; margin-bottom: 8px; }
+    .subtitle { font-size: 15px; color: #64748b; margin-bottom: 24px; line-height: 1.6; }
+
+    /* ── Mode tabs ── */
+    .mode-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+    .mode-tab { padding: 8px 18px; border-radius: 9px; border: 1.5px solid #e2e8f0; background: #fff; color: #64748b; font-size: 13px; font-weight: 500; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .mode-tab:hover { border-color: #6366f1; color: #6366f1; }
+    .mode-tab.active { background: #6366f1; color: #fff; border-color: #6366f1; }
+
+    /* ── Converter card ── */
+    .conv-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+
+    .conv-row { display: grid; grid-template-columns: 1fr 48px 1fr; gap: 16px; align-items: start; }
+    @media(max-width:600px){ .conv-row { grid-template-columns: 1fr; } .swap-btn { transform: rotate(90deg); margin: 0 auto; } }
+
+    .conv-side label { display: block; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+    .conv-side textarea {
+      width: 100%; height: 140px; border: 1.5px solid #e2e8f0; border-radius: 10px;
+      padding: 12px 14px; font-size: 14px; font-family: 'Courier New', monospace;
+      color: #1e293b; resize: vertical; outline: none; transition: border-color .2s;
+      line-height: 1.7;
+    }
+    .conv-side textarea:focus { border-color: #6366f1; box-shadow: 0 0 0 3px #eef2ff; }
+    .conv-side textarea[readonly] { background: #f8fafc; cursor: default; }
+
+    .conv-actions { display: flex; justify-content: space-between; align-items: center; margin-top: 8px; }
+    .conv-hint { font-size: 11px; color: #94a3b8; }
+    .copy-btn { font-size: 12px; font-weight: 600; color: #6366f1; background: none; border: 1.5px solid #c7d2fe; border-radius: 6px; padding: 4px 12px; cursor: pointer; font-family: 'Inter', sans-serif; transition: all .15s; }
+    .copy-btn:hover { background: #eef2ff; }
+
+    .swap-btn { display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; border: 1.5px solid #e2e8f0; border-radius: 10px; background: #f8fafc; cursor: pointer; font-size: 20px; transition: all .15s; margin-top: 28px; }
+    .swap-btn:hover { border-color: #6366f1; background: #eef2ff; color: #6366f1; }
+
+    .error-msg { font-size: 12px; color: #ef4444; margin-top: 6px; min-height: 18px; }
+
+    /* ── Number conversion panel ── */
+    .num-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+    .num-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    @media(max-width:600px){ .num-grid { grid-template-columns: 1fr; } }
+    .num-field label { display: block; font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px; }
+    .num-field-row { display: flex; gap: 0; }
+    .num-input { flex: 1; padding: 10px 12px; border: 1.5px solid #e2e8f0; border-radius: 8px 0 0 8px; font-size: 14px; font-family: 'Courier New', monospace; color: #1e293b; outline: none; transition: border-color .2s; }
+    .num-input:focus { border-color: #6366f1; }
+    .num-copy { padding: 10px 12px; border: 1.5px solid #e2e8f0; border-left: none; border-radius: 0 8px 8px 0; background: #f8fafc; color: #6366f1; font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif; white-space: nowrap; }
+    .num-copy:hover { background: #eef2ff; }
+    .num-error { font-size: 11px; color: #ef4444; margin-top: 4px; min-height: 16px; }
+
+    /* ── Reference table ── */
+    .ref-card { background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; overflow: hidden; margin-bottom: 24px; }
+    .ref-header { padding: 14px 20px; border-bottom: 1px solid #f1f5f9; font-size: 14px; font-weight: 700; color: #0f172a; display: flex; justify-content: space-between; align-items: center; }
+    .ref-filter { padding: 5px 12px; border: 1.5px solid #e2e8f0; border-radius: 7px; font-size: 13px; font-family: 'Inter', sans-serif; color: #475569; outline: none; }
+    .ref-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    .ref-table th { padding: 10px 16px; background: #f8fafc; font-size: 11px; font-weight: 700; color: #94a3b8; text-transform: uppercase; letter-spacing: .4px; text-align: left; border-bottom: 1px solid #e2e8f0; }
+    .ref-table td { padding: 9px 16px; border-bottom: 1px solid #f1f5f9; font-family: 'Courier New', monospace; }
+    .ref-table tr:last-child td { border-bottom: none; }
+    .ref-table tr:nth-child(even) td { background: #fafafa; }
+    .char-col { font-family: 'Inter', sans-serif; font-weight: 600; color: #0f172a; }
+
+    /* ── Copy feedback ── */
+    .copied-badge { font-size: 11px; color: #22c55e; font-weight: 600; display: none; }
+
+    /* ── Content ── */
+    .section { margin-bottom: 32px; }
+    .section h2 { font-size: 18px; font-weight: 700; color: #0f172a; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px solid #f1f5f9; }
+    .section p, .section li { font-size: 14px; color: #475569; line-height: 1.8; }
+    .section ul { padding-left: 20px; }
+    .section ul li { margin-bottom: 6px; }
+    .section code { background: #f1f5f9; padding: 1px 6px; border-radius: 4px; font-family: 'Courier New', monospace; font-size: 13px; color: #6366f1; }
+
+    .example-box { background: #0f172a; border-radius: 10px; padding: 16px 20px; margin: 12px 0; }
+    .example-box pre { color: #e2e8f0; font-family: 'Courier New', monospace; font-size: 13px; line-height: 1.8; }
+
+    .faq-item { border: 1px solid #e2e8f0; border-radius: 10px; margin-bottom: 10px; }
+    .faq-q { padding: 16px 20px; font-size: 14px; font-weight: 600; color: #0f172a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-q:hover { background: #f8fafc; border-radius: 10px; }
+    .faq-q .arrow { color: #94a3b8; transition: transform .2s; }
+    .faq-q.open .arrow { transform: rotate(180deg); }
+    .faq-a { display: none; padding: 0 20px 16px; font-size: 14px; color: #475569; line-height: 1.8; }
+    .faq-a.open { display: block; }
+
+    .related-tools { display: flex; gap: 10px; flex-wrap: wrap; }
+    .related-link { padding: 8px 16px; background: #f1f5f9; border-radius: 8px; font-size: 13px; color: #6366f1; text-decoration: none; font-weight: 500; }
+    .related-link:hover { background: #eef2ff; }
+
+    footer { background: #0f172a; color: #94a3b8; padding: 40px 24px; margin-top: auto; }
+    .footer-inner { max-width: 900px; margin: 0 auto; }
+    .footer-brand { font-size: 20px; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .footer-tagline { font-size: 13px; margin-bottom: 28px; }
+    .footer-cols { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin-bottom: 28px; }
+    .footer-col h4 { font-size: 12px; font-weight: 600; color: #fff; text-transform: uppercase; letter-spacing: .5px; margin-bottom: 12px; }
+    .footer-col a { display: block; font-size: 13px; color: #94a3b8; text-decoration: none; margin-bottom: 8px; }
+    .footer-col a:hover { color: #fff; }
+    .footer-bottom { border-top: 1px solid #1e293b; padding-top: 20px; font-size: 12px; }
+    @media(max-width:640px){ .footer-cols { grid-template-columns: 1fr 1fr; } h1 { font-size: 22px; } }
+  </style>
+</head>
+<body>
+
+<nav class="nav">
+  <a href="https://seotriggers.com/" class="nav-brand">⚡SEOTriggers</a>
+  <div class="nav-links">
+    <a href="https://seotriggers.com/tools">Tools</a>
+    <a href="https://seotriggers.com/blog">Blog</a>
+    <a href="https://seotriggers.com/about">About</a>
+    <a href="https://seotriggers.com/" class="nav-cta">Open Analyzer</a>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="https://seotriggers.com/">Home</a><span>›</span>
+  <a href="https://seotriggers.com/tools">Tools</a><span>›</span>
+  Binary Converter
+</div>
+
+<main>
+  <h1>Binary Converter</h1>
+  <p class="subtitle">Convert text to binary, binary to text, decimal to binary, binary to decimal, hex to binary and more — all in one tool. Real-time conversion, no signup needed.</p>
+
+  <!-- Mode tabs -->
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="text-binary" onclick="setMode(this)">Text ↔ Binary</button>
+    <button class="mode-tab" data-mode="decimal-binary" onclick="setMode(this)">Decimal ↔ Binary</button>
+    <button class="mode-tab" data-mode="hex-binary" onclick="setMode(this)">Hex ↔ Binary</button>
+    <button class="mode-tab" data-mode="decimal-hex" onclick="setMode(this)">Decimal ↔ Hex</button>
+    <button class="mode-tab" data-mode="reference" onclick="setMode(this)">ASCII Reference</button>
+  </div>
+
+  <!-- Text ↔ Binary -->
+  <div id="panel-text-binary">
+    <div class="conv-card">
+      <div class="conv-row">
+        <div class="conv-side">
+          <label id="lbl-left-tb">Text / ASCII</label>
+          <textarea id="left-tb" placeholder="Type or paste text here…" oninput="convertTextBinary('forward')"></textarea>
+          <div class="conv-actions">
+            <span class="conv-hint">Supports all printable ASCII characters</span>
+            <span class="copied-badge" id="copy-ok-left-tb">Copied!</span>
+            <button class="copy-btn" onclick="copyField('left-tb','copy-ok-left-tb')">Copy</button>
+          </div>
+        </div>
+
+        <button class="swap-btn" onclick="swapTextBinary()" title="Swap">⇄</button>
+
+        <div class="conv-side">
+          <label id="lbl-right-tb">Binary</label>
+          <textarea id="right-tb" placeholder="Binary output appears here…" readonly></textarea>
+          <div class="conv-actions">
+            <span class="error-msg" id="err-tb"></span>
+            <span class="copied-badge" id="copy-ok-right-tb">Copied!</span>
+            <button class="copy-btn" onclick="copyField('right-tb','copy-ok-right-tb')">Copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>How to convert text to binary</h2>
+      <p>Each character is converted to its ASCII decimal value, then that decimal number is converted to 8-bit binary. For example:</p>
+      <div class="example-box"><pre>H  →  72  →  01001000
+i  →  105 →  01101001
+!  →  33  →  00100001
+
+"Hi!" → 01001000 01101001 00100001</pre></div>
+      <p style="margin-top:10px;">To convert binary back to text, each 8-bit group is converted back to a decimal number, then looked up in the ASCII table to get the character.</p>
+    </div>
+  </div>
+
+  <!-- Decimal ↔ Binary -->
+  <div id="panel-decimal-binary" style="display:none;">
+    <div class="num-card">
+      <div class="num-grid">
+        <div class="num-field">
+          <label>Decimal (base 10)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="dec-in" placeholder="e.g. 255" oninput="convertDecBin()" />
+            <button class="num-copy" onclick="copyInput('dec-in','ok-dec')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-dec"></div>
+        </div>
+        <div class="num-field">
+          <label>Binary (base 2)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="bin-from-dec" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('bin-from-dec','ok-bfd')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-bfd"></div>
+        </div>
+        <div class="num-field">
+          <label>Octal (base 8)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="oct-from-dec" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('oct-from-dec','ok-ofd')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-ofd"></div>
+        </div>
+        <div class="num-field">
+          <label>Hexadecimal (base 16)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="hex-from-dec" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('hex-from-dec','ok-hfd')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-hfd"></div>
+        </div>
+      </div>
+      <div class="num-error" id="err-dec" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="section">
+      <h2>How to convert decimal to binary</h2>
+      <p>Divide the decimal number by 2 repeatedly, recording the remainder each time. Read the remainders from bottom to top. Example: converting 13 to binary:</p>
+      <div class="example-box"><pre>13 ÷ 2 = 6  remainder 1
+ 6 ÷ 2 = 3  remainder 0
+ 3 ÷ 2 = 1  remainder 1
+ 1 ÷ 2 = 0  remainder 1
+
+Read bottom to top: 1101
+So 13 (decimal) = 1101 (binary)</pre></div>
+    </div>
+  </div>
+
+  <!-- Hex ↔ Binary -->
+  <div id="panel-hex-binary" style="display:none;">
+    <div class="num-card">
+      <div class="num-grid">
+        <div class="num-field">
+          <label>Hexadecimal (base 16)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="hex-in" placeholder="e.g. FF or 0xFF" oninput="convertHexBin()" />
+            <button class="num-copy" onclick="copyInput('hex-in','ok-hi')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-hi"></div>
+        </div>
+        <div class="num-field">
+          <label>Binary (base 2)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="bin-from-hex" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('bin-from-hex','ok-bfh')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-bfh"></div>
+        </div>
+        <div class="num-field">
+          <label>Decimal (base 10)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="dec-from-hex" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('dec-from-hex','ok-dfh')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-dfh"></div>
+        </div>
+        <div class="num-field">
+          <label>Octal (base 8)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="oct-from-hex" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('oct-from-hex','ok-ofh')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-ofh"></div>
+        </div>
+      </div>
+      <div class="num-error" id="err-hex" style="margin-top:12px;"></div>
+    </div>
+
+    <div class="section">
+      <h2>How to convert hex to binary</h2>
+      <p>Each hex digit maps directly to a 4-bit binary group (nibble). This makes hex-to-binary conversion very fast:</p>
+      <div class="example-box"><pre>0 → 0000    4 → 0100    8 → 1000    C → 1100
+1 → 0001    5 → 0101    9 → 1001    D → 1101
+2 → 0010    6 → 0110    A → 1010    E → 1110
+3 → 0011    7 → 0111    B → 1011    F → 1111
+
+Example: FF hex → 1111 1111 binary → 255 decimal</pre></div>
+    </div>
+  </div>
+
+  <!-- Decimal ↔ Hex -->
+  <div id="panel-decimal-hex" style="display:none;">
+    <div class="num-card">
+      <div class="num-grid">
+        <div class="num-field">
+          <label>Decimal (base 10)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="dec-in2" placeholder="e.g. 255" oninput="convertDecHex()" />
+            <button class="num-copy" onclick="copyInput('dec-in2','ok-di2')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-di2"></div>
+        </div>
+        <div class="num-field">
+          <label>Hexadecimal (base 16)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="hex-from-dec2" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('hex-from-dec2','ok-hfd2')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-hfd2"></div>
+        </div>
+        <div class="num-field">
+          <label>Binary (base 2)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="bin-from-dec2" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('bin-from-dec2','ok-bfd2')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-bfd2"></div>
+        </div>
+        <div class="num-field">
+          <label>Octal (base 8)</label>
+          <div class="num-field-row">
+            <input type="text" class="num-input" id="oct-from-dec2" placeholder="Result" readonly />
+            <button class="num-copy" onclick="copyInput('oct-from-dec2','ok-ofd2')">Copy</button>
+          </div>
+          <div class="num-error" id="ok-ofd2"></div>
+        </div>
+      </div>
+      <div class="num-error" id="err-dh" style="margin-top:12px;"></div>
+    </div>
+  </div>
+
+  <!-- ASCII Reference -->
+  <div id="panel-reference" style="display:none;">
+    <div class="ref-card">
+      <div class="ref-header">
+        ASCII / Binary / Hex Reference Table
+        <input type="text" class="ref-filter" id="ref-filter" placeholder="Filter by char…" oninput="filterTable()" />
+      </div>
+      <div style="overflow-x:auto; max-height:500px; overflow-y:auto;">
+        <table class="ref-table" id="ref-table">
+          <thead>
+            <tr>
+              <th>Char</th>
+              <th>Decimal</th>
+              <th>Binary</th>
+              <th>Hex</th>
+              <th>Octal</th>
+            </tr>
+          </thead>
+          <tbody id="ref-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- FAQ -->
+  <div class="section">
+    <h2>Frequently asked questions</h2>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I convert text to binary?<span class="arrow">▾</span></div>
+      <div class="faq-a">Type or paste your text into the Text ↔ Binary tab above. Each character is automatically converted to its 8-bit binary equivalent using its ASCII value. The binary groups are separated by spaces for readability.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I convert binary to decimal?<span class="arrow">▾</span></div>
+      <div class="faq-a">Use the Decimal ↔ Binary tab. To do it manually: multiply each binary digit by 2 raised to its position (from right, starting at 0), then add all the results. Example: <code>1101</code> = 1×8 + 1×4 + 0×2 + 1×1 = 13.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is binary code?<span class="arrow">▾</span></div>
+      <div class="faq-a">Binary code is a numbering system that uses only two digits — 0 and 1. Computers use binary because transistors have two states: on (1) and off (0). All data in a computer — text, images, programs — is ultimately stored and processed as binary numbers.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many bits does a letter take in binary?<span class="arrow">▾</span></div>
+      <div class="faq-a">In standard ASCII encoding, each character takes 8 bits (1 byte). For example, the letter 'A' is 65 in decimal and <code>01000001</code> in binary. In UTF-8 (Unicode), common English characters still use 1 byte, but other characters can use 2–4 bytes.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is hexadecimal and why is it used?<span class="arrow">▾</span></div>
+      <div class="faq-a">Hexadecimal (hex) is a base-16 numbering system using digits 0–9 and letters A–F. It's used in computing because one hex digit represents exactly 4 bits, making it a compact way to write binary numbers. A byte (8 bits) can be written as two hex digits — e.g. <code>FF</code> = <code>11111111</code> = 255.</div>
+    </div>
+
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How do I convert letters to binary online?<span class="arrow">▾</span></div>
+      <div class="faq-a">Use the Text ↔ Binary tab above. Type any letters, numbers, or symbols and the tool instantly shows the binary representation. You can also convert binary back to letters by pressing the swap button.</div>
+    </div>
+  </div>
+
+  <!-- Related -->
+  <div class="section">
+    <h2>Related tools</h2>
+    <div class="related-tools">
+      <a href="https://seotriggers.com/tools/json-formatter" class="related-link">JSON Formatter →</a>
+      <a href="https://seotriggers.com/tools/uppercase-to-lowercase" class="related-link">Case Converter →</a>
+      <a href="https://seotriggers.com/tools/word-counter" class="related-link">Word Counter →</a>
+      <a href="https://seotriggers.com/tools" class="related-link">Browse all tools →</a>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">⚡ SEOTriggers</div>
+    <div class="footer-tagline">Free Word Counter &amp; SEO Content Analyzer. All analysis runs privately in your browser.</div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Product</h4>
+        <a href="https://seotriggers.com/">SEO Tool</a>
+        <a href="https://seotriggers.com/tools">Free Tools</a>
+        <a href="https://seotriggers.com/blog">Blog</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="https://seotriggers.com/about">About Us</a>
+        <a href="https://seotriggers.com/contact">Contact Us</a>
+        <a href="https://seotriggers.com/editorial-policy">Editorial Policy</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="https://seotriggers.com/privacy-policy">Privacy Policy</a>
+        <a href="https://seotriggers.com/terms">Terms &amp; Conditions</a>
+        <a href="https://seotriggers.com/disclaimer">Disclaimer</a>
+        <a href="https://seotriggers.com/dmca">DMCA Policy</a>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 SEOTriggers. All rights reserved.</div>
+  </div>
+</footer>
+
+<!-- Schema -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://seotriggers.com/tools/binary-converter",
+      "url": "https://seotriggers.com/tools/binary-converter",
+      "name": "Binary Converter — Text, Decimal & Hex to Binary | SEOTriggers",
+      "description": "Convert text to binary, binary to text, decimal to binary, hex to binary and more. Free, instant, runs in your browser.",
+      "breadcrumb": {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+          { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools" },
+          { "@type": "ListItem", "position": 3, "name": "Binary Converter" }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        { "@type": "Question", "name": "How do I convert text to binary?", "acceptedAnswer": { "@type": "Answer", "text": "Type or paste your text into the Text to Binary tab. Each character is converted to its 8-bit ASCII binary equivalent automatically." } },
+        { "@type": "Question", "name": "What is binary code?", "acceptedAnswer": { "@type": "Answer", "text": "Binary code uses only 0 and 1. Computers use binary because transistors have two states: on (1) and off (0). All data is stored as binary." } },
+        { "@type": "Question", "name": "How many bits does a letter take in binary?", "acceptedAnswer": { "@type": "Answer", "text": "In ASCII, each character takes 8 bits (1 byte). The letter A is 65 in decimal and 01000001 in binary." } },
+        { "@type": "Question", "name": "How do I convert binary to decimal?", "acceptedAnswer": { "@type": "Answer", "text": "Multiply each binary digit by 2 raised to its position from right (starting at 0), then add all results. Example: 1101 = 8+4+0+1 = 13." } }
+      ]
+    },
+    {
+      "@type": "SoftwareApplication",
+      "name": "Binary Converter",
+      "applicationCategory": "UtilitiesApplication",
+      "operatingSystem": "Web",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+      "url": "https://seotriggers.com/tools/binary-converter"
+    }
+  ]
+}
+</script>
+
+<script>
+let tbDirection = 'forward'; // forward = text→binary, reverse = binary→text
+
+// ── Mode switching ──────────────────────────────────────────────────────────
+function setMode(btn) {
+  document.querySelectorAll('.mode-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  const mode = btn.dataset.mode;
+  ['text-binary','decimal-binary','hex-binary','decimal-hex','reference'].forEach(m => {
+    document.getElementById('panel-' + m).style.display = m === mode ? '' : 'none';
+  });
+  if (mode === 'reference') buildTable();
+}
+
+// ── Text ↔ Binary ───────────────────────────────────────────────────────────
+function convertTextBinary(dir) {
+  const errEl = document.getElementById('err-tb');
+  errEl.textContent = '';
+
+  if (dir === 'forward') {
+    const text = document.getElementById('left-tb').value;
+    if (!text) { document.getElementById('right-tb').value = ''; return; }
+    try {
+      const bin = text.split('').map(c => {
+        const code = c.charCodeAt(0);
+        if (code > 127) throw new Error(`Character "${c}" is not standard ASCII`);
+        return code.toString(2).padStart(8, '0');
+      }).join(' ');
+      document.getElementById('right-tb').value = bin;
+    } catch(e) { errEl.textContent = e.message; }
+  } else {
+    const bin = document.getElementById('right-tb').value.trim();
+    if (!bin) { document.getElementById('left-tb').value = ''; return; }
+    try {
+      const groups = bin.replace(/[^01\s]/g, '').trim().split(/\s+/);
+      if (groups.some(g => g.length !== 8)) throw new Error('Each binary group must be exactly 8 bits (e.g. 01001000)');
+      const text = groups.map(g => String.fromCharCode(parseInt(g, 2))).join('');
+      document.getElementById('left-tb').value = text;
+    } catch(e) { errEl.textContent = e.message; }
+  }
+}
+
+function swapTextBinary() {
+  const left = document.getElementById('left-tb');
+  const right = document.getElementById('right-tb');
+  const lblLeft = document.getElementById('lbl-left-tb');
+  const lblRight = document.getElementById('lbl-right-tb');
+
+  if (tbDirection === 'forward') {
+    // Switch to binary→text
+    right.removeAttribute('readonly');
+    left.setAttribute('readonly', '');
+    right.oninput = () => convertTextBinary('reverse');
+    left.oninput = null;
+    lblLeft.textContent = 'Binary';
+    lblRight.textContent = 'Text / ASCII';
+    // Swap values
+    const tmp = left.value;
+    left.value = right.value;
+    right.value = tmp;
+    tbDirection = 'reverse';
+  } else {
+    left.removeAttribute('readonly');
+    right.setAttribute('readonly', '');
+    left.oninput = () => convertTextBinary('forward');
+    right.oninput = null;
+    lblLeft.textContent = 'Text / ASCII';
+    lblRight.textContent = 'Binary';
+    const tmp = left.value;
+    left.value = right.value;
+    right.value = tmp;
+    tbDirection = 'forward';
+    convertTextBinary('forward');
+  }
+}
+
+// ── Decimal ↔ Binary ────────────────────────────────────────────────────────
+function convertDecBin() {
+  const raw = document.getElementById('dec-in').value.trim();
+  const err = document.getElementById('err-dec');
+  err.textContent = '';
+  if (!raw) { ['bin-from-dec','oct-from-dec','hex-from-dec'].forEach(id => document.getElementById(id).value = ''); return; }
+  const n = parseInt(raw, 10);
+  if (isNaN(n) || n < 0) { err.textContent = 'Please enter a valid positive integer.'; return; }
+  document.getElementById('bin-from-dec').value = n.toString(2);
+  document.getElementById('oct-from-dec').value = n.toString(8);
+  document.getElementById('hex-from-dec').value = n.toString(16).toUpperCase();
+}
+
+// ── Hex ↔ Binary ────────────────────────────────────────────────────────────
+function convertHexBin() {
+  const raw = document.getElementById('hex-in').value.trim().replace(/^0x/i, '');
+  const err = document.getElementById('err-hex');
+  err.textContent = '';
+  if (!raw) { ['bin-from-hex','dec-from-hex','oct-from-hex'].forEach(id => document.getElementById(id).value = ''); return; }
+  if (!/^[0-9a-fA-F]+$/.test(raw)) { err.textContent = 'Invalid hex. Use digits 0–9 and letters A–F.'; return; }
+  const n = parseInt(raw, 16);
+  document.getElementById('bin-from-hex').value = n.toString(2);
+  document.getElementById('dec-from-hex').value = n.toString(10);
+  document.getElementById('oct-from-hex').value = n.toString(8);
+}
+
+// ── Decimal ↔ Hex ────────────────────────────────────────────────────────────
+function convertDecHex() {
+  const raw = document.getElementById('dec-in2').value.trim();
+  const err = document.getElementById('err-dh');
+  err.textContent = '';
+  if (!raw) { ['hex-from-dec2','bin-from-dec2','oct-from-dec2'].forEach(id => document.getElementById(id).value = ''); return; }
+  const n = parseInt(raw, 10);
+  if (isNaN(n) || n < 0) { err.textContent = 'Please enter a valid positive integer.'; return; }
+  document.getElementById('hex-from-dec2').value = n.toString(16).toUpperCase();
+  document.getElementById('bin-from-dec2').value = n.toString(2);
+  document.getElementById('oct-from-dec2').value = n.toString(8);
+}
+
+// ── ASCII Reference Table ────────────────────────────────────────────────────
+let tableBuilt = false;
+function buildTable() {
+  if (tableBuilt) return;
+  const tbody = document.getElementById('ref-tbody');
+  const rows = [];
+  for (let i = 32; i <= 126; i++) {
+    const char = String.fromCharCode(i);
+    rows.push(`<tr>
+      <td class="char-col">${char === '<' ? '&lt;' : char === '>' ? '&gt;' : char === '&' ? '&amp;' : char}</td>
+      <td>${i}</td>
+      <td>${i.toString(2).padStart(8,'0')}</td>
+      <td>${i.toString(16).toUpperCase().padStart(2,'0')}</td>
+      <td>${i.toString(8)}</td>
+    </tr>`);
+  }
+  tbody.innerHTML = rows.join('');
+  tableBuilt = true;
+}
+
+function filterTable() {
+  const q = document.getElementById('ref-filter').value.toLowerCase();
+  document.querySelectorAll('#ref-tbody tr').forEach(row => {
+    row.style.display = row.textContent.toLowerCase().includes(q) ? '' : 'none';
+  });
+}
+
+// ── Copy helpers ─────────────────────────────────────────────────────────────
+function copyField(fieldId, okId) {
+  const val = document.getElementById(fieldId).value;
+  if (!val) return;
+  navigator.clipboard.writeText(val).then(() => {
+    const el = document.getElementById(okId);
+    el.style.display = 'inline';
+    setTimeout(() => el.style.display = 'none', 2000);
+  });
+}
+
+function copyInput(inputId, okId) {
+  const val = document.getElementById(inputId).value;
+  if (!val) return;
+  navigator.clipboard.writeText(val).then(() => {
+    const el = document.getElementById(okId);
+    el.textContent = 'Copied!';
+    el.style.color = '#22c55e';
+    setTimeout(() => { el.textContent = ''; }, 2000);
+  });
+}
+
+function toggleFaq(el) {
+  const ans = el.nextElementSibling;
+  const open = ans.classList.contains('open');
+  document.querySelectorAll('.faq-a').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-q').forEach(q => q.classList.remove('open'));
+  if (!open) { ans.classList.add('open'); el.classList.add('open'); }
+}
+</script>
+</body>
+</html>
