@@ -344,29 +344,50 @@ let allEntries = [];   // {loc, lastmod, priority, changefreq}
 let crawledSitemaps = [];
 let dupeCount = 0;
 
-/* ── Fetch with CORS-safe proxy fallback chain ── */
+/* ── Fetch with CORS-safe proxy fallback chain (with timeout per attempt) ── */
+function fetchWithTimeout(input, opts={}, ms=12000){
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), ms);
+  return fetch(input, {...opts, signal: controller.signal}).finally(() => clearTimeout(id));
+}
+
 async function fetchText(url){
   const attempts = [
-    () => fetch(url, {mode:'cors'}).then(r => { if(!r.ok) throw new Error('status '+r.status); return r.text(); }),
-    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('proxy status '+r.status); return r.text(); }),
-    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('allorigins status '+r.status); return r.text(); }),
-    () => fetch('https://corsproxy.io/?' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('corsproxy status '+r.status); return r.text(); })
+    {name:'direct', run: () => fetchWithTimeout(url, {mode:'cors'}).then(r => { if(!r.ok) throw new Error('status '+r.status); return r.text(); })},
+    {name:'site-proxy', run: () => fetchWithTimeout('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('proxy status '+r.status); return r.text(); })},
+    {name:'allorigins-raw', run: () => fetchWithTimeout('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('allorigins status '+r.status); return r.text(); })},
+    {name:'allorigins-json', run: () => fetchWithTimeout('https://api.allorigins.win/get?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('allorigins-json status '+r.status); return r.json(); }).then(j => j && j.contents ? j.contents : (()=>{throw new Error('no contents');})())},
+    {name:'corsproxy', run: () => fetchWithTimeout('https://corsproxy.io/?' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('corsproxy status '+r.status); return r.text(); })},
+    {name:'thingproxy', run: () => fetchWithTimeout('https://thingproxy.freeboard.io/fetch/' + url).then(r => { if(!r.ok) throw new Error('thingproxy status '+r.status); return r.text(); })}
   ];
   let lastErr = null;
+  const triedNames = [];
   for(const attempt of attempts){
+    triedNames.push(attempt.name);
     try{
-      const text = await attempt();
-      if(text && text.trim().length > 0) return text;
+      let text = await attempt.run();
+      if(typeof text !== 'string') continue;
+      text = text.replace(/^\uFEFF/, '').trim();
+      if(!text) continue;
+      if(/^<!doctype html/i.test(text) || /^<html[\s>]/i.test(text)){
+        lastErr = new Error(attempt.name + ' returned an HTML page instead of XML (likely blocked by bot protection)');
+        continue;
+      }
+      return text;
     }catch(e){ lastErr = e; }
   }
-  throw lastErr || new Error('All fetch methods failed for ' + url);
+  const reason = lastErr ? lastErr.message : 'unknown error';
+  throw new Error(`Could not fetch via any method (tried: ${triedNames.join(', ')}). Last reason: ${reason}. This site may have bot-protection (e.g. Cloudflare) blocking automated requests.`);
 }
 
 function parseXml(text){
   const parser = new DOMParser();
   const doc = parser.parseFromString(text, 'text/xml');
   const errNode = doc.getElementsByTagName('parsererror')[0];
-  if(errNode) throw new Error('XML parse error: ' + errNode.textContent.slice(0,160));
+  if(errNode){
+    const preview = text.slice(0,120).replace(/\s+/g,' ');
+    throw new Error('Fetched content was not valid XML. Preview: "' + preview + '…"');
+  }
   return doc;
 }
 
@@ -464,7 +485,24 @@ async function runExtraction(){
   };
 
   try{
-    const entries = await crawlSitemap(url, 0, 4, onProgress);
+    let entries;
+    let usedFallback = false;
+    try{
+      entries = await crawlSitemap(url, 0, 4, onProgress);
+    }catch(firstErr){
+      // auto-fallback: try the domain's root /sitemap.xml if the given path failed
+      const u = new URL(url);
+      const fallbackUrl = u.origin + '/sitemap.xml';
+      if(fallbackUrl !== url){
+        progressLabel.textContent = 'Original URL failed, trying ' + fallbackUrl + ' …';
+        crawledSitemaps = [];
+        entries = await crawlSitemap(fallbackUrl, 0, 4, onProgress);
+        url = fallbackUrl;
+        usedFallback = true;
+      } else {
+        throw firstErr;
+      }
+    }
     progressBar.style.width = '100%';
     progressLabel.textContent = 'Done';
 
@@ -497,7 +535,7 @@ async function runExtraction(){
 
     renderResults();
     resultsSection.classList.add('show');
-    showToast(`Extracted ${allEntries.length.toLocaleString()} URLs ✓`);
+    showToast(`Extracted ${allEntries.length.toLocaleString()} URLs ✓` + (usedFallback ? ` (found at ${url})` : ''));
   }catch(err){
     progressWrap.classList.remove('show');
     showToast(err && err.message ? err.message.slice(0,140) : 'Could not fetch that sitemap. Check the URL and try again.');
