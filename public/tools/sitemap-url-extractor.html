@@ -344,23 +344,30 @@ let allEntries = [];   // {loc, lastmod, priority, changefreq}
 let crawledSitemaps = [];
 let dupeCount = 0;
 
-/* ── Fetch with CORS-safe proxy fallback ── */
+/* ── Fetch with CORS-safe proxy fallback chain ── */
 async function fetchText(url){
-  try{
-    const r = await fetch(url, {mode:'cors'});
-    if(r.ok) return await r.text();
-    throw new Error('bad status');
-  }catch(e){
-    // fall back to same-site proxy used elsewhere on the site for CORS-safe fetching
-    const r2 = await fetch('/api/fetch-url?url=' + encodeURIComponent(url));
-    if(!r2.ok) throw new Error('Could not fetch ' + url);
-    return await r2.text();
+  const attempts = [
+    () => fetch(url, {mode:'cors'}).then(r => { if(!r.ok) throw new Error('status '+r.status); return r.text(); }),
+    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('proxy status '+r.status); return r.text(); }),
+    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('allorigins status '+r.status); return r.text(); }),
+    () => fetch('https://corsproxy.io/?' + encodeURIComponent(url)).then(r => { if(!r.ok) throw new Error('corsproxy status '+r.status); return r.text(); })
+  ];
+  let lastErr = null;
+  for(const attempt of attempts){
+    try{
+      const text = await attempt();
+      if(text && text.trim().length > 0) return text;
+    }catch(e){ lastErr = e; }
   }
+  throw lastErr || new Error('All fetch methods failed for ' + url);
 }
 
 function parseXml(text){
   const parser = new DOMParser();
-  return parser.parseFromString(text, 'text/xml');
+  const doc = parser.parseFromString(text, 'text/xml');
+  const errNode = doc.getElementsByTagName('parsererror')[0];
+  if(errNode) throw new Error('XML parse error: ' + errNode.textContent.slice(0,160));
+  return doc;
 }
 
 function isSitemapIndex(doc){
@@ -373,10 +380,18 @@ async function crawlSitemap(url, depth, maxDepth, onProgress){
   try{
     text = await fetchText(url);
   }catch(e){
-    crawledSitemaps.push({url, status:'failed'});
+    crawledSitemaps.push({url, status:'failed', reason: (e && e.message) ? e.message : 'fetch failed'});
+    if(depth === 0) throw new Error('Could not fetch the sitemap (CORS/network blocked). ' + (e && e.message ? e.message : ''));
     return [];
   }
-  const doc = parseXml(text);
+  let doc;
+  try{
+    doc = parseXml(text);
+  }catch(e){
+    crawledSitemaps.push({url, status:'failed', reason: e.message});
+    if(depth === 0) throw e;
+    return [];
+  }
   crawledSitemaps.push({url, status:'ok'});
   onProgress();
 
@@ -465,10 +480,10 @@ async function runExtraction(){
 
     setTimeout(()=>{ progressWrap.classList.remove('show'); }, 600);
 
-    if(crawledSitemaps.length > 1){
+    if(crawledSitemaps.length > 1 || crawledSitemaps.some(s=>s.status==='failed')){
       sitemapTree.classList.add('show');
       treeList.innerHTML = crawledSitemaps.map(s =>
-        `<div class="node"><a href="${s.url}" target="_blank" rel="noopener">${s.url}</a><span class="${s.status==='ok'?'tag':''}" style="color:${s.status==='ok'?'':'#dc2626'}">${s.status==='ok'?'✓ crawled':'✕ failed'}</span></div>`
+        `<div class="node"><a href="${s.url}" target="_blank" rel="noopener">${s.url}</a><span style="color:${s.status==='ok'?'#16a34a':'#dc2626'}">${s.status==='ok'?'✓ crawled':'✕ '+(s.reason||'failed')}</span></div>`
       ).join('');
     }
 
@@ -485,7 +500,7 @@ async function runExtraction(){
     showToast(`Extracted ${allEntries.length.toLocaleString()} URLs ✓`);
   }catch(err){
     progressWrap.classList.remove('show');
-    showToast('Could not fetch that sitemap. Check the URL and try again.');
+    showToast(err && err.message ? err.message.slice(0,140) : 'Could not fetch that sitemap. Check the URL and try again.');
   }finally{
     btnExtract.disabled = false;
     btnExtract.textContent = '⚡ Extract URLs';
