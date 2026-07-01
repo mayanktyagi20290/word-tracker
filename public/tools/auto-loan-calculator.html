@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Auto Loan Calculator — Monthly Payment, Total Interest & Amortization | SEOTriggers</title>
+<meta name="description" content="Free auto loan calculator. Enter car price, down payment, trade-in, interest rate and get monthly payment, total cost, full amortization schedule, and side-by-side loan comparison.">
+<link rel="canonical" href="https://seotriggers.com/tools/auto-loan-calculator">
+<meta property="og:title" content="Auto Loan Calculator — Free, No Sign-up">
+<meta property="og:description" content="Calculate monthly car payments with full amortization schedule, trade-in, taxes, and compare multiple loan options instantly.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Auto Loan Calculator","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"url":"https://seotriggers.com/tools/auto-loan-calculator"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},{"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},{"@type":"ListItem","position":3,"name":"Auto Loan Calculator","item":"https://seotriggers.com/tools/auto-loan-calculator"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the monthly auto loan payment calculated?","acceptedAnswer":{"@type":"Answer","text":"Monthly payment = P × [r(1+r)^n] / [(1+r)^n – 1], where P is the loan principal, r is the monthly interest rate (annual rate ÷ 12), and n is the number of months. The calculator accounts for down payment, trade-in value, cash incentives, sales tax, and fees to arrive at the true loan principal."}},{"@type":"Question","name":"Should I include taxes and fees in my auto loan?","acceptedAnswer":{"@type":"Answer","text":"Rolling taxes and fees into the loan increases the principal you pay interest on, costing more long-term. If you can pay them upfront, you save on total interest. Use this calculator to compare both scenarios instantly."}},{"@type":"Question","name":"How much does a trade-in reduce my auto loan?","acceptedAnswer":{"@type":"Answer","text":"A trade-in directly reduces the car price before the loan is calculated. In most states it also reduces the taxable amount, saving you sales tax on the trade-in value. The calculator accounts for your state's trade-in tax rule automatically."}},{"@type":"Question","name":"What is an amortization schedule?","acceptedAnswer":{"@type":"Answer","text":"An amortization schedule shows exactly how each monthly payment is split between interest and principal over the life of the loan. Early payments are mostly interest; later payments are mostly principal. This calculator generates a full month-by-month schedule."}}]}</script>
+<style>
+:root{
+  --brand:#6366f1;--bd:#4f46e5;--bl:#eef0ff;
+  --ink:#1a1b23;--is:#5b5e6e;--if:#9497a6;
+  --line:#e4e5ec;--bg:#f7f7fb;--sf:#fff;
+  --good:#16a34a;--gbg:#ecfdf3;--bad:#dc2626;--bbg:#fef2f2;
+  --warn:#d97706;--wbg:#fffbeb;
+  --r:12px;--sh:0 1px 2px rgba(20,21,40,.04),0 4px 16px rgba(20,21,40,.06);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--ink);}
+.nav{position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid var(--line);}
+.nav-in{max-width:1120px;margin:0 auto;padding:13px 24px;display:flex;align-items:center;}
+.logo{font-weight:800;font-size:17px;text-decoration:none;color:var(--ink);}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:18px;margin-left:auto;font-size:13.5px;font-weight:500;}
+.nav-links a{text-decoration:none;color:var(--is);}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px 60px;}
+.crumbs{font-size:12.5px;color:var(--if);padding:14px 0 0;}
+.crumbs a{text-decoration:none;color:var(--if);}
+.hero{padding:14px 0 18px;}
+.hero h1{font-size:27px;font-weight:800;letter-spacing:-.4px;margin-bottom:6px;}
+.hero p{font-size:13.5px;color:var(--is);line-height:1.6;max-width:600px;}
+
+/* layout */
+.grid{display:grid;grid-template-columns:380px 1fr;gap:18px;align-items:start;}
+@media(max-width:860px){.grid{grid-template-columns:1fr;}}
+
+/* card */
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;box-shadow:var(--sh);overflow:hidden;}
+.card-head{padding:12px 18px;border-bottom:1px solid var(--line);background:#fbfbfe;display:flex;justify-content:space-between;align-items:center;}
+.card-head h3{font-size:13.5px;font-weight:700;color:var(--is);}
+.card-body{padding:16px 18px;}
+
+/* inputs */
+.field{margin-bottom:13px;}
+.field:last-child{margin-bottom:0;}
+.field label{display:flex;justify-content:space-between;font-size:11.5px;font-weight:700;color:var(--is);text-transform:uppercase;letter-spacing:.3px;margin-bottom:5px;}
+.field label span{font-weight:700;color:var(--brand);font-size:12px;text-transform:none;}
+.inp-wrap{position:relative;}
+.inp-pre{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:var(--if);}
+.inp-suf{position:absolute;right:12px;top:50%;transform:translateY(-50%);font-size:14px;font-weight:600;color:var(--if);}
+input[type=number],input[type=text],select{width:100%;height:40px;border:1px solid var(--line);border-radius:9px;font-size:14px;font-family:inherit;color:var(--ink);outline:none;background:#fff;padding:0 12px;}
+input[type=number].has-pre,input[type=text].has-pre{padding-left:26px;}
+input[type=number].has-suf{padding-right:30px;}
+input[type=number]:focus,select:focus{border-color:var(--brand);box-shadow:0 0 0 3px var(--bl);}
+input[type=range]{width:100%;accent-color:var(--brand);height:4px;cursor:pointer;margin-top:6px;}
+
+.toggle-row{display:flex;align-items:center;gap:10px;background:var(--bg);border-radius:9px;padding:10px 13px;margin-top:4px;}
+.toggle-row label{font-size:12.5px;font-weight:600;color:var(--is);cursor:pointer;}
+.toggle-row input[type=checkbox]{accent-color:var(--brand);width:15px;height:15px;cursor:pointer;}
+
+.calc-btn{width:100%;height:50px;background:var(--bd);color:#fff;border:none;border-radius:12px;font-family:inherit;font-size:15px;font-weight:800;cursor:pointer;margin-top:4px;transition:.15s;letter-spacing:-.2px;}
+.calc-btn:hover{background:var(--brand);}
+
+/* result hero */
+.result-hero{background:var(--bd);border-radius:16px 16px 0 0;padding:22px 20px 18px;color:#fff;text-align:center;}
+.result-hero .label{font-size:12px;font-weight:700;opacity:.7;text-transform:uppercase;letter-spacing:.5px;}
+.result-hero .amount{font-size:46px;font-weight:800;line-height:1;margin:4px 0;}
+.result-hero .sub{font-size:13px;opacity:.8;}
+
+/* summary grid */
+.summary{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(255,255,255,.15);}
+.sum-item{padding:13px 16px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);}
+.sum-item:nth-child(2n){border-right:none;}
+.sum-item .slabel{font-size:11px;font-weight:700;color:var(--if);text-transform:uppercase;letter-spacing:.3px;}
+.sum-item .sval{font-size:16px;font-weight:800;color:var(--ink);margin-top:2px;}
+
+/* donut chart */
+.chart-wrap{padding:18px 20px;display:flex;align-items:center;gap:20px;border-bottom:1px solid var(--line);}
+.donut-wrap{position:relative;flex-shrink:0;}
+.donut-wrap svg{display:block;}
+.donut-center{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center;}
+.donut-center .pct{font-size:18px;font-weight:800;color:var(--ink);}
+.donut-center .plabel{font-size:10px;font-weight:700;color:var(--if);text-transform:uppercase;}
+.legend{display:flex;flex-direction:column;gap:10px;}
+.leg-item{display:flex;align-items:center;gap:8px;}
+.leg-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0;}
+.leg-label{font-size:12px;color:var(--is);}
+.leg-val{font-size:13px;font-weight:700;color:var(--ink);margin-left:auto;}
+
+/* comparison */
+.compare-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;padding:14px 18px;border-bottom:1px solid var(--line);}
+.cmp-col{background:var(--bg);border-radius:10px;padding:12px;}
+.cmp-col.best{background:var(--bl);border:2px solid var(--brand);}
+.cmp-col h4{font-size:11.5px;font-weight:700;color:var(--if);text-transform:uppercase;letter-spacing:.3px;margin-bottom:8px;}
+.cmp-col.best h4{color:var(--bd);}
+.cmp-val{font-size:15px;font-weight:800;color:var(--ink);}
+.cmp-val.good{color:var(--good);}
+.cmp-sub{font-size:11px;color:var(--if);margin-top:1px;}
+.cmp-row{display:flex;justify-content:space-between;align-items:baseline;margin-top:7px;padding-top:7px;border-top:1px solid var(--line);}
+.cmp-row span{font-size:11.5px;color:var(--is);}
+.cmp-row b{font-size:12px;font-weight:700;color:var(--ink);}
+
+/* tabs */
+.tabs{display:flex;gap:0;border-bottom:1px solid var(--line);}
+.tab{flex:1;padding:11px;font-size:13px;font-weight:700;color:var(--if);background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;font-family:inherit;transition:.12s;}
+.tab.active{color:var(--brand);border-bottom-color:var(--brand);}
+
+/* amortization table */
+.amort-scroll{max-height:460px;overflow:auto;}
+table.amort{width:100%;border-collapse:collapse;font-size:12.5px;}
+table.amort th{position:sticky;top:0;background:#fbfbfe;padding:8px 12px;font-size:11px;font-weight:700;color:var(--if);text-transform:uppercase;letter-spacing:.3px;text-align:right;border-bottom:1px solid var(--line);}
+table.amort th:first-child{text-align:left;}
+table.amort td{padding:7px 12px;border-bottom:1px solid var(--line);text-align:right;color:var(--is);}
+table.amort td:first-child{text-align:left;color:var(--ink);font-weight:600;}
+table.amort tr.yr-row td{background:var(--bl);color:var(--bd);font-weight:700;font-size:11.5px;}
+table.amort tr:hover:not(.yr-row) td{background:#f5f5ff;}
+
+/* hidden */
+.hidden{display:none!important;}
+
+.section{padding:40px 0 0;}
+.section h2{font-size:20px;font-weight:800;margin-bottom:8px;}
+.section .sub{font-size:13.5px;color:var(--is);margin-bottom:16px;line-height:1.6;}
+table.cmp2{width:100%;border-collapse:collapse;background:#fff;border:1px solid var(--line);border-radius:var(--r);overflow:hidden;box-shadow:var(--sh);}
+table.cmp2 th,table.cmp2 td{padding:10px 14px;font-size:13px;text-align:center;border-bottom:1px solid var(--line);}
+table.cmp2 th{background:#fbfbfe;font-weight:700;color:var(--is);font-size:11.5px;text-transform:uppercase;letter-spacing:.3px;}
+table.cmp2 td:first-child,table.cmp2 th:first-child{text-align:left;}
+table.cmp2 tr:last-child td{border-bottom:none;}
+.y{color:var(--good);font-weight:700;} .n{color:var(--bad);}
+.us{background:var(--bl);font-weight:700;color:var(--bd);}
+
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px;}
+.fcard{background:#fff;border:1px solid var(--line);border-radius:var(--r);padding:15px;box-shadow:var(--sh);}
+.fcard .ic{font-size:20px;margin-bottom:7px;}
+.fcard h4{font-size:13.5px;font-weight:700;margin-bottom:5px;}
+.fcard p{font-size:12.5px;color:var(--is);line-height:1.6;}
+
+.faq{background:#fff;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;}
+.faq summary{padding:13px 16px;font-size:13.5px;font-weight:600;cursor:pointer;list-style:none;display:flex;justify-content:space-between;}
+.faq summary::-webkit-details-marker{display:none;}
+.faq summary:after{content:"+";font-size:18px;color:var(--brand);}
+.faq[open] summary:after{content:"–";}
+.faq .a{padding:0 16px 14px;font-size:13px;color:var(--is);line-height:1.7;}
+
+footer{border-top:1px solid var(--line);padding:24px 0;margin-top:40px;text-align:center;font-size:13px;color:var(--if);}
+footer a{color:var(--bd);text-decoration:none;font-weight:600;}
+.badge{display:inline-block;background:var(--gbg);color:var(--good);font-size:11px;font-weight:700;padding:2px 8px;border-radius:5px;margin-left:6px;}
+</style>
+</head>
+<body>
+<nav class="nav"><div class="nav-in"><a class="logo" href="/">SEO<span>Triggers</span></a><div class="nav-links"><a href="/">Home</a><a href="/tools/">Tools</a><a href="/blog/">Blog</a></div></div></nav>
+
+<div class="wrap">
+  <div class="crumbs"><a href="/">Home</a> / <a href="/tools/">Tools</a> / Auto Loan Calculator</div>
+  <div class="hero">
+    <h1>Auto Loan Calculator</h1>
+    <p>Enter car price, loan term, interest rate, and optional trade-in or taxes to get your monthly payment, total cost breakdown, amortization schedule, and side-by-side loan comparison.</p>
+  </div>
+
+  <div class="grid">
+    <!-- ── LEFT: inputs ── -->
+    <div>
+      <div class="card">
+        <div class="card-head"><h3>🚗 Loan details</h3></div>
+        <div class="card-body">
+
+          <div class="field">
+            <label>Car price <span id="lCarPrice">$0</span></label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="carPrice" class="has-pre" value="800000" min="0"></div>
+            <input type="range" id="rCarPrice" min="100000" max="10000000" step="10000" value="800000">
+          </div>
+
+          <div class="field">
+            <label>Down payment <span id="lDown">$0</span></label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="downPayment" class="has-pre" value="150000" min="0"></div>
+            <input type="range" id="rDown" min="0" max="5000000" step="5000" value="150000">
+          </div>
+
+          <div class="field">
+            <label>Trade-in value <span id="lTrade">$0</span></label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="tradeIn" class="has-pre" value="0" min="0"></div>
+          </div>
+
+          <div class="field">
+            <label>Amount owed on trade-in <span id="lTradeOwed">$0</span></label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="tradeOwed" class="has-pre" value="0" min="0"></div>
+          </div>
+
+          <div class="field">
+            <label>Cash incentives / rebates <span id="lRebate">$0</span></label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="rebate" class="has-pre" value="0" min="0"></div>
+          </div>
+
+          <div class="field">
+            <label>Annual interest rate <span id="lRate">0%</span></label>
+            <div class="inp-wrap"><input type="number" id="rate" class="has-suf" value="9.5" min="0" max="50" step="0.1"><span class="inp-suf">%</span></div>
+            <input type="range" id="rRate" min="1" max="30" step="0.1" value="9.5">
+          </div>
+
+          <div class="field">
+            <label>Loan term <span id="lTerm">0 months</span></label>
+            <select id="term">
+              <option value="12">12 months (1 year)</option>
+              <option value="24">24 months (2 years)</option>
+              <option value="36">36 months (3 years)</option>
+              <option value="48">48 months (4 years)</option>
+              <option value="60" selected>60 months (5 years)</option>
+              <option value="72">72 months (6 years)</option>
+              <option value="84">84 months (7 years)</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Sales tax rate <span id="lTax">0%</span></label>
+            <div class="inp-wrap"><input type="number" id="taxRate" class="has-suf" value="0" min="0" max="30" step="0.1"><span class="inp-suf">%</span></div>
+          </div>
+
+          <div class="field">
+            <label>Other fees (registration, doc)</label>
+            <div class="inp-wrap"><span class="inp-pre">$</span><input type="number" id="fees" class="has-pre" value="0" min="0"></div>
+          </div>
+
+          <div class="toggle-row">
+            <input type="checkbox" id="rollTax" checked>
+            <label for="rollTax">Include taxes &amp; fees in loan (roll into principal)</label>
+          </div>
+
+          <button class="calc-btn" id="btnCalc">⚡ Calculate</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── RIGHT: results ── -->
+    <div id="resultsCol">
+      <div class="card" id="resultCard">
+        <!-- hero payment -->
+        <div class="result-hero" id="paymentHero">
+          <div class="label">Monthly Payment</div>
+          <div class="amount" id="rMonthly">$—</div>
+          <div class="sub" id="rSub">Enter details and click Calculate</div>
+        </div>
+
+        <!-- summary grid -->
+        <div class="summary" id="summaryGrid" style="display:none;">
+          <div class="sum-item"><div class="slabel">Loan principal</div><div class="sval" id="rPrincipal">—</div></div>
+          <div class="sum-item"><div class="slabel">Total interest</div><div class="sval" id="rInterest" style="color:var(--bad)">—</div></div>
+          <div class="sum-item"><div class="slabel">Total payments</div><div class="sval" id="rTotalPay">—</div></div>
+          <div class="sum-item"><div class="slabel">Total cost</div><div class="sval" id="rTotalCost">—</div></div>
+          <div class="sum-item"><div class="slabel">Tax paid</div><div class="sval" id="rTax">—</div></div>
+          <div class="sum-item"><div class="slabel">Upfront paid</div><div class="sval" id="rUpfront">—</div></div>
+        </div>
+
+        <!-- donut chart -->
+        <div class="chart-wrap" id="chartWrap" style="display:none;">
+          <div class="donut-wrap">
+            <svg width="110" height="110" viewBox="0 0 110 110">
+              <circle cx="55" cy="55" r="42" fill="none" stroke="#e4e5ec" stroke-width="14"/>
+              <circle id="donutInterest" cx="55" cy="55" r="42" fill="none" stroke="#f87171" stroke-width="14" stroke-dasharray="0 264" stroke-linecap="butt" transform="rotate(-90 55 55)" style="transition:.5s;"/>
+              <circle id="donutPrincipal" cx="55" cy="55" r="42" fill="none" stroke="#6366f1" stroke-width="14" stroke-dasharray="264 0" stroke-linecap="butt" transform="rotate(-90 55 55)" style="transition:.5s;"/>
+            </svg>
+            <div class="donut-center"><div class="pct" id="donutPct">—</div><div class="plabel">Principal</div></div>
+          </div>
+          <div class="legend" style="flex:1;">
+            <div class="leg-item"><div class="leg-dot" style="background:#6366f1;"></div><div class="leg-label">Principal</div><div class="leg-val" id="lgPrincipal">—</div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#f87171;"></div><div class="leg-label">Total interest</div><div class="leg-val" id="lgInterest">—</div></div>
+            <div class="leg-item"><div class="leg-dot" style="background:#fbbf24;"></div><div class="leg-label">Tax &amp; fees</div><div class="leg-val" id="lgTax">—</div></div>
+          </div>
+        </div>
+
+        <!-- loan comparison -->
+        <div id="compareSection" class="hidden">
+          <div style="padding:12px 18px;border-bottom:1px solid var(--line);font-size:12.5px;font-weight:700;color:var(--is);">📊 Loan term comparison — same rate</div>
+          <div class="compare-grid" id="compareGrid"></div>
+        </div>
+
+        <!-- tabs: amortization / yearly -->
+        <div class="tabs" id="amortTabs" style="display:none;">
+          <button class="tab active" data-t="monthly">Monthly schedule</button>
+          <button class="tab" data-t="yearly">Yearly summary</button>
+        </div>
+        <div class="amort-scroll" id="amortWrap" style="display:none;">
+          <table class="amort" id="amortTable">
+            <thead><tr><th>Month</th><th>Payment</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+            <tbody id="amortBody"></tbody>
+          </table>
+        </div>
+        <div class="amort-scroll hidden" id="yearlyWrap">
+          <table class="amort" id="yearlyTable">
+            <thead><tr><th>Year</th><th>Total paid</th><th>Principal</th><th>Interest</th><th>Balance</th></tr></thead>
+            <tbody id="yearlyBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- compare table -->
+  <div class="section">
+    <h2>How we compare</h2>
+    <p class="sub">Bankrate and calculator.net are great but loaded with ads. This tool is ad-free, has the same depth, plus loan term comparison built-in.</p>
+    <table class="cmp2">
+      <tr><th>Feature</th><th class="us">SEOTriggers</th><th>calculator.net</th><th>Bankrate</th><th>Bank of America</th></tr>
+      <tr><td>Monthly payment</td><td class="us y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="y">✓</td></tr>
+      <tr><td>Full amortization schedule</td><td class="us y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td></tr>
+      <tr><td>Side-by-side term comparison</td><td class="us y">✓ Built-in</td><td class="n">✗</td><td class="n">✗</td><td class="n">✗</td></tr>
+      <tr><td>Donut breakdown chart</td><td class="us y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td></tr>
+      <tr><td>Trade-in + rebates + fees</td><td class="us y">✓</td><td class="y">✓</td><td class="y">✓</td><td class="n">✗</td></tr>
+      <tr><td>Yearly summary tab</td><td class="us y">✓</td><td class="y">✓</td><td class="n">✗</td><td class="n">✗</td></tr>
+      <tr><td>Ad-free</td><td class="us y">✓</td><td class="n">✗ Ads</td><td class="n">✗ Ads</td><td class="n">✗</td></tr>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>Features</h2>
+    <div class="cards">
+      <div class="fcard"><div class="ic">📊</div><h4>Term comparison</h4><p>See 36 / 48 / 60 / 72-month payments side by side automatically — no need to re-enter details.</p></div>
+      <div class="fcard"><div class="ic">🔄</div><h4>Trade-in & rebates</h4><p>Trade-in value, amount owed on trade-in, and cash rebates are all factored into the real loan principal.</p></div>
+      <div class="fcard"><div class="ic">📅</div><h4>Full amortization</h4><p>Month-by-month breakdown of every payment showing principal vs interest and remaining balance.</p></div>
+      <div class="fcard"><div class="ic">🍩</div><h4>Visual breakdown</h4><p>Donut chart instantly shows what portion of your total payment goes to the bank vs the car.</p></div>
+      <div class="fcard"><div class="ic">🧾</div><h4>Tax & fees</h4><p>Add sales tax and registration/doc fees — choose to roll them into the loan or pay upfront.</p></div>
+      <div class="fcard"><div class="ic">🔒</div><h4>Private & ad-free</h4><p>No ads, no tracking, all calculations run in your browser — your financial data stays with you.</p></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-bottom:0;">
+    <h2>FAQ</h2>
+    <div style="margin-top:14px;">
+      <details class="faq" open><summary>How is the monthly auto loan payment calculated?</summary><div class="a">Monthly payment = P × [r(1+r)ⁿ] / [(1+r)ⁿ – 1], where P is the loan principal, r is the monthly interest rate (annual ÷ 12), and n is the number of months. The principal is the car price minus down payment, trade-in, and rebates, plus any rolled-in taxes and fees.</div></details>
+      <details class="faq"><summary>Should I include taxes and fees in my auto loan?</summary><div class="a">Rolling taxes and fees into the loan means you pay interest on them for the full loan term, costing more overall. If you can afford to pay them upfront, you save on interest. Toggle the checkbox in the calculator to see both scenarios instantly.</div></details>
+      <details class="faq"><summary>How much does a trade-in reduce my auto loan?</summary><div class="a">A trade-in directly reduces the price before calculating the loan. If you still owe money on the trade-in, that amount is added back to the new loan. Net trade-in value = trade-in value − amount owed.</div></details>
+      <details class="faq"><summary>What is an amortization schedule?</summary><div class="a">It shows exactly how each payment is split between interest and principal, month by month. Early payments are mostly interest; later ones are mostly principal. Scroll through the monthly or yearly tab after calculating.</div></details>
+    </div>
+  </div>
+</div>
+
+<footer>Free tool by <a href="/">SEOTriggers.com</a> · <a href="/tools/">All tools</a></footer>
+
+<script>
+const $ = id => document.getElementById(id);
+const fmt = n => '$' + Math.round(n).toLocaleString('en-US');
+const fmtD = n => '$' + n.toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+
+// slider sync
+function syncSlider(inputId, sliderId, labelId, prefix='$', suffix='') {
+  const inp = $(inputId), sl = $(sliderId), lbl = labelId ? $(labelId) : null;
+  if(!sl) return;
+  const update = () => {
+    if(inp.value !== sl.value) sl.value = inp.value;
+    if(lbl) lbl.textContent = prefix + parseFloat(inp.value).toLocaleString('en-US') + suffix;
+  };
+  inp.addEventListener('input', () => { sl.value = inp.value; if(lbl) lbl.textContent = prefix + parseFloat(inp.value||0).toLocaleString('en-US') + suffix; });
+  sl.addEventListener('input', () => { inp.value = sl.value; if(lbl) lbl.textContent = prefix + parseFloat(sl.value).toLocaleString('en-US') + suffix; });
+  update();
+}
+
+syncSlider('carPrice','rCarPrice','lCarPrice','$');
+syncSlider('downPayment','rDown','lDown','$');
+syncSlider('rate','rRate','lRate','','%');
+
+// label updates for non-slider fields
+['tradeIn','tradeOwed','rebate','fees','taxRate','term'].forEach(id => {
+  const el = $(id);
+  if(!el) return;
+  el.addEventListener('input', updateLabels);
+});
+function updateLabels(){
+  $('lTrade').textContent = '$' + parseFloat($('tradeIn').value||0).toLocaleString('en-US');
+  $('lTradeOwed').textContent = '$' + parseFloat($('tradeOwed').value||0).toLocaleString('en-US');
+  $('lRebate').textContent = '$' + parseFloat($('rebate').value||0).toLocaleString('en-US');
+  $('lTax').textContent = parseFloat($('taxRate').value||0) + '%';
+  $('lTerm').textContent = $('term').value + ' months';
+}
+updateLabels();
+
+function calcLoan(principal, annualRate, months){
+  if(annualRate === 0) return { monthly: principal/months, totalPay: principal, totalInterest: 0 };
+  const r = (annualRate/100)/12;
+  const monthly = principal * r * Math.pow(1+r,months) / (Math.pow(1+r,months)-1);
+  const totalPay = monthly * months;
+  const totalInterest = totalPay - principal;
+  return { monthly, totalPay, totalInterest };
+}
+
+function buildAmort(principal, annualRate, months, monthly){
+  const r = (annualRate/100)/12;
+  const rows = [];
+  let balance = principal;
+  for(let i=1;i<=months;i++){
+    const interest = balance * r;
+    let princ = monthly - interest;
+    if(i === months) princ = balance;
+    balance -= princ;
+    rows.push({ month:i, payment: princ+interest, principal:princ, interest, balance: Math.max(0,balance) });
+  }
+  return rows;
+}
+
+$('btnCalc').addEventListener('click', calculate);
+document.addEventListener('keydown', e => { if(e.key==='Enter') calculate(); });
+
+function calculate(){
+  const carPrice = parseFloat($('carPrice').value)||0;
+  const down = parseFloat($('downPayment').value)||0;
+  const tradeIn = parseFloat($('tradeIn').value)||0;
+  const tradeOwed = parseFloat($('tradeOwed').value)||0;
+  const rebate = parseFloat($('rebate').value)||0;
+  const rate = parseFloat($('rate').value)||0;
+  const months = parseInt($('term').value)||60;
+  const taxRate = parseFloat($('taxRate').value)||0;
+  const fees = parseFloat($('fees').value)||0;
+  const rollTax = $('rollTax').checked;
+
+  const netTrade = tradeIn - tradeOwed;
+  const taxable = Math.max(0, carPrice - (netTrade > 0 ? netTrade : 0) - rebate);
+  const taxAmt = taxable * (taxRate/100);
+  const upfront = down + (netTrade > 0 ? 0 : 0) + (rollTax ? 0 : taxAmt + fees);
+  
+  let principal = carPrice - down - (netTrade > 0 ? netTrade : 0) - rebate + (netTrade < 0 ? Math.abs(netTrade) : 0);
+  if(rollTax) principal += taxAmt + fees;
+  principal = Math.max(0, principal);
+
+  const { monthly, totalPay, totalInterest } = calcLoan(principal, rate, months);
+  const totalCost = carPrice + taxAmt + fees + totalInterest;
+
+  // update UI
+  $('rMonthly').textContent = fmtD(monthly);
+  $('rSub').textContent = `${months} payments of ${fmtD(monthly)}`;
+  $('rPrincipal').textContent = fmt(principal);
+  $('rInterest').textContent = fmt(totalInterest);
+  $('rTotalPay').textContent = fmt(totalPay);
+  $('rTotalCost').textContent = fmt(totalCost);
+  $('rTax').textContent = fmt(taxAmt);
+  $('rUpfront').textContent = fmt(upfront + down);
+  $('summaryGrid').style.display = 'grid';
+
+  // donut
+  const circ = 2 * Math.PI * 42;
+  const pPct = principal / (principal + totalInterest);
+  const iPct = 1 - pPct;
+  $('donutPrincipal').setAttribute('stroke-dasharray', `${pPct*circ} ${circ}`);
+  $('donutInterest').setAttribute('stroke-dasharray', `${iPct*circ} ${circ}`);
+  $('donutInterest').setAttribute('stroke-dashoffset', `-${pPct*circ}`);
+  $('donutPct').textContent = Math.round(pPct*100)+'%';
+  $('lgPrincipal').textContent = fmt(principal);
+  $('lgInterest').textContent = fmt(totalInterest);
+  $('lgTax').textContent = fmt(taxAmt + fees);
+  $('chartWrap').style.display = 'flex';
+
+  // comparison: 36 / 48 / 60 / 72 months
+  const termOptions = [36,48,60,72,84];
+  const comparisons = termOptions.map(t => {
+    const r = calcLoan(principal, rate, t);
+    return { term:t, ...r };
+  });
+  const bestSavings = comparisons.find(c=>c.term===months) || comparisons[0];
+  $('compareGrid').innerHTML = comparisons.filter((c,i)=>i<3||c.term===months).slice(0,4).map(c => {
+    const active = c.term === months;
+    return `<div class="cmp-col${active?' best':''}">
+      ${active?'<span class="badge">Your selection</span>':''}
+      <h4>${c.term} months</h4>
+      <div class="cmp-val${active?' ':''}"> ${fmtD(c.monthly)}<div class="cmp-sub">per month</div></div>
+      <div class="cmp-row"><span>Total interest</span><b style="color:var(--bad)">${fmt(c.totalInterest)}</b></div>
+      <div class="cmp-row"><span>Total paid</span><b>${fmt(c.totalPay)}</b></div>
+    </div>`;
+  }).join('');
+  $('compareSection').classList.remove('hidden');
+
+  // amortization
+  const amortRows = buildAmort(principal, rate, months, monthly);
+  let amortHtml = '';
+  let yr = 0;
+  amortRows.forEach((r, i) => {
+    if(i>0 && i%12===0){
+      yr++;
+      amortHtml += `<tr class="yr-row"><td>End of Year ${yr}</td><td></td><td></td><td></td><td>${fmt(amortRows[i-1].balance)}</td></tr>`;
+    }
+    amortHtml += `<tr><td>${r.month}</td><td>${fmtD(r.payment)}</td><td>${fmtD(r.principal)}</td><td>${fmtD(r.interest)}</td><td>${fmtD(r.balance)}</td></tr>`;
+  });
+  $('amortBody').innerHTML = amortHtml;
+
+  // yearly summary
+  const years = Math.ceil(months/12);
+  let yearlyHtml = '';
+  for(let y=0;y<years;y++){
+    const chunk = amortRows.slice(y*12, (y+1)*12);
+    const totPay = chunk.reduce((a,r)=>a+r.payment,0);
+    const totP = chunk.reduce((a,r)=>a+r.principal,0);
+    const totI = chunk.reduce((a,r)=>a+r.interest,0);
+    const bal = chunk[chunk.length-1]?.balance || 0;
+    yearlyHtml += `<tr><td>Year ${y+1}</td><td>${fmtD(totPay)}</td><td>${fmtD(totP)}</td><td>${fmtD(totI)}</td><td>${fmtD(bal)}</td></tr>`;
+  }
+  $('yearlyBody').innerHTML = yearlyHtml;
+
+  $('amortTabs').style.display = 'flex';
+  $('amortWrap').style.display = 'block';
+}
+
+// tab switching
+document.querySelectorAll('.tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));
+    btn.classList.add('active');
+    const t = btn.dataset.t;
+    $('amortWrap').classList.toggle('hidden', t!=='monthly');
+    $('yearlyWrap').classList.toggle('hidden', t!=='yearly');
+  });
+});
+
+// auto calculate on load
+calculate();
+
+/* GA4 */
+(function(){
+  var s=document.createElement('script');s.async=true;
+  s.src='https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY';
+  document.head.appendChild(s);
+  window.dataLayer=window.dataLayer||[];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js',new Date());gtag('config','G-STNE1RFPKY');
+})();
+</script>
+</body>
+</html>
