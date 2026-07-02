@@ -117,7 +117,7 @@
 
   <!-- Filter tabs -->
   <div class="filter-tabs">
-    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (24)</button>
+    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (31)</button>
     <button class="filter-tab" data-cat="text" onclick="setFilter(this)">✍️ Text</button>
     <button class="filter-tab" data-cat="calculator" onclick="setFilter(this)">🧮 Calculators</button>
     <button class="filter-tab" data-cat="converter" onclick="setFilter(this)">🔄 Converters</button>
@@ -185,7 +185,7 @@
   <div class="section-wrap" data-section="calculator">
     <div class="section-head">
       <h2>🧮 Calculators</h2>
-      <span class="count">9 tools</span>
+      <span class="count">12 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -262,6 +262,30 @@
         </div>
       </a>
 
+      <a href="/tools/auto-loan-calculator" class="tool-card" data-cat="calculator" data-name="auto loan calculator car monthly payment amortization">
+        <span class="tool-icon">🚗</span>
+        <div class="tool-info">
+          <div class="tool-name">Auto Loan Calculator</div>
+          <div class="tool-desc">Monthly payment, total interest, full amortization schedule & loan comparison.</div>
+        </div>
+      </a>
+
+      <a href="/tools/bmi-calculator" class="tool-card" data-cat="calculator" data-name="bmi calculator body mass index weight">
+        <span class="tool-icon">⚖️</span>
+        <div class="tool-info">
+          <div class="tool-name">BMI Calculator</div>
+          <div class="tool-desc">BMI, healthy weight range, ideal weight (4 formulas) & body fat estimate.</div>
+        </div>
+      </a>
+
+      <a href="/tools/calorie-calculator" class="tool-card" data-cat="calculator" data-name="calorie calculator bmr tdee daily calories">
+        <span class="tool-icon">🔥</span>
+        <div class="tool-info">
+          <div class="tool-name">Calorie Calculator</div>
+          <div class="tool-desc">Daily calorie needs to maintain, lose or gain weight — BMR, TDEE & exercise burn.</div>
+        </div>
+      </a>
+
     </div>
   </div>
 
@@ -269,7 +293,7 @@
   <div class="section-wrap" data-section="converter">
     <div class="section-head">
       <h2>🔄 Converters</h2>
-      <span class="count">4 tools</span>
+      <span class="count">6 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -303,6 +327,22 @@
         <div class="tool-info">
           <div class="tool-name">JSON Formatter</div>
           <div class="tool-desc">Beautify, minify & validate JSON with error messages — nothing uploaded.</div>
+        </div>
+      </a>
+
+      <a href="/tools/hex-converter" class="tool-card" data-cat="converter" data-name="hex converter hexadecimal decimal binary octal text">
+        <span class="tool-icon">#️⃣</span>
+        <div class="tool-info">
+          <div class="tool-name">Hex Converter</div>
+          <div class="tool-desc">Hex ↔ decimal ↔ binary ↔ octal ↔ text, live, unlimited digits & signed mode.</div>
+        </div>
+      </a>
+
+      <a href="/tools/word-to-html-converter" class="tool-card" data-cat="converter text" data-name="word to html converter docs rich text">
+        <span class="tool-icon">📝</span>
+        <div class="tool-info">
+          <div class="tool-name">Word to HTML Converter</div>
+          <div class="tool-desc">Paste from Word or Google Docs, get clean semantic HTML instantly.</div>
         </div>
       </a>
 
@@ -377,7 +417,7 @@
   <div class="section-wrap" data-section="seo">
     <div class="section-head">
       <h2>📈 SEO Tools</h2>
-      <span class="count">1 tool</span>
+      <span class="count">3 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -387,6 +427,22 @@
         <div class="tool-info">
           <div class="tool-name">Robots.txt Generator</div>
           <div class="tool-desc">Generate robots.txt with rules for Google, Bing & AI bots (GPTBot, ClaudeBot). Download instantly.</div>
+        </div>
+      </a>
+
+      <a href="/tools/sitemap-generator" class="tool-card" data-cat="seo" data-name="sitemap generator xml sitemap">
+        <span class="tool-icon">🗺️</span>
+        <div class="tool-info">
+          <div class="tool-name">XML Sitemap Generator</div>
+          <div class="tool-desc">Build a full XML sitemap from your URL list — up to 50,000 URLs, auto index splitting.</div>
+        </div>
+      </a>
+
+      <a href="/tools/sitemap-url-extractor" class="tool-card" data-cat="seo" data-name="sitemap url extractor extract urls">
+        <span class="tool-icon">🔗</span>
+        <div class="tool-info">
+          <div class="tool-name">Sitemap URL Extractor</div>
+          <div class="tool-desc">Extract every URL from any sitemap.xml, including nested sitemap index files.</div>
         </div>
       </a>
 
@@ -482,7 +538,14 @@ function applyFilters(query, cat) {
     { "@type": "SoftwareApplication", "name": "Compound Interest Calculator", "url": "https://seotriggers.com/tools/interest-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Discount Calculator", "url": "https://seotriggers.com/tools/discount-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Days Between Dates", "url": "https://seotriggers.com/tools/days-between-dates", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
-    { "@type": "SoftwareApplication", "name": "Robots.txt Generator", "url": "https://seotriggers.com/tools/robots-txt-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
+    { "@type": "SoftwareApplication", "name": "Robots.txt Generator", "url": "https://seotriggers.com/tools/robots-txt-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Hex Converter", "url": "https://seotriggers.com/tools/hex-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Word to HTML Converter", "url": "https://seotriggers.com/tools/word-to-html-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Auto Loan Calculator", "url": "https://seotriggers.com/tools/auto-loan-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "BMI Calculator", "url": "https://seotriggers.com/tools/bmi-calculator", "applicationCategory": "HealthApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Calorie Calculator", "url": "https://seotriggers.com/tools/calorie-calculator", "applicationCategory": "HealthApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "XML Sitemap Generator", "url": "https://seotriggers.com/tools/sitemap-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Sitemap URL Extractor", "url": "https://seotriggers.com/tools/sitemap-url-extractor", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
   ]
 }
 </script>
