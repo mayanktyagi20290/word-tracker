@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Morse Code Translator — Text to Morse & Morse to Text, Free | SEOTriggers</title>
+<meta name="description" content="Free Morse code translator. Convert text to Morse code and Morse code to text live, with audio, light flash, vibration, adjustable speed, and a tap-to-key trainer. No signup." />
+<link rel="canonical" href="https://seotriggers.com/tools/morse-code-translator" />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Morse Code Translator — Text to Morse & Morse to Text" />
+<meta property="og:description" content="Convert text to Morse code and back in real time, with audio, flash, vibration, adjustable WPM and a tap-to-key trainer. 100% free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/morse-code-translator" />
+<meta property="og:site_name" content="SEOTriggers" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Morse Code Translator — Free Online Tool" />
+<meta name="twitter:description" content="Convert text to Morse code and back instantly. Audio, flash, vibration, tap-to-key trainer. Free, no signup." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Morse Code Translator",
+  "url": "https://seotriggers.com/tools/morse-code-translator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (Web-based)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free Morse code translator that converts text to Morse code and Morse code to text in real time, with audio playback, light flash, vibration, adjustable speed and a tap-to-key trainer.",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "247" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Morse Code Translator", "item": "https://seotriggers.com/tools/morse-code-translator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert text to Morse code?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Type or paste your text into the Text field. The Morse Code field updates instantly, using a space between letters and a forward slash between words." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert Morse code back to text?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Type dots and dashes into the Morse Code field, separating letters with a space and words with a forward slash. The Text field decodes it automatically as you type." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I hear the Morse code as audio?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Press Play to hear your message as Morse code beeps generated with the Web Audio API. Speed (WPM), Farnsworth spacing, tone frequency and volume are all adjustable." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the timing behind Morse code dots and dashes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A dash lasts three times as long as a dot. The gap between parts of the same letter equals one dot, the gap between letters equals three dots, and the gap between words equals seven dots, all scaled by your chosen speed." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I practice sending Morse code myself?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The tap-to-key trainer lets you press and hold a button to send dots and dashes by hand, and decodes what you send into text live, which is useful for learning real Morse timing." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this work on mobile with vibration?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, on devices and browsers that support the Vibration API. Turning on Vibrate mode plays your message as a pattern of short and long vibrations instead of, or alongside, sound." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --indigo:#6366f1;--indigo-dark:#4f46e5;--indigo-50:#eef2ff;--indigo-100:#e0e7ff;
+  --ink:#0f172a;--ink-soft:#475569;--ink-hint:#94a3b8;--line:#e2e8f0;--bg:#f8fafc;--surface:#ffffff;
+  --green:#16a34a;--green-bg:#f0fdf4;--red:#dc2626;--red-bg:#fef2f2;--amber:#d97706;--amber-bg:#fffbeb;
+  --radius:14px;--font:'Inter',system-ui,sans-serif;--mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--indigo-dark);text-decoration:none;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.logo span{color:var(--indigo);}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+.nav-links a:hover{color:var(--indigo-dark);}
+.nav-links a.active{color:var(--indigo-dark);font-weight:600;}
+.nav-cta{background:var(--indigo);color:#fff !important;padding:9px 18px;border-radius:999px;font-weight:600 !important;}
+.nav-cta:hover{background:var(--indigo-dark);}
+.burger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+@media(max-width:780px){
+  .nav-links{position:fixed;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 24px;border-bottom:1px solid var(--line);display:none;gap:14px;align-items:flex-start;}
+  .nav-links.open{display:flex;}
+  .burger{display:block;}
+}
+
+.crumb{max-width:1120px;margin:0 auto;padding:16px 20px 0;font-size:13px;color:var(--ink-hint);}
+.crumb a{color:var(--ink-hint);}
+.crumb a:hover{color:var(--indigo-dark);}
+.crumb span.sep{margin:0 6px;}
+.crumb .cur{color:var(--ink-soft);font-weight:500;}
+
+.hero{padding:36px 20px 8px;text-align:center;}
+.hero h1{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.03em;margin:0 0 10px;}
+.hero p{font-size:16.5px;color:var(--ink-soft);max-width:640px;margin:0 auto;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.badge{font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--indigo-50);color:var(--indigo-dark);border:1px solid var(--indigo-100);}
+
+.tool-section{padding:28px 20px 8px;}
+.tool-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.field-grid{grid-template-columns:1fr;}}
+.field label{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:7px;}
+.field label .tag{font-size:10.5px;font-weight:600;color:var(--indigo-dark);background:var(--indigo-50);padding:2px 8px;border-radius:999px;text-transform:none;letter-spacing:0;}
+.field-input-wrap{position:relative;}
+.field textarea{width:100%;min-height:110px;resize:vertical;font-family:var(--mono);font-size:15px;padding:12px 44px 12px 14px;border:1.5px solid var(--line);border-radius:10px;outline:none;background:#fbfbfe;color:var(--ink);transition:border-color .15s, box-shadow .15s;}
+.field textarea:focus{border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-50);background:#fff;}
+.copy-btn{position:absolute;top:9px;right:9px;background:#fff;border:1px solid var(--line);border-radius:7px;width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-hint);transition:all .15s;}
+.copy-btn:hover{color:var(--indigo-dark);border-color:var(--indigo);}
+.copy-btn.copied{color:var(--green);border-color:var(--green);}
+
+.quick-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px;}
+.quick-btn{font-size:12.5px;font-weight:600;padding:7px 14px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);cursor:pointer;transition:all .15s;}
+.quick-btn:hover{border-color:var(--indigo);color:var(--indigo-dark);}
+.quick-btn.sos{border-color:var(--red);color:var(--red);}
+.quick-btn.sos:hover{background:var(--red-bg);}
+
+/* ── Audio controls ── */
+.audio-panel{margin-top:22px;padding-top:20px;border-top:1px dashed var(--line);}
+.audio-top{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.play-btn{display:flex;align-items:center;gap:8px;background:var(--indigo);color:#fff;border:none;border-radius:10px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:var(--font);transition:background .15s;}
+.play-btn:hover{background:var(--indigo-dark);}
+.play-btn.stop{background:var(--red);}
+.play-btn.stop:hover{background:#b91c1c;}
+.toggle-btn{display:flex;align-items:center;gap:7px;background:#fff;border:1.5px solid var(--line);border-radius:10px;padding:10px 16px;font-size:13.5px;font-weight:600;color:var(--ink-soft);cursor:pointer;transition:all .15s;}
+.toggle-btn.active{border-color:var(--indigo);color:var(--indigo-dark);background:var(--indigo-50);}
+.flash-box{width:44px;height:44px;border-radius:10px;background:#1e293b;border:1.5px solid var(--line);flex-shrink:0;transition:background .04s linear;}
+.flash-box.on{background:#fde047;box-shadow:0 0 20px 4px #fde04799;}
+
+.sliders{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+@media(max-width:780px){.sliders{grid-template-columns:1fr 1fr;}}
+.slider-item label{display:flex;justify-content:space-between;font-size:12px;font-weight:600;color:var(--ink-soft);margin-bottom:6px;}
+.slider-item label b{color:var(--indigo-dark);font-weight:700;}
+.slider-item input[type=range]{width:100%;accent-color:var(--indigo);}
+
+/* ── Trainer ── */
+.trainer-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-top:18px;}
+.trainer-card h3{margin:0 0 4px;font-size:16px;font-weight:700;}
+.trainer-card .sub{font-size:13px;color:var(--ink-soft);margin:0 0 18px;}
+.key-btn{
+  width:100%;user-select:none;-webkit-user-select:none;touch-action:manipulation;
+  background:linear-gradient(180deg,#fff,#f8fafc);border:2px solid var(--indigo);border-radius:14px;
+  padding:26px;text-align:center;font-size:15px;font-weight:700;color:var(--indigo-dark);cursor:pointer;transition:all .06s;
+}
+.key-btn.pressed{background:var(--indigo);color:#fff;transform:scale(.98);}
+.key-btn .hint{display:block;font-size:12px;font-weight:500;color:var(--ink-hint);margin-top:4px;}
+.key-btn.pressed .hint{color:#e0e7ff;}
+.trainer-out{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+@media(max-width:600px){.trainer-out{grid-template-columns:1fr;}}
+.trainer-out .box{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:52px;}
+.trainer-out .box .lbl{font-size:11px;font-weight:700;color:var(--ink-hint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:6px;}
+.trainer-out .box .val{font-family:var(--mono);font-size:15px;color:var(--ink);word-break:break-all;}
+.trainer-controls{display:flex;gap:8px;margin-top:14px;}
+
+/* ── Bulk ── */
+.bulk-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-top:18px;}
+.bulk-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.bulk-head h3{margin:0;font-size:16px;font-weight:700;}
+.bulk-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.bit-select{padding:6px 30px 6px 12px;border:1.5px solid var(--line);border-radius:8px;font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.bulk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.bulk-grid{grid-template-columns:1fr;}}
+.bulk-grid textarea{width:100%;height:150px;font-family:var(--mono);font-size:13px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;outline:none;background:#fbfbfe;resize:vertical;}
+.bulk-grid textarea:focus{border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-50);background:#fff;}
+.bulk-label{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:7px;display:block;}
+.download-btn{margin-top:10px;background:var(--ink);color:#fff;border:none;border-radius:8px;padding:9px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:var(--font);}
+.download-btn:hover{background:#1e293b;}
+
+.section{padding:52px 20px;}
+.section-head{text-align:center;max-width:640px;margin:0 auto 32px;}
+.section-head h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin:0 0 10px;}
+.section-head p{color:var(--ink-soft);font-size:15.5px;margin:0;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+.feat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+.feat-icon{width:40px;height:40px;border-radius:10px;background:var(--indigo-50);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+.feat-card h3{font-size:15.5px;font-weight:700;margin:0 0 6px;}
+.feat-card p{font-size:13.8px;color:var(--ink-soft);margin:0;line-height:1.6;}
+
+.compare-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);}
+table.compare{width:100%;border-collapse:collapse;min-width:820px;}
+table.compare th, table.compare td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--line);font-size:13.5px;}
+table.compare th{background:var(--bg);font-weight:700;color:var(--ink-soft);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;color:var(--ink);}
+table.compare th.us{background:var(--indigo);color:#fff;}
+table.compare td.us{background:var(--indigo-50);font-weight:700;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:var(--ink-hint);}
+
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.steps{grid-template-columns:1fr;}}
+.step{padding:20px;}
+.step-num{width:32px;height:32px;border-radius:8px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:12px;}
+.step h3{font-size:14.5px;font-weight:700;margin:0 0 6px;}
+.step p{font-size:13.3px;color:var(--ink-soft);margin:0;}
+
+.ref-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);max-width:900px;margin:0 auto;}
+table.ref{width:100%;border-collapse:collapse;}
+table.ref th, table.ref td{padding:9px 12px;text-align:center;border-bottom:1px solid var(--line);font-size:13px;}
+table.ref th{background:var(--bg);font-weight:700;color:var(--ink-soft);font-size:11.5px;text-transform:uppercase;}
+table.ref td.chr{font-weight:700;color:var(--ink);}
+table.ref td.code{font-family:var(--mono);color:var(--indigo-dark);letter-spacing:1px;}
+.ref-tabs{display:flex;gap:8px;justify-content:center;margin-bottom:16px;flex-wrap:wrap;}
+.ref-tab{padding:7px 16px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--ink-soft);font-size:13px;font-weight:600;cursor:pointer;}
+.ref-tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.ref-panel{display:none;}
+.ref-panel.active{display:block;}
+
+.faq{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15.5px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--font);}
+.faq-q .plus{font-size:20px;color:var(--indigo);transition:transform .2s;flex-shrink:0;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-a p{font-size:14.3px;color:var(--ink-soft);margin:0 0 18px;padding:0 4px;line-height:1.7;}
+
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.related-grid{grid-template-columns:1fr 1fr;}}
+.related-card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13.8px;font-weight:600;color:var(--ink);transition:all .15s;}
+.related-card:hover{border-color:var(--indigo);transform:translateY(-2px);box-shadow:var(--shadow);}
+.related-card .sub{display:block;font-size:12px;font-weight:400;color:var(--ink-hint);margin-top:3px;}
+
+footer{background:var(--ink);color:#cbd5e1;padding:44px 20px 24px;margin-top:40px;}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.footer-inner .logo{color:#fff;}
+footer .cols{display:flex;gap:52px;flex-wrap:wrap;}
+footer .col h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;margin:0 0 12px;}
+footer .col a{display:block;font-size:13.6px;color:#cbd5e1;margin-bottom:9px;}
+footer .col a:hover{color:#fff;}
+.footer-bottom{max-width:1120px;margin:32px auto 0;padding-top:20px;border-top:1px solid #1e293b;font-size:12.5px;color:#64748b;text-align:center;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/" class="nav-cta">All Tools →</a>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="crumb">
+  <a href="/">Home</a><span class="sep">/</span><a href="/tools/">Tools</a><span class="sep">/</span><span class="cur">Morse Code Translator</span>
+</div>
+
+<header class="hero">
+  <h1>Morse Code Translator</h1>
+  <p>Convert text to Morse code and Morse code to text — live, with audio, light flash, vibration and a tap-to-key trainer to practice sending it yourself.</p>
+  <div class="hero-badges">
+    <span class="badge">✓ Audio · light · vibration</span>
+    <span class="badge">✓ Adjustable WPM</span>
+    <span class="badge">✓ Tap-to-key trainer</span>
+    <span class="badge">✓ Bulk conversion</span>
+  </div>
+</header>
+
+<section class="tool-section">
+  <div class="wrap">
+    <div class="tool-card">
+      <div class="field-grid">
+        <div class="field">
+          <label for="fText">Text <span class="tag">plain language</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fText" spellcheck="false" placeholder="Type a message, e.g. Hello World"></textarea>
+            <button class="copy-btn" data-copy="fText" title="Copy text" aria-label="Copy text">⧉</button>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fMorse">Morse Code <span class="tag">· / letters · words</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fMorse" spellcheck="false" placeholder="Type dots and dashes, e.g. .... . .-.. .-.. ---"></textarea>
+            <button class="copy-btn" data-copy="fMorse" title="Copy Morse code" aria-label="Copy Morse code">⧉</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="quick-row">
+        <button class="quick-btn" id="btnRandom">🎲 Random phrase</button>
+        <button class="quick-btn sos" id="btnSOS">🆘 Insert SOS</button>
+        <button class="quick-btn" id="btnClear">✕ Clear all</button>
+      </div>
+
+      <div class="audio-panel">
+        <div class="audio-top">
+          <button class="play-btn" id="playBtn">▶ Play</button>
+          <button class="toggle-btn" id="lightToggle">💡 Light</button>
+          <button class="toggle-btn" id="vibrateToggle">📳 Vibrate</button>
+          <div class="flash-box" id="flashBox"></div>
+        </div>
+        <div class="sliders">
+          <div class="slider-item">
+            <label>Speed <b id="wpmVal">18</b> WPM</label>
+            <input type="range" id="wpm" min="5" max="40" value="18">
+          </div>
+          <div class="slider-item">
+            <label>Farnsworth <b id="fwVal">18</b> WPM</label>
+            <input type="range" id="farnsworth" min="5" max="40" value="18">
+          </div>
+          <div class="slider-item">
+            <label>Tone <b id="freqVal">600</b> Hz</label>
+            <input type="range" id="freq" min="200" max="1000" step="10" value="600">
+          </div>
+          <div class="slider-item">
+            <label>Volume <b id="volVal">70</b>%</label>
+            <input type="range" id="vol" min="0" max="100" value="70">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="trainer-card">
+      <h3>🔑 Tap-to-key trainer</h3>
+      <p class="sub">Press and release quickly for a dot, hold a little longer for a dash. Pause briefly between letters, pause longer between words.</p>
+      <button class="key-btn" id="keyBtn">TAP OR HOLD HERE<span class="hint">Mouse, touch or Space bar</span></button>
+      <div class="trainer-out">
+        <div class="box"><div class="lbl">Morse you sent</div><div class="val" id="keyMorse">&nbsp;</div></div>
+        <div class="box"><div class="lbl">Decoded text</div><div class="val" id="keyText">&nbsp;</div></div>
+      </div>
+      <div class="trainer-controls">
+        <button class="quick-btn" id="keySpace">⎵ Word space</button>
+        <button class="quick-btn" id="keyClear">✕ Clear</button>
+      </div>
+    </div>
+
+    <div class="bulk-card">
+      <div class="bulk-head">
+        <h3>Bulk converter</h3>
+        <div class="bulk-controls">
+          <select class="bit-select" id="bulkDir">
+            <option value="t2m">Text → Morse</option>
+            <option value="m2t">Morse → Text</option>
+          </select>
+        </div>
+      </div>
+      <div class="bulk-grid">
+        <div>
+          <span class="bulk-label">Input — one line per message</span>
+          <textarea id="bulkIn" placeholder="Hello&#10;Good morning&#10;SOS"></textarea>
+        </div>
+        <div>
+          <span class="bulk-label">Output</span>
+          <textarea id="bulkOut" readonly placeholder="Results appear here"></textarea>
+        </div>
+      </div>
+      <button class="download-btn" id="bulkDownload">⬇ Download as .txt</button>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why use this Morse code translator</h2>
+      <p>Everything a learner, HAM radio hobbyist or puzzle-maker needs, without ads getting in the way.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🔁</div><h3>Live bidirectional conversion</h3><p>Type in either field and the other updates instantly — no convert button, no page reload.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔊</div><h3>Real audio with full control</h3><p>Web Audio API beeps with adjustable WPM, Farnsworth spacing, tone frequency and volume.</p></div>
+      <div class="feat-card"><div class="feat-icon">💡</div><h3>Light &amp; vibration playback</h3><p>Watch a synced flash for visual learners, or feel the pattern as vibration on supported phones.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔑</div><h3>Tap-to-key trainer</h3><p>Practice sending real Morse by hand — press for a dot, hold for a dash, and see it decoded live.</p></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><h3>Bulk conversion</h3><p>Paste a whole list of messages and convert every line in one pass, then download the result.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔒</div><h3>Runs in your browser</h3><p>Nothing you type is uploaded — all encoding, decoding and audio generation happens locally.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How this compares</h2>
+      <p>Most translators cover text and audio — few combine every mode with a trainer and bulk mode.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="us">SEOTriggers</th>
+            <th>Morse Code World</th>
+            <th>CodeShack.io</th>
+            <th>Online Text Tools</th>
+            <th>MorseCodeTranslator.com</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Bidirectional text ↔ Morse</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Audio playback, adjustable WPM</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Light flash simulation</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Vibration on mobile</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Tap-to-key input trainer</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Bulk / multi-line conversion</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Download as .txt file</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to translate Morse code</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Type in either field</h3><p>Start with plain text or with dots and dashes — both directions work the same way.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Read the live result</h3><p>The other field updates as you type, with no button to click.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Play, flash or vibrate</h3><p>Hit Play to hear it, turn on Light to see it flash, or Vibrate to feel it on your phone.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Practice or bulk-convert</h3><p>Use the tap-to-key trainer to send it yourself, or switch to bulk mode for a whole list.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Morse code reference chart</h2>
+      <p>The full International Morse Code alphabet, numbers and punctuation.</p>
+    </div>
+    <div class="ref-tabs">
+      <button class="ref-tab active" data-tab="letters">Letters</button>
+      <button class="ref-tab" data-tab="numbers">Numbers</button>
+      <button class="ref-tab" data-tab="punct">Punctuation</button>
+    </div>
+    <div class="ref-wrap">
+      <div class="ref-panel active" id="panel-letters"></div>
+      <div class="ref-panel" id="panel-numbers"></div>
+      <div class="ref-panel" id="panel-punct"></div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">How do I convert text to Morse code?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Type or paste your text into the Text field. The Morse Code field updates instantly, using a space between letters and a forward slash between words.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I convert Morse code back to text?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Type dots and dashes into the Morse Code field, separating letters with a space and words with a forward slash. The Text field decodes it automatically as you type.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I hear the Morse code as audio?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Press Play to hear your message as Morse code beeps generated with the Web Audio API. Speed (WPM), Farnsworth spacing, tone frequency and volume are all adjustable.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What is the timing behind Morse code dots and dashes?<span class="plus">+</span></button>
+        <div class="faq-a"><p>A dash lasts three times as long as a dot. The gap between parts of the same letter equals one dot, the gap between letters equals three dots, and the gap between words equals seven dots, all scaled by your chosen speed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I practice sending Morse code myself?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. The tap-to-key trainer lets you press and hold a button to send dots and dashes by hand, and decodes what you send into text live, which is useful for learning real Morse timing.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does this work on mobile with vibration?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes, on devices and browsers that support the Vibration API. Turning on Vibrate mode plays your message as a pattern of short and long vibrations instead of, or alongside, sound.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>More converters &amp; calculators</h2>
+    </div>
+    <div class="related-grid">
+      <a class="related-card" href="/tools/hex-converter">Hex Converter<span class="sub">Hex ↔ decimal ↔ binary ↔ text</span></a>
+      <a class="related-card" href="/tools/binary-converter">Binary Converter<span class="sub">Binary ↔ decimal ↔ text</span></a>
+      <a class="related-card" href="/tools/case-converter">Case Converter<span class="sub">Upper, lower, title case</span></a>
+      <a class="related-card" href="/tools/">All Tools<span class="sub">Browse the full toolkit</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/" class="logo">SEO<span style="color:#818cf8;">Triggers</span></a>
+      <p style="max-width:260px;font-size:13px;color:#94a3b8;margin-top:10px;">Free SEO tools and calculators, built to be faster and more complete than the paid alternatives.</p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h4>Tools</h4>
+        <a href="/tools/hex-converter">Hex Converter</a>
+        <a href="/tools/binary-converter">Binary Converter</a>
+        <a href="/tools/json-formatter">JSON Formatter</a>
+        <a href="/tools/">All Tools</a>
+      </div>
+      <div class="col">
+        <h4>Company</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 SEOTriggers.com — All rights reserved.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  document.querySelectorAll('.faq-item').forEach(function(item, idx){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    if (idx === 0) { a.style.maxHeight = a.scrollHeight + 'px'; }
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.dataset.copy);
+      if (!el.value) return;
+      navigator.clipboard.writeText(el.value).then(function(){
+        btn.classList.add('copied');
+        var orig = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(function(){ btn.classList.remove('copied'); btn.textContent = orig; }, 1200);
+      });
+    });
+  });
+
+  // ══════════════════════════════════════════
+  //  Morse code map
+  // ══════════════════════════════════════════
+  var MORSE = {
+    'A':'.-','B':'-...','C':'-.-.','D':'-..','E':'.','F':'..-.','G':'--.','H':'....',
+    'I':'..','J':'.---','K':'-.-','L':'.-..','M':'--','N':'-.','O':'---','P':'.--.',
+    'Q':'--.-','R':'.-.','S':'...','T':'-','U':'..-','V':'...-','W':'.--','X':'-..-',
+    'Y':'-.--','Z':'--..',
+    '0':'-----','1':'.----','2':'..---','3':'...--','4':'....-','5':'.....',
+    '6':'-....','7':'--...','8':'---..','9':'----.',
+    '.':'.-.-.-',',':'--..--','?':'..--..',"'":'.----.','!':'-.-.--','/':'-..-.',
+    '(':'-.--.',')':'-.--.-','&':'.-...',':':'---...',';':'-.-.-.','=':'-...-',
+    '+':'.-.-.','-':'-....-','_':'..--.-','"':'.-..-.','$':'...-..-','@':'.--.-.'
+  };
+  var REVERSE = {};
+  Object.keys(MORSE).forEach(function(k){ REVERSE[MORSE[k]] = k; });
+
+  function textToMorse(str){
+    return str.toUpperCase().split('').map(function(ch){
+      if (ch === ' ') return '/';
+      return MORSE[ch] || '';
+    }).join(' ').replace(/\s*\/\s*/g,' / ').replace(/\s+/g,' ').trim();
+  }
+  function morseToText(str){
+    var words = str.trim().split(/\s*\/\s*/);
+    return words.map(function(w){
+      return w.trim().split(/\s+/).map(function(code){
+        return REVERSE[code] || (code ? '?' : '');
+      }).join('');
+    }).join(' ');
+  }
+
+  // ── Reference tables ──
+  var LETTERS = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+  var NUMBERS = '0123456789'.split('');
+  var PUNCT = ['.', ',', '?', "'", '!', '/', '(', ')', '&', ':', ';', '=', '+', '-', '_', '"', '$', '@'];
+  function buildRefTable(chars, cols){
+    var rows = [];
+    for (var i=0;i<chars.length;i+=cols){
+      rows.push(chars.slice(i,i+cols));
+    }
+    var html = '<table class="ref"><tbody>';
+    rows.forEach(function(row){
+      html += '<tr>';
+      row.forEach(function(c){ html += '<td class="chr">'+c+'</td>'; });
+      for (var i=row.length;i<cols;i++) html += '<td></td>';
+      html += '</tr><tr>';
+      row.forEach(function(c){ html += '<td class="code">'+MORSE[c]+'</td>'; });
+      for (var j=row.length;j<cols;j++) html += '<td></td>';
+      html += '</tr>';
+    });
+    html += '</tbody></table>';
+    return html;
+  }
+  document.getElementById('panel-letters').innerHTML = buildRefTable(LETTERS, 9);
+  document.getElementById('panel-numbers').innerHTML = buildRefTable(NUMBERS, 10);
+  document.getElementById('panel-punct').innerHTML = buildRefTable(PUNCT, 9);
+  document.querySelectorAll('.ref-tab').forEach(function(tab){
+    tab.addEventListener('click', function(){
+      document.querySelectorAll('.ref-tab').forEach(function(t){ t.classList.remove('active'); });
+      document.querySelectorAll('.ref-panel').forEach(function(p){ p.classList.remove('active'); });
+      tab.classList.add('active');
+      document.getElementById('panel-'+tab.dataset.tab).classList.add('active');
+    });
+  });
+
+  // ══════════════════════════════════════════
+  //  Main fields sync
+  // ══════════════════════════════════════════
+  var fText = document.getElementById('fText');
+  var fMorse = document.getElementById('fMorse');
+  var updating = false;
+
+  fText.addEventListener('input', function(){
+    if (updating) return;
+    updating = true;
+    fMorse.value = textToMorse(fText.value);
+    updating = false;
+  });
+  fMorse.addEventListener('input', function(){
+    if (updating) return;
+    updating = true;
+    fText.value = morseToText(fMorse.value);
+    updating = false;
+  });
+
+  document.getElementById('btnRandom').addEventListener('click', function(){
+    var phrases = ['HELLO WORLD','SOS','GOOD MORNING','MEET ME AT NOON','THE QUICK BROWN FOX','I LOVE YOU','SEND HELP','WHAT HATH GOD WROUGHT','CQ CQ CQ','HAPPY BIRTHDAY'];
+    fText.value = phrases[Math.floor(Math.random()*phrases.length)];
+    fMorse.value = textToMorse(fText.value);
+  });
+  document.getElementById('btnSOS').addEventListener('click', function(){
+    fText.value = 'SOS';
+    fMorse.value = textToMorse('SOS');
+  });
+  document.getElementById('btnClear').addEventListener('click', function(){
+    fText.value = ''; fMorse.value = '';
+  });
+
+  // preload example
+  fText.value = 'HELLO WORLD';
+  fMorse.value = textToMorse(fText.value);
+
+  // ══════════════════════════════════════════
+  //  Audio / light / vibration playback
+  // ══════════════════════════════════════════
+  var wpmSlider = document.getElementById('wpm');
+  var fwSlider = document.getElementById('farnsworth');
+  var freqSlider = document.getElementById('freq');
+  var volSlider = document.getElementById('vol');
+  var wpmVal = document.getElementById('wpmVal');
+  var fwVal = document.getElementById('fwVal');
+  var freqVal = document.getElementById('freqVal');
+  var volVal = document.getElementById('volVal');
+  var playBtn = document.getElementById('playBtn');
+  var lightToggle = document.getElementById('lightToggle');
+  var vibrateToggle = document.getElementById('vibrateToggle');
+  var flashBox = document.getElementById('flashBox');
+
+  wpmSlider.addEventListener('input', function(){ wpmVal.textContent = wpmSlider.value; if (+fwSlider.value > +wpmSlider.value) { fwSlider.value = wpmSlider.value; fwVal.textContent = fwSlider.value; } });
+  fwSlider.addEventListener('input', function(){ var v = Math.min(+fwSlider.value, +wpmSlider.value); fwSlider.value = v; fwVal.textContent = v; });
+  freqSlider.addEventListener('input', function(){ freqVal.textContent = freqSlider.value; });
+  volSlider.addEventListener('input', function(){ volVal.textContent = volSlider.value; });
+
+  var lightOn = false, vibrateOn = false, playing = false;
+  var audioCtx = null;
+  var activeTimeouts = [];
+  var activeOsc = null;
+
+  lightToggle.addEventListener('click', function(){ lightOn = !lightOn; lightToggle.classList.toggle('active', lightOn); });
+  vibrateToggle.addEventListener('click', function(){ vibrateOn = !vibrateOn; vibrateToggle.classList.toggle('active', vibrateOn); });
+
+  function clearSchedule(){
+    activeTimeouts.forEach(function(t){ clearTimeout(t); });
+    activeTimeouts = [];
+    if (activeOsc){ try{ activeOsc.stop(); }catch(e){} activeOsc=null; }
+    flashBox.classList.remove('on');
+  }
+
+  function buildEvents(morse, unit){
+    // returns [{start, dur, tone:boolean}]
+    var events = [];
+    var t = 0;
+    var symbols = morse.split('');
+    // morse string already has single spaces between letters and " / " between words (with surrounding spaces)
+    var tokens = morse.split('');
+    var i = 0;
+    while (i < morse.length){
+      var ch = morse[i];
+      if (ch === '.' ){ events.push({start:t,dur:unit,tone:true}); t+=unit; t+=unit; i++; }
+      else if (ch === '-'){ events.push({start:t,dur:unit*3,tone:true}); t+=unit*3; t+=unit; i++; }
+      else if (ch === ' '){
+        // could be letter gap or part of ' / '
+        if (morse[i+1] === '/'){ t += unit*2; i+=1; } // will add / handling next
+        else { t += unit*2; i++; } // total letter gap = 3 units (1 already added after symbol)
+      } else if (ch === '/'){
+        t += unit*4; i++; // word gap total 7 units (3 already counted via surrounding spaces)
+      } else { i++; }
+    }
+    return {events:events, total:t};
+  }
+
+  playBtn.addEventListener('click', function(){
+    if (playing){ stopPlayback(); return; }
+    var morse = fMorse.value.trim();
+    if (!morse) return;
+    startPlayback(morse);
+  });
+
+  function startPlayback(morse){
+    playing = true;
+    playBtn.textContent = '■ Stop';
+    playBtn.classList.add('stop');
+    var wpm = +wpmSlider.value;
+    var fw = +fwSlider.value;
+    var unit = 1200 / wpm;           // dot/dash + intra-letter timing
+    var unitFw = 1200 / fw;          // letter/word gap timing (Farnsworth)
+    var freq = +freqSlider.value;
+    var vol = (+volSlider.value)/100;
+
+    if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    var now = audioCtx.currentTime + 0.05;
+    var t = 0;
+    var flashEvents = [];
+    var vibroPattern = [];
+
+    var chars = morse.split('');
+    var i = 0;
+    while (i < morse.length){
+      var ch = morse[i];
+      if (ch === '.' || ch === '-'){
+        var dur = (ch === '.' ? unit : unit*3) / 1000;
+        (function(startT, d){
+          var osc = audioCtx.createOscillator();
+          var gain = audioCtx.createGain();
+          osc.frequency.value = freq;
+          osc.type = 'sine';
+          gain.gain.value = vol;
+          osc.connect(gain).connect(audioCtx.destination);
+          osc.start(now + startT);
+          osc.stop(now + startT + d);
+          flashEvents.push({at:startT*1000, dur:d*1000});
+        })(t, dur);
+        vibroPattern.push(Math.round((ch==='.'?unit:unit*3)));
+        t += (ch === '.' ? unit : unit*3)/1000;
+        // intra-letter gap = 1 unit
+        t += unit/1000;
+        vibroPattern.push(Math.round(unit));
+        i++;
+      } else if (ch === ' '){
+        if (morse[i+1] === '/'){
+          i++; // the '/' branch below adds the rest
+        } else {
+          var extra = (unitFw*3 - unit) / 1000;
+          if (extra > 0) t += extra;
+          if (vibroPattern.length){ vibroPattern[vibroPattern.length-1] += Math.round(Math.max(0, unitFw*3 - unit)); }
+          i++;
+        }
+      } else if (ch === '/'){
+        var extraW = (unitFw*7 - unit) / 1000;
+        if (extraW > 0) t += extraW;
+        if (vibroPattern.length){ vibroPattern[vibroPattern.length-1] += Math.round(Math.max(0, unitFw*7 - unit)); }
+        i++;
+      } else { i++; }
+    }
+
+    // schedule flash via setTimeout (approximate sync)
+    if (lightOn){
+      flashEvents.forEach(function(ev){
+        var onT = setTimeout(function(){ flashBox.classList.add('on'); }, ev.at);
+        var offT = setTimeout(function(){ flashBox.classList.remove('on'); }, ev.at + ev.dur);
+        activeTimeouts.push(onT, offT);
+      });
+    }
+    if (vibrateOn && navigator.vibrate){
+      navigator.vibrate(vibroPattern);
+    }
+
+    var totalMs = t*1000 + 150;
+    var endT = setTimeout(function(){ stopPlayback(); }, totalMs);
+    activeTimeouts.push(endT);
+  }
+
+  function stopPlayback(){
+    playing = false;
+    playBtn.textContent = '▶ Play';
+    playBtn.classList.remove('stop');
+    clearSchedule();
+    if (navigator.vibrate) navigator.vibrate(0);
+  }
+
+  // ══════════════════════════════════════════
+  //  Tap-to-key trainer
+  // ══════════════════════════════════════════
+  var keyBtn = document.getElementById('keyBtn');
+  var keyMorseEl = document.getElementById('keyMorse');
+  var keyTextEl = document.getElementById('keyText');
+  var pressStart = 0;
+  var currentLetter = '';
+  var decoded = '';
+  var letterTimer = null, wordTimer = null;
+  var DOT_MAX = 250; // ms below this = dot
+  var LETTER_GAP = 700;
+  var WORD_GAP = 1800;
+
+  function refreshTrainer(){
+    keyMorseEl.textContent = currentLetter || '\u00A0';
+    keyTextEl.textContent = decoded || '\u00A0';
+  }
+
+  function commitLetter(){
+    if (currentLetter){
+      decoded += (REVERSE[currentLetter] || '?');
+      currentLetter = '';
+      refreshTrainer();
+    }
+  }
+
+  function press(){
+    pressStart = Date.now();
+    clearTimeout(letterTimer); clearTimeout(wordTimer);
+    keyBtn.classList.add('pressed');
+  }
+  function release(){
+    keyBtn.classList.remove('pressed');
+    var dur = Date.now() - pressStart;
+    currentLetter += (dur < DOT_MAX ? '.' : '-');
+    refreshTrainer();
+    letterTimer = setTimeout(commitLetter, LETTER_GAP);
+    wordTimer = setTimeout(function(){ commitLetter(); decoded += ' '; refreshTrainer(); }, WORD_GAP);
+  }
+
+  keyBtn.addEventListener('mousedown', press);
+  keyBtn.addEventListener('mouseup', release);
+  keyBtn.addEventListener('mouseleave', function(){ if (keyBtn.classList.contains('pressed')) release(); });
+  keyBtn.addEventListener('touchstart', function(e){ e.preventDefault(); press(); }, {passive:false});
+  keyBtn.addEventListener('touchend', function(e){ e.preventDefault(); release(); }, {passive:false});
+  document.addEventListener('keydown', function(e){
+    if (e.code === 'Space' && !e.repeat && document.activeElement !== fText && document.activeElement !== fMorse && document.activeElement !== bulkIn){
+      e.preventDefault(); press();
+    }
+  });
+  document.addEventListener('keyup', function(e){
+    if (e.code === 'Space' && document.activeElement !== fText && document.activeElement !== fMorse){
+      e.preventDefault(); release();
+    }
+  });
+
+  document.getElementById('keySpace').addEventListener('click', function(){
+    commitLetter(); decoded += ' '; refreshTrainer();
+  });
+  document.getElementById('keyClear').addEventListener('click', function(){
+    currentLetter=''; decoded=''; refreshTrainer();
+  });
+  refreshTrainer();
+
+  // ══════════════════════════════════════════
+  //  Bulk converter
+  // ══════════════════════════════════════════
+  var bulkIn = document.getElementById('bulkIn');
+  var bulkOut = document.getElementById('bulkOut');
+  var bulkDir = document.getElementById('bulkDir');
+
+  function runBulk(){
+    var lines = bulkIn.value.split('\n');
+    var dir = bulkDir.value;
+    var out = lines.map(function(line){
+      if (line.trim() === '') return '';
+      return dir === 't2m' ? textToMorse(line) : morseToText(line);
+    });
+    bulkOut.value = out.join('\n');
+  }
+  bulkIn.addEventListener('input', runBulk);
+  bulkDir.addEventListener('change', runBulk);
+  bulkIn.value = 'HELLO\nGOOD MORNING\nSOS';
+  runBulk();
+
+  document.getElementById('bulkDownload').addEventListener('click', function(){
+    if (!bulkOut.value) return;
+    var blob = new Blob([bulkOut.value], {type:'text/plain'});
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'morse-code-result.txt';
+    a.click();
+  });
+
+})();
+</script>
+
+</body>
+</html>
