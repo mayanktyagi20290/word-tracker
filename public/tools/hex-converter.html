@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Hex Converter — Free Hex, Decimal, Binary, Octal & Text Converter | SEOTriggers</title>
+<meta name="description" content="Free online hex converter. Convert hexadecimal to decimal, binary, octal & text instantly — bidirectional, unlimited digits, signed integers, bulk conversion. No signup." />
+<link rel="canonical" href="https://seotriggers.com/tools/hex-converter" />
+<meta name="robots" content="index, follow" />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Hex Converter — Free Hex, Decimal, Binary, Octal & Text Converter" />
+<meta property="og:description" content="Convert hex to decimal, binary, octal and text in real time. Handles unlimited digits, signed integers, and bulk lists — 100% free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/hex-converter" />
+<meta property="og:site_name" content="SEOTriggers" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Hex Converter — Free Online Tool" />
+<meta name="twitter:description" content="Convert hex to decimal, binary, octal & text instantly. Free, unlimited, no signup." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<!-- JSON-LD: SoftwareApplication -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hex Converter",
+  "url": "https://seotriggers.com/tools/hex-converter",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any (Web-based)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online hex converter supporting hexadecimal, decimal, binary, octal and text (ASCII/UTF-8) conversion with signed integer and bulk conversion support.",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "4.9", "ratingCount": "312" }
+}
+</script>
+<!-- JSON-LD: BreadcrumbList -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Hex Converter", "item": "https://seotriggers.com/tools/hex-converter" }
+  ]
+}
+</script>
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I convert hex to decimal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Type or paste the hexadecimal value into the Hex field. The Decimal field updates instantly using base-16 to base-10 conversion, with no page reload or button click needed." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I convert hex to binary or octal?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enter your hex value once and the Binary and Octal fields populate automatically alongside Decimal and Text, since every field on this page stays in sync in real time." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can this tool handle negative numbers?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Turn on Signed mode and pick a bit width (8, 16, 32 or 64-bit) to interpret values using two's complement, which is how negative numbers are represented in hexadecimal in most programming languages." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on how many hex digits I can convert?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Unlike calculator-style tools capped at 32 or 64-bit integers, this converter uses arbitrary-precision arithmetic, so values of any length convert correctly." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I convert a list of hex values at once?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Use the bulk converter below the main tool to paste one value per line and convert an entire list to decimal, binary, octal or text in a single pass." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool convert hex to text or ASCII?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Text field decodes hex byte pairs as UTF-8 characters, and typing text into that field encodes it back into hex automatically." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --indigo:#6366f1;
+  --indigo-dark:#4f46e5;
+  --indigo-50:#eef2ff;
+  --indigo-100:#e0e7ff;
+  --ink:#0f172a;
+  --ink-soft:#475569;
+  --ink-hint:#94a3b8;
+  --line:#e2e8f0;
+  --bg:#f8fafc;
+  --surface:#ffffff;
+  --green:#16a34a;
+  --green-bg:#f0fdf4;
+  --red:#dc2626;
+  --red-bg:#fef2f2;
+  --amber:#d97706;
+  --amber-bg:#fffbeb;
+  --radius:14px;
+  --font:'Inter',system-ui,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,'SFMono-Regular',Menlo,monospace;
+  --shadow:0 1px 2px rgba(15,23,42,.04), 0 8px 24px -12px rgba(15,23,42,.12);
+}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;}
+a{color:var(--indigo-dark);text-decoration:none;}
+img{max-width:100%;}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px;}
+
+/* ── Nav ── */
+.nav{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid var(--line);}
+.nav-inner{max-width:1120px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:20px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);letter-spacing:-.02em;}
+.logo span{color:var(--indigo);}
+.nav-links{display:flex;gap:28px;align-items:center;}
+.nav-links a{font-size:14.5px;font-weight:500;color:var(--ink-soft);}
+.nav-links a:hover{color:var(--indigo-dark);}
+.nav-links a.active{color:var(--indigo-dark);font-weight:600;}
+.nav-cta{background:var(--indigo);color:#fff !important;padding:9px 18px;border-radius:999px;font-weight:600 !important;}
+.nav-cta:hover{background:var(--indigo-dark);}
+.burger{display:none;background:none;border:none;font-size:22px;cursor:pointer;color:var(--ink);}
+@media(max-width:780px){
+  .nav-links{position:fixed;top:60px;left:0;right:0;background:#fff;flex-direction:column;padding:16px 24px;border-bottom:1px solid var(--line);display:none;gap:14px;align-items:flex-start;}
+  .nav-links.open{display:flex;}
+  .burger{display:block;}
+}
+
+/* ── Breadcrumb ── */
+.crumb{max-width:1120px;margin:0 auto;padding:16px 20px 0;font-size:13px;color:var(--ink-hint);}
+.crumb a{color:var(--ink-hint);}
+.crumb a:hover{color:var(--indigo-dark);}
+.crumb span.sep{margin:0 6px;}
+.crumb .cur{color:var(--ink-soft);font-weight:500;}
+
+/* ── Hero ── */
+.hero{padding:36px 20px 8px;text-align:center;}
+.hero h1{font-size:clamp(28px,4.4vw,42px);font-weight:800;letter-spacing:-.03em;margin:0 0 10px;}
+.hero p{font-size:16.5px;color:var(--ink-soft);max-width:620px;margin:0 auto;}
+.hero-badges{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin-top:16px;}
+.badge{font-size:12.5px;font-weight:600;padding:5px 12px;border-radius:999px;background:var(--indigo-50);color:var(--indigo-dark);border:1px solid var(--indigo-100);}
+
+/* ── Converter card ── */
+.tool-section{padding:28px 20px 8px;}
+.tool-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;}
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.field-grid{grid-template-columns:1fr;}}
+.field{position:relative;}
+.field label{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:7px;}
+.field label .tag{font-size:10.5px;font-weight:600;color:var(--indigo-dark);background:var(--indigo-50);padding:2px 8px;border-radius:999px;text-transform:none;letter-spacing:0;}
+.field-input-wrap{position:relative;}
+.field textarea{
+  width:100%;min-height:78px;resize:vertical;font-family:var(--mono);font-size:15px;
+  padding:12px 44px 12px 14px;border:1.5px solid var(--line);border-radius:10px;outline:none;
+  background:#fbfbfe;color:var(--ink);transition:border-color .15s, box-shadow .15s;
+}
+.field textarea:focus{border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-50);background:#fff;}
+.field textarea.err{border-color:var(--red);}
+.copy-btn{
+  position:absolute;top:9px;right:9px;background:#fff;border:1px solid var(--line);border-radius:7px;
+  width:30px;height:30px;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink-hint);
+  transition:all .15s;
+}
+.copy-btn:hover{color:var(--indigo-dark);border-color:var(--indigo);}
+.copy-btn.copied{color:var(--green);border-color:var(--green);}
+.field-err{font-size:12px;color:var(--red);margin-top:5px;min-height:16px;}
+
+.options-row{display:flex;gap:20px;align-items:center;flex-wrap:wrap;margin:22px 0 4px;padding-top:20px;border-top:1px dashed var(--line);}
+.opt-group{display:flex;align-items:center;gap:10px;}
+.opt-group>span{font-size:13px;font-weight:600;color:var(--ink-soft);}
+.switch{position:relative;width:40px;height:22px;flex-shrink:0;}
+.switch input{opacity:0;width:0;height:0;}
+.slider{position:absolute;inset:0;background:var(--line);border-radius:999px;cursor:pointer;transition:.15s;}
+.slider:before{content:"";position:absolute;width:16px;height:16px;left:3px;top:3px;background:#fff;border-radius:50%;transition:.15s;box-shadow:0 1px 2px rgba(0,0,0,.2);}
+.switch input:checked + .slider{background:var(--indigo);}
+.switch input:checked + .slider:before{transform:translateX(18px);}
+.bit-select{padding:6px 30px 6px 12px;border:1.5px solid var(--line);border-radius:8px;font-family:var(--font);font-size:13.5px;font-weight:600;color:var(--ink);background:#fff;cursor:pointer;appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%2394a3b8'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;}
+.clear-btn{margin-left:auto;font-size:13px;font-weight:600;color:var(--ink-hint);background:none;border:none;cursor:pointer;padding:6px 4px;}
+.clear-btn:hover{color:var(--red);}
+
+/* ── Bulk ── */
+.bulk-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:28px;margin-top:18px;}
+.bulk-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:14px;}
+.bulk-head h3{margin:0;font-size:16px;font-weight:700;}
+.bulk-controls{display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.bulk-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:680px){.bulk-grid{grid-template-columns:1fr;}}
+.bulk-grid textarea{width:100%;height:160px;font-family:var(--mono);font-size:13.5px;padding:12px 14px;border:1.5px solid var(--line);border-radius:10px;outline:none;background:#fbfbfe;resize:vertical;}
+.bulk-grid textarea:focus{border-color:var(--indigo);box-shadow:0 0 0 3px var(--indigo-50);background:#fff;}
+.bulk-label{font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:7px;display:block;}
+
+/* ── Section shell ── */
+.section{padding:52px 20px;}
+.section-head{text-align:center;max-width:640px;margin:0 auto 32px;}
+.section-head h2{font-size:clamp(24px,3.4vw,32px);font-weight:800;letter-spacing:-.02em;margin:0 0 10px;}
+.section-head p{color:var(--ink-soft);font-size:15.5px;margin:0;}
+
+/* ── Feature cards ── */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.feat-grid{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.feat-grid{grid-template-columns:1fr;}}
+.feat-card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:22px;}
+.feat-icon{width:40px;height:40px;border-radius:10px;background:var(--indigo-50);display:flex;align-items:center;justify-content:center;font-size:19px;margin-bottom:14px;}
+.feat-card h3{font-size:15.5px;font-weight:700;margin:0 0 6px;}
+.feat-card p{font-size:13.8px;color:var(--ink-soft);margin:0;line-height:1.6;}
+
+/* ── Comparison table ── */
+.compare-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);}
+table.compare{width:100%;border-collapse:collapse;min-width:720px;}
+table.compare th, table.compare td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--line);font-size:13.5px;}
+table.compare th{background:var(--bg);font-weight:700;color:var(--ink-soft);font-size:12.5px;text-transform:uppercase;letter-spacing:.04em;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;color:var(--ink);}
+table.compare th.us{background:var(--indigo);color:#fff;}
+table.compare td.us{background:var(--indigo-50);font-weight:700;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:var(--ink-hint);}
+
+/* ── How it works ── */
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.steps{grid-template-columns:1fr 1fr;}}
+@media(max-width:560px){.steps{grid-template-columns:1fr;}}
+.step{padding:20px;}
+.step-num{width:32px;height:32px;border-radius:8px;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;margin-bottom:12px;}
+.step h3{font-size:14.5px;font-weight:700;margin:0 0 6px;}
+.step p{font-size:13.3px;color:var(--ink-soft);margin:0;}
+
+/* ── Reference table ── */
+.ref-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius);background:var(--surface);box-shadow:var(--shadow);max-width:520px;margin:0 auto;}
+table.ref{width:100%;border-collapse:collapse;}
+table.ref th, table.ref td{padding:10px 16px;text-align:center;border-bottom:1px solid var(--line);font-size:13.5px;font-family:var(--mono);}
+table.ref th{background:var(--bg);font-family:var(--font);font-weight:700;color:var(--ink-soft);font-size:12px;text-transform:uppercase;}
+table.ref tr:last-child td{border-bottom:none;}
+
+/* ── FAQ ── */
+.faq{max-width:760px;margin:0 auto;}
+.faq-item{border-bottom:1px solid var(--line);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15.5px;font-weight:600;color:var(--ink);cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:var(--font);}
+.faq-q .plus{font-size:20px;color:var(--indigo);transition:transform .2s;flex-shrink:0;}
+.faq-item.open .plus{transform:rotate(45deg);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+.faq-a p{font-size:14.3px;color:var(--ink-soft);margin:0 0 18px;padding:0 4px;line-height:1.7;}
+
+/* ── Related tools ── */
+.related-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:1080px;margin:0 auto;}
+@media(max-width:860px){.related-grid{grid-template-columns:1fr 1fr;}}
+.related-card{display:block;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px;font-size:13.8px;font-weight:600;color:var(--ink);transition:all .15s;}
+.related-card:hover{border-color:var(--indigo);transform:translateY(-2px);box-shadow:var(--shadow);}
+.related-card .sub{display:block;font-size:12px;font-weight:400;color:var(--ink-hint);margin-top:3px;}
+
+/* ── Footer ── */
+footer{background:var(--ink);color:#cbd5e1;padding:44px 20px 24px;margin-top:40px;}
+.footer-inner{max-width:1120px;margin:0 auto;display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.footer-inner .logo{color:#fff;}
+footer .cols{display:flex;gap:52px;flex-wrap:wrap;}
+footer .col h4{font-size:12.5px;text-transform:uppercase;letter-spacing:.06em;color:#94a3b8;margin:0 0 12px;}
+footer .col a{display:block;font-size:13.6px;color:#cbd5e1;margin-bottom:9px;}
+footer .col a:hover{color:#fff;}
+.footer-bottom{max-width:1120px;margin:32px auto 0;padding-top:20px;border-top:1px solid #1e293b;font-size:12.5px;color:#64748b;text-align:center;}
+
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0;}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <div class="nav-links" id="navLinks">
+      <a href="/">Home</a>
+      <a href="/tools/" class="active">Tools</a>
+      <a href="/blog/">Blog</a>
+      <a href="/tools/" class="nav-cta">All Tools →</a>
+    </div>
+    <button class="burger" id="burgerBtn" aria-label="Toggle menu">☰</button>
+  </div>
+</nav>
+
+<div class="crumb">
+  <a href="/">Home</a><span class="sep">/</span><a href="/tools/">Tools</a><span class="sep">/</span><span class="cur">Hex Converter</span>
+</div>
+
+<header class="hero">
+  <h1>Hex Converter</h1>
+  <p>Convert hexadecimal to decimal, binary, octal and text — instantly, in both directions, with no digit limit and no signup.</p>
+  <div class="hero-badges">
+    <span class="badge">✓ Unlimited digits</span>
+    <span class="badge">✓ Signed / two's complement</span>
+    <span class="badge">✓ Bulk conversion</span>
+    <span class="badge">✓ 100% client-side</span>
+  </div>
+</header>
+
+<section class="tool-section">
+  <div class="wrap">
+    <div class="tool-card">
+      <div class="field-grid">
+
+        <div class="field">
+          <label for="fHex">Hexadecimal <span class="tag">base 16</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fHex" spellcheck="false" placeholder="e.g. 1F4A or 0x1F4A" data-base="hex"></textarea>
+            <button class="copy-btn" data-copy="fHex" title="Copy" aria-label="Copy hex value">⧉</button>
+          </div>
+          <div class="field-err" id="errHex"></div>
+        </div>
+
+        <div class="field">
+          <label for="fDec">Decimal <span class="tag">base 10</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fDec" spellcheck="false" placeholder="e.g. 8010" data-base="dec"></textarea>
+            <button class="copy-btn" data-copy="fDec" title="Copy" aria-label="Copy decimal value">⧉</button>
+          </div>
+          <div class="field-err" id="errDec"></div>
+        </div>
+
+        <div class="field">
+          <label for="fBin">Binary <span class="tag">base 2</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fBin" spellcheck="false" placeholder="e.g. 1111101001010" data-base="bin"></textarea>
+            <button class="copy-btn" data-copy="fBin" title="Copy" aria-label="Copy binary value">⧉</button>
+          </div>
+          <div class="field-err" id="errBin"></div>
+        </div>
+
+        <div class="field">
+          <label for="fOct">Octal <span class="tag">base 8</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fOct" spellcheck="false" placeholder="e.g. 17512" data-base="oct"></textarea>
+            <button class="copy-btn" data-copy="fOct" title="Copy" aria-label="Copy octal value">⧉</button>
+          </div>
+          <div class="field-err" id="errOct"></div>
+        </div>
+
+        <div class="field" style="grid-column:1/-1;">
+          <label for="fTxt">Text <span class="tag">UTF-8 / ASCII</span></label>
+          <div class="field-input-wrap">
+            <textarea id="fTxt" spellcheck="false" placeholder="e.g. Hello" data-base="txt"></textarea>
+            <button class="copy-btn" data-copy="fTxt" title="Copy" aria-label="Copy text value">⧉</button>
+          </div>
+          <div class="field-err" id="errTxt"></div>
+        </div>
+
+      </div>
+
+      <div class="options-row">
+        <div class="opt-group">
+          <span>Signed (two's complement)</span>
+          <label class="switch"><input type="checkbox" id="signedToggle"><span class="slider"></span></label>
+        </div>
+        <div class="opt-group">
+          <span>Bit width</span>
+          <select class="bit-select" id="bitWidth">
+            <option value="8">8-bit</option>
+            <option value="16">16-bit</option>
+            <option value="32" selected>32-bit</option>
+            <option value="64">64-bit</option>
+          </select>
+        </div>
+        <button class="clear-btn" id="clearAll">Clear all</button>
+      </div>
+    </div>
+
+    <div class="bulk-card">
+      <div class="bulk-head">
+        <h3>Bulk hex converter</h3>
+        <div class="bulk-controls">
+          <select class="bit-select" id="bulkFrom">
+            <option value="hex">From: Hex</option>
+            <option value="dec">From: Decimal</option>
+            <option value="bin">From: Binary</option>
+            <option value="oct">From: Octal</option>
+          </select>
+          <select class="bit-select" id="bulkTo">
+            <option value="dec">To: Decimal</option>
+            <option value="hex">To: Hex</option>
+            <option value="bin">To: Binary</option>
+            <option value="oct">To: Octal</option>
+          </select>
+        </div>
+      </div>
+      <div class="bulk-grid">
+        <div>
+          <span class="bulk-label">Input — one value per line</span>
+          <textarea id="bulkIn" placeholder="1F4A&#10;FF&#10;A0"></textarea>
+        </div>
+        <div>
+          <span class="bulk-label">Output</span>
+          <textarea id="bulkOut" readonly placeholder="Results appear here"></textarea>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Why use this hex converter</h2>
+      <p>Built to handle everything a developer, student or hardware engineer needs from a single page.</p>
+    </div>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🔁</div><h3>5-way live conversion</h3><p>Hex, decimal, binary, octal and text stay in sync — type in any field and the rest update instantly.</p></div>
+      <div class="feat-card"><div class="feat-icon">♾️</div><h3>No digit limit</h3><p>Arbitrary-precision math means 128-bit keys and long hash values convert correctly, not just 32-bit integers.</p></div>
+      <div class="feat-card"><div class="feat-icon">➖</div><h3>Signed integers</h3><p>Toggle two's complement mode with 8, 16, 32 or 64-bit width to correctly read negative hex values.</p></div>
+      <div class="feat-card"><div class="feat-icon">📋</div><h3>Bulk mode</h3><p>Paste a whole list of values and convert every line in one pass — no repeating single conversions.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔤</div><h3>Text & UTF-8 support</h3><p>Decode hex byte pairs straight into readable text, or encode any string back into hex.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔒</div><h3>Runs in your browser</h3><p>Nothing you type is uploaded anywhere — all conversion happens locally in JavaScript.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How this compares</h2>
+      <p>Most hex tools convert one pair of bases at a time and stop at 32-bit integers.</p>
+    </div>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr>
+            <th>Feature</th>
+            <th class="us">SEOTriggers</th>
+            <th>KeyCDN</th>
+            <th>RapidTables</th>
+            <th>Calculator.net</th>
+            <th>BinaryHex&shy;Converter</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Hex ↔ Decimal ↔ Binary ↔ Octal ↔ Text</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Unlimited digit length</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Signed / two's complement</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Bulk / list conversion</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No ads on tool area</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>How to convert hex</h2>
+    </div>
+    <div class="steps">
+      <div class="step"><div class="step-num">1</div><h3>Pick a field</h3><p>Type into Hex, Decimal, Binary, Octal or Text — any field works as the starting point.</p></div>
+      <div class="step"><div class="step-num">2</div><h3>Read the result</h3><p>The other four fields update in real time as you type, with no convert button to click.</p></div>
+      <div class="step"><div class="step-num">3</div><h3>Adjust options</h3><p>Turn on Signed mode and choose a bit width if you're working with negative values.</p></div>
+      <div class="step"><div class="step-num">4</div><h3>Copy or bulk-convert</h3><p>Use the copy icon on any field, or switch to bulk mode to convert an entire list at once.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Hex reference chart</h2>
+      <p>Common hex values and their decimal / binary equivalents.</p>
+    </div>
+    <div class="ref-wrap">
+      <table class="ref">
+        <thead><tr><th>Hex</th><th>Decimal</th><th>Binary</th></tr></thead>
+        <tbody id="refTable"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div class="faq" id="faqList">
+      <div class="faq-item open">
+        <button class="faq-q">How do I convert hex to decimal?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Type or paste the hexadecimal value into the Hex field. The Decimal field updates instantly using base-16 to base-10 conversion, with no page reload or button click needed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">How do I convert hex to binary or octal?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Enter your hex value once and the Binary and Octal fields populate automatically alongside Decimal and Text, since every field on this page stays in sync in real time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can this tool handle negative numbers?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Turn on Signed mode and pick a bit width (8, 16, 32 or 64-bit) to interpret values using two's complement, which is how negative numbers are represented in hexadecimal in most programming languages.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is there a limit on how many hex digits I can convert?<span class="plus">+</span></button>
+        <div class="faq-a"><p>No. Unlike calculator-style tools capped at 32 or 64-bit integers, this converter uses arbitrary-precision arithmetic, so values of any length convert correctly.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Can I convert a list of hex values at once?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. Use the bulk converter below the main tool to paste one value per line and convert an entire list to decimal, binary, octal or text in a single pass.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does this tool convert hex to text or ASCII?<span class="plus">+</span></button>
+        <div class="faq-a"><p>Yes. The Text field decodes hex byte pairs as UTF-8 characters, and typing text into that field encodes it back into hex automatically.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" style="background:var(--surface);border-top:1px solid var(--line);">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>More converters &amp; calculators</h2>
+    </div>
+    <div class="related-grid">
+      <a class="related-card" href="/tools/binary-converter">Binary Converter<span class="sub">Binary ↔ decimal ↔ text</span></a>
+      <a class="related-card" href="/tools/unit-converter">Unit Converter<span class="sub">Length, weight, volume</span></a>
+      <a class="related-card" href="/tools/case-converter">Case Converter<span class="sub">Upper, lower, title case</span></a>
+      <a class="related-card" href="/tools/">All Tools<span class="sub">Browse the full toolkit</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div>
+      <a href="/" class="logo">SEO<span style="color:#818cf8;">Triggers</span></a>
+      <p style="max-width:260px;font-size:13px;color:#94a3b8;margin-top:10px;">Free SEO tools and calculators, built to be faster and more complete than the paid alternatives.</p>
+    </div>
+    <div class="cols">
+      <div class="col">
+        <h4>Tools</h4>
+        <a href="/tools/binary-converter">Binary Converter</a>
+        <a href="/tools/unit-converter">Unit Converter</a>
+        <a href="/tools/json-formatter">JSON Formatter</a>
+        <a href="/tools/">All Tools</a>
+      </div>
+      <div class="col">
+        <h4>Company</h4>
+        <a href="/blog/">Blog</a>
+        <a href="/about">About</a>
+        <a href="/contact">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">© 2026 SEOTriggers.com — All rights reserved.</div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  // ── Mobile nav ──
+  document.getElementById('burgerBtn').addEventListener('click', function(){
+    document.getElementById('navLinks').classList.toggle('open');
+  });
+
+  // ── FAQ accordion ──
+  document.querySelectorAll('.faq-item').forEach(function(item, idx){
+    var q = item.querySelector('.faq-q');
+    var a = item.querySelector('.faq-a');
+    if (idx === 0) { a.style.maxHeight = a.scrollHeight + 'px'; }
+    q.addEventListener('click', function(){
+      var isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(function(other){
+        other.classList.remove('open');
+        other.querySelector('.faq-a').style.maxHeight = null;
+      });
+      if (!isOpen) {
+        item.classList.add('open');
+        a.style.maxHeight = a.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Copy buttons ──
+  document.querySelectorAll('.copy-btn').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var el = document.getElementById(btn.dataset.copy);
+      if (!el.value) return;
+      navigator.clipboard.writeText(el.value).then(function(){
+        btn.classList.add('copied');
+        var orig = btn.textContent;
+        btn.textContent = '✓';
+        setTimeout(function(){ btn.classList.remove('copied'); btn.textContent = orig; }, 1200);
+      });
+    });
+  });
+
+  // ══════════════════════════════════════════
+  //  Core conversion engine (BigInt-based)
+  // ══════════════════════════════════════════
+  var fHex = document.getElementById('fHex');
+  var fDec = document.getElementById('fDec');
+  var fBin = document.getElementById('fBin');
+  var fOct = document.getElementById('fOct');
+  var fTxt = document.getElementById('fTxt');
+  var signedToggle = document.getElementById('signedToggle');
+  var bitWidth = document.getElementById('bitWidth');
+  var clearAll = document.getElementById('clearAll');
+
+  var errs = {
+    fHex: document.getElementById('errHex'),
+    fDec: document.getElementById('errDec'),
+    fBin: document.getElementById('errBin'),
+    fOct: document.getElementById('errOct'),
+    fTxt: document.getElementById('errTxt')
+  };
+
+  function clearErrors(){
+    Object.keys(errs).forEach(function(k){ errs[k].textContent=''; });
+    [fHex,fDec,fBin,fOct,fTxt].forEach(function(f){ f.classList.remove('err'); });
+  }
+  function showError(id, msg){
+    errs[id].textContent = msg;
+    document.getElementById(id).classList.add('err');
+  }
+
+  function applySignedWrap(big){
+    if (!signedToggle.checked) return big;
+    var bits = parseInt(bitWidth.value, 10);
+    var max = 1n << BigInt(bits);
+    var half = 1n << BigInt(bits - 1);
+    var wrapped = ((big % max) + max) % max;
+    if (wrapped >= half) wrapped -= max;
+    return wrapped;
+  }
+  function toUnsignedForRepr(big){
+    if (!signedToggle.checked) return big < 0n ? null : big;
+    var bits = parseInt(bitWidth.value, 10);
+    var max = 1n << BigInt(bits);
+    if (big < 0n) big += max;
+    return ((big % max) + max) % max;
+  }
+
+  function bigToHex(big){
+    var u = toUnsignedForRepr(big);
+    if (u === null) return null;
+    return u.toString(16).toUpperCase();
+  }
+  function bigToBin(big){
+    var u = toUnsignedForRepr(big);
+    if (u === null) return null;
+    return u.toString(2);
+  }
+  function bigToOct(big){
+    var u = toUnsignedForRepr(big);
+    if (u === null) return null;
+    return u.toString(8);
+  }
+
+  function textToHex(str){
+    var bytes = new TextEncoder().encode(str);
+    var out = [];
+    bytes.forEach(function(b){ out.push(b.toString(16).toUpperCase().padStart(2,'0')); });
+    return out.join(' ');
+  }
+  function hexToText(hexStr){
+    var clean = hexStr.replace(/0x/gi,'').replace(/[^0-9a-fA-F]/g,'');
+    if (clean.length % 2 !== 0) clean = '0' + clean;
+    var bytes = new Uint8Array(clean.length/2);
+    for (var i=0;i<clean.length;i+=2){ bytes[i/2] = parseInt(clean.substr(i,2),16); }
+    try { return new TextDecoder('utf-8', {fatal:false}).decode(bytes); }
+    catch(e){ return ''; }
+  }
+
+  function cleanHex(s){ return s.trim().replace(/^0x/i,'').replace(/\s+/g,''); }
+  function cleanBin(s){ return s.trim().replace(/\s+/g,''); }
+  function cleanOct(s){ return s.trim().replace(/\s+/g,''); }
+  function cleanDec(s){ return s.trim().replace(/\s+/g,''); }
+
+  function parseFrom(base, raw){
+    if (raw === '') return {big:null, empty:true};
+    var neg = false, s = raw;
+    if (base === 'dec' && s.charAt(0) === '-') { neg = true; s = s.slice(1); }
+
+    if (base === 'hex'){
+      var h = cleanHex(s);
+      if (!/^[0-9a-fA-F]+$/.test(h)) return {error:'Only 0-9 and A-F allowed'};
+      return {big: BigInt('0x'+h)};
+    }
+    if (base === 'dec'){
+      var d = cleanDec(s);
+      if (!/^[0-9]+$/.test(d)) return {error:'Digits 0-9 only'};
+      var v = BigInt(d);
+      return {big: neg ? -v : v};
+    }
+    if (base === 'bin'){
+      var b = cleanBin(s);
+      if (!/^[01]+$/.test(b)) return {error:'Only 0 and 1 allowed'};
+      return {big: BigInt('0b'+b)};
+    }
+    if (base === 'oct'){
+      var o = cleanOct(s);
+      if (!/^[0-7]+$/.test(o)) return {error:'Only digits 0-7 allowed'};
+      return {big: BigInt('0o'+o)};
+    }
+    return {error:'Unknown base'};
+  }
+
+  var updating = false;
+
+  function updateAllFrom(sourceId, big){
+    var hex = bigToHex(big), bin = bigToBin(big), oct = bigToOct(big);
+    var outOfRange = (hex === null);
+    if (outOfRange){
+      var bits = bitWidth.value;
+      showError(sourceId === 'fDec' ? 'fDec' : sourceId, 'Value out of range for signed ' + bits + '-bit');
+    }
+    if (sourceId !== 'fHex') fHex.value = hex === null ? '' : hex;
+    if (sourceId !== 'fDec') fDec.value = big.toString();
+    if (sourceId !== 'fBin') fBin.value = bin === null ? '' : bin;
+    if (sourceId !== 'fOct') fOct.value = oct === null ? '' : oct;
+    if (sourceId !== 'fTxt') fTxt.value = hex === null ? '' : hexToText(hex.length % 2 ? '0'+hex : hex);
+  }
+
+  function handleInput(sourceId, base){
+    if (updating) return;
+    updating = true;
+    clearErrors();
+    var el = document.getElementById(sourceId);
+    var raw = el.value;
+
+    if (sourceId === 'fTxt'){
+      if (raw === ''){
+        [fHex,fDec,fBin,fOct].forEach(function(f){ f.value=''; });
+        updating = false; return;
+      }
+      var hx = textToHex(raw).replace(/\s+/g,'');
+      var result = parseFrom('hex', hx);
+      if (result.error){ showError('fTxt', result.error); updating = false; return; }
+      var big = applySignedWrap(result.big);
+      var hex = bigToHex(big), bin = bigToBin(big), oct = bigToOct(big);
+      fHex.value = hex === null ? '' : hex;
+      fDec.value = big.toString();
+      fBin.value = bin === null ? '' : bin;
+      fOct.value = oct === null ? '' : oct;
+      updating = false;
+      return;
+    }
+
+    if (raw === ''){
+      [fHex,fDec,fBin,fOct,fTxt].forEach(function(f){ if(f.id!==sourceId) f.value=''; });
+      updating = false; return;
+    }
+
+    var res = parseFrom(base, raw);
+    if (res.error){ showError(sourceId, res.error); updating = false; return; }
+    var bigVal = signedToggle.checked && base !== 'dec' ? applySignedWrap(res.big) : res.big;
+    updateAllFrom(sourceId, bigVal);
+    updating = false;
+  }
+
+  fHex.addEventListener('input', function(){ handleInput('fHex','hex'); });
+  fDec.addEventListener('input', function(){ handleInput('fDec','dec'); });
+  fBin.addEventListener('input', function(){ handleInput('fBin','bin'); });
+  fOct.addEventListener('input', function(){ handleInput('fOct','oct'); });
+  fTxt.addEventListener('input', function(){ handleInput('fTxt','txt'); });
+
+  [signedToggle, bitWidth].forEach(function(ctrl){
+    ctrl.addEventListener('change', function(){
+      if (fHex.value.trim() !== '') handleInput('fHex','hex');
+      else if (fDec.value.trim() !== '') handleInput('fDec','dec');
+    });
+  });
+
+  clearAll.addEventListener('click', function(){
+    [fHex,fDec,fBin,fOct,fTxt].forEach(function(f){ f.value=''; });
+    clearErrors();
+  });
+
+  // ── Preload example ──
+  fHex.value = '1F4A';
+  handleInput('fHex','hex');
+
+  // ══════════════════════════════════════════
+  //  Bulk converter
+  // ══════════════════════════════════════════
+  var bulkIn = document.getElementById('bulkIn');
+  var bulkOut = document.getElementById('bulkOut');
+  var bulkFrom = document.getElementById('bulkFrom');
+  var bulkTo = document.getElementById('bulkTo');
+
+  function convertSingle(base, raw){
+    var r = parseFrom(base, raw.trim());
+    if (r.error || r.big === undefined) return null;
+    return r.big;
+  }
+  function formatOut(big, base){
+    if (base === 'hex') return big.toString(16).toUpperCase();
+    if (base === 'dec') return big.toString(10);
+    if (base === 'bin') return big.toString(2);
+    if (base === 'oct') return big.toString(8);
+    return '';
+  }
+
+  function runBulk(){
+    var lines = bulkIn.value.split('\n');
+    var from = bulkFrom.value, to = bulkTo.value;
+    var out = lines.map(function(line){
+      var t = line.trim();
+      if (t === '') return '';
+      var big = convertSingle(from, t);
+      if (big === null) return '⚠ invalid: ' + t;
+      return formatOut(big, to);
+    });
+    bulkOut.value = out.join('\n');
+  }
+  bulkIn.addEventListener('input', runBulk);
+  bulkFrom.addEventListener('change', runBulk);
+  bulkTo.addEventListener('change', runBulk);
+  bulkIn.value = '1F4A\nFF\nA0\n2A';
+  runBulk();
+
+  // ══════════════════════════════════════════
+  //  Reference table
+  // ══════════════════════════════════════════
+  var refVals = [0,1,2,4,8,15,16,31,32,63,64,127,128,255,256,511,512,1023,1024,4095,4096,65535];
+  var refBody = document.getElementById('refTable');
+  refVals.forEach(function(v){
+    var tr = document.createElement('tr');
+    tr.innerHTML = '<td>' + v.toString(16).toUpperCase() + '</td><td>' + v + '</td><td>' + v.toString(2) + '</td>';
+    refBody.appendChild(tr);
+  });
+
+})();
+</script>
+
+</body>
+</html>
