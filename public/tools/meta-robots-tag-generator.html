@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meta Robots Tag Generator — Free Online Tool | SEOTriggers</title>
+<meta name="description" content="Free meta robots tag generator. Build the exact <meta name='robots'> tag AND the matching X-Robots-Tag HTTP header (with Apache & Nginx snippets) in one click. All directives, per-bot targeting, live preview." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/meta-robots-tag-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Meta Robots Tag Generator — Free Online Tool | SEOTriggers" />
+<meta property="og:description" content="Generate the exact meta robots tag AND X-Robots-Tag HTTP header in one click. All directives, per-bot targeting (Googlebot, Bingbot), Apache & Nginx snippets, live search-visibility preview. Free." />
+<meta property="og:url" content="https://seotriggers.com/tools/meta-robots-tag-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Meta Robots Tag Generator — Free Online Tool | SEOTriggers" />
+<meta name="twitter:description" content="Generate the exact meta robots tag AND X-Robots-Tag HTTP header in one click. All directives, per-bot targeting, Apache & Nginx snippets, live preview. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Meta Robots Tag Generator",
+  "url": "https://seotriggers.com/tools/meta-robots-tag-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate meta robots tags and the matching X-Robots-Tag HTTP header, with per-bot targeting, Apache and Nginx snippets, and a live search-visibility preview."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Meta Robots Tag Generator", "item": "https://seotriggers.com/tools/meta-robots-tag-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a meta robots tag?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A meta robots tag is an HTML tag placed in a page's <head> section that tells search engines whether to index the page and whether to follow its links. Unlike robots.txt, which controls crawling, meta robots controls what happens after a page has been crawled." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between meta robots and X-Robots-Tag?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They use the exact same directives and have identical effect, but meta robots is an HTML tag placed inside <head> and only works on HTML pages, while X-Robots-Tag is an HTTP response header set at the server level and also works on non-HTML files like PDFs, images, and downloads." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does a meta robots tag replace robots.txt?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Robots.txt controls whether a crawler is allowed to request a page at all. Meta robots and X-Robots-Tag control what the crawler does after it has successfully fetched the page. If robots.txt blocks a page, crawlers may never even see its meta robots tag." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I noindex a PDF or image file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "PDFs and images don't have an HTML <head>, so a meta robots tag won't work on them. Use the X-Robots-Tag HTTP header instead, set at the server level via Apache (.htaccess) or Nginx configuration, which this tool generates automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "What does the 'none' value mean in a meta robots tag?",
+      "acceptedAnswer": { "@type": "Answer", "text": "'none' is shorthand for 'noindex, nofollow' together — it tells search engines not to index the page and not to follow any of its links. This tool generates the explicit 'noindex, nofollow' form, which has identical effect and is easier to read." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will search engines respect my meta robots tag immediately?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No — a crawler has to re-fetch the page to see a new or updated meta robots tag. For popular pages this typically happens within days; for low-traffic pages it can take weeks. Requesting indexing via Search Console's URL Inspection tool can speed this up." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.preset-row{display:flex;flex-wrap:wrap;gap:8px;}
+.preset-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.preset-btn:hover{border-color:var(--brand);}
+.preset-btn.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.toggle-row{display:flex;gap:10px;flex-wrap:wrap;}
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px 20px;}
+.check-item{display:flex;align-items:center;gap:8px;font-size:13px;}
+.check-item label{cursor:pointer;}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;}
+
+.field-inline{display:flex;align-items:center;gap:10px;font-size:13px;flex-wrap:wrap;}
+.field-inline input[type=text], .field-inline input[type=number], .field-inline input[type=date], .field-inline select{
+  padding:8px 12px;border:1px solid var(--border);border-radius:7px;font-size:13px;font-family:inherit;outline:none;width:140px;
+}
+.field-inline input:focus, .field-inline select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+/* Output blocks */
+.output-block{margin-top:18px;}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:13px;overflow-x:auto;margin:0;line-height:1.7;}
+pre.code-block .kw{color:#a5b4fc;}
+pre.code-block .str{color:#86efac;}
+
+.scope-toggle{display:flex;gap:8px;margin-bottom:8px;}
+.scope-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.scope-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+/* Preview panel */
+.preview-panel{margin-top:22px;border-radius:12px;padding:18px 20px;background:var(--bg);border:1px solid var(--border);}
+.preview-title{font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;margin-bottom:10px;}
+.preview-line{display:flex;gap:8px;align-items:flex-start;font-size:13px;padding:5px 0;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Meta Robots Tag Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Meta Robots Tag Generator</h1>
+    <p>Build the exact <code>&lt;meta name="robots"&gt;</code> tag <strong>and</strong> the matching X-Robots-Tag HTTP header — with Apache and Nginx snippets — in one click.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Quick presets</div>
+    <div class="preset-row" id="presetRow"></div>
+
+    <div class="section-label">Indexing &amp; link following</div>
+    <div class="toggle-row">
+      <div class="toggle-pair">
+        <button id="btnIndex" class="active" onclick="setIndex(true)">Index</button>
+        <button id="btnNoindex" onclick="setIndex(false)">Noindex</button>
+      </div>
+      <div class="toggle-pair">
+        <button id="btnFollow" class="active" onclick="setFollow(true)">Follow</button>
+        <button id="btnNofollow" onclick="setFollow(false)">Nofollow</button>
+      </div>
+    </div>
+
+    <div class="section-label">Snippets &amp; previews</div>
+    <div class="check-grid">
+      <div class="check-item"><input type="checkbox" id="chkNosnippet" onchange="update()"><label for="chkNosnippet">nosnippet — no text/image/video snippet</label></div>
+      <div class="check-item"><input type="checkbox" id="chkNoarchive" onchange="update()"><label for="chkNoarchive">noarchive — no cached copy link</label></div>
+      <div class="check-item"><input type="checkbox" id="chkNoimageindex" onchange="update()"><label for="chkNoimageindex">noimageindex — don't index images</label></div>
+      <div class="check-item"><input type="checkbox" id="chkNotranslate" onchange="update()"><label for="chkNotranslate">notranslate — no auto-translate offer</label></div>
+    </div>
+    <div class="field-inline" style="margin-top:12px;">
+      <label>max-snippet: <input type="number" id="maxSnippet" placeholder="e.g. 160" min="-1" oninput="update()"></label>
+      <label>max-image-preview:
+        <select id="maxImagePreview" onchange="update()">
+          <option value="">— not set —</option>
+          <option value="none">none</option>
+          <option value="standard">standard</option>
+          <option value="large">large</option>
+        </select>
+      </label>
+      <label>max-video-preview (sec): <input type="number" id="maxVideoPreview" placeholder="e.g. 30" min="-1" oninput="update()"></label>
+    </div>
+
+    <div class="section-label">Advanced</div>
+    <div class="field-inline">
+      <label>unavailable_after: <input type="date" id="unavailableAfter" oninput="update()"></label>
+      <div class="check-item"><input type="checkbox" id="chkIndexifembedded" onchange="update()"><label for="chkIndexifembedded">indexifembedded — allow indexing when embedded via iframe on a noindex page</label></div>
+    </div>
+
+    <div class="section-label">Target which crawlers</div>
+    <div class="check-grid">
+      <div class="check-item"><input type="checkbox" id="targetAll" checked onchange="update()"><label for="targetAll">robots (all crawlers) — recommended</label></div>
+      <div class="check-item"><input type="checkbox" id="targetGooglebot" onchange="update()"><label for="targetGooglebot">googlebot only</label></div>
+      <div class="check-item"><input type="checkbox" id="targetBingbot" onchange="update()"><label for="targetBingbot">bingbot only</label></div>
+    </div>
+
+    <!-- OUTPUT: Meta tag -->
+    <div class="output-block">
+      <div class="output-head"><h4>HTML meta tag(s)</h4><button class="copy-btn" onclick="copyBlock('metaOut', this)">Copy</button></div>
+      <pre class="code-block" id="metaOut"></pre>
+      <div class="small-note">Paste this inside your page's <code>&lt;head&gt;&lt;/head&gt;</code> section. Only works on HTML pages.</div>
+    </div>
+
+    <!-- OUTPUT: X-Robots-Tag -->
+    <div class="output-block">
+      <div class="output-head"><h4>X-Robots-Tag HTTP header</h4><button class="copy-btn" onclick="copyBlock('xrobotsOut', this)">Copy</button></div>
+      <pre class="code-block" id="xrobotsOut"></pre>
+      <div class="small-note">Set this at the server level — works on <strong>any</strong> file type, including PDFs and images.</div>
+    </div>
+
+    <!-- OUTPUT: Apache -->
+    <div class="output-block">
+      <div class="output-head"><h4>Apache (.htaccess)</h4><button class="copy-btn" onclick="copyBlock('apacheOut', this)">Copy</button></div>
+      <div class="scope-toggle">
+        <button class="active" data-scope="all" onclick="setServerScope('apache','all',this)">All files</button>
+        <button data-scope="pdf" onclick="setServerScope('apache','pdf',this)">PDFs only</button>
+      </div>
+      <pre class="code-block" id="apacheOut"></pre>
+    </div>
+
+    <!-- OUTPUT: Nginx -->
+    <div class="output-block">
+      <div class="output-head"><h4>Nginx</h4><button class="copy-btn" onclick="copyBlock('nginxOut', this)">Copy</button></div>
+      <div class="scope-toggle">
+        <button class="active" data-scope="all" onclick="setServerScope('nginx','all',this)">All files</button>
+        <button data-scope="pdf" onclick="setServerScope('nginx','pdf',this)">PDFs only</button>
+      </div>
+      <pre class="code-block" id="nginxOut"></pre>
+    </div>
+
+    <!-- Live preview -->
+    <div class="preview-panel">
+      <div class="preview-title">What this means for search visibility</div>
+      <div id="previewList"></div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ EXPLAINER / CROSS-LINK ══════════════ -->
+  <section class="section">
+    <h2>Meta robots vs. robots.txt vs. X-Robots-Tag</h2>
+    <p class="sub">Three different tools that control three different things — mixing them up is the most common indexing mistake.</p>
+    <div class="card" style="padding:0;overflow-x:auto;">
+      <table class="explain-table">
+        <thead><tr><th>Mechanism</th><th>Controls</th><th>Where it lives</th><th>Works on</th></tr></thead>
+        <tbody>
+          <tr><td><strong>robots.txt</strong></td><td>Whether a crawler may <em>request</em> a URL at all</td><td>/robots.txt at your site root</td><td>Entire site / path patterns</td></tr>
+          <tr><td><strong>Meta robots tag</strong></td><td>Whether a fetched page is indexed &amp; whether its links are followed</td><td>&lt;head&gt; of the HTML page</td><td>HTML pages only</td></tr>
+          <tr><td><strong>X-Robots-Tag</strong></td><td>Same as meta robots, same directives</td><td>HTTP response header, set server-side</td><td>Any file type (PDF, images, HTML)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">If robots.txt blocks a page, crawlers may never see its meta robots tag — the two need to work together. Already have a robots.txt file? <a href="/tools/robots-txt-tester">Test and validate it here →</a></p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most generators only output one format. This one gives you every format you'll actually need to ship.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Typical generators</th></tr></thead>
+        <tbody>
+          <tr><td>Meta robots tag output</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>X-Robots-Tag HTTP header output</td><td class="yes">✓</td><td class="no">Rare</td></tr>
+          <tr><td>Ready-to-paste Apache (.htaccess) snippet</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Ready-to-paste Nginx snippet</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Per-bot targeting (googlebot / bingbot)</td><td class="yes">✓</td><td class="no">Rare</td></tr>
+          <tr><td>Plain-English search-visibility preview</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Cross-linked robots.txt tester</td><td class="yes">✓</td><td class="no">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🏷️</div><h3>Every directive supported</h3><p>index/noindex, follow/nofollow, noarchive, nosnippet, max-snippet, max-image-preview, max-video-preview, notranslate, noimageindex, unavailable_after, indexifembedded.</p></div>
+      <div class="feat-card"><div class="ic">🌐</div><h3>Meta tag + HTTP header, together</h3><p>Get the HTML meta tag and the equivalent X-Robots-Tag header from the same settings — no need for two separate tools.</p></div>
+      <div class="feat-card"><div class="ic">📄</div><h3>Built for non-HTML files too</h3><p>Copy-ready Apache and Nginx snippets so you can noindex PDFs, images, and downloads that can't carry a meta tag.</p></div>
+      <div class="feat-card"><div class="ic">🎯</div><h3>Per-bot targeting</h3><p>Generate separate rules for all robots, Googlebot only, or Bingbot only — in the same output.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live visibility preview</h3><p>See exactly what your settings mean in plain English before you ship them.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is a meta robots tag? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>A meta robots tag is an HTML tag placed in a page's &lt;head&gt; section that tells search engines whether to index the page and whether to follow its links. Unlike robots.txt, which controls crawling, meta robots controls what happens after a page has been crawled.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the difference between meta robots and X-Robots-Tag? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>They use the exact same directives and have identical effect, but meta robots is an HTML tag placed inside &lt;head&gt; and only works on HTML pages, while X-Robots-Tag is an HTTP response header set at the server level and also works on non-HTML files like PDFs, images, and downloads.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does a meta robots tag replace robots.txt? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Robots.txt controls whether a crawler is allowed to request a page at all. Meta robots and X-Robots-Tag control what the crawler does after it has successfully fetched the page. If robots.txt blocks a page, crawlers may never even see its meta robots tag.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I noindex a PDF or image file? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>PDFs and images don't have an HTML &lt;head&gt;, so a meta robots tag won't work on them. Use the X-Robots-Tag HTTP header instead, set at the server level via Apache (.htaccess) or Nginx configuration — this tool generates both automatically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What does the "none" value mean in a meta robots tag? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>"none" is shorthand for "noindex, nofollow" together — it tells search engines not to index the page and not to follow any of its links. This tool generates the explicit "noindex, nofollow" form, which has identical effect and is easier to read.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will search engines respect my meta robots tag immediately? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No — a crawler has to re-fetch the page to see a new or updated meta robots tag. For popular pages this typically happens within days; for low-traffic pages it can take weeks. Requesting indexing via Search Console's URL Inspection tool can speed this up.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   DIRECTIVE / OUTPUT BUILDING LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+function buildDirectiveParts(state) {
+  const parts = [];
+  parts.push(state.index ? "index" : "noindex");
+  parts.push(state.follow ? "follow" : "nofollow");
+  if (state.noarchive) parts.push("noarchive");
+  if (state.nosnippet) parts.push("nosnippet");
+  if (state.maxSnippet !== "" && state.maxSnippet != null) parts.push(`max-snippet:${state.maxSnippet}`);
+  if (state.maxImagePreview) parts.push(`max-image-preview:${state.maxImagePreview}`);
+  if (state.maxVideoPreview !== "" && state.maxVideoPreview != null) parts.push(`max-video-preview:${state.maxVideoPreview}`);
+  if (state.notranslate) parts.push("notranslate");
+  if (state.noimageindex) parts.push("noimageindex");
+  if (state.unavailableAfter) parts.push(`unavailable_after: ${state.unavailableAfter}`);
+  if (state.indexifembedded) parts.push("indexifembedded");
+  return parts;
+}
+
+function buildMetaTags(state) {
+  const directiveStr = buildDirectiveParts(state).join(", ");
+  const bots = [];
+  if (state.targetAll) bots.push("robots");
+  if (state.targetGooglebot) bots.push("googlebot");
+  if (state.targetBingbot) bots.push("bingbot");
+  if (bots.length === 0) bots.push("robots");
+  return bots.map(bot => `<meta name="${bot}" content="${directiveStr}" />`);
+}
+
+function buildXRobotsHeader(state) {
+  return buildDirectiveParts(state).join(", ");
+}
+
+function buildApacheSnippet(headerValue, scope) {
+  const inner = `  Header set X-Robots-Tag "${headerValue}"`;
+  if (scope === "pdf") {
+    return `<FilesMatch "\\.pdf$">\n<IfModule mod_headers.c>\n${inner}\n</IfModule>\n</FilesMatch>`;
+  }
+  return `<IfModule mod_headers.c>\n${inner}\n</IfModule>`;
+}
+
+function buildNginxSnippet(headerValue, scope) {
+  const line = `add_header X-Robots-Tag "${headerValue}";`;
+  if (scope === "pdf") {
+    return `location ~* \\.pdf$ {\n    ${line}\n}`;
+  }
+  return line;
+}
+
+function buildExplanation(state) {
+  const lines = [];
+  lines.push({
+    negative: !state.index,
+    text: state.index
+      ? "This page CAN appear in Google, Bing, and other search results."
+      : "This page will NOT appear in search results (existing listings will be dropped after the next crawl)."
+  });
+  lines.push({
+    negative: !state.follow,
+    text: state.follow
+      ? "Links on this page WILL pass ranking signal to the pages they point to."
+      : "Links on this page will NOT pass ranking signal — treated the same as rel=\"nofollow\"."
+  });
+  if (state.index && state.nosnippet) lines.push({ negative:true, text:"No text, image, or video snippet will be shown in the search result for this page." });
+  if (state.index && state.noarchive) lines.push({ negative:true, text:"Search engines will not show a cached copy link for this page." });
+  if (state.index && state.maxImagePreview === "none") lines.push({ negative:true, text:"No image thumbnail will be shown in the search result." });
+  if (state.unavailableAfter) lines.push({ negative:true, text:`This page will be automatically treated as noindex after ${state.unavailableAfter}, without needing another update.` });
+  if (state.notranslate) lines.push({ negative:true, text:"Search engines will not offer an automatic translation of this page." });
+  if (state.noimageindex) lines.push({ negative:true, text:"Images on this page will not be indexed by Google Images." });
+  return lines;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let state = {
+  index:true, follow:true, noarchive:false, nosnippet:false,
+  maxSnippet:"", maxImagePreview:"", maxVideoPreview:"",
+  notranslate:false, noimageindex:false, unavailableAfter:"", indexifembedded:false,
+  targetAll:true, targetGooglebot:false, targetBingbot:false,
+};
+let serverScope = { apache:"all", nginx:"all" };
+
+const PRESETS = [
+  { label:"Default (index, follow)", apply: s => Object.assign(s, {index:true, follow:true}) },
+  { label:"Noindex, follow", apply: s => Object.assign(s, {index:false, follow:true}) },
+  { label:"Index, nofollow", apply: s => Object.assign(s, {index:true, follow:false}) },
+  { label:"Noindex, nofollow (\u201cnone\u201d)", apply: s => Object.assign(s, {index:false, follow:false}) },
+  { label:"Staging site — block everything", apply: s => Object.assign(s, {index:false, follow:false, noarchive:true, nosnippet:true, noimageindex:true}) },
+  { label:"Thin/duplicate content", apply: s => Object.assign(s, {index:false, follow:true}) },
+];
+
+function renderPresets(){
+  const row = document.getElementById("presetRow");
+  row.innerHTML = PRESETS.map((p,i) => `<button class="preset-btn" data-i="${i}" onclick="applyPreset(${i})">${p.label}</button>`).join("");
+}
+function applyPreset(i){
+  PRESETS[i].apply(state);
+  syncTogglesFromState();
+  update();
+}
+
+function setIndex(v){ state.index = v; syncTogglesFromState(); update(); }
+function setFollow(v){ state.follow = v; syncTogglesFromState(); update(); }
+
+function syncTogglesFromState(){
+  document.getElementById("btnIndex").classList.toggle("active", state.index);
+  document.getElementById("btnNoindex").classList.toggle("active", !state.index);
+  document.getElementById("btnFollow").classList.toggle("active", state.follow);
+  document.getElementById("btnNofollow").classList.toggle("active", !state.follow);
+}
+
+function readFieldsIntoState(){
+  state.noarchive = document.getElementById("chkNoarchive").checked;
+  state.nosnippet = document.getElementById("chkNosnippet").checked;
+  state.noimageindex = document.getElementById("chkNoimageindex").checked;
+  state.notranslate = document.getElementById("chkNotranslate").checked;
+  state.maxSnippet = document.getElementById("maxSnippet").value.trim();
+  state.maxImagePreview = document.getElementById("maxImagePreview").value;
+  state.maxVideoPreview = document.getElementById("maxVideoPreview").value.trim();
+  state.unavailableAfter = document.getElementById("unavailableAfter").value;
+  state.indexifembedded = document.getElementById("chkIndexifembedded").checked;
+  state.targetAll = document.getElementById("targetAll").checked;
+  state.targetGooglebot = document.getElementById("targetGooglebot").checked;
+  state.targetBingbot = document.getElementById("targetBingbot").checked;
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function update(){
+  readFieldsIntoState();
+
+  const metaTags = buildMetaTags(state);
+  document.getElementById("metaOut").textContent = metaTags.join("\n");
+
+  const headerValue = buildXRobotsHeader(state);
+  document.getElementById("xrobotsOut").textContent = `X-Robots-Tag: ${headerValue}`;
+
+  document.getElementById("apacheOut").textContent = buildApacheSnippet(headerValue, serverScope.apache);
+  document.getElementById("nginxOut").textContent = buildNginxSnippet(headerValue, serverScope.nginx);
+
+  const lines = buildExplanation(state);
+  document.getElementById("previewList").innerHTML = lines.map(l => {
+    return `<div class="preview-line"><span>${l.negative ? "🚫" : "✅"}</span><span>${escapeHtml(l.text)}</span></div>`;
+  }).join("");
+}
+
+function setServerScope(which, scope, btn){
+  serverScope[which] = scope;
+  const container = btn.parentElement;
+  container.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  update();
+}
+
+function copyBlock(id, btn){
+  const text = document.getElementById(id).textContent;
+  const done = () => {
+    const original = btn.textContent;
+    btn.textContent = "Copied!";
+    btn.classList.add("copied");
+    setTimeout(() => { btn.textContent = original; btn.classList.remove("copied"); }, 1500);
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).then(done).catch(() => fallbackCopy(text, done));
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+function fallbackCopy(text, cb){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+renderPresets();
+syncTogglesFromState();
+update();
+</script>
+</body>
+</html>
