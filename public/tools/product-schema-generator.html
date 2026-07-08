@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Product Schema Generator — Free JSON-LD Tool | SEOTriggers</title>
+<meta name="description" content="Free Product schema generator. Build valid JSON-LD with offers, variant price ranges, GTIN/MPN/SKU validation, ratings & reviews, and ready-made WordPress, Shopify & Next.js snippets. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/product-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Product Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta property="og:description" content="Build valid Product JSON-LD with offers, variant price ranges, GTIN/MPN/SKU validation, ratings & reviews, and CMS-ready snippets. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/product-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Product Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta name="twitter:description" content="Build valid Product JSON-LD with offers, variant pricing, GTIN validation, ratings & reviews, and CMS-ready snippets. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Product Schema Generator",
+  "url": "https://seotriggers.com/tools/product-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate, validate, preview, and import Product JSON-LD structured data, with GTIN/MPN/SKU validation, variant price ranges, ratings and reviews, and ready-made WordPress, Shopify and Next.js snippets."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Product Schema Generator", "item": "https://seotriggers.com/tools/product-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I generate Product schema markup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fill in the product name, image, price, availability, and any identifiers or reviews you have, and the tool builds a valid Product JSON-LD block automatically, with live validation against Google's structured data guidelines." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a GTIN, MPN, or SKU for Product schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "At least one is strongly recommended. Without a GTIN, MPN, or SKU, Google may not be able to reliably identify your product for Shopping-related rich results, even if the rest of your schema is valid." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add pricing for a product with multiple variants?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Switch to variant mode and add a price for each size, color, or option. The tool builds an AggregateOffer with the low price, high price, and offer count, which is the pattern Google recommends for products with more than one price point." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I add reviews to Product schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. You can add an aggregate rating (average score and review count) and individual reviews with author, rating, and review text. Google requires these to reflect genuine customer reviews, not fabricated ones." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's a common mistake with Product schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Showing a price or availability status in your schema that doesn't match what's actually visible on the page. Google can take manual action against mismatched or misleading structured data, so keep your schema in sync with the page content." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+.top-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+.import-box{display:none;margin-top:14px;}
+.import-box.show{display:block;}
+.import-box textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;}
+.import-box textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-grid{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:12.5px;font-weight:600;color:var(--sub);}
+.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea{
+  padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;width:100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{min-height:60px;resize:vertical;}
+.field-full{grid-column:1 / -1;}
+
+.image-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.image-row input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:6px;width:28px;height:28px;font-size:13px;cursor:pointer;color:var(--sub);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand);}
+.add-chip-row{display:flex;gap:8px;margin-top:8px;}
+.add-chip-row input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+
+.gtin-row{display:flex;gap:8px;}
+.gtin-row select{width:110px;flex-shrink:0;}
+
+.type-toggle{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:14px;}
+.type-toggle button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.type-toggle button.active{background:var(--brand);color:#fff;}
+
+.variant-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.variant-row input{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.variant-row input.vname{flex:1;}
+.variant-row input.vprice{width:110px;}
+
+.review-card{border:1px solid var(--border);border-radius:10px;padding:12px 14px;background:#fbfbfd;margin-bottom:10px;}
+.review-card .rrow{display:flex;gap:8px;margin-bottom:8px;flex-wrap:wrap;}
+.review-card input, .review-card textarea{padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.review-card .rauthor{flex:1;min-width:140px;}
+.review-card .rrating{width:70px;}
+.review-card .rdate{width:150px;}
+.review-card textarea{width:100%;min-height:50px;resize:vertical;}
+.review-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+
+/* Issues */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.empty-good{padding:14px 16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Preview card */
+.preview-panel{margin-top:22px;}
+.preview-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;max-width:320px;}
+.preview-img{width:100%;height:180px;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:12px;background-size:cover;background-position:center;}
+.preview-body{padding:14px 16px;}
+.preview-name{font-size:15px;font-weight:700;margin:0 0 4px;}
+.preview-stars{color:#f59e0b;font-size:13px;margin-bottom:4px;}
+.preview-price{font-size:18px;font-weight:800;margin:6px 0 2px;}
+.preview-avail{font-size:12px;font-weight:600;}
+.preview-avail.in{color:var(--green);}
+.preview-avail.out{color:var(--red);}
+
+/* Output tabs */
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.6;max-height:420px;}
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Product Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Product Schema Generator</h1>
+    <p>Build valid Product JSON-LD with offers, variant price ranges, GTIN/MPN/SKU validation, ratings, and reviews.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="top-actions">
+      <div class="section-label" style="margin:0;">Product details</div>
+      <button class="btn secondary small" onclick="toggleImport()">⬆ Import existing schema</button>
+    </div>
+
+    <div class="import-box" id="importBox">
+      <textarea id="importInput" placeholder="Paste an existing Product JSON-LD block (with or without the &lt;script&gt; tags) to edit it here..."></textarea>
+      <button class="btn small" style="margin-top:8px;" onclick="runImport()">Import</button>
+      <div class="small-note" id="importStatus"></div>
+    </div>
+
+    <div class="field-grid" style="margin-top:16px;">
+      <div class="field field-full">
+        <label>Product name</label>
+        <input type="text" id="fName" oninput="onFieldInput()" placeholder="Wireless Noise-Cancelling Headphones">
+      </div>
+      <div class="field field-full">
+        <label>Description</label>
+        <textarea id="fDescription" oninput="onFieldInput()" placeholder="A short description of the product."></textarea>
+      </div>
+      <div class="field"><label>Brand</label><input type="text" id="fBrand" oninput="onFieldInput()" placeholder="AudioCo"></div>
+      <div class="field"><label>Category (optional)</label><input type="text" id="fCategory" oninput="onFieldInput()" placeholder="Electronics"></div>
+      <div class="field field-full"><label>Product page URL (optional)</label><input type="text" id="fUrl" oninput="onFieldInput()" placeholder="https://example.com/products/wireless-headphones"></div>
+    </div>
+
+    <div class="section-label">Images</div>
+    <div id="imagesList"></div>
+    <div class="add-chip-row">
+      <input type="text" id="newImage" placeholder="https://example.com/product-photo.jpg" onkeydown="if(event.key==='Enter'){event.preventDefault(); addImage();}">
+      <button class="btn secondary small" onclick="addImage()">+ Add image</button>
+    </div>
+
+    <div class="section-label">Identifiers <span style="font-weight:400;text-transform:none;color:var(--sub);">— at least one is recommended</span></div>
+    <div class="field-grid">
+      <div class="field"><label>SKU (optional)</label><input type="text" id="fSku" oninput="onFieldInput()" placeholder="WH-1000"></div>
+      <div class="field"><label>MPN (optional)</label><input type="text" id="fMpn" oninput="onFieldInput()" placeholder="925872"></div>
+      <div class="field field-full">
+        <label>GTIN (optional)</label>
+        <div class="gtin-row">
+          <select id="fGtinType" onchange="onFieldInput()">
+            <option value="gtin8">GTIN-8</option>
+            <option value="gtin12">GTIN-12</option>
+            <option value="gtin13" selected>GTIN-13</option>
+            <option value="gtin14">GTIN-14</option>
+          </select>
+          <input type="text" id="fGtinValue" oninput="onFieldInput()" placeholder="0012345678905" style="flex:1;">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Pricing</div>
+    <div class="type-toggle" id="offerModeToggle">
+      <button data-mode="single" onclick="setOfferMode('single')">Single price</button>
+      <button data-mode="variants" onclick="setOfferMode('variants')">Multiple variants (price range)</button>
+    </div>
+
+    <div id="singleOfferFields">
+      <div class="field-grid">
+        <div class="field"><label>Price</label><input type="text" id="fPrice" oninput="onFieldInput()" placeholder="199.99"></div>
+        <div class="field">
+          <label>Currency</label>
+          <select id="fCurrency" onchange="onFieldInput()">
+            <option>USD</option><option>EUR</option><option>GBP</option><option>INR</option><option>CAD</option><option>AUD</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Availability</label>
+          <select id="fAvailability" onchange="onFieldInput()">
+            <option value="InStock">In Stock</option>
+            <option value="OutOfStock">Out of Stock</option>
+            <option value="PreOrder">Pre-Order</option>
+            <option value="BackOrder">Back Order</option>
+            <option value="LimitedAvailability">Limited Availability</option>
+            <option value="Discontinued">Discontinued</option>
+            <option value="SoldOut">Sold Out</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Condition</label>
+          <select id="fCondition" onchange="onFieldInput()">
+            <option value="NewCondition">New</option>
+            <option value="UsedCondition">Used</option>
+            <option value="RefurbishedCondition">Refurbished</option>
+            <option value="DamagedCondition">Damaged</option>
+          </select>
+        </div>
+        <div class="field"><label>Price valid until (optional)</label><input type="date" id="fPriceValidUntil" oninput="onFieldInput()"></div>
+        <div class="field"><label>Seller name (optional)</label><input type="text" id="fSeller" oninput="onFieldInput()" placeholder="AudioCo Store"></div>
+      </div>
+    </div>
+
+    <div id="variantsFields" class="hidden">
+      <div id="variantsList"></div>
+      <button class="btn secondary small" onclick="addVariant()">+ Add variant</button>
+      <div class="field-grid" style="margin-top:12px;">
+        <div class="field">
+          <label>Currency</label>
+          <select id="fCurrencyV" onchange="onFieldInput()">
+            <option>USD</option><option>EUR</option><option>GBP</option><option>INR</option><option>CAD</option><option>AUD</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Availability</label>
+          <select id="fAvailabilityV" onchange="onFieldInput()">
+            <option value="InStock">In Stock</option>
+            <option value="OutOfStock">Out of Stock</option>
+            <option value="LimitedAvailability">Limited Availability</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Aggregate rating (optional)</div>
+    <div class="field-grid">
+      <div class="field"><label>Average rating (1–5)</label><input type="text" id="fRatingValue" oninput="onFieldInput()" placeholder="4.5"></div>
+      <div class="field"><label>Number of reviews</label><input type="number" id="fReviewCount" oninput="onFieldInput()" placeholder="128"></div>
+    </div>
+
+    <div class="section-label">Individual reviews (optional)</div>
+    <div id="reviewsList"></div>
+    <button class="btn secondary small" onclick="addReview()">+ Add review</button>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="section-label" style="margin-top:0;">Live preview</div>
+      <div class="preview-card">
+        <div class="preview-img" id="previewImg">No image set</div>
+        <div class="preview-body">
+          <div class="preview-name" id="previewName">Untitled product</div>
+          <div class="preview-stars" id="previewStars"></div>
+          <div class="preview-price" id="previewPrice"></div>
+          <div class="preview-avail" id="previewAvail"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (Custom HTML block)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (Liquid template)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+      <a href="/tools/article-schema-generator">Also need Article schema? →</a>
+      <a href="/tools/faq-schema-generator">Or FAQ schema? →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most Product schema tools stop at a single price field. This one covers what actually matters for Shopping eligibility.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Schema Pilot</th><th>Typical Product generators</th></tr></thead>
+        <tbody>
+          <tr><td>GTIN format validation (8/12/13/14 digit check)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Variant price ranges (AggregateOffer)</td><td class="yes">✓</td><td class="no">Manual multi-offer only</td><td class="no">✗</td></tr>
+          <tr><td>Missing-identifier warning (GTIN/MPN/SKU)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Policy-compliance reminders (fake reviews, stale prices)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Aggregate rating + individual reviews together</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Rare</td></tr>
+          <tr><td>Import &amp; edit existing schema</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Framework-specific snippets (WordPress/Shopify/Next.js)</td><td class="yes">✓</td><td class="yes">Partial</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="no">Free tier limited</td><td class="no">Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🔢</div><h3>GTIN validation</h3><p>Checks that your GTIN-8/12/13/14 has exactly the right number of digits — a common source of invalid Shopping feeds.</p></div>
+      <div class="feat-card"><div class="ic">🏷️</div><h3>Variant price ranges</h3><p>Add prices for each size or color and get a properly structured AggregateOffer with low price, high price, and offer count.</p></div>
+      <div class="feat-card"><div class="ic">⚠️</div><h3>Policy-aware validation</h3><p>Flags missing identifiers, stale priceValidUntil dates, and reminds you that ratings must reflect genuine reviews.</p></div>
+      <div class="feat-card"><div class="ic">⭐</div><h3>Ratings + individual reviews</h3><p>Combine an aggregate score with specific customer reviews, each with author, rating, and text.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live rich-result preview</h3><p>See a preview card with stars, price, and stock status close to how it could appear in search.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your product data is never uploaded or stored anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I generate Product schema markup? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Fill in the product name, image, price, availability, and any identifiers or reviews you have, and the tool builds a valid Product JSON-LD block automatically, with live validation against Google's structured data guidelines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need a GTIN, MPN, or SKU for Product schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>At least one is strongly recommended. Without a GTIN, MPN, or SKU, Google may not be able to reliably identify your product for Shopping-related rich results, even if the rest of your schema is valid.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I add pricing for a product with multiple variants? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Switch to variant mode and add a price for each size, color, or option. The tool builds an AggregateOffer with the low price, high price, and offer count, which is the pattern Google recommends for products with more than one price point.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I add reviews to Product schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. You can add an aggregate rating (average score and review count) and individual reviews with author, rating, and review text. Google requires these to reflect genuine customer reviews, not fabricated ones.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's a common mistake with Product schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Showing a price or availability status in your schema that doesn't match what's actually visible on the page. Google can take manual action against mismatched or misleading structured data, so keep your schema in sync with the page content.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   SCHEMA BUILD / VALIDATE / IMPORT LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+const GTIN_LENGTHS = { gtin8: 8, gtin12: 12, gtin13: 13, gtin14: 14 };
+
+function validateGtin(type, value) {
+  if (!value) return null;
+  const digits = value.replace(/\s/g, "");
+  if (!/^\d+$/.test(digits)) return `${type.toUpperCase()} should contain only digits.`;
+  const expected = GTIN_LENGTHS[type];
+  if (expected && digits.length !== expected) return `${type.toUpperCase()} should be exactly ${expected} digits (got ${digits.length}).`;
+  return null;
+}
+
+function validateProduct(state) {
+  const issues = [];
+  if (!state.name || !state.name.trim()) issues.push({ level:"error", message:"Product name is required." });
+  if (!state.description || !state.description.trim()) issues.push({ level:"warning", message:"A description is recommended for Product schema." });
+
+  const images = (state.images || []).filter(i => i && i.trim());
+  if (images.length === 0) issues.push({ level:"warning", message:"No image set — Google requires at least one qualifying image for Product rich results." });
+
+  const hasIdentifier = (state.sku && state.sku.trim()) || (state.mpn && state.mpn.trim()) || (state.gtinValue && state.gtinValue.trim());
+  if (!hasIdentifier) {
+    issues.push({ level:"warning", message:"No SKU, MPN, or GTIN set — Google may not be able to identify your product for Shopping results without at least one." });
+  }
+  if (state.gtinValue) {
+    const gtinErr = validateGtin(state.gtinType, state.gtinValue);
+    if (gtinErr) issues.push({ level:"error", message: gtinErr });
+  }
+
+  if (state.offerMode === "single") {
+    if (!state.price || parseFloat(state.price) <= 0) {
+      issues.push({ level:"error", message:"Offer price must be a positive number." });
+    }
+    if (!state.currency) issues.push({ level:"error", message:"Select a currency for the offer." });
+    if (state.priceValidUntil) {
+      const d = new Date(state.priceValidUntil);
+      if (d < new Date(new Date().toDateString())) {
+        issues.push({ level:"warning", message:"priceValidUntil is in the past — update it or Google may treat the price as stale." });
+      }
+    }
+  } else if (state.offerMode === "variants") {
+    const variants = (state.variants || []).filter(v => v.price);
+    if (variants.length === 0) {
+      issues.push({ level:"error", message:"Add at least one variant with a price." });
+    } else {
+      const prices = variants.map(v => parseFloat(v.price)).filter(p => !isNaN(p));
+      if (prices.some(p => p <= 0)) issues.push({ level:"error", message:"All variant prices must be positive numbers." });
+    }
+  }
+
+  if (state.ratingValue) {
+    const rv = parseFloat(state.ratingValue);
+    const best = parseFloat(state.bestRating) || 5;
+    if (isNaN(rv) || rv < 1 || rv > best) {
+      issues.push({ level:"error", message:`ratingValue must be between 1 and ${best}.` });
+    }
+    if (!state.reviewCount || parseInt(state.reviewCount, 10) <= 0) {
+      issues.push({ level:"error", message:"reviewCount must be a positive number when an aggregate rating is set." });
+    }
+    issues.push({ level:"info", message:"Only use ratings that come from genuine customer reviews — fabricated ratings violate Google's structured data policies." });
+  }
+
+  (state.reviews || []).forEach((r, i) => {
+    if (!r.author || !r.author.trim() || !r.rating || !r.text || !r.text.trim()) {
+      issues.push({ level:"error", message:`Review ${i+1} is missing an author, rating, or review text.` });
+    }
+  });
+
+  return issues;
+}
+
+function buildProductSchema(state) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": state.name || "",
+  };
+  if (state.description) schema.description = state.description;
+
+  const images = (state.images || []).filter(i => i && i.trim());
+  if (images.length === 1) schema.image = images[0];
+  else if (images.length > 1) schema.image = images;
+
+  if (state.brand) schema.brand = { "@type": "Brand", "name": state.brand };
+  if (state.sku) schema.sku = state.sku;
+  if (state.mpn) schema.mpn = state.mpn;
+  if (state.gtinValue) schema.gtin = state.gtinValue.replace(/\s/g, "");
+  if (state.category) schema.category = state.category;
+  if (state.url) schema.url = state.url;
+
+  if (state.offerMode === "single" && state.price) {
+    const offer = {
+      "@type": "Offer",
+      "priceCurrency": state.currency || "USD",
+      "price": state.price,
+      "availability": `https://schema.org/${state.availability || "InStock"}`,
+    };
+    if (state.condition) offer.itemCondition = `https://schema.org/${state.condition}`;
+    if (state.priceValidUntil) offer.priceValidUntil = state.priceValidUntil;
+    if (state.url) offer.url = state.url;
+    if (state.seller) offer.seller = { "@type": "Organization", "name": state.seller };
+    schema.offers = offer;
+  } else if (state.offerMode === "variants") {
+    const variants = (state.variants || []).filter(v => v.price && !isNaN(parseFloat(v.price)));
+    if (variants.length > 0) {
+      const prices = variants.map(v => parseFloat(v.price));
+      schema.offers = {
+        "@type": "AggregateOffer",
+        "priceCurrency": state.currency || "USD",
+        "lowPrice": Math.min(...prices).toString(),
+        "highPrice": Math.max(...prices).toString(),
+        "offerCount": variants.length,
+      };
+      if (state.availability) schema.offers.availability = `https://schema.org/${state.availability}`;
+    }
+  }
+
+  if (state.ratingValue && state.reviewCount) {
+    schema.aggregateRating = {
+      "@type": "AggregateRating",
+      "ratingValue": state.ratingValue,
+      "reviewCount": state.reviewCount,
+      "bestRating": state.bestRating || "5",
+    };
+  }
+
+  const reviews = (state.reviews || []).filter(r => r.author && r.author.trim() && r.text && r.text.trim());
+  if (reviews.length > 0) {
+    schema.review = reviews.map(r => {
+      const rev = {
+        "@type": "Review",
+        "author": { "@type": "Person", "name": r.author.trim() },
+        "reviewBody": r.text.trim(),
+      };
+      if (r.rating) {
+        rev.reviewRating = { "@type": "Rating", "ratingValue": r.rating, "bestRating": state.bestRating || "5" };
+      }
+      if (r.date) rev.datePublished = r.date;
+      return rev;
+    });
+  }
+
+  return schema;
+}
+
+function toScriptTag(schemaObj, pretty) {
+  const json = pretty ? JSON.stringify(schemaObj, null, 2) : JSON.stringify(schemaObj);
+  return `<script type="application/ld+json">\n${json}\n<\/script>`;
+}
+
+function parseImportedProduct(raw) {
+  let text = raw.trim();
+  const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+  if (scriptMatch) text = scriptMatch[1].trim();
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch(e) {
+    return { error: "Couldn't parse this as JSON. Make sure it's valid JSON-LD, with or without the <script> tags." };
+  }
+  let node = obj;
+  if (obj["@graph"] && Array.isArray(obj["@graph"])) {
+    node = obj["@graph"].find(n => n["@type"] === "Product") || null;
+  }
+  if (!node || node["@type"] !== "Product") {
+    return { error: "This JSON doesn't look like a Product schema (missing @type: Product)." };
+  }
+  const images = node.image ? (Array.isArray(node.image) ? node.image : [node.image]) : [];
+  const offer = node.offers || {};
+  const isAggregate = offer["@type"] === "AggregateOffer";
+  const state = {
+    name: node.name || "",
+    description: node.description || "",
+    images,
+    brand: node.brand ? (node.brand.name || "") : "",
+    sku: node.sku || "",
+    mpn: node.mpn || "",
+    gtinType: "gtin13",
+    gtinValue: node.gtin || node.gtin13 || node.gtin12 || node.gtin8 || node.gtin14 || "",
+    category: node.category || "",
+    url: node.url || (offer.url || ""),
+    offerMode: isAggregate ? "variants" : (node.offers ? "single" : "single"),
+    currency: offer.priceCurrency || "USD",
+    price: isAggregate ? "" : (offer.price || ""),
+    availability: (offer.availability || "").replace("https://schema.org/", "").replace("http://schema.org/", "") || "InStock",
+    condition: (offer.itemCondition || "").replace("https://schema.org/", "").replace("http://schema.org/", "") || "",
+    priceValidUntil: offer.priceValidUntil || "",
+    seller: offer.seller ? (offer.seller.name || "") : "",
+    variants: isAggregate ? [{ price: offer.lowPrice || "" }, { price: offer.highPrice || "" }] : [],
+    ratingValue: node.aggregateRating ? node.aggregateRating.ratingValue : "",
+    reviewCount: node.aggregateRating ? node.aggregateRating.reviewCount : "",
+    bestRating: node.aggregateRating ? (node.aggregateRating.bestRating || "5") : "5",
+    reviews: Array.isArray(node.review) ? node.review.map(r => ({
+      author: r.author ? (r.author.name || "") : "",
+      rating: r.reviewRating ? (r.reviewRating.ratingValue || "") : "",
+      text: r.reviewBody || "",
+      date: r.datePublished || "",
+    })) : [],
+  };
+  return { state };
+}
+
+function cmsSnippet(cms, schemaObj) {
+  const jsonPretty = JSON.stringify(schemaObj, null, 2);
+  if (cms === "html") {
+    return `<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "wordpress") {
+    return `<!-- Paste into a "Custom HTML" block, or your theme's header.php / a header-injection plugin -->\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "shopify") {
+    return `{%- comment -%} Add near your product content in product-template.liquid or main-product.liquid {%- endcomment -%}\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "nextjs") {
+    return `export default function Page() {\n  const productSchema = ${jsonPretty.replace(/\n/g, "\n  ")};\n\n  return (\n    <>\n      <script\n        type="application/ld+json"\n        dangerouslySetInnerHTML={{ __html: JSON.stringify(productSchema) }}\n      />\n      <main>{/* page content */}</main>\n    </>\n  );\n}`;
+  }
+  return jsonPretty;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let idCounter = 0;
+function uid(){ return idCounter++; }
+
+let state = {
+  name: "", description: "", images: [],
+  brand: "", sku: "", mpn: "", gtinType: "gtin13", gtinValue: "",
+  category: "", url: "",
+  offerMode: "single",
+  currency: "USD", price: "", availability: "InStock", condition: "NewCondition",
+  priceValidUntil: "", seller: "",
+  variants: [],
+  ratingValue: "", reviewCount: "", bestRating: "5",
+  reviews: [],
+};
+let outFormat = "pretty";
+let outTab = "code";
+
+function onFieldInput(){
+  state.name = document.getElementById("fName").value;
+  state.description = document.getElementById("fDescription").value;
+  state.brand = document.getElementById("fBrand").value;
+  state.category = document.getElementById("fCategory").value;
+  state.url = document.getElementById("fUrl").value;
+  state.sku = document.getElementById("fSku").value;
+  state.mpn = document.getElementById("fMpn").value;
+  state.gtinType = document.getElementById("fGtinType").value;
+  state.gtinValue = document.getElementById("fGtinValue").value;
+  state.price = document.getElementById("fPrice").value;
+  state.currency = state.offerMode === "single" ? document.getElementById("fCurrency").value : document.getElementById("fCurrencyV").value;
+  state.availability = state.offerMode === "single" ? document.getElementById("fAvailability").value : document.getElementById("fAvailabilityV").value;
+  state.condition = document.getElementById("fCondition").value;
+  state.priceValidUntil = document.getElementById("fPriceValidUntil").value;
+  state.seller = document.getElementById("fSeller").value;
+  state.ratingValue = document.getElementById("fRatingValue").value;
+  state.reviewCount = document.getElementById("fReviewCount").value;
+  refreshDerived();
+}
+
+function syncFieldsFromState(){
+  document.getElementById("fName").value = state.name || "";
+  document.getElementById("fDescription").value = state.description || "";
+  document.getElementById("fBrand").value = state.brand || "";
+  document.getElementById("fCategory").value = state.category || "";
+  document.getElementById("fUrl").value = state.url || "";
+  document.getElementById("fSku").value = state.sku || "";
+  document.getElementById("fMpn").value = state.mpn || "";
+  document.getElementById("fGtinType").value = state.gtinType || "gtin13";
+  document.getElementById("fGtinValue").value = state.gtinValue || "";
+  document.getElementById("fPrice").value = state.price || "";
+  document.getElementById("fCurrency").value = state.currency || "USD";
+  document.getElementById("fCurrencyV").value = state.currency || "USD";
+  document.getElementById("fAvailability").value = state.availability || "InStock";
+  document.getElementById("fAvailabilityV").value = state.availability || "InStock";
+  document.getElementById("fCondition").value = state.condition || "NewCondition";
+  document.getElementById("fPriceValidUntil").value = state.priceValidUntil || "";
+  document.getElementById("fSeller").value = state.seller || "";
+  document.getElementById("fRatingValue").value = state.ratingValue || "";
+  document.getElementById("fReviewCount").value = state.reviewCount || "";
+  document.querySelectorAll("#offerModeToggle button").forEach(b => b.classList.toggle("active", b.dataset.mode === state.offerMode));
+  document.getElementById("singleOfferFields").classList.toggle("hidden", state.offerMode !== "single");
+  document.getElementById("variantsFields").classList.toggle("hidden", state.offerMode !== "variants");
+}
+
+function setOfferMode(mode){
+  state.offerMode = mode;
+  document.querySelectorAll("#offerModeToggle button").forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+  document.getElementById("singleOfferFields").classList.toggle("hidden", mode !== "single");
+  document.getElementById("variantsFields").classList.toggle("hidden", mode !== "variants");
+  refreshDerived();
+}
+
+/* ── Images ── */
+function renderImagesList(){
+  const list = document.getElementById("imagesList");
+  list.innerHTML = state.images.map((url, i) => `
+    <div class="image-row">
+      <input type="text" value="${escapeHtml(url)}" oninput="updateImage(${i}, this.value)">
+      <button class="icon-btn" title="Remove" onclick="removeImage(${i})">✕</button>
+    </div>`).join("") || '<div class="small-note">No images added yet.</div>';
+}
+function addImage(){
+  const inp = document.getElementById("newImage");
+  if (inp.value.trim()) { state.images.push(inp.value.trim()); inp.value = ""; refreshDerived(); }
+}
+function updateImage(i, value){ state.images[i] = value; refreshDerived(); }
+function removeImage(i){ state.images.splice(i,1); refreshDerived(); }
+
+/* ── Variants ── */
+function renderVariantsList(){
+  const list = document.getElementById("variantsList");
+  list.innerHTML = state.variants.map((v, i) => `
+    <div class="variant-row">
+      <input type="text" class="vname" placeholder="Variant name (e.g. Small / Red)" value="${escapeHtml(v.name||'')}" oninput="updateVariant(${i},'name',this.value)">
+      <input type="text" class="vprice" placeholder="Price" value="${escapeHtml(v.price||'')}" oninput="updateVariant(${i},'price',this.value)">
+      <button class="icon-btn" title="Remove" onclick="removeVariant(${i})">✕</button>
+    </div>`).join("") || '<div class="small-note">No variants added yet.</div>';
+}
+function addVariant(){ state.variants.push({name:"", price:""}); refreshDerived(); }
+function updateVariant(i, field, value){ state.variants[i][field] = value; refreshDerived(); }
+function removeVariant(i){ state.variants.splice(i,1); refreshDerived(); }
+
+/* ── Reviews ── */
+function renderReviewsList(){
+  const list = document.getElementById("reviewsList");
+  list.innerHTML = state.reviews.map((r, i) => `
+    <div class="review-card">
+      <div class="review-head"><span class="small-note" style="margin:0;">Review ${i+1}</span><button class="icon-btn" title="Remove" onclick="removeReview(${i})">✕</button></div>
+      <div class="rrow">
+        <input type="text" class="rauthor" placeholder="Reviewer name" value="${escapeHtml(r.author||'')}" oninput="updateReview(${i},'author',this.value)">
+        <input type="number" class="rrating" placeholder="Rating" min="1" max="5" value="${escapeHtml(r.rating||'')}" oninput="updateReview(${i},'rating',this.value)">
+        <input type="date" class="rdate" value="${escapeHtml(r.date||'')}" oninput="updateReview(${i},'date',this.value)">
+      </div>
+      <textarea placeholder="Review text" oninput="updateReview(${i},'text',this.value)">${escapeHtml(r.text||'')}</textarea>
+    </div>`).join("") || '<div class="small-note">No reviews added yet.</div>';
+}
+function addReview(){ state.reviews.push({author:"", rating:"", text:"", date:""}); refreshDerived(); }
+function updateReview(i, field, value){ state.reviews[i][field] = value; refreshDerived(); }
+function removeReview(i){ state.reviews.splice(i,1); refreshDerived(); }
+
+/* ── Validation / preview / output ── */
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  const issues = validateProduct(state);
+  panel.classList.remove("hidden");
+  if (issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No issues found — this Product schema looks solid.</div>';
+    return;
+  }
+  const order = { error:0, warning:1, info:2 };
+  const sorted = [...issues].sort((a,b) => order[a.level]-order[b.level]);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function renderPreview(){
+  const imgEl = document.getElementById("previewImg");
+  const images = state.images.filter(i => i && i.trim());
+  if (images.length > 0) {
+    imgEl.style.backgroundImage = `url("${images[0].replace(/"/g,'')}")`;
+    imgEl.textContent = "";
+  } else {
+    imgEl.style.backgroundImage = "none";
+    imgEl.textContent = "No image set";
+  }
+  document.getElementById("previewName").textContent = state.name || "Untitled product";
+
+  const starsEl = document.getElementById("previewStars");
+  if (state.ratingValue) {
+    const rv = parseFloat(state.ratingValue) || 0;
+    const full = Math.round(rv);
+    starsEl.textContent = "★".repeat(Math.min(5,full)) + "☆".repeat(Math.max(0,5-full)) + ` (${state.reviewCount || 0})`;
+  } else {
+    starsEl.textContent = "";
+  }
+
+  const priceEl = document.getElementById("previewPrice");
+  const availEl = document.getElementById("previewAvail");
+  if (state.offerMode === "single" && state.price) {
+    priceEl.textContent = `${state.currency} ${state.price}`;
+  } else if (state.offerMode === "variants") {
+    const prices = state.variants.map(v => parseFloat(v.price)).filter(p => !isNaN(p));
+    if (prices.length > 0) {
+      priceEl.textContent = `${state.currency} ${Math.min(...prices)} – ${Math.max(...prices)}`;
+    } else {
+      priceEl.textContent = "";
+    }
+  } else {
+    priceEl.textContent = "";
+  }
+  const avail = state.availability || "InStock";
+  availEl.textContent = avail.replace(/([A-Z])/g, " $1").trim();
+  availEl.className = "preview-avail " + (avail === "InStock" ? "in" : "out");
+}
+
+function setOutTab(tab){
+  outTab = tab;
+  document.querySelectorAll(".out-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".out-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+function setFormat(fmt, btn){
+  outFormat = fmt;
+  btn.parentElement.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  renderOutputs();
+}
+function renderOutputs(){
+  const schema = buildProductSchema(state);
+  document.getElementById("codeOut").textContent = toScriptTag(schema, outFormat === "pretty");
+  document.getElementById("wpOut").textContent = cmsSnippet("wordpress", schema);
+  document.getElementById("shopifyOut").textContent = cmsSnippet("shopify", schema);
+  document.getElementById("nextjsOut").textContent = cmsSnippet("nextjs", schema);
+}
+
+function refreshDerived(){
+  renderImagesList();
+  renderVariantsList();
+  renderReviewsList();
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function downloadOutput(){
+  const text = document.getElementById("codeOut").textContent;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:"text/html"}));
+  a.download = "product-schema.html";
+  a.click();
+}
+function copyOutput(){ copyText(document.getElementById("codeOut").textContent); }
+function copyCms(which){
+  const el = document.getElementById(which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut");
+  copyText(el.textContent);
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function toggleImport(){ document.getElementById("importBox").classList.toggle("show"); }
+function runImport(){
+  const raw = document.getElementById("importInput").value;
+  const statusEl = document.getElementById("importStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste some JSON-LD first."; return; }
+  const result = parseImportedProduct(raw);
+  if (result.error) { statusEl.textContent = "❌ " + result.error; return; }
+  state = Object.assign({
+    name:"", description:"", images:[], brand:"", sku:"", mpn:"", gtinType:"gtin13", gtinValue:"",
+    category:"", url:"", offerMode:"single", currency:"USD", price:"", availability:"InStock",
+    condition:"NewCondition", priceValidUntil:"", seller:"", variants:[],
+    ratingValue:"", reviewCount:"", bestRating:"5", reviews:[],
+  }, result.state);
+  statusEl.textContent = `✅ Imported "${state.name || "(untitled)"}".`;
+  document.getElementById("importBox").classList.remove("show");
+  syncFieldsFromState();
+  refreshDerived();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll("#faqList .faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* Init */
+syncFieldsFromState();
+refreshDerived();
+</script>
+</body>
+</html>
