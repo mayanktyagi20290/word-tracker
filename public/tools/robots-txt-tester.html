@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Robots.txt Tester &amp; Validator — Free Online Tool | SEOTriggers</title>
+<meta name="description" content="Free robots.txt tester and validator. Test URLs against Googlebot, Bingbot, GPTBot, ClaudeBot and 25+ crawlers, validate syntax, batch test hundreds of URLs, and compare all bots at once. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/robots-txt-tester" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Robots.txt Tester &amp; Validator — Free Online Tool | SEOTriggers" />
+<meta property="og:description" content="Test and validate any robots.txt file for free. Check URLs against Googlebot, Bingbot, GPTBot, ClaudeBot & more. Batch testing, syntax validation, multi-bot comparison — no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/robots-txt-tester" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Robots.txt Tester &amp; Validator — Free Online Tool | SEOTriggers" />
+<meta name="twitter:description" content="Test and validate any robots.txt file for free. Check URLs against Googlebot, Bingbot, GPTBot, ClaudeBot & more. Batch testing, syntax validation, multi-bot comparison — no signup." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Robots.txt Tester & Validator",
+  "url": "https://seotriggers.com/tools/robots-txt-tester",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to test and validate robots.txt files against 25+ search engine and AI crawlers, with batch URL testing, syntax validation and a multi-bot comparison matrix."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Robots.txt Tester & Validator", "item": "https://seotriggers.com/tools/robots-txt-tester" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I test my robots.txt file?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Paste your robots.txt content into the tool, or fetch it directly from your live site. Pick a crawler like Googlebot or GPTBot, enter a URL path, and the tool tells you instantly whether that path is allowed or blocked, and exactly which rule caused the result." }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I test my robots.txt file without Google Search Console?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google retired the standalone robots.txt Tester from Search Console. This tool replicates and extends that functionality entirely in your browser — no Google account, no property verification, and no signup required." }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I test my robots.txt file for errors?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The validator checks every line for missing colons, unknown directives, misplaced rules, non-numeric crawl-delay values, invalid sitemap URLs, and other common mistakes, flagging each as an error, warning, or informational note with the exact line number." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does robots.txt block AI bots like GPTBot and ClaudeBot?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Only if you add explicit User-agent rules for them. The AI Crawler Summary tab checks your file against GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider and Amazonbot in one click so you can see exactly who can access your content." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Disallow and Allow?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Disallow blocks a crawler from a path; Allow creates an exception to a Disallow rule. When multiple rules match the same URL, the longest (most specific) pattern wins, and Allow wins ties against a Disallow of equal length." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I test multiple URLs at once?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Batch URL Test tab accepts one path per line and tests all of them against a chosen crawler in a single pass, with filtering and CSV export of the results." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+/* Nav */
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+/* Breadcrumb */
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+/* Hero */
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+/* Card */
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+/* Input mode tabs */
+.mode-tabs{display:flex;gap:8px;margin-bottom:16px;}
+.mode-tab{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.mode-tab.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+textarea.robots-input{width:100%;min-height:220px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:13px;line-height:1.7;color:var(--ink);resize:vertical;outline:none;background:#fbfbfd;}
+textarea.robots-input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.fetch-row{display:flex;gap:10px;flex-wrap:wrap;}
+.fetch-row input[type=text]{flex:1;min-width:220px;padding:11px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;outline:none;}
+.fetch-row input[type=text]:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:11px 20px;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn:disabled{opacity:.55;cursor:default;}
+.meta-row{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:12px;color:var(--sub);}
+
+/* Stats */
+.stats-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:20px 0;}
+.stat-box{background:var(--bg);border:1px solid var(--border);border-radius:10px;padding:12px 14px;text-align:center;}
+.stat-box .n{font-size:22px;font-weight:800;line-height:1;}
+.stat-box .l{font-size:11px;color:var(--sub);margin-top:4px;font-weight:600;text-transform:uppercase;letter-spacing:.3px;}
+
+/* Issues panel */
+.issues-panel{margin-top:16px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:10px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-line{color:var(--sub);font-size:12px;flex-shrink:0;min-width:44px;}
+.empty-good{padding:16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Test tabs */
+.test-tabs{display:flex;gap:6px;margin:24px 0 16px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.test-tab{background:none;border:none;padding:10px 4px;margin-right:18px;font-size:14px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.test-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+
+.field-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+.field-row input[type=text], .field-row select, .field-row textarea{padding:11px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;outline:none;}
+.field-row input[type=text]{flex:1;min-width:200px;}
+.field-row select{min-width:220px;}
+.field-row input:focus, .field-row select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+/* Result card */
+.result-card{border-radius:12px;padding:20px;display:none;}
+.result-card.show{display:block;}
+.result-card.allowed{background:var(--green-bg);border:1px solid #bbf7d0;}
+.result-card.blocked{background:var(--red-bg);border:1px solid #fecaca;}
+.result-badge{display:inline-flex;align-items:center;gap:8px;font-size:20px;font-weight:800;margin-bottom:8px;}
+.result-badge.allowed{color:var(--green);}
+.result-badge.blocked{color:var(--red);}
+.result-reason{font-size:13px;color:var(--ink);opacity:.85;}
+.result-meta{font-size:12px;color:var(--sub);margin-top:8px;}
+
+/* Tables */
+table.data-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.data-table th{background:var(--bg);text-align:left;padding:9px 14px;font-weight:600;color:var(--sub);border-bottom:1px solid var(--border);}
+table.data-table td{padding:9px 14px;border-bottom:1px solid var(--border);}
+table.data-table tr:last-child td{border-bottom:none;}
+.pill{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700;}
+.pill.allowed{background:var(--green-bg);color:var(--green);}
+.pill.blocked{background:var(--red-bg);color:var(--red);}
+
+.matrix-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;}
+.matrix-cell{border-radius:10px;padding:12px 14px;border:1px solid var(--border);}
+.matrix-cell.allowed{background:var(--green-bg);border-color:#bbf7d0;}
+.matrix-cell.blocked{background:var(--red-bg);border-color:#fecaca;}
+.matrix-cell .bot{font-weight:700;font-size:13px;}
+.matrix-cell .status{font-size:12px;font-weight:700;margin-top:2px;}
+.matrix-cell.allowed .status{color:var(--green);}
+.matrix-cell.blocked .status{color:var(--red);}
+
+.filter-row{display:flex;gap:8px;margin-bottom:12px;}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+/* Comparison table */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+/* Feature cards */
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Robots.txt Tester &amp; Validator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Robots.txt Tester &amp; Validator</h1>
+    <p>Paste or fetch any robots.txt, validate its syntax, and test URLs against 25+ real crawlers — including Googlebot, Bingbot, GPTBot and ClaudeBot — with batch testing and a full multi-bot comparison matrix.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="mode-tabs">
+      <button class="mode-tab active" data-mode="paste" onclick="setInputMode('paste')">✏️ Paste robots.txt</button>
+      <button class="mode-tab" data-mode="fetch" onclick="setInputMode('fetch')">🌐 Fetch from live URL</button>
+    </div>
+
+    <div id="pasteMode">
+      <textarea id="robotsInput" class="robots-input" spellcheck="false" placeholder="User-agent: *&#10;Disallow: /wp-admin/&#10;Allow: /wp-admin/admin-ajax.php&#10;&#10;User-agent: GPTBot&#10;Disallow: /&#10;&#10;Sitemap: https://example.com/sitemap.xml"></textarea>
+      <div class="meta-row">
+        <span id="byteCount">0 bytes</span>
+        <button class="btn secondary" onclick="loadSample()" style="padding:6px 12px;font-size:12px;">Load sample file</button>
+      </div>
+    </div>
+
+    <div id="fetchMode" class="hidden">
+      <div class="fetch-row">
+        <input type="text" id="fetchDomain" placeholder="example.com  (we'll fetch example.com/robots.txt)" />
+        <button class="btn" onclick="fetchRobots()">Fetch robots.txt</button>
+      </div>
+      <div class="small-note" id="fetchStatus"></div>
+    </div>
+
+    <div style="margin-top:16px;">
+      <button class="btn" onclick="analyze()" style="padding:12px 26px;font-size:15px;">Analyze robots.txt</button>
+    </div>
+
+    <div id="statsRow" class="stats-row hidden">
+      <div class="stat-box"><div class="n" id="statGroups">0</div><div class="l">Groups</div></div>
+      <div class="stat-box"><div class="n" id="statDisallow">0</div><div class="l">Disallow</div></div>
+      <div class="stat-box"><div class="n" id="statAllow">0</div><div class="l">Allow</div></div>
+      <div class="stat-box"><div class="n" id="statSitemaps">0</div><div class="l">Sitemaps</div></div>
+      <div class="stat-box"><div class="n" id="statErrors" style="color:var(--red)">0</div><div class="l">Errors</div></div>
+      <div class="stat-box"><div class="n" id="statWarnings" style="color:var(--amber)">0</div><div class="l">Warnings</div></div>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Syntax Validation Report</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <!-- ══════════════ TEST TABS ══════════════ -->
+    <div id="testSection" class="hidden">
+      <div class="test-tabs">
+        <button class="test-tab active" data-tab="single" onclick="setTestTab('single')">🔍 Single URL Test</button>
+        <button class="test-tab" data-tab="matrix" onclick="setTestTab('matrix')">🧩 Multi-Bot Matrix</button>
+        <button class="test-tab" data-tab="batch" onclick="setTestTab('batch')">📋 Batch URL Test</button>
+        <button class="test-tab" data-tab="ai" onclick="setTestTab('ai')">🤖 AI Crawler Summary</button>
+        <button class="test-tab" data-tab="sitemaps" onclick="setTestTab('sitemaps')">🗺️ Sitemaps</button>
+      </div>
+
+      <!-- Single URL test -->
+      <div id="panel-single" class="test-panel">
+        <div class="field-row">
+          <input type="text" id="singlePath" placeholder="/blog/my-post  or  https://example.com/blog/my-post" />
+          <select id="singleAgent"></select>
+          <button class="btn" onclick="runSingleTest()">Test URL</button>
+        </div>
+        <div id="singleResult" class="result-card"></div>
+      </div>
+
+      <!-- Multi-bot matrix -->
+      <div id="panel-matrix" class="test-panel hidden">
+        <div class="field-row">
+          <input type="text" id="matrixPath" placeholder="/blog/my-post  or  https://example.com/blog/my-post" />
+          <button class="btn" onclick="runMatrixTest()">Test Against All Bots</button>
+        </div>
+        <div id="matrixResult" class="matrix-grid"></div>
+      </div>
+
+      <!-- Batch test -->
+      <div id="panel-batch" class="test-panel hidden">
+        <div class="field-row" style="align-items:flex-start;">
+          <textarea id="batchPaths" rows="6" style="flex:1;min-width:220px;" placeholder="/blog/post-1&#10;/products/shoe-1&#10;/wp-admin/&#10;/search?q=test"></textarea>
+          <select id="batchAgent"></select>
+        </div>
+        <button class="btn" onclick="runBatchTest()">Test All URLs</button>
+        <div id="batchControls" class="hidden" style="margin-top:16px;">
+          <div class="filter-row">
+            <button class="chip active" data-filter="all" onclick="setBatchFilter('all')">All</button>
+            <button class="chip" data-filter="blocked" onclick="setBatchFilter('blocked')">Blocked only</button>
+            <button class="chip" data-filter="allowed" onclick="setBatchFilter('allowed')">Allowed only</button>
+            <button class="btn secondary" style="margin-left:auto;padding:6px 14px;font-size:12px;" onclick="exportBatchCSV()">⬇ Export CSV</button>
+          </div>
+          <div style="overflow-x:auto;">
+            <table class="data-table">
+              <thead><tr><th>URL / Path</th><th>Status</th><th>Matching rule</th></tr></thead>
+              <tbody id="batchTableBody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- AI crawler summary -->
+      <div id="panel-ai" class="test-panel hidden">
+        <p class="small-note" style="margin-bottom:14px;">Tests your root path <code>/</code> against the major AI crawlers used for training and answer-engine citations.</p>
+        <div id="aiResult" class="matrix-grid"></div>
+      </div>
+
+      <!-- Sitemaps -->
+      <div id="panel-sitemaps" class="test-panel hidden">
+        <div id="sitemapsResult"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most robots.txt testers only check one URL against a manually-typed user agent. Here's what's different.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead>
+          <tr><th>Feature</th><th class="us">SEOTriggers</th><th>TechnicalSEO.com</th><th>Typical testers</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Pre-populated crawler list (incl. AI bots)</td><td class="yes">✓</td><td class="no">✗ manual entry</td><td class="no">✗</td></tr>
+          <tr><td>Full syntax validation with line numbers</td><td class="yes">✓</td><td class="no">Minimal</td><td class="no">Minimal</td></tr>
+          <tr><td>Batch URL testing</td><td class="yes">✓</td><td class="no">✗ one at a time</td><td class="no">✗</td></tr>
+          <tr><td>Multi-bot comparison matrix</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Fetch robots.txt from a live URL</td><td class="yes">✓</td><td class="no">✗</td><td class="no">Some</td></tr>
+          <tr><td>Dedicated AI-crawler access check</td><td class="yes">✓</td><td class="no">Separate tool</td><td class="no">✗</td></tr>
+          <tr><td>CSV export of results</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Often gated</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything you need in one tool</h2>
+    <p class="sub">Built to replace the retired Google Search Console robots.txt Tester — and go further.</p>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">✅</div><h3>Instant syntax validation</h3><p>Every line is checked for missing colons, unknown directives, misplaced rules, bad crawl-delay values and invalid sitemap URLs.</p></div>
+      <div class="feat-card"><div class="ic">🤖</div><h3>25+ pre-built crawlers</h3><p>Googlebot, Bingbot, DuckDuckBot, Baiduspider, YandexBot, GPTBot, ClaudeBot, PerplexityBot, CCBot and more — no need to look up user-agent strings.</p></div>
+      <div class="feat-card"><div class="ic">📋</div><h3>Batch URL testing</h3><p>Paste dozens of paths at once and test them all against a chosen crawler in a single pass, with CSV export.</p></div>
+      <div class="feat-card"><div class="ic">🧩</div><h3>Multi-bot comparison matrix</h3><p>Test one URL against every crawler simultaneously and see exactly who's allowed and who's blocked, side by side.</p></div>
+      <div class="feat-card"><div class="ic">🌐</div><h3>Fetch any live robots.txt</h3><p>Enter a domain and pull its live robots.txt directly into the tool — no copy-pasting required.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Parsing and matching run entirely in your browser. Your robots.txt content is never uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ EXPLAINER ══════════════ -->
+  <section class="section">
+    <h2>How robots.txt matching actually works</h2>
+    <p class="sub">The logic this tool follows, based on the official Robots Exclusion Protocol (RFC 9309).</p>
+    <div class="card" style="padding:24px;">
+      <p style="margin-top:0;">For a given crawler, the parser first looks for a <strong>User-agent</strong> group that names it exactly. If none exists, it falls back to the wildcard <code>User-agent: *</code> group. If neither exists, the URL is allowed by default.</p>
+      <p>Within the matched group, every <strong>Allow</strong> and <strong>Disallow</strong> rule whose pattern matches the URL is compared, and the <strong>longest (most specific) pattern wins</strong> — regardless of the order the rules appear in. If an Allow and a Disallow rule are tied in length, Allow wins.</p>
+      <p style="margin-bottom:0;"><code>*</code> matches any sequence of characters, and a trailing <code>$</code> anchors the pattern to the exact end of the URL. Every other character, including <code>?</code>, is matched literally.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I test my robots.txt file? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Paste your robots.txt content into the tool, or fetch it directly from your live site. Pick a crawler like Googlebot or GPTBot, enter a URL path, and the tool tells you instantly whether that path is allowed or blocked — and exactly which rule caused the result.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How can I test my robots.txt file without Google Search Console? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google retired the standalone robots.txt Tester from Search Console. This tool replicates and extends that functionality entirely in your browser — no Google account, no property verification, and no signup required.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How can I test my robots.txt file for errors? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>The validator checks every line for missing colons, unknown directives, misplaced rules, non-numeric crawl-delay values, invalid sitemap URLs, and other common mistakes, flagging each as an error, warning, or informational note with its exact line number.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does robots.txt block AI bots like GPTBot and ClaudeBot? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Only if you add explicit User-agent rules for them. The AI Crawler Summary tab checks your file against GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider and Amazonbot in one click so you can see exactly who can access your content.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between Disallow and Allow? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Disallow blocks a crawler from a path; Allow creates an exception to a Disallow rule. When multiple rules match the same URL, the longest, most specific pattern wins, and Allow wins ties against a Disallow of equal length.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I test multiple URLs at once? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. The Batch URL Test tab accepts one path per line and tests all of them against a chosen crawler in a single pass, with filtering and CSV export of the results.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   ROBOTS.TXT PARSER + MATCHER  (RFC 9309 / Google REP algorithm)
+═══════════════════════════════════════════════════════════════════════ */
+// ── Robots.txt parser + matcher (Google RFC 9309 style algorithm) ─────────────
+
+function parseRobotsTxt(raw) {
+  const lines = raw.replace(/\r\n?/g, "\n").split("\n");
+  const groups = [];     // {agents:[], rules:[{type,pattern,line}], crawlDelay, lineStart}
+  const sitemaps = [];   // {url, line}
+  const hosts = [];      // {value, line}
+  const issues = [];     // {level:'error'|'warning'|'info', line, message}
+  let currentGroup = null;
+  let groupStarted = false; // becomes true once a rule/crawl-delay is added to currentGroup
+
+  const KNOWN_DIRECTIVES = new Set(["user-agent","disallow","allow","sitemap","crawl-delay","host","clean-param","request-rate","visit-time","noindex"]);
+  const NONSTANDARD_OK = new Set(["host","clean-param","request-rate","visit-time"]);
+
+  const byteLength = new TextEncoder().encode(raw).length;
+  if (byteLength > 500000) {
+    issues.push({level:"warning", line:0, message:`File is ${(byteLength/1024).toFixed(1)}KB. Google ignores content past the first 500KB of a robots.txt file.`});
+  }
+
+  lines.forEach((rawLine, idx) => {
+    const lineNo = idx + 1;
+    let line = rawLine.replace(/#.*$/, "").trim();
+    if (!line) return;
+
+    const colonIdx = line.indexOf(":");
+    if (colonIdx === -1) {
+      issues.push({level:"error", line:lineNo, message:`Invalid syntax — missing colon: "${rawLine.trim()}"`});
+      return;
+    }
+    const directive = line.slice(0, colonIdx).trim().toLowerCase();
+    const value = line.slice(colonIdx + 1).trim();
+
+    if (!KNOWN_DIRECTIVES.has(directive)) {
+      issues.push({level:"warning", line:lineNo, message:`Unknown/non-standard directive "${directive}" — most crawlers will ignore this line.`});
+      return;
+    }
+
+    if (directive === "user-agent") {
+      if (!value) {
+        issues.push({level:"error", line:lineNo, message:"User-agent directive has no value."});
+        return;
+      }
+      if (currentGroup && !groupStarted) {
+        currentGroup.agents.push(value);
+      } else {
+        if (currentGroup) groups.push(currentGroup);
+        currentGroup = { agents:[value], rules:[], crawlDelay:null, lineStart:lineNo };
+        groupStarted = false;
+      }
+      return;
+    }
+
+    if (directive === "sitemap") {
+      if (!/^https?:\/\//i.test(value)) {
+        issues.push({level:"warning", line:lineNo, message:`Sitemap value should be an absolute URL (http:// or https://): "${value}"`});
+      }
+      sitemaps.push({url:value, line:lineNo});
+      return;
+    }
+
+    if (directive === "host") {
+      hosts.push({value, line:lineNo});
+      if (NONSTANDARD_OK.has(directive)) {
+        issues.push({level:"info", line:lineNo, message:"Host directive is non-standard (Yandex-specific) and ignored by Google/Bing."});
+      }
+      return;
+    }
+
+    // remaining directives require a preceding User-agent
+    if (!currentGroup) {
+      issues.push({level:"error", line:lineNo, message:`"${directive}" directive found before any User-agent line — it will be ignored.`});
+      return;
+    }
+
+    if (directive === "disallow" || directive === "allow") {
+      currentGroup.rules.push({type:directive, pattern:value, line:lineNo});
+      groupStarted = true;
+      if (value === "" && directive === "disallow") {
+        issues.push({level:"info", line:lineNo, message:"Empty Disallow — this means \"disallow nothing\" (equivalent to allowing everything for this group)."});
+      }
+      return;
+    }
+
+    if (directive === "crawl-delay") {
+      if (!/^\d+(\.\d+)?$/.test(value)) {
+        issues.push({level:"error", line:lineNo, message:`Crawl-delay value must be numeric: "${value}"`});
+      } else {
+        currentGroup.crawlDelay = parseFloat(value);
+      }
+      groupStarted = true;
+      return;
+    }
+
+    if (NONSTANDARD_OK.has(directive)) {
+      issues.push({level:"info", line:lineNo, message:`"${directive}" is a non-standard directive supported only by some crawlers (e.g. Yandex).`});
+      groupStarted = true;
+    }
+  });
+
+  if (currentGroup) groups.push(currentGroup);
+
+  // detect duplicate user-agent groups (informational)
+  const agentSeen = {};
+  groups.forEach(g => {
+    g.agents.forEach(a => {
+      const k = a.toLowerCase();
+      agentSeen[k] = (agentSeen[k]||0) + 1;
+    });
+  });
+  Object.entries(agentSeen).forEach(([agent,count]) => {
+    if (count > 1) {
+      issues.push({level:"info", line:0, message:`User-agent "${agent}" appears in ${count} separate groups — crawlers should merge these but keeping them together is cleaner.`});
+    }
+  });
+
+  return { groups, sitemaps, hosts, issues, raw };
+}
+
+function patternToRegex(pattern) {
+  let p = pattern;
+  let endAnchor = false;
+  if (p.endsWith("$")) {
+    endAnchor = true;
+    p = p.slice(0, -1);
+  }
+  const escaped = p.replace(/[.+?^${}()|[\]\\]/g, "\\$&").replace(/\*/g, ".*");
+  return new RegExp("^" + escaped + (endAnchor ? "$" : ""));
+}
+
+function normalizeAgentToken(uaString) {
+  // Extract a product token the way crawlers do, e.g. "Mozilla/5.0 (compatible; Googlebot/2.1;...)" -> "googlebot"
+  return uaString.toLowerCase().trim();
+}
+
+function findGroupForAgent(groups, userAgent) {
+  const ua = normalizeAgentToken(userAgent);
+  let exactMatches = [];
+  let wildcardGroup = null;
+  groups.forEach(g => {
+    g.agents.forEach(a => {
+      const al = a.toLowerCase().trim();
+      if (al === "*") {
+        if (!wildcardGroup) wildcardGroup = g;
+      } else if (al === ua || ua.includes(al) || al.includes(ua)) {
+        exactMatches.push(g);
+      }
+    });
+  });
+  if (exactMatches.length > 0) {
+    // merge rules from all matching specific groups
+    const merged = { agents:[], rules:[], crawlDelay:null };
+    exactMatches.forEach(g => {
+      merged.agents.push(...g.agents);
+      merged.rules.push(...g.rules);
+      if (g.crawlDelay != null) merged.crawlDelay = g.crawlDelay;
+    });
+    return { group: merged, matchType: "specific" };
+  }
+  if (wildcardGroup) return { group: wildcardGroup, matchType: "wildcard" };
+  return { group: null, matchType: "none" };
+}
+
+function testUrl(parsed, userAgent, path) {
+  const { group, matchType } = findGroupForAgent(parsed.groups, userAgent);
+  if (!group) {
+    return { allowed:true, matchType, rule:null, reason:"No matching User-agent group found — default is allow." };
+  }
+  let best = null;
+  group.rules.forEach(r => {
+    if (r.type === "disallow" && r.pattern === "") return; // no-op rule
+    const regex = patternToRegex(r.pattern);
+    if (regex.test(path)) {
+      const len = r.pattern.replace(/\$$/, "").length;
+      if (!best || len > best.length) {
+        best = { ...r, length: len };
+      } else if (len === best.length && r.type === "allow" && best.type === "disallow") {
+        best = { ...r, length: len };
+      }
+    }
+  });
+  if (!best) {
+    return { allowed:true, matchType, rule:null, reason:"No rule in the matched group applies to this path — default is allow." };
+  }
+  return {
+    allowed: best.type === "allow",
+    matchType,
+    rule: best,
+    reason: `Matched "${best.type === "allow" ? "Allow" : "Disallow"}: ${best.pattern}" on line ${best.line} (${best.length} chars — most specific applicable rule).`
+  };
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CRAWLER DATABASE
+═══════════════════════════════════════════════════════════════════════ */
+const CRAWLERS = [
+  { group: "Search Engines", agents: [
+    ["*", "All robots (default / wildcard)"],
+    ["Googlebot", "Google — web search"],
+    ["Googlebot-Image", "Google — Images"],
+    ["Googlebot-News", "Google — News"],
+    ["Googlebot-Video", "Google — Video"],
+    ["Bingbot", "Microsoft Bing"],
+    ["Slurp", "Yahoo"],
+    ["DuckDuckBot", "DuckDuckGo"],
+    ["Baiduspider", "Baidu"],
+    ["YandexBot", "Yandex"],
+    ["Applebot", "Apple / Siri Search"],
+  ]},
+  { group: "AI Crawlers", agents: [
+    ["GPTBot", "OpenAI — model training"],
+    ["ChatGPT-User", "OpenAI — ChatGPT browsing"],
+    ["OAI-SearchBot", "OpenAI — search"],
+    ["ClaudeBot", "Anthropic — model training"],
+    ["Claude-Web", "Anthropic — Claude browsing"],
+    ["anthropic-ai", "Anthropic — legacy token"],
+    ["PerplexityBot", "Perplexity — search index"],
+    ["Perplexity-User", "Perplexity — user-triggered"],
+    ["Google-Extended", "Google — Gemini / AI training"],
+    ["CCBot", "Common Crawl (used by many LLMs)"],
+    ["Bytespider", "ByteDance / TikTok"],
+    ["Amazonbot", "Amazon"],
+    ["Meta-ExternalAgent", "Meta AI training"],
+  ]},
+  { group: "Social & Other", agents: [
+    ["facebookexternalhit", "Facebook link previews"],
+    ["Twitterbot", "X / Twitter link previews"],
+    ["LinkedInBot", "LinkedIn link previews"],
+  ]},
+];
+const AI_BOTS = ["GPTBot","ClaudeBot","PerplexityBot","Google-Extended","CCBot","Bytespider","Amazonbot"];
+
+function populateAgentSelects() {
+  const selects = [document.getElementById("singleAgent"), document.getElementById("batchAgent")];
+  selects.forEach(sel => {
+    sel.innerHTML = "";
+    CRAWLERS.forEach(g => {
+      const og = document.createElement("optgroup");
+      og.label = g.group;
+      g.agents.forEach(([name, desc]) => {
+        const opt = document.createElement("option");
+        opt.value = name;
+        opt.textContent = name === "*" ? name + " — " + desc : name;
+        og.appendChild(opt);
+      });
+      sel.appendChild(og);
+    });
+  });
+}
+populateAgentSelects();
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let parsedData = null;
+let batchResults = [];
+let batchFilter = "all";
+
+const SAMPLE = `User-agent: *
+Disallow: /wp-admin/
+Allow: /wp-admin/admin-ajax.php
+Disallow: /cart/
+Disallow: /checkout/
+Disallow: /search?
+
+User-agent: Googlebot
+Crawl-delay: 1
+
+User-agent: GPTBot
+User-agent: CCBot
+Disallow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+Sitemap: https://example.com/sitemap.xml`;
+
+function loadSample(){
+  document.getElementById("robotsInput").value = SAMPLE;
+}
+
+function setInputMode(mode){
+  document.querySelectorAll(".mode-tab").forEach(b => b.classList.toggle("active", b.dataset.mode === mode));
+  document.getElementById("pasteMode").classList.toggle("hidden", mode !== "paste");
+  document.getElementById("fetchMode").classList.toggle("hidden", mode !== "fetch");
+}
+
+function byteCountUpdate(){
+  const v = document.getElementById("robotsInput").value;
+  document.getElementById("byteCount").textContent = new TextEncoder().encode(v).length.toLocaleString() + " bytes";
+}
+document.getElementById("robotsInput").addEventListener("input", byteCountUpdate);
+
+/* ── Fetch robots.txt from a live domain (CORS fallback chain) ── */
+async function fetchWithTimeout(url, ms){
+  const ctrl = new AbortController();
+  const t = setTimeout(() => ctrl.abort(), ms);
+  try {
+    const res = await fetch(url, { signal: ctrl.signal });
+    clearTimeout(t);
+    return res;
+  } catch(e) {
+    clearTimeout(t);
+    throw e;
+  }
+}
+
+function looksLikeHtml(text){
+  return /^\s*<(!doctype|html)/i.test(text);
+}
+
+async function fetchRobots(){
+  const statusEl = document.getElementById("fetchStatus");
+  let domain = document.getElementById("fetchDomain").value.trim();
+  if (!domain) { statusEl.textContent = "Enter a domain first."; return; }
+  domain = domain.replace(/^https?:\/\//i, "").replace(/\/.*$/, "");
+  const target = "https://" + domain + "/robots.txt";
+  statusEl.textContent = "Fetching " + target + " ...";
+
+  const attempts = [
+    () => fetchWithTimeout(target, 12000),
+    () => fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(target), 12000),
+    () => fetchWithTimeout("https://api.allorigins.win/raw?url=" + encodeURIComponent(target), 12000),
+    () => fetchWithTimeout("https://api.allorigins.win/get?url=" + encodeURIComponent(target), 12000),
+    () => fetchWithTimeout("https://corsproxy.io/?" + encodeURIComponent(target), 12000),
+    () => fetchWithTimeout("https://thingproxy.freeboard.io/fetch/" + target, 12000),
+  ];
+
+  for (let i = 0; i < attempts.length; i++) {
+    try {
+      const res = await attempts[i]();
+      if (!res.ok) continue;
+      let text;
+      const ct = res.headers.get("content-type") || "";
+      if (ct.includes("application/json")) {
+        const j = await res.json();
+        text = j.contents || j.data || "";
+      } else {
+        text = await res.text();
+      }
+      if (!text || looksLikeHtml(text)) continue;
+      document.getElementById("robotsInput").value = text;
+      byteCountUpdate();
+      setInputMode("paste");
+      statusEl.textContent = "✅ Fetched successfully from " + target + " (" + text.length.toLocaleString() + " chars).";
+      return;
+    } catch(e) { /* try next */ }
+  }
+  statusEl.textContent = "❌ Couldn't fetch that robots.txt (CORS blocked or file not found). Try pasting it manually instead.";
+}
+
+/* ── Analyze / validate ── */
+function analyze(){
+  const raw = document.getElementById("robotsInput").value;
+  if (!raw.trim()) { alert("Paste a robots.txt file first, or fetch one from a live URL."); return; }
+  parsedData = parseRobotsTxt(raw);
+
+  const disallowCount = parsedData.groups.reduce((a,g) => a + g.rules.filter(r=>r.type==="disallow").length, 0);
+  const allowCount = parsedData.groups.reduce((a,g) => a + g.rules.filter(r=>r.type==="allow").length, 0);
+  document.getElementById("statGroups").textContent = parsedData.groups.length;
+  document.getElementById("statDisallow").textContent = disallowCount;
+  document.getElementById("statAllow").textContent = allowCount;
+  document.getElementById("statSitemaps").textContent = parsedData.sitemaps.length;
+  document.getElementById("statErrors").textContent = parsedData.issues.filter(i=>i.level==="error").length;
+  document.getElementById("statWarnings").textContent = parsedData.issues.filter(i=>i.level==="warning").length;
+  document.getElementById("statsRow").classList.remove("hidden");
+
+  renderIssues();
+  document.getElementById("testSection").classList.remove("hidden");
+  renderSitemaps();
+  const panelEl = document.getElementById("issuesPanel");
+  if (panelEl.scrollIntoView) panelEl.scrollIntoView({behavior:"smooth", block:"nearest"});
+}
+
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  panel.classList.remove("hidden");
+  if (parsedData.issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No syntax issues found — this robots.txt is clean.</div>';
+    return;
+  }
+  const order = {error:0, warning:1, info:2};
+  const sorted = [...parsedData.issues].sort((a,b) => order[a.level]-order[b.level] || a.line-b.line);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span class="issue-line">${i.line ? "Line " + i.line : "—"}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function normalizePath(input){
+  let p = input.trim();
+  if (!p) return "/";
+  try {
+    if (/^https?:\/\//i.test(p)) {
+      const u = new URL(p);
+      p = u.pathname + u.search;
+    }
+  } catch(e) {}
+  if (!p.startsWith("/")) p = "/" + p;
+  return p;
+}
+
+/* ── Test tab switching ── */
+function setTestTab(tab){
+  document.querySelectorAll(".test-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".test-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+  if (tab === "ai") renderAiSummary();
+}
+
+/* ── Single URL test ── */
+function runSingleTest(){
+  if (!parsedData) { alert("Click 'Analyze robots.txt' first."); return; }
+  const path = normalizePath(document.getElementById("singlePath").value);
+  const agent = document.getElementById("singleAgent").value;
+  const r = testUrl(parsedData, agent, path);
+  const el = document.getElementById("singleResult");
+  el.className = "result-card show " + (r.allowed ? "allowed" : "blocked");
+  el.innerHTML = `
+    <div class="result-badge ${r.allowed?"allowed":"blocked"}">${r.allowed ? "✅ ALLOWED" : "🚫 BLOCKED"}</div>
+    <div class="result-reason">${escapeHtml(r.reason)}</div>
+    <div class="result-meta">Tested <strong>${escapeHtml(agent)}</strong> against <strong>${escapeHtml(path)}</strong> · matched group: ${r.matchType === "specific" ? "specific User-agent match" : r.matchType === "wildcard" ? "wildcard (*) group" : "no group — default allow"}</div>
+  `;
+}
+
+/* ── Multi-bot matrix ── */
+function runMatrixTest(){
+  if (!parsedData) { alert("Click 'Analyze robots.txt' first."); return; }
+  const path = normalizePath(document.getElementById("matrixPath").value);
+  const allAgents = CRAWLERS.flatMap(g => g.agents).filter(([name]) => name !== "*");
+  const html = allAgents.map(([name]) => {
+    const r = testUrl(parsedData, name, path);
+    return `<div class="matrix-cell ${r.allowed?"allowed":"blocked"}">
+      <div class="bot">${escapeHtml(name)}</div>
+      <div class="status">${r.allowed ? "✅ Allowed" : "🚫 Blocked"}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("matrixResult").innerHTML = html;
+}
+
+/* ── AI crawler summary ── */
+function renderAiSummary(){
+  if (!parsedData) { document.getElementById("aiResult").innerHTML = '<p class="small-note">Click "Analyze robots.txt" first.</p>'; return; }
+  const html = AI_BOTS.map(name => {
+    const r = testUrl(parsedData, name, "/");
+    return `<div class="matrix-cell ${r.allowed?"allowed":"blocked"}">
+      <div class="bot">${escapeHtml(name)}</div>
+      <div class="status">${r.allowed ? "✅ Can access" : "🚫 Blocked"}</div>
+    </div>`;
+  }).join("");
+  document.getElementById("aiResult").innerHTML = html;
+}
+
+/* ── Batch test ── */
+function runBatchTest(){
+  if (!parsedData) { alert("Click 'Analyze robots.txt' first."); return; }
+  const agent = document.getElementById("batchAgent").value;
+  const lines = document.getElementById("batchPaths").value.split("\n").map(l=>l.trim()).filter(Boolean);
+  if (lines.length === 0) { alert("Add at least one URL/path, one per line."); return; }
+  batchResults = lines.map(line => {
+    const path = normalizePath(line);
+    const r = testUrl(parsedData, agent, path);
+    return { input: line, path, allowed: r.allowed, rule: r.rule ? `${r.rule.type === "allow" ? "Allow" : "Disallow"}: ${r.rule.pattern} (L${r.rule.line})` : "— (default allow)" };
+  });
+  document.getElementById("batchControls").classList.remove("hidden");
+  renderBatchTable();
+}
+
+function setBatchFilter(f){
+  batchFilter = f;
+  document.querySelectorAll("#panel-batch .chip").forEach(c => c.classList.toggle("active", c.dataset.filter === f));
+  renderBatchTable();
+}
+
+function renderBatchTable(){
+  const rows = batchResults.filter(r => batchFilter === "all" || (batchFilter === "blocked" && !r.allowed) || (batchFilter === "allowed" && r.allowed));
+  document.getElementById("batchTableBody").innerHTML = rows.map(r => `
+    <tr>
+      <td>${escapeHtml(r.input)}</td>
+      <td><span class="pill ${r.allowed?"allowed":"blocked"}">${r.allowed?"Allowed":"Blocked"}</span></td>
+      <td>${escapeHtml(r.rule)}</td>
+    </tr>`).join("") || `<tr><td colspan="3" style="text-align:center;color:var(--sub);">No results in this filter.</td></tr>`;
+}
+
+function exportBatchCSV(){
+  if (batchResults.length === 0) return;
+  const rows = [["URL/Path","Status","Matching Rule"], ...batchResults.map(r => [r.input, r.allowed?"Allowed":"Blocked", r.rule])];
+  const csv = rows.map(r => r.map(v => `"${String(v).replace(/"/g,'""')}"`).join(",")).join("\n");
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([csv], {type:"text/csv"}));
+  a.download = "robots-txt-batch-results.csv";
+  a.click();
+}
+
+/* ── Sitemaps panel ── */
+function renderSitemaps(){
+  const el = document.getElementById("sitemapsResult");
+  if (parsedData.sitemaps.length === 0) {
+    el.innerHTML = '<p class="small-note">No Sitemap: directives were found in this robots.txt.</p>';
+    return;
+  }
+  el.innerHTML = `<table class="data-table"><thead><tr><th>Sitemap URL</th><th>Line</th><th>Valid?</th></tr></thead><tbody>
+    ${parsedData.sitemaps.map(s => `<tr>
+      <td><a href="${escapeHtml(s.url)}" target="_blank" rel="noopener">${escapeHtml(s.url)}</a></td>
+      <td>${s.line}</td>
+      <td>${/^https?:\/\//i.test(s.url) ? '<span class="pill allowed">Absolute URL</span>' : '<span class="pill blocked">Not absolute</span>'}</td>
+    </tr>`).join("")}
+  </tbody></table>`;
+}
+
+/* ── FAQ accordion ── */
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+</script>
+</body>
+</html>
