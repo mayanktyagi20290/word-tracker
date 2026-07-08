@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FAQ Schema Generator — Free JSON-LD FAQPage Tool | SEOTriggers</title>
+<meta name="description" content="Free FAQ schema generator. Build valid FAQPage JSON-LD with a live accordion preview, rich-text answers, import/edit existing schema, and ready-made WordPress, Shopify & Next.js snippets. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/faq-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="FAQ Schema Generator — Free JSON-LD FAQPage Tool | SEOTriggers" />
+<meta property="og:description" content="Build valid FAQPage JSON-LD schema with a live preview, rich-text answers, built-in validation, and ready-made WordPress, Shopify & Next.js snippets. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/faq-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="FAQ Schema Generator — Free JSON-LD FAQPage Tool | SEOTriggers" />
+<meta name="twitter:description" content="Build valid FAQPage JSON-LD schema with a live preview, rich-text answers, built-in validation, and ready-made WordPress, Shopify & Next.js snippets. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "FAQ Schema Generator",
+  "url": "https://seotriggers.com/tools/faq-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate, validate, preview, and import FAQPage JSON-LD structured data, with ready-made WordPress, Shopify and Next.js snippets."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "FAQ Schema Generator", "item": "https://seotriggers.com/tools/faq-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I generate FAQ schema automatically?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Type your questions and answers into the generator — the FAQPage JSON-LD updates live as you type, with built-in validation and a preview of how the accordion will look." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the best FAQ schema generator?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A good FAQ schema generator should validate your markup, support the HTML tags Google allows in answers, show a live preview, and give you framework-specific snippets — not just raw JSON. This tool covers all of those in one place." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I generate FAQ schema markup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Add each question and its answer, and the tool builds a valid @type: FAQPage JSON-LD block with a mainEntity array of Question and acceptedAnswer items — the exact structure Google's documentation requires." }
+    },
+    {
+      "@type": "Question",
+      "name": "What schema generator works for FAQ pages?",
+      "acceptedAnswer": { "@type": "Answer", "text": "This tool is purpose-built for FAQPage structured data: it validates content rules, flags unsupported HTML tags, detects duplicate questions, and outputs CMS-specific code for WordPress, Shopify, and Next.js." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.top-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+/* Import panel */
+.import-box{display:none;margin-top:14px;}
+.import-box.show{display:block;}
+.import-box textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;}
+.import-box textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+/* Q&A cards */
+.qa-list{display:flex;flex-direction:column;gap:14px;margin-top:16px;}
+.qa-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fbfbfd;}
+.qa-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.qa-num{font-size:12px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.qa-controls{display:flex;gap:4px;}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:6px;width:26px;height:26px;font-size:13px;cursor:pointer;color:var(--sub);display:flex;align-items:center;justify-content:center;}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand);}
+.qa-card input[type=text]{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;margin-bottom:8px;}
+.qa-card input[type=text]:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.toolbar{display:flex;gap:4px;margin-bottom:6px;flex-wrap:wrap;}
+.toolbar button{background:#fff;border:1px solid var(--border);border-radius:6px;width:28px;height:26px;font-size:12px;font-weight:700;cursor:pointer;color:var(--ink);}
+.toolbar button:hover{border-color:var(--brand);color:var(--brand);}
+.qa-card textarea.answer-input{width:100%;min-height:80px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;resize:vertical;}
+.qa-card textarea.answer-input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.add-row{margin-top:14px;}
+
+/* Validation panel */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.empty-good{padding:14px 16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Preview accordion */
+.preview-panel{margin-top:22px;}
+.preview-accordion{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;}
+.preview-item{border-bottom:1px solid var(--border);}
+.preview-item:last-child{border-bottom:none;}
+.preview-q{width:100%;text-align:left;background:#fff;border:none;padding:14px 16px;font-size:14px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.preview-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:13px;color:var(--sub);padding:0 16px;}
+.preview-item.open .preview-a{max-height:400px;padding-bottom:14px;}
+.preview-plus{color:var(--brand);font-weight:700;}
+
+/* Output tabs */
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.6;max-height:420px;}
+
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / FAQ Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>FAQ Schema Generator</h1>
+    <p>Build valid FAQPage JSON-LD with rich-text answers, a live accordion preview, built-in validation, and ready-made WordPress, Shopify &amp; Next.js snippets.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="top-actions">
+      <div class="section-label" style="margin:0;">Questions &amp; answers</div>
+      <button class="btn secondary small" onclick="toggleImport()">⬆ Import existing schema</button>
+    </div>
+
+    <div class="import-box" id="importBox">
+      <textarea id="importInput" placeholder="Paste an existing FAQPage JSON-LD block (with or without the &lt;script&gt; tags) to edit it here..."></textarea>
+      <button class="btn small" style="margin-top:8px;" onclick="runImport()">Import</button>
+      <div class="small-note" id="importStatus"></div>
+    </div>
+
+    <div id="qaList" class="qa-list"></div>
+
+    <div class="add-row">
+      <button class="btn secondary" onclick="addQA()">+ Add another question</button>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="section-label">Live preview (how the accordion will look)</div>
+      <div id="previewAccordion" class="preview-accordion"></div>
+    </div>
+
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="copyOutput('download')">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput('copy')">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (Custom HTML block)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (Liquid template)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most FAQ schema tools stop at a bare textarea and a copy button. This one is built to catch mistakes before they ship.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Saijo George</th><th>SUSO Digital</th></tr></thead>
+        <tbody>
+          <tr><td>Unlimited questions, add/remove/reorder</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Rich-text toolbar (bold, links, lists)</td><td class="yes">✓</td><td class="no">Manual HTML typing</td><td class="no">✗</td></tr>
+          <tr><td>Built-in validation (empty fields, duplicates, bad tags)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Live accordion preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Import &amp; edit existing schema</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Framework-specific snippets (WordPress/Shopify/Next.js)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Minify / Prettify toggle</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">✍️</div><h3>Rich-text answers</h3><p>Bold, italic, links, and lists — insert Google's officially supported HTML tags with one click, no manual typing.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in validation</h3><p>Catches empty fields, duplicate questions, thin answers, and HTML tags Google doesn't officially support — before you ship.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live accordion preview</h3><p>See exactly how your FAQ will look and behave, styled like a real rich-result accordion.</p></div>
+      <div class="feat-card"><div class="ic">⬆️</div><h3>Import existing schema</h3><p>Paste FAQ schema you already have to load it back into the editor and keep improving it.</p></div>
+      <div class="feat-card"><div class="ic">🧩</div><h3>Framework-ready snippets</h3><p>One click for WordPress, Shopify Liquid, or Next.js App Router code — not just raw JSON.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your content is never uploaded or stored anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I generate FAQ schema automatically? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Type your questions and answers into the generator — the FAQPage JSON-LD updates live as you type, with built-in validation and a preview of how the accordion will look.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the best FAQ schema generator? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>A good FAQ schema generator should validate your markup, support the HTML tags Google allows in answers, show a live preview, and give you framework-specific snippets — not just raw JSON. This tool covers all of those in one place.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What HTML tags are allowed inside FAQ answers? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google officially supports headings (h1–h6), links (a), line breaks (br), lists (ol, ul, li), paragraphs (p, div), bold (b, strong), and italics (i, em) inside FAQ answer text. Other tags may be stripped or ignored — this tool flags them for you.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does FAQ schema guarantee a rich result in Google? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Valid markup makes your page eligible for the FAQ rich result, but Google decides whether to show it based on many signals, and this feature has become more limited over time. Use FAQ schema mainly to help search engines understand your content.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I import a FAQ schema I already have? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. Paste your existing JSON-LD (with or without the surrounding &lt;script&gt; tags) into the Import box and it will load straight into the editor so you can update or extend it.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should FAQ content be visible on the page? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes — Google requires the questions and answers in your schema to match content that's actually visible to users on the page. Don't mark up "virtual" FAQs that don't appear anywhere in the page content.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   SCHEMA BUILD / VALIDATE / IMPORT LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+const ALLOWED_TAGS = ["h1","h2","h3","h4","h5","h6","a","br","ol","ul","li","p","div","b","strong","i","em"];
+
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function findDisallowedTags(html) {
+  const tagRegex = /<\/?([a-zA-Z0-9]+)[^>]*>/g;
+  const found = new Set();
+  let m;
+  while ((m = tagRegex.exec(html)) !== null) {
+    const tag = m[1].toLowerCase();
+    if (!ALLOWED_TAGS.includes(tag)) found.add(tag);
+  }
+  return [...found];
+}
+
+function validateItems(items) {
+  const issues = [];
+  const seenQuestions = new Map();
+  items.forEach((item, i) => {
+    const idx = i + 1;
+    if (!item.question || !item.question.trim()) {
+      issues.push({ level:"error", index:idx, message:`Question ${idx} is empty.` });
+    }
+    if (!item.answer || !item.answer.trim()) {
+      issues.push({ level:"error", index:idx, message:`Answer ${idx} is empty.` });
+    }
+    if (item.question && item.question.trim()) {
+      const key = item.question.trim().toLowerCase();
+      if (seenQuestions.has(key)) {
+        issues.push({ level:"warning", index:idx, message:`Question ${idx} duplicates question ${seenQuestions.get(key)}.` });
+      } else {
+        seenQuestions.set(key, idx);
+      }
+    }
+    if (item.answer && item.answer.trim() && item.answer.trim().length < 15) {
+      issues.push({ level:"warning", index:idx, message:`Answer ${idx} looks very short — Google may consider it low-quality.` });
+    }
+    if (item.answer) {
+      const bad = findDisallowedTags(item.answer);
+      if (bad.length > 0) {
+        issues.push({ level:"warning", index:idx, message:`Answer ${idx} uses tag(s) not officially supported by Google: ${bad.join(", ")}. They may be stripped or ignored.` });
+      }
+    }
+  });
+  if (items.length === 0) {
+    issues.push({ level:"error", index:0, message:"Add at least one question and answer." });
+  }
+  return issues;
+}
+
+function buildSchemaObject(items) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": items
+      .filter(it => it.question && it.question.trim() && it.answer && it.answer.trim())
+      .map(it => ({
+        "@type": "Question",
+        "name": it.question.trim(),
+        "acceptedAnswer": { "@type": "Answer", "text": it.answer.trim() }
+      }))
+  };
+}
+
+function toScriptTag(schemaObj, pretty) {
+  const json = pretty ? JSON.stringify(schemaObj, null, 2) : JSON.stringify(schemaObj);
+  return `<script type="application/ld+json">\n${json}\n<\/script>`;
+}
+
+function toMinifiedScriptTag(schemaObj) {
+  return `<script type="application/ld+json">${JSON.stringify(schemaObj)}<\/script>`;
+}
+
+function parseImportedSchema(raw) {
+  // strip <script> wrapper if present
+  let text = raw.trim();
+  const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+  if (scriptMatch) text = scriptMatch[1].trim();
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch(e) {
+    return { error: "Couldn't parse this as JSON. Make sure it's valid JSON-LD, with or without the <script> tags." };
+  }
+  // handle @graph wrapping
+  let faqNode = obj;
+  if (obj["@graph"] && Array.isArray(obj["@graph"])) {
+    faqNode = obj["@graph"].find(n => n["@type"] === "FAQPage") || null;
+  }
+  if (!faqNode || faqNode["@type"] !== "FAQPage" || !Array.isArray(faqNode.mainEntity)) {
+    return { error: "This JSON doesn't look like a FAQPage schema (missing @type: FAQPage or mainEntity array)." };
+  }
+  const items = faqNode.mainEntity.map(q => ({
+    question: (q.name || "").toString(),
+    answer: (q.acceptedAnswer && q.acceptedAnswer.text) ? q.acceptedAnswer.text.toString() : ""
+  }));
+  return { items };
+}
+
+function cmsSnippet(cms, schemaObj) {
+  const jsonPretty = JSON.stringify(schemaObj, null, 2);
+  const jsonInline = JSON.stringify(schemaObj);
+  if (cms === "html") {
+    return `<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "wordpress") {
+    return `<!-- Paste into a "Custom HTML" block, or your theme's header.php / a header-injection plugin -->\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "shopify") {
+    return `{%- comment -%} Add near your FAQ content in the relevant .liquid template {%- endcomment -%}\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "nextjs") {
+    return `export default function Page() {\n  const faqSchema = ${jsonPretty.replace(/\n/g, "\n  ")};\n\n  return (\n    <>\n      <script\n        type="application/ld+json"\n        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}\n      />\n      <main>{/* page content */}</main>\n    </>\n  );\n}`;
+  }
+  return jsonInline;
+}
+
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let items = [
+  { question:"What is FAQPage schema?", answer:"FAQPage structured data tells search engines that a page contains a list of questions and answers." },
+  { question:"Do I need coding experience to use this tool?", answer:"No. Add your questions and answers, and the tool builds valid JSON-LD for you automatically." },
+];
+let outFormat = "pretty";
+let idCounter = 0;
+items.forEach(it => it._id = idCounter++);
+
+function uid(){ return idCounter++; }
+
+function renderAll(){
+  renderQaList();
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function renderQaList(){
+  const list = document.getElementById("qaList");
+  list.innerHTML = items.map((it, i) => `
+    <div class="qa-card" data-id="${it._id}">
+      <div class="qa-head">
+        <span class="qa-num">Question ${i+1}</span>
+        <div class="qa-controls">
+          <button class="icon-btn" title="Move up" onclick="moveQA(${it._id}, -1)">↑</button>
+          <button class="icon-btn" title="Move down" onclick="moveQA(${it._id}, 1)">↓</button>
+          <button class="icon-btn" title="Remove" onclick="removeQA(${it._id})">✕</button>
+        </div>
+      </div>
+      <input type="text" placeholder="Question" value="${escapeAttr(it.question)}" oninput="updateField(${it._id},'question',this.value)" />
+      <div class="toolbar">
+        <button title="Bold" onclick="wrapAnswer(${it._id},'strong')"><b>B</b></button>
+        <button title="Italic" onclick="wrapAnswer(${it._id},'em')"><i>i</i></button>
+        <button title="Link" onclick="insertLink(${it._id})">🔗</button>
+        <button title="Line break" onclick="insertAtCursor(${it._id},'<br>')">↵</button>
+        <button title="Bulleted list" onclick="wrapListAnswer(${it._id},'ul')">•≡</button>
+        <button title="Numbered list" onclick="wrapListAnswer(${it._id},'ol')">1≡</button>
+      </div>
+      <textarea class="answer-input" placeholder="Answer" oninput="updateField(${it._id},'answer',this.value)">${escapeHtmlText(it.answer)}</textarea>
+    </div>
+  `).join("");
+}
+
+function escapeAttr(s){ return escapeHtml(s).replace(/\n/g, "&#10;"); }
+function escapeHtmlText(s){ return escapeHtml(s); }
+
+function findItem(id){ return items.find(it => it._id === id); }
+function findIndex(id){ return items.findIndex(it => it._id === id); }
+
+function updateField(id, field, value){
+  const it = findItem(id);
+  if (!it) return;
+  it[field] = value;
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function addQA(){
+  items.push({ _id: uid(), question:"", answer:"" });
+  renderAll();
+}
+function removeQA(id){
+  items = items.filter(it => it._id !== id);
+  if (items.length === 0) items.push({ _id: uid(), question:"", answer:"" });
+  renderAll();
+}
+function moveQA(id, dir){
+  const i = findIndex(id);
+  const j = i + dir;
+  if (j < 0 || j >= items.length) return;
+  const tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  renderAll();
+}
+
+function getTextarea(id){
+  const card = document.querySelector(`.qa-card[data-id="${id}"]`);
+  return card ? card.querySelector("textarea.answer-input") : null;
+}
+
+function insertAtCursor(id, snippet){
+  const ta = getTextarea(id);
+  const it = findItem(id);
+  if (!ta || !it) return;
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const val = ta.value;
+  const newVal = val.slice(0, start) + snippet + val.slice(end);
+  ta.value = newVal;
+  it.answer = newVal;
+  const pos = start + snippet.length;
+  ta.focus();
+  ta.setSelectionRange(pos, pos);
+  renderIssues(); renderPreview(); renderOutputs();
+}
+
+function wrapAnswer(id, tag){
+  const ta = getTextarea(id);
+  const it = findItem(id);
+  if (!ta || !it) return;
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const val = ta.value;
+  const selected = val.slice(start, end) || "text";
+  const newVal = val.slice(0, start) + `<${tag}>${selected}</${tag}>` + val.slice(end);
+  ta.value = newVal;
+  it.answer = newVal;
+  ta.focus();
+  renderIssues(); renderPreview(); renderOutputs();
+}
+
+function wrapListAnswer(id, tag){
+  const ta = getTextarea(id);
+  const it = findItem(id);
+  if (!ta || !it) return;
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const val = ta.value;
+  const selected = val.slice(start, end);
+  const listItems = (selected || "list item 1\nlist item 2").split("\n").filter(Boolean).map(l => `<li>${l.trim()}</li>`).join("");
+  const snippet = `<${tag}>${listItems}</${tag}>`;
+  const newVal = val.slice(0, start) + snippet + val.slice(end);
+  ta.value = newVal;
+  it.answer = newVal;
+  ta.focus();
+  renderIssues(); renderPreview(); renderOutputs();
+}
+
+function insertLink(id){
+  const url = prompt("Link URL:", "https://");
+  if (!url) return;
+  const ta = getTextarea(id);
+  const it = findItem(id);
+  if (!ta || !it) return;
+  const start = ta.selectionStart, end = ta.selectionEnd;
+  const val = ta.value;
+  const label = val.slice(start, end) || "link text";
+  const snippet = `<a href="${url}" target="_blank" rel="noopener">${label}</a>`;
+  const newVal = val.slice(0, start) + snippet + val.slice(end);
+  ta.value = newVal;
+  it.answer = newVal;
+  ta.focus();
+  renderIssues(); renderPreview(); renderOutputs();
+}
+
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  const issues = validateItems(items);
+  panel.classList.remove("hidden");
+  if (issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No issues found — this FAQ schema looks clean.</div>';
+    return;
+  }
+  const order = { error:0, warning:1 };
+  const sorted = [...issues].sort((a,b) => order[a.level]-order[b.level]);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function renderPreview(){
+  const acc = document.getElementById("previewAccordion");
+  const valid = items.filter(it => it.question.trim() && it.answer.trim());
+  if (valid.length === 0) {
+    acc.innerHTML = '<div style="padding:16px;color:var(--sub);font-size:13px;">Add a question and answer to see the preview.</div>';
+    return;
+  }
+  acc.innerHTML = valid.map((it, i) => `
+    <div class="preview-item" data-pidx="${i}">
+      <button class="preview-q" onclick="togglePreview(this)">${escapeHtml(it.question)} <span class="preview-plus">+</span></button>
+      <div class="preview-a"><div style="padding-top:4px;">${sanitizeForPreview(it.answer)}</div></div>
+    </div>
+  `).join("");
+}
+
+function sanitizeForPreview(html){
+  // Only allow Google's supported tags in the live preview render; strip everything else.
+  const allowed = ALLOWED_TAGS;
+  return html.replace(/<\/?([a-zA-Z0-9]+)([^>]*)>/g, (match, tag, attrs) => {
+    const lower = tag.toLowerCase();
+    if (!allowed.includes(lower)) return "";
+    if (lower === "a") {
+      const hrefMatch = attrs.match(/href\s*=\s*"([^"]*)"/i);
+      const href = hrefMatch ? hrefMatch[1] : "#";
+      return match.startsWith("</") ? "</a>" : `<a href="${escapeHtml(href)}" target="_blank" rel="noopener">`;
+    }
+    return match.startsWith("</") ? `</${lower}>` : `<${lower}>`;
+  });
+}
+
+function togglePreview(btn){
+  const item = btn.parentElement;
+  item.classList.toggle("open");
+}
+
+let outTab = "code";
+function setOutTab(tab){
+  outTab = tab;
+  document.querySelectorAll(".out-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".out-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+
+function setFormat(fmt, btn){
+  outFormat = fmt;
+  btn.parentElement.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  renderOutputs();
+}
+
+function renderOutputs(){
+  const schema = buildSchemaObject(items);
+  const scriptTag = toScriptTag(schema, outFormat === "pretty");
+  document.getElementById("codeOut").textContent = scriptTag;
+  document.getElementById("wpOut").textContent = cmsSnippet("wordpress", schema);
+  document.getElementById("shopifyOut").textContent = cmsSnippet("shopify", schema);
+  document.getElementById("nextjsOut").textContent = cmsSnippet("nextjs", schema);
+}
+
+function copyOutput(action){
+  const text = document.getElementById("codeOut").textContent;
+  if (action === "download") {
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(new Blob([text], {type:"text/html"}));
+    a.download = "faq-schema.html";
+    a.click();
+    return;
+  }
+  copyText(text);
+}
+function copyCms(which){
+  const el = document.getElementById(which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut");
+  copyText(el.textContent);
+}
+
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function toggleImport(){
+  document.getElementById("importBox").classList.toggle("show");
+}
+
+function runImport(){
+  const raw = document.getElementById("importInput").value;
+  const statusEl = document.getElementById("importStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste some JSON-LD first."; return; }
+  const result = parseImportedSchema(raw);
+  if (result.error) {
+    statusEl.textContent = "❌ " + result.error;
+    return;
+  }
+  items = result.items.map(it => ({ _id: uid(), question: it.question, answer: it.answer }));
+  if (items.length === 0) items.push({ _id: uid(), question:"", answer:"" });
+  statusEl.textContent = `✅ Imported ${items.length} question(s).`;
+  document.getElementById("importBox").classList.remove("show");
+  renderAll();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll("#faqList .faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+renderAll();
+</script>
+</body>
+</html>
