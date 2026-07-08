@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Article Schema Generator — Free JSON-LD Tool | SEOTriggers</title>
+<meta name="description" content="Free Article/BlogPosting/NewsArticle schema generator. Build valid JSON-LD with headline length checks, live image-dimension validation, Speakable support, and ready-made WordPress, Shopify & Next.js snippets. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/article-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Article Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta property="og:description" content="Build valid Article/BlogPosting/NewsArticle JSON-LD with headline length checks, live image-dimension validation, Speakable support, and CMS-ready snippets. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/article-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Article Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta name="twitter:description" content="Build valid Article/BlogPosting/NewsArticle JSON-LD with headline checks, live image validation, Speakable support, and CMS-ready snippets. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Article Schema Generator",
+  "url": "https://seotriggers.com/tools/article-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate, validate, preview, and import Article, BlogPosting, and NewsArticle JSON-LD structured data, with live image-dimension checks and Speakable specification support."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Article Schema Generator", "item": "https://seotriggers.com/tools/article-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I generate Article schema markup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Fill in the headline, image, author, publisher, and dates, and the tool builds a valid Article, BlogPosting, or NewsArticle JSON-LD block automatically, with live validation against Google's guidelines." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the difference between Article, BlogPosting, and NewsArticle?",
+      "acceptedAnswer": { "@type": "Answer", "text": "BlogPosting and NewsArticle are both subtypes of Article and inherit its properties. Use BlogPosting for blog content, NewsArticle for news/journalism content eligible for Top Stories, and generic Article for anything else editorial." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add Speakable attributes to Article schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Enable the Speakable toggle in this tool and add the CSS selectors (like h1 or .summary) that identify the sections of your page suitable for text-to-speech, such as the headline and a brief summary. The tool builds the SpeakableSpecification block automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "What image size does Article schema need?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google recommends images at least 1200 pixels wide, ideally supplied in multiple aspect ratios (16x9, 4x3, 1x1). This tool checks the actual dimensions of any image URL you enter and flags images that are too small." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is a publisher logo required for Article schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's not required for basic Article eligibility, but it is required for Top Stories and AMP-related rich results, and Google recommends a logo at least 600 pixels wide with a non-transparent background." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+.top-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+.import-box{display:none;margin-top:14px;}
+.import-box.show{display:block;}
+.import-box textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;}
+.import-box textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.type-toggle{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:6px;}
+.type-toggle button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.type-toggle button.active{background:var(--brand);color:#fff;}
+
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-grid{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:12.5px;font-weight:600;color:var(--sub);}
+.field input[type=text], .field input[type=number], .field input[type=date], .field input[type=url], .field select, .field textarea{
+  padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;width:100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{min-height:60px;resize:vertical;}
+.field-full{grid-column:1 / -1;}
+.char-count{font-size:11px;color:var(--sub);text-align:right;}
+.char-count.over{color:var(--red);font-weight:700;}
+
+/* Image list */
+.image-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.image-row input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.image-status{font-size:11px;font-weight:600;white-space:nowrap;min-width:130px;}
+.image-status.ok{color:var(--green);}
+.image-status.warn{color:var(--amber);}
+.image-status.pending{color:var(--sub);}
+.image-status.err{color:var(--red);}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:6px;width:28px;height:28px;font-size:13px;cursor:pointer;color:var(--sub);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand);}
+
+/* Speakable chips */
+.chip-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 6px 5px 12px;font-size:13px;font-family:'SF Mono',Consolas,monospace;}
+.chip button{background:none;border:none;color:var(--sub);cursor:pointer;font-size:13px;width:18px;height:18px;border-radius:50%;}
+.chip button:hover{background:var(--red-bg);color:var(--red);}
+.add-chip-row{display:flex;gap:8px;margin-top:8px;}
+.add-chip-row input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+
+.toggle-switch{display:flex;align-items:center;gap:10px;}
+.toggle-switch input{width:16px;height:16px;accent-color:var(--brand);}
+
+/* Issues */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.empty-good{padding:14px 16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Preview card (article-card style) */
+.preview-panel{margin-top:22px;}
+.preview-card{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:#fff;max-width:420px;}
+.preview-img{width:100%;height:180px;object-fit:cover;background:var(--bg);display:flex;align-items:center;justify-content:center;color:var(--sub);font-size:12px;}
+.preview-body{padding:14px 16px;}
+.preview-headline{font-size:16px;font-weight:800;margin:0 0 6px;line-height:1.35;}
+.preview-meta{font-size:12px;color:var(--sub);}
+
+/* Output tabs */
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.6;max-height:420px;}
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Article Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Article Schema Generator</h1>
+    <p>Build valid Article, BlogPosting, or NewsArticle JSON-LD with headline length checks, live image-dimension validation, and Speakable support.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="top-actions">
+      <div class="section-label" style="margin:0;">Article type</div>
+      <button class="btn secondary small" onclick="toggleImport()">⬆ Import existing schema</button>
+    </div>
+
+    <div class="import-box" id="importBox">
+      <textarea id="importInput" placeholder="Paste an existing Article/BlogPosting/NewsArticle JSON-LD block (with or without the &lt;script&gt; tags) to edit it here..."></textarea>
+      <button class="btn small" style="margin-top:8px;" onclick="runImport()">Import</button>
+      <div class="small-note" id="importStatus"></div>
+    </div>
+
+    <div class="type-toggle" id="typeToggle">
+      <button data-type="Article" onclick="setArticleType('Article')">Article</button>
+      <button data-type="BlogPosting" onclick="setArticleType('BlogPosting')">BlogPosting</button>
+      <button data-type="NewsArticle" onclick="setArticleType('NewsArticle')">NewsArticle</button>
+    </div>
+
+    <div class="section-label">Content details</div>
+    <div class="field-grid">
+      <div class="field field-full">
+        <label>Headline</label>
+        <input type="text" id="fHeadline" oninput="onFieldInput()" placeholder="How to Fix a Leaky Faucet in 5 Steps">
+        <div class="char-count" id="headlineCount">0 / 110</div>
+      </div>
+      <div class="field field-full">
+        <label>Description</label>
+        <textarea id="fDescription" oninput="onFieldInput()" placeholder="A short one or two sentence summary of the article."></textarea>
+      </div>
+      <div class="field"><label>Date published</label><input type="date" id="fDatePublished" oninput="onFieldInput()"></div>
+      <div class="field"><label>Date modified (optional)</label><input type="date" id="fDateModified" oninput="onFieldInput()"></div>
+      <div class="field"><label>Article section / category (optional)</label><input type="text" id="fSection" oninput="onFieldInput()" placeholder="SEO"></div>
+      <div class="field"><label>Word count (optional)</label><input type="number" id="fWordCount" oninput="onFieldInput()" placeholder="1200"></div>
+      <div class="field field-full"><label>Keywords (optional, comma-separated)</label><input type="text" id="fKeywords" oninput="onFieldInput()" placeholder="schema markup, seo, json-ld"></div>
+      <div class="field field-full"><label>Canonical page URL (optional — builds mainEntityOfPage)</label><input type="text" id="fPageUrl" oninput="onFieldInput()" placeholder="https://example.com/blog/my-article"></div>
+    </div>
+
+    <div class="section-label">Images <span style="font-weight:400;text-transform:none;color:var(--sub);">— Google recommends 1200px+ wide, multiple aspect ratios</span></div>
+    <div id="imagesList"></div>
+    <div class="add-chip-row">
+      <input type="text" id="newImage" placeholder="https://example.com/cover-image.jpg" onkeydown="if(event.key==='Enter'){event.preventDefault(); addImage();}">
+      <button class="btn secondary small" onclick="addImage()">+ Add image</button>
+    </div>
+
+    <div class="section-label">Author</div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Author type</label>
+        <select id="fAuthorType" onchange="onFieldInput()">
+          <option value="Person">Person</option>
+          <option value="Organization">Organization</option>
+        </select>
+      </div>
+      <div class="field"><label>Author name</label><input type="text" id="fAuthorName" oninput="onFieldInput()" placeholder="Jane Doe"></div>
+      <div class="field field-full"><label>Author URL (optional)</label><input type="text" id="fAuthorUrl" oninput="onFieldInput()" placeholder="https://example.com/authors/jane-doe"></div>
+    </div>
+
+    <div class="section-label">Publisher</div>
+    <div class="field-grid">
+      <div class="field"><label>Publisher name</label><input type="text" id="fPublisherName" oninput="onFieldInput()" placeholder="SEOTriggers"></div>
+      <div class="field"><label>Publisher logo URL</label><input type="text" id="fPublisherLogo" oninput="onFieldInput()" placeholder="https://example.com/logo.png"></div>
+    </div>
+    <div id="logoStatus" class="small-note"></div>
+
+    <div class="section-label">Speakable (voice / Google Assistant)</div>
+    <div class="toggle-switch" style="margin-bottom:8px;">
+      <input type="checkbox" id="speakableToggle" onchange="onSpeakableToggle()">
+      <label for="speakableToggle" style="font-size:13px;">Include Speakable specification</label>
+    </div>
+    <div id="speakableBlock" class="hidden">
+      <div id="speakableChips" class="chip-list"></div>
+      <div class="add-chip-row">
+        <input type="text" id="newSelector" placeholder="e.g. h1 or .summary" onkeydown="if(event.key==='Enter'){event.preventDefault(); addSelector();}">
+        <button class="btn secondary small" onclick="addSelector()">+ Add selector</button>
+      </div>
+      <div class="small-note">CSS selectors that identify the parts of your visible page suitable for text-to-speech (usually the headline and a short summary).</div>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="section-label" style="margin-top:0;">Live preview</div>
+      <div class="preview-card">
+        <div class="preview-img" id="previewImg">No image set</div>
+        <div class="preview-body">
+          <div class="preview-headline" id="previewHeadline">Untitled article</div>
+          <div class="preview-meta" id="previewMeta"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (Custom HTML block)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (Liquid template)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+      <a href="/tools/faq-schema-generator">Also need FAQ schema? →</a>
+      <a href="/tools/howto-schema-generator">Or HowTo schema? →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Generic multi-type generators treat Article as one of a dozen dropdown options. This one is built around it specifically.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>jsonld.com</th><th>Generic multi-type generators</th></tr></thead>
+        <tbody>
+          <tr><td>Article / BlogPosting / NewsArticle type switch</td><td class="yes">✓</td><td class="no">Article only</td><td class="no">Article only</td></tr>
+          <tr><td>Headline length validation (110-char guidance)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Live image-dimension check (fetches the actual image)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Multiple images / aspect ratios</td><td class="yes">✓</td><td class="no">Single image</td><td class="no">Single image</td></tr>
+          <tr><td>Speakable specification support</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Import &amp; edit existing schema</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Framework-specific snippets (WordPress/Shopify/Next.js)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">📏</div><h3>Headline length guard</h3><p>Live character counter flags headlines over Google's recommended 110-character limit for Article rich results.</p></div>
+      <div class="feat-card"><div class="ic">🖼️</div><h3>Live image-dimension check</h3><p>Enter an image URL and the tool actually loads it to verify width and height meet Google's recommendations — not just a reminder to check manually.</p></div>
+      <div class="feat-card"><div class="ic">🗣️</div><h3>Speakable specification</h3><p>Add CSS selectors for text-to-speech-friendly sections like your headline and summary — a property most Article generators skip entirely.</p></div>
+      <div class="feat-card"><div class="ic">📰</div><h3>Article, BlogPosting, or NewsArticle</h3><p>Switch types with one click instead of hunting through a generic 17-type dropdown.</p></div>
+      <div class="feat-card"><div class="ic">⬆️</div><h3>Import existing schema</h3><p>Paste article schema you already have to load it back into the editor and keep improving it.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your content is never uploaded or stored anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I generate Article schema markup? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Fill in the headline, image, author, publisher, and dates, and the tool builds a valid Article, BlogPosting, or NewsArticle JSON-LD block automatically, with live validation against Google's guidelines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is the difference between Article, BlogPosting, and NewsArticle? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>BlogPosting and NewsArticle are both subtypes of Article and inherit its properties. Use BlogPosting for blog content, NewsArticle for news/journalism content eligible for Top Stories, and generic Article for anything else editorial.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I add Speakable attributes to Article schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Enable the Speakable toggle in this tool and add the CSS selectors (like h1 or .summary) that identify the sections of your page suitable for text-to-speech, such as the headline and a brief summary. The tool builds the SpeakableSpecification block automatically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What image size does Article schema need? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google recommends images at least 1200 pixels wide, ideally supplied in multiple aspect ratios (16x9, 4x3, 1x1). This tool checks the actual dimensions of any image URL you enter and flags images that are too small.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is a publisher logo required for Article schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It's not required for basic Article eligibility, but it is required for Top Stories and AMP-related rich results, and Google recommends a logo at least 600 pixels wide with a non-transparent background.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   SCHEMA BUILD / VALIDATE / IMPORT LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function validateArticle(state) {
+  const issues = [];
+  if (!state.headline || !state.headline.trim()) {
+    issues.push({ level:"error", message:"Headline is required." });
+  } else if (state.headline.trim().length > 110) {
+    issues.push({ level:"warning", message:`Headline is ${state.headline.trim().length} characters — Google recommends keeping it under 110 characters for Article rich results.` });
+  }
+  if (!state.description || !state.description.trim()) {
+    issues.push({ level:"warning", message:"A description is recommended for Article schema." });
+  }
+  const images = (state.images || []).filter(i => i && i.trim());
+  if (images.length === 0) {
+    issues.push({ level:"warning", message:"No image set — Google is unlikely to show a rich result without at least one qualifying image." });
+  }
+  if (!state.datePublished) {
+    issues.push({ level:"error", message:"datePublished is required." });
+  }
+  if (state.dateModified && state.datePublished && new Date(state.dateModified) < new Date(state.datePublished)) {
+    issues.push({ level:"warning", message:"dateModified is earlier than datePublished — double check these dates." });
+  }
+  if (!state.authorName || !state.authorName.trim()) {
+    issues.push({ level:"error", message:"Author name is required." });
+  }
+  if (!state.publisherName || !state.publisherName.trim()) {
+    issues.push({ level:"warning", message:"Publisher name is recommended (required for Top Stories/AMP eligibility)." });
+  }
+  if (!state.publisherLogo || !state.publisherLogo.trim()) {
+    issues.push({ level:"warning", message:"Publisher logo is recommended (required for Top Stories/AMP eligibility)." });
+  }
+  if (state.speakableEnabled) {
+    const selectors = (state.speakableSelectors || []).filter(s => s && s.trim());
+    if (selectors.length === 0) {
+      issues.push({ level:"error", message:"Speakable is enabled but has no CSS selectors added." });
+    }
+  }
+  return issues;
+}
+
+function buildArticleSchema(state) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": state.articleType || "Article",
+    "headline": state.headline || "",
+  };
+  if (state.description) schema.description = state.description;
+
+  const images = (state.images || []).filter(i => i && i.trim());
+  if (images.length === 1) schema.image = images[0];
+  else if (images.length > 1) schema.image = images;
+
+  if (state.datePublished) schema.datePublished = state.datePublished;
+  if (state.dateModified) schema.dateModified = state.dateModified;
+
+  if (state.authorName) {
+    schema.author = { "@type": state.authorType || "Person", "name": state.authorName };
+    if (state.authorUrl) schema.author.url = state.authorUrl;
+  }
+
+  if (state.publisherName) {
+    schema.publisher = { "@type": "Organization", "name": state.publisherName };
+    if (state.publisherLogo) {
+      schema.publisher.logo = { "@type": "ImageObject", "url": state.publisherLogo };
+    }
+  }
+
+  if (state.pageUrl) {
+    schema.mainEntityOfPage = { "@type": "WebPage", "@id": state.pageUrl };
+  }
+  if (state.articleSection) schema.articleSection = state.articleSection;
+  if (state.keywords) schema.keywords = state.keywords;
+  if (state.wordCount) schema.wordCount = parseInt(state.wordCount, 10) || undefined;
+
+  if (state.speakableEnabled) {
+    const selectors = (state.speakableSelectors || []).filter(s => s && s.trim());
+    if (selectors.length > 0) {
+      schema.speakable = { "@type": "SpeakableSpecification", "cssSelector": selectors };
+    }
+  }
+
+  return schema;
+}
+
+function toScriptTag(schemaObj, pretty) {
+  const json = pretty ? JSON.stringify(schemaObj, null, 2) : JSON.stringify(schemaObj);
+  return `<script type="application/ld+json">\n${json}\n<\/script>`;
+}
+
+function parseImportedArticle(raw) {
+  let text = raw.trim();
+  const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+  if (scriptMatch) text = scriptMatch[1].trim();
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch(e) {
+    return { error: "Couldn't parse this as JSON. Make sure it's valid JSON-LD, with or without the <script> tags." };
+  }
+  let node = obj;
+  if (obj["@graph"] && Array.isArray(obj["@graph"])) {
+    node = obj["@graph"].find(n => ["Article","BlogPosting","NewsArticle"].includes(n["@type"])) || null;
+  }
+  if (!node || !["Article","BlogPosting","NewsArticle"].includes(node["@type"])) {
+    return { error: "This JSON doesn't look like an Article/BlogPosting/NewsArticle schema." };
+  }
+  const images = node.image ? (Array.isArray(node.image) ? node.image : [node.image]) : [];
+  const state = {
+    articleType: node["@type"],
+    headline: node.headline || "",
+    description: node.description || "",
+    images: images,
+    datePublished: node.datePublished ? node.datePublished.slice(0,10) : "",
+    dateModified: node.dateModified ? node.dateModified.slice(0,10) : "",
+    authorType: node.author ? (node.author["@type"] || "Person") : "Person",
+    authorName: node.author ? (node.author.name || "") : "",
+    authorUrl: node.author ? (node.author.url || "") : "",
+    publisherName: node.publisher ? (node.publisher.name || "") : "",
+    publisherLogo: node.publisher && node.publisher.logo ? (node.publisher.logo.url || "") : "",
+    pageUrl: node.mainEntityOfPage ? (node.mainEntityOfPage["@id"] || "") : "",
+    articleSection: node.articleSection || "",
+    keywords: node.keywords || "",
+    wordCount: node.wordCount || "",
+    speakableEnabled: !!node.speakable,
+    speakableSelectors: node.speakable ? (node.speakable.cssSelector || []) : [],
+  };
+  return { state };
+}
+
+function cmsSnippet(cms, schemaObj) {
+  const jsonPretty = JSON.stringify(schemaObj, null, 2);
+  if (cms === "html") {
+    return `<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "wordpress") {
+    return `<!-- Paste into a "Custom HTML" block, or your theme's header.php / a header-injection plugin -->\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "shopify") {
+    return `{%- comment -%} Add near your article content in the relevant .liquid template {%- endcomment -%}\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "nextjs") {
+    return `export default function Page() {\n  const articleSchema = ${jsonPretty.replace(/\n/g, "\n  ")};\n\n  return (\n    <>\n      <script\n        type="application/ld+json"\n        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}\n      />\n      <main>{/* page content */}</main>\n    </>\n  );\n}`;
+  }
+  return jsonPretty;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let state = {
+  articleType: "Article",
+  headline: "",
+  description: "",
+  images: [],
+  datePublished: "",
+  dateModified: "",
+  authorType: "Person",
+  authorName: "",
+  authorUrl: "",
+  publisherName: "",
+  publisherLogo: "",
+  pageUrl: "",
+  articleSection: "",
+  keywords: "",
+  wordCount: "",
+  speakableEnabled: false,
+  speakableSelectors: ["h1", ".summary"],
+};
+let imageStatuses = {}; // url -> {status, width, height}
+let outFormat = "pretty";
+let outTab = "code";
+
+function setArticleType(t){
+  state.articleType = t;
+  document.querySelectorAll("#typeToggle button").forEach(b => b.classList.toggle("active", b.dataset.type === t));
+  refreshDerived();
+}
+
+function onFieldInput(){
+  state.headline = document.getElementById("fHeadline").value;
+  state.description = document.getElementById("fDescription").value;
+  state.datePublished = document.getElementById("fDatePublished").value;
+  state.dateModified = document.getElementById("fDateModified").value;
+  state.articleSection = document.getElementById("fSection").value;
+  state.wordCount = document.getElementById("fWordCount").value;
+  state.keywords = document.getElementById("fKeywords").value;
+  state.pageUrl = document.getElementById("fPageUrl").value;
+  state.authorType = document.getElementById("fAuthorType").value;
+  state.authorName = document.getElementById("fAuthorName").value;
+  state.authorUrl = document.getElementById("fAuthorUrl").value;
+  state.publisherName = document.getElementById("fPublisherName").value;
+  const newLogo = document.getElementById("fPublisherLogo").value;
+  if (newLogo !== state.publisherLogo) {
+    state.publisherLogo = newLogo;
+    checkLogoDimensions(newLogo);
+  }
+
+  const hc = document.getElementById("headlineCount");
+  const len = state.headline.trim().length;
+  hc.textContent = `${len} / 110`;
+  hc.classList.toggle("over", len > 110);
+
+  refreshDerived();
+}
+
+function syncFieldsFromState(){
+  document.getElementById("fHeadline").value = state.headline || "";
+  document.getElementById("fDescription").value = state.description || "";
+  document.getElementById("fDatePublished").value = state.datePublished || "";
+  document.getElementById("fDateModified").value = state.dateModified || "";
+  document.getElementById("fSection").value = state.articleSection || "";
+  document.getElementById("fWordCount").value = state.wordCount || "";
+  document.getElementById("fKeywords").value = state.keywords || "";
+  document.getElementById("fPageUrl").value = state.pageUrl || "";
+  document.getElementById("fAuthorType").value = state.authorType || "Person";
+  document.getElementById("fAuthorName").value = state.authorName || "";
+  document.getElementById("fAuthorUrl").value = state.authorUrl || "";
+  document.getElementById("fPublisherName").value = state.publisherName || "";
+  document.getElementById("fPublisherLogo").value = state.publisherLogo || "";
+  document.querySelectorAll("#typeToggle button").forEach(b => b.classList.toggle("active", b.dataset.type === state.articleType));
+  document.getElementById("speakableToggle").checked = !!state.speakableEnabled;
+  document.getElementById("speakableBlock").classList.toggle("hidden", !state.speakableEnabled);
+  const hc = document.getElementById("headlineCount");
+  const len = (state.headline || "").trim().length;
+  hc.textContent = `${len} / 110`;
+  hc.classList.toggle("over", len > 110);
+}
+
+/* ── Image list with live dimension checking ── */
+function checkImageDimensions(url, cbKey){
+  if (!url) return;
+  imageStatuses[cbKey] = { status:"pending" };
+  renderImagesList();
+  const img = new Image();
+  img.onload = function(){
+    imageStatuses[cbKey] = { status: img.naturalWidth >= 1200 ? "ok" : "warn", width: img.naturalWidth, height: img.naturalHeight };
+    renderImagesList();
+  };
+  img.onerror = function(){
+    imageStatuses[cbKey] = { status:"err" };
+    renderImagesList();
+  };
+  img.src = url;
+}
+function checkLogoDimensions(url){
+  const el = document.getElementById("logoStatus");
+  if (!url) { el.textContent = ""; return; }
+  el.textContent = "Checking logo dimensions...";
+  const img = new Image();
+  img.onload = function(){
+    const ok = img.naturalWidth >= 600;
+    el.innerHTML = ok
+      ? `✅ Logo is ${img.naturalWidth}×${img.naturalHeight}px — meets Google's 600px-wide recommendation.`
+      : `⚠️ Logo is only ${img.naturalWidth}×${img.naturalHeight}px — Google recommends at least 600px wide.`;
+  };
+  img.onerror = function(){
+    el.textContent = "Couldn't load this image to verify dimensions — check the URL manually.";
+  };
+  img.src = url;
+}
+
+function renderImagesList(){
+  const list = document.getElementById("imagesList");
+  list.innerHTML = state.images.map((url, i) => {
+    const st = imageStatuses[i] || {};
+    let statusHtml = '<span class="image-status pending">not checked</span>';
+    if (st.status === "pending") statusHtml = '<span class="image-status pending">checking…</span>';
+    else if (st.status === "ok") statusHtml = `<span class="image-status ok">✅ ${st.width}×${st.height}px</span>`;
+    else if (st.status === "warn") statusHtml = `<span class="image-status warn">⚠️ ${st.width}×${st.height}px (small)</span>`;
+    else if (st.status === "err") statusHtml = '<span class="image-status err">✗ could not load</span>';
+    return `
+      <div class="image-row">
+        <input type="text" value="${escapeHtml(url)}" oninput="updateImage(${i}, this.value)">
+        ${statusHtml}
+        <button class="icon-btn" title="Remove" onclick="removeImage(${i})">✕</button>
+      </div>`;
+  }).join("") || '<div class="small-note">No images added yet.</div>';
+}
+function addImage(){
+  const inp = document.getElementById("newImage");
+  const url = inp.value.trim();
+  if (!url) return;
+  state.images.push(url);
+  inp.value = "";
+  const idx = state.images.length - 1;
+  checkImageDimensions(url, idx);
+  refreshDerived();
+}
+function updateImage(i, value){
+  state.images[i] = value;
+  checkImageDimensions(value, i);
+  refreshDerived();
+}
+function removeImage(i){
+  state.images.splice(i,1);
+  imageStatuses = {};
+  state.images.forEach((url, idx) => checkImageDimensions(url, idx));
+  refreshDerived();
+}
+
+/* ── Speakable ── */
+function onSpeakableToggle(){
+  state.speakableEnabled = document.getElementById("speakableToggle").checked;
+  document.getElementById("speakableBlock").classList.toggle("hidden", !state.speakableEnabled);
+  refreshDerived();
+}
+function renderSpeakableChips(){
+  const el = document.getElementById("speakableChips");
+  el.innerHTML = state.speakableSelectors.map((s,i) => `<span class="chip">${escapeHtml(s)}<button onclick="removeSelector(${i})" title="Remove">✕</button></span>`).join("") || '<span class="small-note">No selectors added yet.</span>';
+}
+function addSelector(){
+  const inp = document.getElementById("newSelector");
+  if (inp.value.trim()) { state.speakableSelectors.push(inp.value.trim()); inp.value = ""; refreshDerived(); }
+}
+function removeSelector(i){ state.speakableSelectors.splice(i,1); refreshDerived(); }
+
+/* ── Validation / preview / output ── */
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  const issues = validateArticle(state);
+  panel.classList.remove("hidden");
+  if (issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No issues found — this Article schema looks solid.</div>';
+    return;
+  }
+  const order = { error:0, warning:1 };
+  const sorted = [...issues].sort((a,b) => order[a.level]-order[b.level]);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function renderPreview(){
+  const imgEl = document.getElementById("previewImg");
+  const images = state.images.filter(i => i && i.trim());
+  if (images.length > 0) {
+    imgEl.style.backgroundImage = `url("${images[0].replace(/"/g,'')}")`;
+    imgEl.style.backgroundSize = "cover";
+    imgEl.style.backgroundPosition = "center";
+    imgEl.textContent = "";
+  } else {
+    imgEl.style.backgroundImage = "none";
+    imgEl.textContent = "No image set";
+  }
+  document.getElementById("previewHeadline").textContent = state.headline || "Untitled article";
+  const metaParts = [];
+  if (state.authorName) metaParts.push(`By ${state.authorName}`);
+  if (state.datePublished) metaParts.push(state.datePublished);
+  if (state.publisherName) metaParts.push(state.publisherName);
+  document.getElementById("previewMeta").textContent = metaParts.join(" · ");
+}
+
+function setOutTab(tab){
+  outTab = tab;
+  document.querySelectorAll(".out-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".out-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+function setFormat(fmt, btn){
+  outFormat = fmt;
+  btn.parentElement.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  renderOutputs();
+}
+function renderOutputs(){
+  const schema = buildArticleSchema(state);
+  document.getElementById("codeOut").textContent = toScriptTag(schema, outFormat === "pretty");
+  document.getElementById("wpOut").textContent = cmsSnippet("wordpress", schema);
+  document.getElementById("shopifyOut").textContent = cmsSnippet("shopify", schema);
+  document.getElementById("nextjsOut").textContent = cmsSnippet("nextjs", schema);
+}
+
+function refreshDerived(){
+  renderImagesList();
+  renderSpeakableChips();
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function downloadOutput(){
+  const text = document.getElementById("codeOut").textContent;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:"text/html"}));
+  a.download = "article-schema.html";
+  a.click();
+}
+function copyOutput(){ copyText(document.getElementById("codeOut").textContent); }
+function copyCms(which){
+  const el = document.getElementById(which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut");
+  copyText(el.textContent);
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function toggleImport(){ document.getElementById("importBox").classList.toggle("show"); }
+function runImport(){
+  const raw = document.getElementById("importInput").value;
+  const statusEl = document.getElementById("importStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste some JSON-LD first."; return; }
+  const result = parseImportedArticle(raw);
+  if (result.error) { statusEl.textContent = "❌ " + result.error; return; }
+  state = Object.assign({
+    articleType: "Article", headline:"", description:"", images:[], datePublished:"", dateModified:"",
+    authorType:"Person", authorName:"", authorUrl:"", publisherName:"", publisherLogo:"", pageUrl:"",
+    articleSection:"", keywords:"", wordCount:"", speakableEnabled:false, speakableSelectors:[],
+  }, result.state);
+  imageStatuses = {};
+  state.images.forEach((url, idx) => checkImageDimensions(url, idx));
+  if (state.publisherLogo) checkLogoDimensions(state.publisherLogo);
+  statusEl.textContent = `✅ Imported "${state.headline || "(untitled)"}".`;
+  document.getElementById("importBox").classList.remove("show");
+  syncFieldsFromState();
+  refreshDerived();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll("#faqList .faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* Init */
+syncFieldsFromState();
+refreshDerived();
+</script>
+</body>
+</html>
