@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Breadcrumb Schema Generator — Free JSON-LD Tool | SEOTriggers</title>
+<meta name="description" content="Free BreadcrumbList schema generator. Paste a URL to auto-build your breadcrumb trail, reorder levels, validate, preview, and export ready-made WordPress, Shopify & Next.js snippets. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/breadcrumb-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Breadcrumb Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta property="og:description" content="Paste a URL to auto-build a valid BreadcrumbList JSON-LD trail, reorder levels, validate, preview, and export CMS-ready snippets. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/breadcrumb-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Breadcrumb Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta name="twitter:description" content="Paste a URL to auto-build a valid BreadcrumbList JSON-LD trail, reorder levels, validate, and preview. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Breadcrumb Schema Generator",
+  "url": "https://seotriggers.com/tools/breadcrumb-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate, validate, preview, and import BreadcrumbList JSON-LD structured data, with automatic breadcrumb generation from a pasted URL and ready-made WordPress, Shopify and Next.js snippets."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Breadcrumb Schema Generator", "item": "https://seotriggers.com/tools/breadcrumb-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "How do I generate breadcrumb schema markup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Paste your page's full URL and the tool automatically splits it into breadcrumb levels, or add each level manually with a name and URL. The tool builds a valid BreadcrumbList JSON-LD block automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the last breadcrumb item need a URL?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, the final item (the current page) can omit its URL since it refers to the page the schema is on. Every earlier level should include an absolute URL." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does breadcrumb schema guarantee a rich result in Google?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Valid markup makes your page eligible for a breadcrumb trail in search results instead of a raw URL, but Google decides whether to display it based on relevance and other signals." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should the breadcrumb schema match the visible breadcrumbs on the page?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Google expects the breadcrumb trail in your structured data to reflect the same hierarchy as any breadcrumb navigation visible to users on the page." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+.top-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+.import-box{display:none;margin-top:14px;}
+.import-box.show{display:block;}
+.import-box textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;}
+.import-box textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.url-row{display:flex;gap:10px;flex-wrap:wrap;}
+.url-row input{flex:1;min-width:220px;padding:11px 14px;border:1px solid var(--border);border-radius:9px;font-size:14px;font-family:inherit;outline:none;}
+.url-row input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.url-status{font-size:12px;margin-top:8px;}
+.url-status.err{color:var(--red);}
+.url-status.ok{color:var(--green);}
+
+.item-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.item-num{width:24px;height:24px;border-radius:50%;background:var(--brand);color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.item-row input.iname{flex:1;min-width:120px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.item-row input.iurl{flex:1.4;min-width:160px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+.item-row input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.item-controls{display:flex;gap:4px;flex-shrink:0;}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:6px;width:28px;height:28px;font-size:13px;cursor:pointer;color:var(--sub);display:flex;align-items:center;justify-content:center;}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand);}
+
+/* Issues */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.empty-good{padding:14px 16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Preview */
+.preview-panel{margin-top:22px;border:1px solid var(--border);border-radius:10px;padding:16px 18px;background:#fff;}
+.preview-trail{font-size:14px;display:flex;flex-wrap:wrap;align-items:center;gap:6px;}
+.preview-trail .seg{color:var(--brand-dark);}
+.preview-trail .seg:last-child{color:var(--sub);font-weight:600;}
+.preview-trail .sep{color:var(--sub);}
+
+/* Output tabs */
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.6;max-height:420px;}
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Breadcrumb Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Breadcrumb Schema Generator</h1>
+    <p>Paste a URL to auto-build your breadcrumb trail, or add levels manually. Reorder, validate, preview, and export — all in one click.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="top-actions">
+      <div class="section-label" style="margin:0;">Auto-build from a URL</div>
+      <button class="btn secondary small" onclick="toggleImport()">⬆ Import existing schema</button>
+    </div>
+
+    <div class="import-box" id="importBox">
+      <textarea id="importInput" placeholder="Paste an existing BreadcrumbList JSON-LD block (with or without the &lt;script&gt; tags) to edit it here..."></textarea>
+      <button class="btn small" style="margin-top:8px;" onclick="runImport()">Import</button>
+      <div class="small-note" id="importStatus"></div>
+    </div>
+
+    <div class="url-row" style="margin-top:16px;">
+      <input type="text" id="urlInput" placeholder="https://example.com/blog/seo-tips/on-page-seo-guide">
+      <button class="btn" onclick="autoBuild()">Auto-build trail</button>
+    </div>
+    <div class="url-status" id="urlStatus"></div>
+
+    <div class="section-label">Breadcrumb levels</div>
+    <div id="itemsList"></div>
+    <button class="btn secondary" onclick="addItem()">+ Add level</button>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="section-label" style="margin-top:0;">Live preview</div>
+      <div class="preview-trail" id="previewTrail"></div>
+    </div>
+
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (Custom HTML block)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (Liquid template)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+      <a href="/tools/article-schema-generator">Also need Article schema? →</a>
+      <a href="/tools/product-schema-generator">Or Product schema? →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Every breadcrumb generator makes you type each level by hand. This one doesn't have to.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Schema Pilot</th><th>Typical breadcrumb generators</th></tr></thead>
+        <tbody>
+          <tr><td>Auto-build trail from a pasted URL</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Reorder levels (move up/down)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">Rare</td></tr>
+          <tr><td>Built-in validation (missing URLs, duplicates)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Live visual trail preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">Rare</td></tr>
+          <tr><td>Import &amp; edit existing schema</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Framework-specific snippets (WordPress/Shopify/Next.js)</td><td class="yes">✓</td><td class="yes">Partial</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="no">Free tier limited</td><td class="yes">Usually</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🔗</div><h3>Auto-build from a URL</h3><p>Paste a full page URL and the tool splits it into breadcrumb levels automatically, humanizing each segment into a readable name.</p></div>
+      <div class="feat-card"><div class="ic">↕️</div><h3>Reorder with one click</h3><p>Move levels up or down instantly if your hierarchy needs adjusting — positions renumber automatically.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in validation</h3><p>Flags missing URLs, non-absolute links, duplicate levels, and single-item trails before you publish.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live trail preview</h3><p>See your breadcrumb rendered exactly as a "Home › Category › Page" trail, not just raw JSON.</p></div>
+      <div class="feat-card"><div class="ic">⬆️</div><h3>Import existing schema</h3><p>Paste breadcrumb schema you already have to load it back into the editor and keep improving it.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your URLs and content are never uploaded or stored anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I generate breadcrumb schema markup? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Paste your page's full URL and the tool automatically splits it into breadcrumb levels, or add each level manually with a name and URL. The tool builds a valid BreadcrumbList JSON-LD block automatically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does the last breadcrumb item need a URL? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No, the final item (the current page) can omit its URL since it refers to the page the schema is on. Every earlier level should include an absolute URL.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does breadcrumb schema guarantee a rich result in Google? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Valid markup makes your page eligible for a breadcrumb trail in search results instead of a raw URL, but Google decides whether to display it based on relevance and other signals.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should the breadcrumb schema match the visible breadcrumbs on the page? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. Google expects the breadcrumb trail in your structured data to reflect the same hierarchy as any breadcrumb navigation visible to users on the page.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   SCHEMA BUILD / VALIDATE / IMPORT LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function humanizeSegment(seg) {
+  let s = seg;
+  try { s = decodeURIComponent(seg); } catch(e) {}
+  s = s.replace(/[-_]+/g, " ").trim();
+  if (!s) return "";
+  return s.split(" ").map(w => w.length ? w[0].toUpperCase() + w.slice(1) : w).join(" ");
+}
+
+function parseUrlToBreadcrumbs(rawUrl) {
+  let url;
+  try {
+    url = new URL(rawUrl.trim());
+  } catch(e) {
+    return { error: "That doesn't look like a valid full URL (include https://)." };
+  }
+  const origin = url.origin;
+  const segments = url.pathname.split("/").filter(Boolean);
+  const items = [{ name: "Home", url: origin + "/" }];
+  let acc = origin;
+  segments.forEach((seg, i) => {
+    acc += "/" + seg;
+    const isLast = i === segments.length - 1;
+    items.push({
+      name: humanizeSegment(seg) || seg,
+      url: isLast ? (acc) : (acc + "/"),
+    });
+  });
+  return { items };
+}
+
+function validateBreadcrumbs(items) {
+  const issues = [];
+  const valid = items.filter(it => it.name && it.name.trim());
+  if (valid.length < 2) {
+    issues.push({ level:"error", message:"Add at least 2 breadcrumb levels — a single-item trail isn't useful to Google or users." });
+  }
+  valid.forEach((it, i) => {
+    const isLast = i === valid.length - 1;
+    if (!isLast && (!it.url || !it.url.trim())) {
+      issues.push({ level:"error", message:`"${it.name}" (position ${i+1}) is missing a URL — every item except the last one needs one.` });
+    }
+    if (it.url && it.url.trim() && !/^https?:\/\//i.test(it.url.trim())) {
+      issues.push({ level:"error", message:`"${it.name}" has a URL that isn't absolute (must start with http:// or https://).` });
+    }
+  });
+  const urls = valid.map(it => (it.url||"").trim()).filter(Boolean);
+  const dupes = urls.filter((u,i) => urls.indexOf(u) !== i);
+  if (dupes.length > 0) {
+    issues.push({ level:"warning", message:"Two or more breadcrumb levels point to the same URL — double check your hierarchy." });
+  }
+  if (valid.length > 0 && valid[0].name.trim().toLowerCase() !== "home") {
+    issues.push({ level:"info", message:"The first breadcrumb level is usually named \"Home\" — not required, but a common convention." });
+  }
+  if (items.some(it => !it.name || !it.name.trim())) {
+    issues.push({ level:"warning", message:"One or more breadcrumb levels have no name set and will be excluded from the output." });
+  }
+  return issues;
+}
+
+function buildBreadcrumbSchema(items) {
+  const valid = items.filter(it => it.name && it.name.trim());
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": valid.map((it, i) => {
+      const el = { "@type": "ListItem", "position": i + 1, "name": it.name.trim() };
+      if (it.url && it.url.trim()) el.item = it.url.trim();
+      return el;
+    }),
+  };
+}
+
+function toScriptTag(schemaObj, pretty) {
+  const json = pretty ? JSON.stringify(schemaObj, null, 2) : JSON.stringify(schemaObj);
+  return `<script type="application/ld+json">\n${json}\n<\/script>`;
+}
+
+function parseImportedBreadcrumb(raw) {
+  let text = raw.trim();
+  const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+  if (scriptMatch) text = scriptMatch[1].trim();
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch(e) {
+    return { error: "Couldn't parse this as JSON. Make sure it's valid JSON-LD, with or without the <script> tags." };
+  }
+  let node = obj;
+  if (obj["@graph"] && Array.isArray(obj["@graph"])) {
+    node = obj["@graph"].find(n => n["@type"] === "BreadcrumbList") || null;
+  }
+  if (!node || node["@type"] !== "BreadcrumbList" || !Array.isArray(node.itemListElement)) {
+    return { error: "This JSON doesn't look like a BreadcrumbList schema (missing @type: BreadcrumbList or itemListElement array)." };
+  }
+  const items = node.itemListElement
+    .slice()
+    .sort((a,b) => (a.position||0) - (b.position||0))
+    .map(el => ({ name: el.name || (el.item && el.item.name) || "", url: (typeof el.item === "string" ? el.item : (el.item && el.item["@id"])) || "" }));
+  return { items };
+}
+
+function cmsSnippet(cms, schemaObj) {
+  const jsonPretty = JSON.stringify(schemaObj, null, 2);
+  if (cms === "html") {
+    return `<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "wordpress") {
+    return `<!-- Paste into a "Custom HTML" block, or your theme's header.php / a header-injection plugin -->\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "shopify") {
+    return `{%- comment -%} Add near the top of theme.liquid or the relevant page template {%- endcomment -%}\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "nextjs") {
+    return `export default function Page() {\n  const breadcrumbSchema = ${jsonPretty.replace(/\n/g, "\n  ")};\n\n  return (\n    <>\n      <script\n        type="application/ld+json"\n        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}\n      />\n      <main>{/* page content */}</main>\n    </>\n  );\n}`;
+  }
+  return jsonPretty;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let idCounter = 0;
+function uid(){ return idCounter++; }
+
+let items = [
+  { _id: uid(), name:"Home", url:"https://example.com/" },
+  { _id: uid(), name:"Blog", url:"https://example.com/blog/" },
+  { _id: uid(), name:"On Page SEO Guide", url:"" },
+];
+let outFormat = "pretty";
+let outTab = "code";
+
+function renderItems(){
+  const list = document.getElementById("itemsList");
+  list.innerHTML = items.map((it, i) => `
+    <div class="item-row" data-id="${it._id}">
+      <div class="item-num">${i+1}</div>
+      <input type="text" class="iname" placeholder="Level name" value="${escapeHtml(it.name)}" oninput="updateItem(${it._id},'name',this.value)">
+      <input type="text" class="iurl" placeholder="${i===items.length-1 ? 'URL (optional for last level)' : 'https://example.com/level/'}" value="${escapeHtml(it.url)}" oninput="updateItem(${it._id},'url',this.value)">
+      <div class="item-controls">
+        <button class="icon-btn" title="Move up" onclick="moveItem(${it._id}, -1)">↑</button>
+        <button class="icon-btn" title="Move down" onclick="moveItem(${it._id}, 1)">↓</button>
+        <button class="icon-btn" title="Remove" onclick="removeItem(${it._id})">✕</button>
+      </div>
+    </div>`).join("");
+}
+function findItem(id){ return items.find(it => it._id === id); }
+function findIndex(id){ return items.findIndex(it => it._id === id); }
+function updateItem(id, field, value){
+  const it = findItem(id);
+  if (!it) return;
+  it[field] = value;
+  refreshDerived();
+}
+function addItem(){
+  items.push({ _id: uid(), name:"", url:"" });
+  renderItems();
+  refreshDerived();
+}
+function removeItem(id){
+  items = items.filter(it => it._id !== id);
+  if (items.length === 0) items.push({ _id: uid(), name:"", url:"" });
+  renderItems();
+  refreshDerived();
+}
+function moveItem(id, dir){
+  const i = findIndex(id);
+  const j = i + dir;
+  if (j < 0 || j >= items.length) return;
+  const tmp = items[i]; items[i] = items[j]; items[j] = tmp;
+  renderItems();
+  refreshDerived();
+}
+
+function autoBuild(){
+  const raw = document.getElementById("urlInput").value;
+  const statusEl = document.getElementById("urlStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste a URL first."; statusEl.className = "url-status err"; return; }
+  const result = parseUrlToBreadcrumbs(raw);
+  if (result.error) {
+    statusEl.textContent = "❌ " + result.error;
+    statusEl.className = "url-status err";
+    return;
+  }
+  items = result.items.map(it => ({ _id: uid(), name: it.name, url: it.url }));
+  // last item usually doesn't need its own URL since it's the current page
+  if (items.length > 0) items[items.length-1].url = "";
+  statusEl.textContent = `✅ Built ${items.length} breadcrumb levels from the URL.`;
+  statusEl.className = "url-status ok";
+  renderItems();
+  refreshDerived();
+}
+
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  const issues = validateBreadcrumbs(items);
+  panel.classList.remove("hidden");
+  if (issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No issues found — this breadcrumb trail looks solid.</div>';
+    return;
+  }
+  const order = { error:0, warning:1, info:2 };
+  const sorted = [...issues].sort((a,b) => order[a.level]-order[b.level]);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function renderPreview(){
+  const trailEl = document.getElementById("previewTrail");
+  const valid = items.filter(it => it.name && it.name.trim());
+  if (valid.length === 0) {
+    trailEl.innerHTML = '<span class="small-note">Add breadcrumb levels to see the preview.</span>';
+    return;
+  }
+  trailEl.innerHTML = valid.map((it, i) => {
+    const segHtml = `<span class="seg">${escapeHtml(it.name)}</span>`;
+    return i === 0 ? segHtml : `<span class="sep">›</span>${segHtml}`;
+  }).join("");
+}
+
+function setOutTab(tab){
+  outTab = tab;
+  document.querySelectorAll(".out-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".out-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+function setFormat(fmt, btn){
+  outFormat = fmt;
+  btn.parentElement.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  renderOutputs();
+}
+function renderOutputs(){
+  const schema = buildBreadcrumbSchema(items);
+  document.getElementById("codeOut").textContent = toScriptTag(schema, outFormat === "pretty");
+  document.getElementById("wpOut").textContent = cmsSnippet("wordpress", schema);
+  document.getElementById("shopifyOut").textContent = cmsSnippet("shopify", schema);
+  document.getElementById("nextjsOut").textContent = cmsSnippet("nextjs", schema);
+}
+
+function refreshDerived(){
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function downloadOutput(){
+  const text = document.getElementById("codeOut").textContent;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:"text/html"}));
+  a.download = "breadcrumb-schema.html";
+  a.click();
+}
+function copyOutput(){ copyText(document.getElementById("codeOut").textContent); }
+function copyCms(which){
+  const el = document.getElementById(which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut");
+  copyText(el.textContent);
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function toggleImport(){ document.getElementById("importBox").classList.toggle("show"); }
+function runImport(){
+  const raw = document.getElementById("importInput").value;
+  const statusEl = document.getElementById("importStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste some JSON-LD first."; return; }
+  const result = parseImportedBreadcrumb(raw);
+  if (result.error) { statusEl.textContent = "❌ " + result.error; return; }
+  items = (result.items.length ? result.items : [{name:"",url:""}]).map(it => ({ _id: uid(), name: it.name, url: it.url }));
+  statusEl.textContent = `✅ Imported ${items.length} breadcrumb level(s).`;
+  document.getElementById("importBox").classList.remove("show");
+  renderItems();
+  refreshDerived();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll("#faqList .faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* Init */
+renderItems();
+refreshDerived();
+</script>
+</body>
+</html>
