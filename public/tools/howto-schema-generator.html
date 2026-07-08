@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HowTo Schema Generator — Free JSON-LD Markup Tool | SEOTriggers</title>
+<meta name="description" content="Free HowTo schema markup generator. Build valid JSON-LD with a guided ISO-8601 duration builder, steps, tools, supplies, video, live preview, and ready-made WordPress, Shopify & Next.js snippets. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/howto-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="HowTo Schema Generator — Free JSON-LD Markup Tool | SEOTriggers" />
+<meta property="og:description" content="Build valid HowTo JSON-LD schema with a guided duration builder, steps, tools, supplies, video support, live preview, and CMS-ready snippets. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/howto-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="HowTo Schema Generator — Free JSON-LD Markup Tool | SEOTriggers" />
+<meta name="twitter:description" content="Build valid HowTo JSON-LD schema with a guided duration builder, steps, tools, supplies, video support, and live preview. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HowTo Schema Generator",
+  "url": "https://seotriggers.com/tools/howto-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate, validate, preview, and import HowTo JSON-LD structured data, with a guided ISO-8601 duration builder, video support, and ready-made WordPress, Shopify and Next.js snippets."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "HowTo Schema Generator", "item": "https://seotriggers.com/tools/howto-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is HowTo schema markup?",
+      "acceptedAnswer": { "@type": "Answer", "text": "HowTo schema is structured data defined by Schema.org that describes step-by-step instructions for completing a task, making the content eligible for rich results with numbered steps, images, tools, and estimated time or cost." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need a HowTo schema URL for each step?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No, a URL per step is optional. It's only useful if each step links to its own anchor or page on your site. The required fields are simply the step's text, and a name is recommended." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I format totalTime for HowTo schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google requires ISO 8601 duration format, such as PT1H30M for one hour thirty minutes. This tool includes a simple hours-and-minutes input that builds the correct format for you automatically." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does every HowTo step need an image?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Images aren't strictly required, but Google is far less likely to show a How-to rich result without them. Add at least one image for the overall guide, and ideally one per step, at least 800x600 pixels." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can HowTo schema include a video?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. HowTo schema supports an embedded VideoObject with its own name, description, thumbnail, content URL, upload date, and duration, which this tool generates alongside your steps." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:640px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:22px 0 10px;}
+.section-label:first-child{margin-top:0;}
+.top-actions{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:background .15s;}
+.btn:hover{background:var(--brand-dark);}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.secondary:hover{background:#eeeef5;}
+.btn.small{padding:6px 12px;font-size:12px;}
+
+.import-box{display:none;margin-top:14px;}
+.import-box.show{display:block;}
+.import-box textarea{width:100%;min-height:110px;border:1px solid var(--border);border-radius:9px;padding:12px 14px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;outline:none;resize:vertical;}
+.import-box textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+
+.field-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-grid{grid-template-columns:1fr;}}
+.field{display:flex;flex-direction:column;gap:5px;}
+.field label{font-size:12.5px;font-weight:600;color:var(--sub);}
+.field input[type=text], .field input[type=number], .field input[type=date], .field select, .field textarea{
+  padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;width:100%;
+}
+.field input:focus, .field select:focus, .field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{min-height:70px;resize:vertical;}
+.field-full{grid-column:1 / -1;}
+.duration-row{display:flex;gap:10px;align-items:center;}
+.duration-row input{width:80px;}
+.duration-preview{font-size:12px;color:var(--sub);background:var(--bg);border-radius:6px;padding:6px 10px;font-family:'SF Mono',Consolas,monospace;}
+
+/* Chips list (supplies/tools) */
+.chip-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px;}
+.chip{display:inline-flex;align-items:center;gap:6px;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:5px 6px 5px 12px;font-size:13px;}
+.chip button{background:none;border:none;color:var(--sub);cursor:pointer;font-size:13px;width:18px;height:18px;border-radius:50%;}
+.chip button:hover{background:var(--red-bg);color:var(--red);}
+.add-chip-row{display:flex;gap:8px;margin-top:8px;}
+.add-chip-row input{flex:1;padding:8px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;}
+
+/* Steps */
+.step-card{border:1px solid var(--border);border-radius:12px;padding:16px;background:#fbfbfd;margin-bottom:12px;}
+.step-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.step-num{font-size:12px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.step-controls{display:flex;gap:4px;}
+.icon-btn{background:none;border:1px solid var(--border);border-radius:6px;width:26px;height:26px;font-size:13px;cursor:pointer;color:var(--sub);display:flex;align-items:center;justify-content:center;}
+.icon-btn:hover{border-color:var(--brand);color:var(--brand);}
+.step-card input[type=text]{width:100%;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;margin-bottom:8px;}
+.step-card textarea{width:100%;min-height:60px;padding:9px 12px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:inherit;outline:none;resize:vertical;margin-bottom:8px;}
+.step-card input:focus, .step-card textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.step-optional-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+@media(max-width:640px){.step-optional-row{grid-template-columns:1fr;}}
+.step-optional-row input{margin-bottom:0 !important;}
+
+/* Issues */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.empty-good{padding:14px 16px;text-align:center;color:var(--green);font-size:13px;font-weight:600;}
+
+/* Preview */
+.preview-panel{margin-top:22px;border:1px solid var(--border);border-radius:12px;padding:20px;background:#fff;}
+.preview-title{font-size:18px;font-weight:800;margin:0 0 4px;}
+.preview-meta{display:flex;gap:14px;flex-wrap:wrap;font-size:12.5px;color:var(--sub);margin-bottom:14px;}
+.preview-steps{display:flex;flex-direction:column;gap:12px;}
+.preview-step{display:flex;gap:12px;}
+.preview-step-num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--brand);color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;}
+.preview-step-body strong{display:block;font-size:14px;margin-bottom:2px;}
+.preview-step-body p{margin:0;font-size:13px;color:var(--sub);}
+
+/* Output tabs */
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.6;max-height:420px;}
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:14px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 16px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:13px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / HowTo Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>HowTo Schema Generator</h1>
+    <p>Build valid HowTo JSON-LD with a guided time/cost builder, reorderable steps, tools &amp; supplies, video support, and a live rich-result preview.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="top-actions">
+      <div class="section-label" style="margin:0;">Guide details</div>
+      <button class="btn secondary small" onclick="toggleImport()">⬆ Import existing schema</button>
+    </div>
+
+    <div class="import-box" id="importBox">
+      <textarea id="importInput" placeholder="Paste an existing HowTo JSON-LD block (with or without the &lt;script&gt; tags) to edit it here..."></textarea>
+      <button class="btn small" style="margin-top:8px;" onclick="runImport()">Import</button>
+      <div class="small-note" id="importStatus"></div>
+    </div>
+
+    <div class="field-grid" style="margin-top:16px;">
+      <div class="field field-full">
+        <label>Guide name / title</label>
+        <input type="text" id="fName" oninput="onFieldInput()" placeholder="Fix a Leaky Faucet">
+      </div>
+      <div class="field field-full">
+        <label>Description</label>
+        <textarea id="fDescription" oninput="onFieldInput()" placeholder="A short summary of what this guide helps the reader accomplish."></textarea>
+      </div>
+      <div class="field field-full">
+        <label>Main image URL</label>
+        <input type="text" id="fImage" oninput="onFieldInput()" placeholder="https://example.com/guide-cover.jpg">
+      </div>
+      <div class="field">
+        <label>Total time</label>
+        <div class="duration-row">
+          <input type="number" id="fHours" min="0" placeholder="Hours" oninput="onDurationInput()">
+          <input type="number" id="fMinutes" min="0" max="59" placeholder="Minutes" oninput="onDurationInput()">
+          <span class="duration-preview" id="durationPreview">—</span>
+        </div>
+      </div>
+      <div class="field">
+        <label>Estimated cost</label>
+        <div class="duration-row">
+          <select id="fCurrency" onchange="onFieldInput()" style="width:90px;">
+            <option>USD</option><option>EUR</option><option>GBP</option><option>INR</option><option>CAD</option><option>AUD</option>
+          </select>
+          <input type="text" id="fCost" placeholder="25.00" oninput="onFieldInput()">
+        </div>
+      </div>
+    </div>
+
+    <div class="section-label">Supplies (consumed during the task)</div>
+    <div id="suppliesChips" class="chip-list"></div>
+    <div class="add-chip-row">
+      <input type="text" id="newSupply" placeholder="e.g. Replacement washer" onkeydown="if(event.key==='Enter'){event.preventDefault(); addSupply();}">
+      <button class="btn secondary small" onclick="addSupply()">+ Add</button>
+    </div>
+
+    <div class="section-label">Tools (reusable, not consumed)</div>
+    <div id="toolsChips" class="chip-list"></div>
+    <div class="add-chip-row">
+      <input type="text" id="newTool" placeholder="e.g. Adjustable wrench" onkeydown="if(event.key==='Enter'){event.preventDefault(); addTool();}">
+      <button class="btn secondary small" onclick="addTool()">+ Add</button>
+    </div>
+
+    <div class="section-label">Steps</div>
+    <div id="stepsList"></div>
+    <button class="btn secondary" onclick="addStep()">+ Add another step</button>
+
+    <div class="section-label">Video (optional)</div>
+    <div class="field-grid">
+      <div class="field"><label>Video name</label><input type="text" id="vName" oninput="onFieldInput()" placeholder="How to fix a faucet"></div>
+      <div class="field"><label>Video content URL</label><input type="text" id="vUrl" oninput="onFieldInput()" placeholder="https://example.com/video.mp4"></div>
+      <div class="field"><label>Thumbnail URL</label><input type="text" id="vThumb" oninput="onFieldInput()" placeholder="https://example.com/thumb.jpg"></div>
+      <div class="field"><label>Upload date</label><input type="date" id="vDate" oninput="onFieldInput()"></div>
+      <div class="field field-full"><label>Video description</label><textarea id="vDesc" oninput="onFieldInput()" placeholder="Short description of the video"></textarea></div>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="section-label" style="margin-top:0;">Live preview</div>
+      <div id="previewBox"></div>
+    </div>
+
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (Custom HTML block)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (Liquid template)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+      <a href="/tools/faq-schema-generator">Also need FAQ schema? →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Generic multi-schema tools treat HowTo as an afterthought. This one is built specifically around it.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Schema Pilot</th><th>Generic multi-type generators</th></tr></thead>
+        <tbody>
+          <tr><td>Guided ISO-8601 duration builder (hours/minutes)</td><td class="yes">✓</td><td class="no">Manual entry</td><td class="no">Manual entry</td></tr>
+          <tr><td>Reorderable steps (add/remove/move)</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Basic</td></tr>
+          <tr><td>Built-in validation (missing images, bad duration, thin steps)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Live numbered-step preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Video (VideoObject) support</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Import &amp; edit existing schema</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Framework-specific snippets (WordPress/Shopify/Next.js)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Free, no signup</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Varies</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">⏱️</div><h3>Guided duration builder</h3><p>Enter hours and minutes — the tool builds the exact ISO 8601 format (like PT1H30M) Google requires, so you never have to write it by hand.</p></div>
+      <div class="feat-card"><div class="ic">🧰</div><h3>Tools &amp; supplies, separated</h3><p>Schema.org distinguishes consumable supplies from reusable tools — add each correctly with dedicated fields.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in validation</h3><p>Flags missing images, invalid time formats, thin steps, and cost values without a currency — before you publish.</p></div>
+      <div class="feat-card"><div class="ic">🎬</div><h3>Video support</h3><p>Attach a VideoObject with thumbnail, upload date, and duration — most HowTo generators skip this entirely.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live numbered preview</h3><p>See your guide rendered as a numbered step list, close to how a rich result actually appears.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your content is never uploaded or stored anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is HowTo schema markup? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>HowTo schema is structured data defined by Schema.org that describes step-by-step instructions for completing a task, making the content eligible for rich results with numbered steps, images, tools, and estimated time or cost.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need a HowTo schema URL for each step? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No, a URL per step is optional. It's only useful if each step links to its own anchor or page on your site. The required field is simply the step's text, and a name is recommended.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I format totalTime for HowTo schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google requires ISO 8601 duration format, such as PT1H30M for one hour thirty minutes. This tool includes a simple hours-and-minutes input that builds the correct format for you automatically.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does every HowTo step need an image? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Images aren't strictly required, but Google is far less likely to show a How-to rich result without them. Add at least one image for the overall guide, and ideally one per step, at least 800x600 pixels.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can HowTo schema include a video? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. HowTo schema supports an embedded VideoObject with its own name, description, thumbnail, content URL, upload date, and duration, which this tool generates alongside your steps.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do the steps need to be visible on the page? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes — Google requires the steps in your schema to match instructions that are actually visible to users on the page. Don't mark up steps that don't appear anywhere in your visible content.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   SCHEMA BUILD / VALIDATE / IMPORT LOGIC
+═══════════════════════════════════════════════════════════════════════ */
+function escapeHtml(s){
+  return String(s).replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+}
+
+function buildISODuration(hours, minutes) {
+  const h = parseInt(hours, 10) || 0;
+  const m = parseInt(minutes, 10) || 0;
+  if (h === 0 && m === 0) return "";
+  let str = "PT";
+  if (h > 0) str += h + "H";
+  if (m > 0) str += m + "M";
+  return str;
+}
+
+function parseISODuration(iso) {
+  if (!iso) return { hours: "", minutes: "" };
+  const m = /^PT(?:(\d+)H)?(?:(\d+)M)?$/.exec(iso.trim());
+  if (!m) return { hours: "", minutes: "" };
+  return { hours: m[1] || "", minutes: m[2] || "" };
+}
+
+function validateHowTo(state) {
+  const issues = [];
+  if (!state.name || !state.name.trim()) issues.push({ level:"error", message:"The HowTo name/title is required." });
+  if (!state.description || !state.description.trim()) issues.push({ level:"warning", message:"A description is strongly recommended for HowTo schema." });
+  if (!state.image || !state.image.trim()) issues.push({ level:"warning", message:"A main image is recommended — HowTo results without images are far less likely to be shown." });
+
+  const validSteps = state.steps.filter(s => s.text && s.text.trim());
+  if (validSteps.length === 0) {
+    issues.push({ level:"error", message:"Add at least one step with text." });
+  } else if (validSteps.length < 2) {
+    issues.push({ level:"warning", message:"HowTo is meant for multi-step processes — consider adding at least 2 steps." });
+  }
+  state.steps.forEach((s, i) => {
+    if ((s.name || s.image || s.url) && !s.text.trim()) {
+      issues.push({ level:"error", message:`Step ${i+1} is missing its instruction text.` });
+    }
+    if (!s.image || !s.image.trim()) {
+      issues.push({ level:"info", message:`Step ${i+1} has no image — adding one improves rich-result eligibility.` });
+    }
+  });
+
+  if (state.totalTime && !/^PT(\d+H)?(\d+M)?$/.test(state.totalTime)) {
+    issues.push({ level:"error", message:`Total time "${state.totalTime}" isn't valid ISO 8601 duration format (e.g. PT1H30M).` });
+  }
+  if (state.estimatedCostValue && !state.estimatedCostCurrency) {
+    issues.push({ level:"error", message:"Estimated cost has a value but no currency selected." });
+  }
+  if (state.video && state.video.contentUrl && !state.video.name) {
+    issues.push({ level:"warning", message:"Video is set but has no name/title." });
+  }
+  return issues;
+}
+
+function buildHowToSchema(state) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": state.name || "",
+  };
+  if (state.description) schema.description = state.description;
+  if (state.image) schema.image = state.image;
+  if (state.totalTime) schema.totalTime = state.totalTime;
+  if (state.estimatedCostValue) {
+    schema.estimatedCost = {
+      "@type": "MonetaryAmount",
+      "currency": state.estimatedCostCurrency || "USD",
+      "value": state.estimatedCostValue
+    };
+  }
+  const supplies = (state.supplies || []).filter(s => s && s.trim());
+  if (supplies.length > 0) {
+    schema.supply = supplies.map(s => ({ "@type": "HowToSupply", "name": s.trim() }));
+  }
+  const tools = (state.tools || []).filter(t => t && t.trim());
+  if (tools.length > 0) {
+    schema.tool = tools.map(t => ({ "@type": "HowToTool", "name": t.trim() }));
+  }
+  const validSteps = (state.steps || []).filter(s => s.text && s.text.trim());
+  schema.step = validSteps.map((s, i) => {
+    const step = { "@type": "HowToStep" };
+    step.name = (s.name && s.name.trim()) || `Step ${i+1}`;
+    step.text = s.text.trim();
+    if (s.image && s.image.trim()) step.image = s.image.trim();
+    if (s.url && s.url.trim()) step.url = s.url.trim();
+    return step;
+  });
+  if (state.video && state.video.contentUrl && state.video.contentUrl.trim()) {
+    const v = { "@type": "VideoObject" };
+    if (state.video.name) v.name = state.video.name;
+    if (state.video.description) v.description = state.video.description;
+    if (state.video.thumbnailUrl) v.thumbnailUrl = [state.video.thumbnailUrl];
+    v.contentUrl = state.video.contentUrl;
+    if (state.video.uploadDate) v.uploadDate = state.video.uploadDate;
+    if (state.video.duration) v.duration = state.video.duration;
+    schema.video = v;
+  }
+  return schema;
+}
+
+function toScriptTag(schemaObj, pretty) {
+  const json = pretty ? JSON.stringify(schemaObj, null, 2) : JSON.stringify(schemaObj);
+  return `<script type="application/ld+json">\n${json}\n<\/script>`;
+}
+
+function parseImportedHowTo(raw) {
+  let text = raw.trim();
+  const scriptMatch = text.match(/<script[^>]*>([\s\S]*?)<\/script>/i);
+  if (scriptMatch) text = scriptMatch[1].trim();
+  let obj;
+  try {
+    obj = JSON.parse(text);
+  } catch(e) {
+    return { error: "Couldn't parse this as JSON. Make sure it's valid JSON-LD, with or without the <script> tags." };
+  }
+  let node = obj;
+  if (obj["@graph"] && Array.isArray(obj["@graph"])) {
+    node = obj["@graph"].find(n => n["@type"] === "HowTo") || null;
+  }
+  if (!node || node["@type"] !== "HowTo") {
+    return { error: "This JSON doesn't look like a HowTo schema (missing @type: HowTo)." };
+  }
+  const state = {
+    name: node.name || "",
+    description: node.description || "",
+    image: typeof node.image === "string" ? node.image : (Array.isArray(node.image) ? node.image[0] : ""),
+    totalTime: node.totalTime || "",
+    estimatedCostValue: node.estimatedCost ? node.estimatedCost.value : "",
+    estimatedCostCurrency: node.estimatedCost ? node.estimatedCost.currency : "USD",
+    supplies: Array.isArray(node.supply) ? node.supply.map(s => s.name || "") : [],
+    tools: Array.isArray(node.tool) ? node.tool.map(t => t.name || "") : [],
+    steps: Array.isArray(node.step) ? node.step.map(s => ({ name: s.name || "", text: s.text || "", image: s.image || "", url: s.url || "" })) : [],
+    video: node.video ? {
+      name: node.video.name || "",
+      description: node.video.description || "",
+      thumbnailUrl: Array.isArray(node.video.thumbnailUrl) ? node.video.thumbnailUrl[0] : (node.video.thumbnailUrl || ""),
+      contentUrl: node.video.contentUrl || "",
+      uploadDate: node.video.uploadDate || "",
+      duration: node.video.duration || "",
+    } : null,
+  };
+  return { state };
+}
+
+function cmsSnippet(cms, schemaObj) {
+  const jsonPretty = JSON.stringify(schemaObj, null, 2);
+  if (cms === "html") {
+    return `<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "wordpress") {
+    return `<!-- Paste into a "Custom HTML" block, or your theme's header.php / a header-injection plugin -->\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "shopify") {
+    return `{%- comment -%} Add near your HowTo content in the relevant .liquid template {%- endcomment -%}\n<script type="application/ld+json">\n${jsonPretty}\n<\/script>`;
+  }
+  if (cms === "nextjs") {
+    return `export default function Page() {\n  const howToSchema = ${jsonPretty.replace(/\n/g, "\n  ")};\n\n  return (\n    <>\n      <script\n        type="application/ld+json"\n        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToSchema) }}\n      />\n      <main>{/* page content */}</main>\n    </>\n  );\n}`;
+  }
+  return jsonPretty;
+}
+
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE + UI WIRING
+═══════════════════════════════════════════════════════════════════════ */
+let idCounter = 0;
+function uid(){ return idCounter++; }
+
+let state = {
+  name: "Fix a Leaky Faucet",
+  description: "A step-by-step home repair guide for stopping a dripping faucet without calling a plumber.",
+  image: "",
+  totalTime: "PT1H",
+  estimatedCostValue: "",
+  estimatedCostCurrency: "USD",
+  supplies: ["Replacement washer", "Plumber's tape"],
+  tools: ["Adjustable wrench", "Screwdriver"],
+  steps: [
+    { _id: uid(), name:"Shut off the water", text:"Turn off the water supply valve under the sink before starting.", image:"", url:"" },
+    { _id: uid(), name:"Remove the handle", text:"Unscrew and lift off the faucet handle to expose the valve stem.", image:"", url:"" },
+  ],
+  video: { name:"", description:"", thumbnailUrl:"", contentUrl:"", uploadDate:"", duration:"" },
+};
+let outFormat = "pretty";
+let outTab = "code";
+
+function onFieldInput(){
+  state.name = document.getElementById("fName").value;
+  state.description = document.getElementById("fDescription").value;
+  state.image = document.getElementById("fImage").value;
+  state.estimatedCostCurrency = document.getElementById("fCurrency").value;
+  state.estimatedCostValue = document.getElementById("fCost").value.trim();
+  state.video.name = document.getElementById("vName").value;
+  state.video.description = document.getElementById("vDesc").value;
+  state.video.thumbnailUrl = document.getElementById("vThumb").value;
+  state.video.contentUrl = document.getElementById("vUrl").value;
+  state.video.uploadDate = document.getElementById("vDate").value;
+  refreshDerived();
+}
+
+function onDurationInput(){
+  const h = document.getElementById("fHours").value;
+  const m = document.getElementById("fMinutes").value;
+  state.totalTime = buildISODuration(h, m);
+  document.getElementById("durationPreview").textContent = state.totalTime || "—";
+  onFieldInput();
+}
+
+function syncFieldsFromState(){
+  document.getElementById("fName").value = state.name || "";
+  document.getElementById("fDescription").value = state.description || "";
+  document.getElementById("fImage").value = state.image || "";
+  document.getElementById("fCurrency").value = state.estimatedCostCurrency || "USD";
+  document.getElementById("fCost").value = state.estimatedCostValue || "";
+  const dur = parseISODuration(state.totalTime);
+  document.getElementById("fHours").value = dur.hours;
+  document.getElementById("fMinutes").value = dur.minutes;
+  document.getElementById("durationPreview").textContent = state.totalTime || "—";
+  const v = state.video || {};
+  document.getElementById("vName").value = v.name || "";
+  document.getElementById("vDesc").value = v.description || "";
+  document.getElementById("vThumb").value = v.thumbnailUrl || "";
+  document.getElementById("vUrl").value = v.contentUrl || "";
+  document.getElementById("vDate").value = v.uploadDate || "";
+}
+
+function renderChips(){
+  const supEl = document.getElementById("suppliesChips");
+  supEl.innerHTML = state.supplies.map((s,i) => `<span class="chip">${escapeHtml(s)}<button onclick="removeSupply(${i})" title="Remove">✕</button></span>`).join("") || '<span class="small-note">No supplies added yet.</span>';
+  const toolEl = document.getElementById("toolsChips");
+  toolEl.innerHTML = state.tools.map((t,i) => `<span class="chip">${escapeHtml(t)}<button onclick="removeTool(${i})" title="Remove">✕</button></span>`).join("") || '<span class="small-note">No tools added yet.</span>';
+}
+function addSupply(){
+  const inp = document.getElementById("newSupply");
+  if (inp.value.trim()) { state.supplies.push(inp.value.trim()); inp.value = ""; refreshDerived(); }
+}
+function removeSupply(i){ state.supplies.splice(i,1); refreshDerived(); }
+function addTool(){
+  const inp = document.getElementById("newTool");
+  if (inp.value.trim()) { state.tools.push(inp.value.trim()); inp.value = ""; refreshDerived(); }
+}
+function removeTool(i){ state.tools.splice(i,1); refreshDerived(); }
+
+function renderSteps(){
+  const list = document.getElementById("stepsList");
+  list.innerHTML = state.steps.map((s, i) => `
+    <div class="step-card" data-id="${s._id}">
+      <div class="step-head">
+        <span class="step-num">Step ${i+1}</span>
+        <div class="step-controls">
+          <button class="icon-btn" title="Move up" onclick="moveStep(${s._id}, -1)">↑</button>
+          <button class="icon-btn" title="Move down" onclick="moveStep(${s._id}, 1)">↓</button>
+          <button class="icon-btn" title="Remove" onclick="removeStep(${s._id})">✕</button>
+        </div>
+      </div>
+      <input type="text" placeholder="Step name (optional)" value="${escapeHtml(s.name)}" oninput="updateStep(${s._id},'name',this.value)">
+      <textarea placeholder="Step instructions" oninput="updateStep(${s._id},'text',this.value)">${escapeHtml(s.text)}</textarea>
+      <div class="step-optional-row">
+        <input type="text" placeholder="Step image URL (optional)" value="${escapeHtml(s.image)}" oninput="updateStep(${s._id},'image',this.value)">
+        <input type="text" placeholder="Step link/anchor URL (optional)" value="${escapeHtml(s.url)}" oninput="updateStep(${s._id},'url',this.value)">
+      </div>
+    </div>
+  `).join("");
+}
+function findStep(id){ return state.steps.find(s => s._id === id); }
+function findStepIndex(id){ return state.steps.findIndex(s => s._id === id); }
+function updateStep(id, field, value){
+  const s = findStep(id);
+  if (!s) return;
+  s[field] = value;
+  refreshDerived();
+}
+function addStep(){
+  state.steps.push({ _id: uid(), name:"", text:"", image:"", url:"" });
+  renderSteps();
+  refreshDerived();
+}
+function removeStep(id){
+  state.steps = state.steps.filter(s => s._id !== id);
+  if (state.steps.length === 0) state.steps.push({ _id: uid(), name:"", text:"", image:"", url:"" });
+  renderSteps();
+  refreshDerived();
+}
+function moveStep(id, dir){
+  const i = findStepIndex(id);
+  const j = i + dir;
+  if (j < 0 || j >= state.steps.length) return;
+  const tmp = state.steps[i]; state.steps[i] = state.steps[j]; state.steps[j] = tmp;
+  renderSteps();
+  refreshDerived();
+}
+
+function renderIssues(){
+  const panel = document.getElementById("issuesPanel");
+  const list = document.getElementById("issuesList");
+  const issues = validateHowTo(state);
+  panel.classList.remove("hidden");
+  if (issues.length === 0) {
+    list.innerHTML = '<div class="empty-good">✅ No issues found — this HowTo schema looks solid.</div>';
+    return;
+  }
+  const order = { error:0, warning:1, info:2 };
+  const sorted = [...issues].sort((a,b) => order[a.level]-order[b.level]);
+  list.innerHTML = sorted.map(i => `
+    <div class="issue-row">
+      <span class="issue-tag ${i.level}">${i.level}</span>
+      <span>${escapeHtml(i.message)}</span>
+    </div>`).join("");
+}
+
+function renderPreview(){
+  const box = document.getElementById("previewBox");
+  const validSteps = state.steps.filter(s => s.text && s.text.trim());
+  const metaParts = [];
+  if (state.totalTime) metaParts.push(`⏱ ${state.totalTime}`);
+  if (state.estimatedCostValue) metaParts.push(`💰 ${state.estimatedCostCurrency} ${state.estimatedCostValue}`);
+  if (state.tools.length) metaParts.push(`🧰 ${state.tools.length} tool(s)`);
+  if (state.supplies.length) metaParts.push(`📦 ${state.supplies.length} supply(ies)`);
+
+  box.innerHTML = `
+    <div class="preview-title">${escapeHtml(state.name || "Untitled guide")}</div>
+    <div class="preview-meta">${metaParts.map(m => `<span>${escapeHtml(m)}</span>`).join("")}</div>
+    <div class="preview-steps">
+      ${validSteps.map((s,i) => `
+        <div class="preview-step">
+          <div class="preview-step-num">${i+1}</div>
+          <div class="preview-step-body">
+            <strong>${escapeHtml(s.name && s.name.trim() ? s.name : "Step " + (i+1))}</strong>
+            <p>${escapeHtml(s.text)}</p>
+          </div>
+        </div>
+      `).join("") || '<p class="small-note">Add a step to see the preview.</p>'}
+    </div>
+  `;
+}
+
+function setOutTab(tab){
+  outTab = tab;
+  document.querySelectorAll(".out-tab").forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".out-panel").forEach(p => p.classList.add("hidden"));
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+function setFormat(fmt, btn){
+  outFormat = fmt;
+  btn.parentElement.querySelectorAll("button").forEach(b => b.classList.toggle("active", b === btn));
+  renderOutputs();
+}
+
+function renderOutputs(){
+  const schema = buildHowToSchema(state);
+  document.getElementById("codeOut").textContent = toScriptTag(schema, outFormat === "pretty");
+  document.getElementById("wpOut").textContent = cmsSnippet("wordpress", schema);
+  document.getElementById("shopifyOut").textContent = cmsSnippet("shopify", schema);
+  document.getElementById("nextjsOut").textContent = cmsSnippet("nextjs", schema);
+}
+
+function refreshDerived(){
+  renderChips();
+  renderIssues();
+  renderPreview();
+  renderOutputs();
+}
+
+function downloadOutput(){
+  const text = document.getElementById("codeOut").textContent;
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(new Blob([text], {type:"text/html"}));
+  a.download = "howto-schema.html";
+  a.click();
+}
+function copyOutput(){ copyText(document.getElementById("codeOut").textContent); }
+function copyCms(which){
+  const el = document.getElementById(which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut");
+  copyText(el.textContent);
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(text).catch(() => fallbackCopy(text));
+  } else {
+    fallbackCopy(text);
+  }
+}
+function fallbackCopy(text){
+  const ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+}
+
+function toggleImport(){ document.getElementById("importBox").classList.toggle("show"); }
+function runImport(){
+  const raw = document.getElementById("importInput").value;
+  const statusEl = document.getElementById("importStatus");
+  if (!raw.trim()) { statusEl.textContent = "Paste some JSON-LD first."; return; }
+  const result = parseImportedHowTo(raw);
+  if (result.error) { statusEl.textContent = "❌ " + result.error; return; }
+  const s = result.state;
+  state = {
+    name: s.name, description: s.description, image: s.image, totalTime: s.totalTime,
+    estimatedCostValue: s.estimatedCostValue, estimatedCostCurrency: s.estimatedCostCurrency || "USD",
+    supplies: s.supplies, tools: s.tools,
+    steps: (s.steps.length ? s.steps : [{name:"",text:"",image:"",url:""}]).map(st => ({ _id: uid(), name: st.name, text: st.text, image: st.image, url: st.url })),
+    video: s.video || { name:"", description:"", thumbnailUrl:"", contentUrl:"", uploadDate:"", duration:"" },
+  };
+  statusEl.textContent = `✅ Imported "${state.name}" with ${state.steps.length} step(s).`;
+  document.getElementById("importBox").classList.remove("show");
+  syncFieldsFromState();
+  renderSteps();
+  refreshDerived();
+}
+
+function toggleFaq(btn){
+  const item = btn.parentElement;
+  const wasOpen = item.classList.contains("open");
+  document.querySelectorAll("#faqList .faq-item").forEach(i => i.classList.remove("open"));
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* Init */
+syncFieldsFromState();
+renderSteps();
+refreshDerived();
+</script>
+</body>
+</html>
