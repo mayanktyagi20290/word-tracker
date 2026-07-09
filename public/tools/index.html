@@ -117,7 +117,7 @@
 
   <!-- Filter tabs -->
   <div class="filter-tabs">
-    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (31)</button>
+    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (39)</button>
     <button class="filter-tab" data-cat="text" onclick="setFilter(this)">✍️ Text</button>
     <button class="filter-tab" data-cat="calculator" onclick="setFilter(this)">🧮 Calculators</button>
     <button class="filter-tab" data-cat="converter" onclick="setFilter(this)">🔄 Converters</button>
@@ -133,7 +133,7 @@
   <div class="section-wrap" data-section="text">
     <div class="section-head">
       <h2>✍️ Text Tools</h2>
-      <span class="count">5 tools</span>
+      <span class="count">6 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -175,6 +175,14 @@
         <div class="tool-info">
           <div class="tool-name">Binary Converter</div>
           <div class="tool-desc">Convert text ↔ binary, decimal ↔ binary, hex ↔ binary and more. All in one tool.</div>
+        </div>
+      </a>
+
+      <a href="/tools/morse-code-translator" class="tool-card" data-cat="converter" data-name="morse code translator converter encoder decoder">
+        <span class="tool-icon">📡</span>
+        <div class="tool-info">
+          <div class="tool-name">Morse Code Translator</div>
+          <div class="tool-desc">Text ↔ Morse with audio playback, tap-to-key trainer & light flash simulation.</div>
         </div>
       </a>
 
@@ -417,7 +425,7 @@
   <div class="section-wrap" data-section="seo">
     <div class="section-head">
       <h2>📈 SEO Tools</h2>
-      <span class="count">3 tools</span>
+      <span class="count">10 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -443,6 +451,62 @@
         <div class="tool-info">
           <div class="tool-name">Sitemap URL Extractor</div>
           <div class="tool-desc">Extract every URL from any sitemap.xml, including nested sitemap index files.</div>
+        </div>
+      </a>
+
+      <a href="/tools/robots-txt-tester" class="tool-card" data-cat="seo" data-name="robots txt tester validator check crawler googlebot">
+        <span class="tool-icon">🧪</span>
+        <div class="tool-info">
+          <div class="tool-name">Robots.txt Tester &amp; Validator</div>
+          <div class="tool-desc">Test URLs against 25+ crawlers, validate syntax, batch test & compare bots side by side.</div>
+        </div>
+      </a>
+
+      <a href="/tools/meta-robots-tag-generator" class="tool-card" data-cat="seo" data-name="meta robots tag generator noindex nofollow x-robots-tag">
+        <span class="tool-icon">🏷️</span>
+        <div class="tool-info">
+          <div class="tool-name">Meta Robots Tag Generator</div>
+          <div class="tool-desc">Meta robots tags & X-Robots-Tag headers with Apache/Nginx snippets, every directive.</div>
+        </div>
+      </a>
+
+      <a href="/tools/faq-schema-generator" class="tool-card" data-cat="seo" data-name="faq schema generator json-ld markup structured data">
+        <span class="tool-icon">❓</span>
+        <div class="tool-info">
+          <div class="tool-name">FAQ Schema Generator</div>
+          <div class="tool-desc">Valid FAQPage JSON-LD with live preview, rich-text answers & built-in validation.</div>
+        </div>
+      </a>
+
+      <a href="/tools/howto-schema-generator" class="tool-card" data-cat="seo" data-name="howto schema generator json-ld markup structured data">
+        <span class="tool-icon">📋</span>
+        <div class="tool-info">
+          <div class="tool-name">HowTo Schema Generator</div>
+          <div class="tool-desc">HowTo JSON-LD with guided duration builder, steps, video support & live preview.</div>
+        </div>
+      </a>
+
+      <a href="/tools/article-schema-generator" class="tool-card" data-cat="seo" data-name="article schema generator json-ld blogposting newsarticle">
+        <span class="tool-icon">📰</span>
+        <div class="tool-info">
+          <div class="tool-name">Article Schema Generator</div>
+          <div class="tool-desc">Article/BlogPosting/NewsArticle JSON-LD with live image checks & Speakable support.</div>
+        </div>
+      </a>
+
+      <a href="/tools/product-schema-generator" class="tool-card" data-cat="seo" data-name="product schema generator json-ld gtin offers reviews">
+        <span class="tool-icon">🛍️</span>
+        <div class="tool-info">
+          <div class="tool-name">Product Schema Generator</div>
+          <div class="tool-desc">Product JSON-LD with GTIN validation, variant pricing, ratings & reviews.</div>
+        </div>
+      </a>
+
+      <a href="/tools/breadcrumb-schema-generator" class="tool-card" data-cat="seo" data-name="breadcrumb schema generator json-ld markup">
+        <span class="tool-icon">🍞</span>
+        <div class="tool-info">
+          <div class="tool-name">Breadcrumb Schema Generator</div>
+          <div class="tool-desc">Auto-build breadcrumb JSON-LD from any URL — reorder, validate & preview instantly.</div>
         </div>
       </a>
 
@@ -533,6 +597,7 @@ function applyFilters(query, cat) {
     { "@type": "SoftwareApplication", "name": "Word Counter", "url": "https://seotriggers.com/tools/word-counter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Case Converter", "url": "https://seotriggers.com/tools/uppercase-to-lowercase", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Binary Converter", "url": "https://seotriggers.com/tools/binary-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Morse Code Translator", "url": "https://seotriggers.com/tools/morse-code-translator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Lorem Ipsum Generator", "url": "https://seotriggers.com/tools/lorem-ipsum-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Unit Converter", "url": "https://seotriggers.com/tools/unit-converter", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Compound Interest Calculator", "url": "https://seotriggers.com/tools/interest-calculator", "applicationCategory": "FinanceApplication", "offers": { "@type": "Offer", "price": "0" } },
@@ -545,7 +610,14 @@ function applyFilters(query, cat) {
     { "@type": "SoftwareApplication", "name": "BMI Calculator", "url": "https://seotriggers.com/tools/bmi-calculator", "applicationCategory": "HealthApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Calorie Calculator", "url": "https://seotriggers.com/tools/calorie-calculator", "applicationCategory": "HealthApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "XML Sitemap Generator", "url": "https://seotriggers.com/tools/sitemap-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
-    { "@type": "SoftwareApplication", "name": "Sitemap URL Extractor", "url": "https://seotriggers.com/tools/sitemap-url-extractor", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
+    { "@type": "SoftwareApplication", "name": "Sitemap URL Extractor", "url": "https://seotriggers.com/tools/sitemap-url-extractor", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Robots.txt Tester & Validator", "url": "https://seotriggers.com/tools/robots-txt-tester", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Meta Robots Tag Generator", "url": "https://seotriggers.com/tools/meta-robots-tag-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "FAQ Schema Generator", "url": "https://seotriggers.com/tools/faq-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "HowTo Schema Generator", "url": "https://seotriggers.com/tools/howto-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Article Schema Generator", "url": "https://seotriggers.com/tools/article-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Product Schema Generator", "url": "https://seotriggers.com/tools/product-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Breadcrumb Schema Generator", "url": "https://seotriggers.com/tools/breadcrumb-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
   ]
 }
 </script>
