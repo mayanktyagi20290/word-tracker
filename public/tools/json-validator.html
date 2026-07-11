@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JSON Validator - Free Online JSON Syntax & Schema Validator | SEOTriggers</title>
+<meta name="description" content="Free online JSON validator that finds every error in one pass, not just the first. Detects duplicate keys, validates against a JSON Schema, and shows the exact line and column of every problem. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/json-validator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JSON Validator - Free Online JSON Syntax & Schema Validator">
+<meta property="og:description" content="Validate JSON instantly in your browser — multi-error detection, duplicate key warnings, and full JSON Schema validation. No uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/json-validator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JSON Validator - Free Online JSON Syntax & Schema Validator">
+<meta name="twitter:description" content="Validate JSON instantly in your browser — multi-error detection, duplicate key warnings, and full JSON Schema validation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JSON Validator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online JSON validator with multi-error detection, duplicate key warnings, precise line/column reporting, and JSON Schema validation, all running client-side.",
+  "url": "https://seotriggers.com/tools/json-validator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"JSON Validator","item":"https://seotriggers.com/tools/json-validator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does this tool find every error, or just the first one?","acceptedAnswer":{"@type":"Answer","text":"It finds every error it can in a single pass. Most JSON validators stop at the first syntax error; this one uses a custom parser that recovers after each problem and keeps checking, so you can fix everything in one round instead of one error at a time."}},
+    {"@type":"Question","name":"What is duplicate key detection?","acceptedAnswer":{"@type":"Answer","text":"JSON technically allows the same key to appear twice in one object, but most parsers silently keep only the last value, which hides bugs. This validator flags duplicate keys as warnings even when the JSON is otherwise syntactically valid."}},
+    {"@type":"Question","name":"Can I validate JSON against a JSON Schema?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Schema Validation tab lets you paste a JSON Schema alongside your data and checks type, required properties, enum values, string/number constraints, array rules, and combinators like allOf, anyOf, and oneOf, listing every violation with its exact path."}},
+    {"@type":"Question","name":"Is my JSON data uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All validation, including schema validation, runs entirely in your browser using JavaScript. Nothing is sent to SEOTriggers or any third party."}},
+    {"@type":"Question","name":"What does the Structure tab show?","acceptedAnswer":{"@type":"Answer","text":"It infers a lightweight schema from your JSON automatically, showing the type of every field and which keys are present, which is a fast way to document an API response or config file you didn't write yourself."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:680px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.toolbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);}
+.btn{border:1px solid var(--border);background:#fff;padding:7px 14px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.btn:hover{background:var(--bg);}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+.spacer{flex:1;}
+#file-input{display:none;}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.pane-head{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;background:var(--bg);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text-sec);}
+textarea{border:none;outline:none;resize:none;padding:16px;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);background:#fff;width:100%;min-height:340px;}
+.size-tag{font-family:var(--mono);font-size:11px;color:var(--text-hint);}
+
+.split2{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media (max-width:860px){.split2{grid-template-columns:1fr;}}
+.pane{display:flex;flex-direction:column;}
+.pane + .pane{border-left:1px solid var(--border);}
+@media (max-width:860px){.pane + .pane{border-left:none;border-top:1px solid var(--border);}}
+
+.status-banner{padding:16px 18px;font-weight:700;font-size:15px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--border);}
+.status-banner.valid{background:var(--green-light);color:var(--green);}
+.status-banner.invalid{background:var(--red-light);color:var(--red);}
+.status-banner.idle{background:var(--bg);color:var(--text-hint);font-weight:600;}
+
+.error-list{padding:6px 0;}
+.error-item{display:flex;gap:10px;align-items:flex-start;padding:10px 18px;border-bottom:1px solid var(--border);font-size:13px;}
+.error-item .dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.error-item.error .dot{background:var(--red);} .error-item.warning .dot{background:var(--amber);}
+.error-loc{font-family:var(--mono);font-size:11px;color:var(--text-hint);white-space:nowrap;}
+
+.tree-out{padding:16px;font-family:var(--mono);font-size:13px;background:#fff;min-height:340px;overflow:auto;}
+.tnode{margin-left:16px;}
+.tkey{color:var(--indigo-dark);font-weight:600;}
+.ttype{color:var(--blue);}
+.treq{color:var(--red);font-size:11px;}
+
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{background:#fff;padding:14px 18px;}
+.stat .l{font-size:11px;color:var(--text-sec);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.stat .v{font-size:20px;font-weight:800;color:var(--text);}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+.ext-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.ext-link{font-size:12px;color:var(--indigo-dark);border:1px solid var(--indigo-light);background:var(--indigo-light);padding:5px 12px;border-radius:999px;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / JSON Validator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>JSON Validator</h1>
+  <p>Find every syntax error in one pass, catch duplicate keys, and validate against a full JSON Schema. Everything runs in your browser — nothing is ever uploaded.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="toolbar">
+      <button class="btn" onclick="document.getElementById('file-input').click()">📁 Upload File</button>
+      <input type="file" id="file-input" accept=".json,.txt" onchange="handleFile(event)">
+      <button class="btn" onclick="loadSample()">✨ Try Sample</button>
+      <button class="btn" onclick="loadInvalidSample()">⚠ Try Broken Sample</button>
+      <button class="btn" onclick="clearAll()">🗑 Clear</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" onclick="runValidate()">✔ Validate JSON</button>
+    </div>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="validate" onclick="setTab('validate')">Validate</div>
+      <div class="tab" data-tab="schema" onclick="setTab('schema')">Schema Validation</div>
+      <div class="tab" data-tab="structure" onclick="setTab('structure')">Structure</div>
+    </div>
+
+    <!-- Validate tab -->
+    <div id="panel-validate">
+      <div class="status-banner idle" id="status-banner">Paste JSON and click Validate to check it.</div>
+      <div class="split2">
+        <div class="pane">
+          <div class="pane-head"><span>📝 JSON Input</span><span class="size-tag" id="input-size">0 bytes</span></div>
+          <textarea id="input" placeholder="Paste your JSON here to validate..." oninput="onInputChange()"></textarea>
+        </div>
+        <div class="pane">
+          <div class="pane-head"><span>🩺 Diagnostics</span></div>
+          <div class="error-list" id="error-list" style="min-height:340px;"></div>
+        </div>
+      </div>
+      <div class="stats" id="stats-bar" style="display:none;">
+        <div class="stat"><div class="l">Size</div><div class="v" id="stat-size">0 B</div></div>
+        <div class="stat"><div class="l">Errors</div><div class="v" id="stat-errors">0</div></div>
+        <div class="stat"><div class="l">Warnings</div><div class="v" id="stat-warnings">0</div></div>
+        <div class="stat"><div class="l">Max depth</div><div class="v" id="stat-depth">0</div></div>
+      </div>
+    </div>
+
+    <!-- Schema tab -->
+    <div id="panel-schema" style="display:none;">
+      <div class="split2">
+        <div class="pane">
+          <div class="pane-head"><span>📋 JSON Schema</span></div>
+          <textarea id="schema-input" placeholder='Paste a JSON Schema here, e.g. {"type":"object","required":["name"],"properties":{"name":{"type":"string"}}}' style="min-height:280px;"></textarea>
+        </div>
+        <div class="pane">
+          <div class="pane-head"><span>📄 JSON Data to validate</span></div>
+          <textarea id="schema-data-input" placeholder="Paste the JSON data you want to check against the schema..." style="min-height:280px;"></textarea>
+        </div>
+      </div>
+      <div class="toolbar" style="border-top:1px solid var(--border);border-bottom:none;">
+        <button class="btn btn-primary" onclick="runSchemaValidate()">✔ Validate Against Schema</button>
+        <span style="font-size:12px;color:var(--text-hint);">Supports: type, required, properties, items, enum, const, min/max, pattern, additionalProperties, allOf/anyOf/oneOf</span>
+      </div>
+      <div class="error-list" id="schema-error-list"></div>
+    </div>
+
+    <!-- Structure tab -->
+    <div id="panel-structure" style="display:none;">
+      <div class="pane-head"><span>🧬 Inferred structure</span>
+        <button class="btn" style="padding:3px 10px;font-size:11px;" onclick="copyStructure()">Copy as JSON Schema</button>
+      </div>
+      <div class="tree-out" id="structure-output">Validate a valid JSON object first to see its inferred structure.</div>
+    </div>
+
+    <div class="issues" id="global-issues" style="display:none;padding:14px 18px;border-top:1px solid var(--border);"></div>
+  </div>
+
+  <div class="ext-links">
+    <span style="font-size:12px;color:var(--text-hint);align-self:center;">Also try:</span>
+    <a class="ext-link" href="https://www.jsonschemavalidator.net/" target="_blank" rel="noopener">Full JSON Schema Draft Support ↗</a>
+    <a class="ext-link" href="https://jsonlint.com/" target="_blank" rel="noopener">JSONLint ↗</a>
+  </div>
+
+  <h2 class="section-title">Why this JSON validator is different</h2>
+  <p class="section-sub">Most validators tell you about one problem at a time. This one shows you the whole picture.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🔍</div><h3>Finds every error at once</h3><p>A custom parser recovers after each problem and keeps checking, instead of stopping at the first syntax error like most validators.</p></div>
+    <div class="feature"><div class="ico">🪞</div><h3>Duplicate key warnings</h3><p>Catches the same key appearing twice in one object — technically legal JSON, but a common source of silent bugs.</p></div>
+    <div class="feature"><div class="ico">📐</div><h3>Full JSON Schema validation</h3><p>Check your data against a real JSON Schema: types, required fields, enums, ranges, patterns, and allOf/anyOf/oneOf combinators.</p></div>
+    <div class="feature"><div class="ico">📍</div><h3>Exact line & column</h3><p>Every error and warning points to a precise location, not just a vague character position.</p></div>
+    <div class="feature"><div class="ico">🧬</div><h3>Auto-inferred structure</h3><p>Instantly see the shape of unfamiliar JSON as a lightweight schema you can copy and reuse.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Validation, including schema checks, happens entirely in your browser. Nothing is ever uploaded.</p></div>
+  </div>
+
+  <h2 class="section-title">How it compares</h2>
+  <p class="section-sub">A side-by-side look at popular JSON validators.</p>
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="us">SEOTriggers</th>
+      <th>jsonlint.com</th>
+      <th>curiousconcept.com</th>
+      <th>jsonschemavalidator.net</th>
+    </tr>
+    <tr><td>Multi-error detection</td><td class="us yes">✓</td><td class="no">First error only</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>Duplicate key warnings</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>JSON Schema validation</td><td class="us yes">✓ core keywords</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓ full drafts</td></tr>
+    <tr><td>Auto-infer structure</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>100% client-side</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+  </table>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this tool find every error, or just the first one?<span class="chev">▾</span></div>
+      <div class="faq-a">It finds every error it can in a single pass. Most JSON validators stop at the first syntax error; this one uses a custom parser that recovers after each problem and keeps checking, so you can fix everything in one round instead of one error at a time.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is duplicate key detection?<span class="chev">▾</span></div>
+      <div class="faq-a">JSON technically allows the same key to appear twice in one object, but most parsers silently keep only the last value, which hides bugs. This validator flags duplicate keys as warnings even when the JSON is otherwise syntactically valid.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I validate JSON against a JSON Schema?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. The Schema Validation tab lets you paste a JSON Schema alongside your data and checks type, required properties, enum values, string/number constraints, array rules, and combinators like allOf, anyOf, and oneOf, listing every violation with its exact path.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my JSON data uploaded to a server?<span class="chev">▾</span></div>
+      <div class="faq-a">No. All validation, including schema validation, runs entirely in your browser using JavaScript. Nothing is sent to SEOTriggers or any third party.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does the Structure tab show?<span class="chev">▾</span></div>
+      <div class="faq-a">It infers a lightweight schema from your JSON automatically, showing the type of every field and which keys are present, which is a fast way to document an API response or config file you didn't write yourself.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/json-formatter">JSON Formatter</a>
+    <a class="cross-link" href="/tools/js-minifier">JS Minifier</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+let lastStructureSchema = null;
+
+/* ---------- Core logic (tested) ---------- */
+function strictParse(text) {
+  try { return { ok: true, data: JSON.parse(text) }; }
+  catch (e) {
+    const msg = e.message || String(e);
+    let pos = null;
+    const m = msg.match(/position (\d+)/);
+    if (m) pos = parseInt(m[1], 10);
+    let line = 1, col = 1;
+    if (pos !== null) { for (let i = 0; i < pos && i < text.length; i++) { if (text[i] === '\n') { line++; col = 1; } else col++; } }
+    return { ok: false, error: { message: msg, pos, line, col } };
+  }
+}
+
+function findAllErrors(text, maxErrors) {
+  maxErrors = maxErrors || 25;
+  const errors = [];
+  let i = 0;
+  const n = text.length;
+  function posToLineCol(p) {
+    let line = 1, col = 1;
+    for (let k = 0; k < p && k < n; k++) { if (text[k] === '\n') { line++; col = 1; } else col++; }
+    return { line, col };
+  }
+  function addError(p, message, kind) {
+    if (errors.length >= maxErrors) return;
+    const { line, col } = posToLineCol(p);
+    errors.push({ pos: p, line, col, message, kind: kind || 'error' });
+  }
+  function skipWs() { while (i < n && /\s/.test(text[i])) i++; }
+  function recover(stopChars) {
+    let depth = 0;
+    while (i < n) {
+      const c = text[i];
+      if (c === '"') { skipString(); continue; }
+      if (c === '{' || c === '[') { depth++; i++; continue; }
+      if (c === '}' || c === ']') {
+        if (depth === 0 && stopChars.includes(c)) return;
+        if (depth > 0) depth--;
+        i++; continue;
+      }
+      if (c === ',' && depth === 0 && stopChars.includes(',')) return;
+      i++;
+    }
+  }
+  function skipString() {
+    i++;
+    while (i < n && text[i] !== '"') { if (text[i] === '\\') i++; i++; }
+    i++;
+  }
+  function parseValue() {
+    skipWs();
+    if (i >= n) { addError(i, 'Unexpected end of input, expected a value.'); return; }
+    const c = text[i];
+    if (c === '{') return parseObject();
+    if (c === '[') return parseArray();
+    if (c === '"') return parseString();
+    if (c === '-' || /[0-9]/.test(c)) return parseNumber();
+    if (text.startsWith('true', i)) { i += 4; return; }
+    if (text.startsWith('false', i)) { i += 5; return; }
+    if (text.startsWith('null', i)) { i += 4; return; }
+    addError(i, "Unexpected token '" + c + "', expected a value (string, number, object, array, true, false, or null).");
+    recover([',', '}', ']']);
+  }
+  function parseString() {
+    const start = i; i++;
+    let terminated = false;
+    while (i < n) {
+      if (text[i] === '\\') { i += 2; continue; }
+      if (text[i] === '"') { terminated = true; i++; break; }
+      if (text[i] === '\n') break;
+      i++;
+    }
+    if (!terminated) addError(start, 'Unterminated string literal.');
+  }
+  function parseNumber() {
+    const start = i;
+    if (text[i] === '-') i++;
+    if (!/[0-9]/.test(text[i] || '')) { addError(start, 'Invalid number literal.'); return; }
+    while (i < n && /[0-9]/.test(text[i])) i++;
+    if (text[i] === '.') { i++; while (i < n && /[0-9]/.test(text[i])) i++; }
+    if (text[i] === 'e' || text[i] === 'E') { i++; if (text[i] === '+' || text[i] === '-') i++; while (i < n && /[0-9]/.test(text[i])) i++; }
+  }
+  function parseObject() {
+    const objStart = i; i++; skipWs();
+    const seenKeys = [];
+    if (text[i] === '}') { i++; return; }
+    while (true) {
+      skipWs();
+      if (i >= n) { addError(objStart, 'Unterminated object, missing closing }.'); return; }
+      if (text[i] !== '"') {
+        addError(i, "Expected a string key, found '" + text[i] + "'.");
+        recover([',', '}']);
+        if (text[i] === ',') { i++; skipWs(); continue; }
+        if (text[i] === '}') { i++; return; }
+        return;
+      }
+      const keyStart = i;
+      parseString();
+      const keyStr = text.slice(keyStart, i);
+      seenKeys.push({ key: keyStr, pos: keyStart });
+      skipWs();
+      if (text[i] !== ':') { addError(i, "Expected ':' after object key."); recover([',', '}']); }
+      else { i++; parseValue(); }
+      skipWs();
+      if (text[i] === ',') {
+        i++; skipWs();
+        if (text[i] === '}') addError(i - 1, 'Trailing comma is not allowed before }.');
+        continue;
+      }
+      if (text[i] === '}') { i++; break; }
+      addError(i, "Expected ',' or '}' in object.");
+      recover([',', '}']);
+      if (text[i] === ',') { i++; continue; }
+      if (text[i] === '}') { i++; }
+      break;
+    }
+    const counts = {};
+    seenKeys.forEach(k => { counts[k.key] = (counts[k.key] || 0) + 1; });
+    seenKeys.forEach(k => {
+      if (counts[k.key] > 1) { addError(k.pos, 'Duplicate key ' + k.key + ' in object (later value silently overwrites earlier one).', 'warning'); counts[k.key] = 1; }
+    });
+  }
+  function parseArray() {
+    const arrStart = i; i++; skipWs();
+    if (text[i] === ']') { i++; return; }
+    while (true) {
+      parseValue(); skipWs();
+      if (i >= n) { addError(arrStart, 'Unterminated array, missing closing ].'); return; }
+      if (text[i] === ',') {
+        i++; skipWs();
+        if (text[i] === ']') addError(i - 1, 'Trailing comma is not allowed before ].');
+        continue;
+      }
+      if (text[i] === ']') { i++; break; }
+      addError(i, "Expected ',' or ']' in array.");
+      recover([',', ']']);
+      if (text[i] === ',') { i++; continue; }
+      if (text[i] === ']') { i++; }
+      break;
+    }
+  }
+  skipWs();
+  if (i >= n) { addError(0, 'Input is empty.'); return errors; }
+  parseValue();
+  skipWs();
+  if (i < n && errors.length < maxErrors) addError(i, "Unexpected trailing content after the JSON value: '" + text.slice(i, i + 20) + (text.length - i > 20 ? '…' : '') + "'.");
+  return errors;
+}
+
+function inferStructure(data) {
+  function typeOf(v) { if (v === null) return 'null'; if (Array.isArray(v)) return 'array'; return typeof v; }
+  function build(node) {
+    const t = typeOf(node);
+    if (t === 'object') {
+      const props = {};
+      Object.keys(node).forEach(k => { props[k] = build(node[k]); });
+      return { type: 'object', properties: props, required: Object.keys(node) };
+    }
+    if (t === 'array') {
+      if (node.length === 0) return { type: 'array', items: {} };
+      return { type: 'array', items: build(node[0]) };
+    }
+    return { type: t };
+  }
+  return build(data);
+}
+
+function validateAgainstSchema(data, schema) {
+  const violations = [];
+  function typeOf(v) { if (v === null) return 'null'; if (Array.isArray(v)) return 'array'; if (typeof v === 'number') return 'number'; return typeof v; }
+  function typeMatches(t, v) { const actual = typeOf(v); if (t === 'integer') return actual === 'number' && Number.isInteger(v); return actual === t; }
+  function check(node, sch, path) {
+    if (sch === true || sch === undefined || sch === null) return;
+    if (sch === false) { violations.push({ path, message: 'Value is not allowed here (schema is `false`).' }); return; }
+    if (sch.const !== undefined) { if (JSON.stringify(node) !== JSON.stringify(sch.const)) violations.push({ path, message: 'Expected constant value ' + JSON.stringify(sch.const) + ', got ' + JSON.stringify(node) + '.' }); }
+    if (sch.enum) { const found = sch.enum.some(v => JSON.stringify(v) === JSON.stringify(node)); if (!found) violations.push({ path, message: 'Value must be one of ' + JSON.stringify(sch.enum) + '.' }); }
+    if (sch.type) {
+      const types = Array.isArray(sch.type) ? sch.type : [sch.type];
+      if (!types.some(t => typeMatches(t, node))) { violations.push({ path, message: 'Expected type ' + types.join(' or ') + ', got ' + typeOf(node) + '.' }); return; }
+    }
+    const t = typeOf(node);
+    if (t === 'string') {
+      if (sch.minLength !== undefined && node.length < sch.minLength) violations.push({ path, message: 'String is shorter than minLength ' + sch.minLength + '.' });
+      if (sch.maxLength !== undefined && node.length > sch.maxLength) violations.push({ path, message: 'String is longer than maxLength ' + sch.maxLength + '.' });
+      if (sch.pattern) { try { if (!new RegExp(sch.pattern).test(node)) violations.push({ path, message: 'String does not match pattern ' + sch.pattern + '.' }); } catch (e) { violations.push({ path, message: 'Schema pattern is not a valid regex: ' + sch.pattern }); } }
+    }
+    if (t === 'number') {
+      if (sch.minimum !== undefined && node < sch.minimum) violations.push({ path, message: 'Value ' + node + ' is less than minimum ' + sch.minimum + '.' });
+      if (sch.maximum !== undefined && node > sch.maximum) violations.push({ path, message: 'Value ' + node + ' is greater than maximum ' + sch.maximum + '.' });
+      if (sch.exclusiveMinimum !== undefined && node <= sch.exclusiveMinimum) violations.push({ path, message: 'Value ' + node + ' must be greater than ' + sch.exclusiveMinimum + '.' });
+      if (sch.exclusiveMaximum !== undefined && node >= sch.exclusiveMaximum) violations.push({ path, message: 'Value ' + node + ' must be less than ' + sch.exclusiveMaximum + '.' });
+      if (sch.multipleOf !== undefined) { const ratio = node / sch.multipleOf; if (Math.abs(ratio - Math.round(ratio)) > 1e-9) violations.push({ path, message: 'Value ' + node + ' is not a multiple of ' + sch.multipleOf + '.' }); }
+    }
+    if (t === 'array') {
+      if (sch.minItems !== undefined && node.length < sch.minItems) violations.push({ path, message: 'Array has fewer than minItems ' + sch.minItems + '.' });
+      if (sch.maxItems !== undefined && node.length > sch.maxItems) violations.push({ path, message: 'Array has more than maxItems ' + sch.maxItems + '.' });
+      if (sch.uniqueItems) { const seen = new Set(); for (const item of node) { const key = JSON.stringify(item); if (seen.has(key)) { violations.push({ path, message: 'Array items must be unique; duplicate found.' }); break; } seen.add(key); } }
+      if (sch.items) node.forEach((item, idx) => check(item, sch.items, path + '[' + idx + ']'));
+    }
+    if (t === 'object') {
+      if (sch.required) sch.required.forEach(key => { if (!(key in node)) violations.push({ path, message: "Missing required property '" + key + "'." }); });
+      if (sch.minProperties !== undefined && Object.keys(node).length < sch.minProperties) violations.push({ path, message: 'Object has fewer than minProperties ' + sch.minProperties + '.' });
+      if (sch.maxProperties !== undefined && Object.keys(node).length > sch.maxProperties) violations.push({ path, message: 'Object has more than maxProperties ' + sch.maxProperties + '.' });
+      if (sch.properties) Object.keys(sch.properties).forEach(key => { if (key in node) check(node[key], sch.properties[key], path + '.' + key); });
+      if (sch.additionalProperties === false && sch.properties) Object.keys(node).forEach(key => { if (!(key in sch.properties)) violations.push({ path: path + '.' + key, message: "Additional property '" + key + "' is not allowed." }); });
+    }
+    if (sch.allOf) sch.allOf.forEach(s => check(node, s, path));
+    if (sch.anyOf) {
+      const anyOk = sch.anyOf.some(s => { const save = violations.length; check(node, s, path); const introduced = violations.splice(save); return introduced.length === 0; });
+      if (!anyOk) violations.push({ path, message: 'Value does not match any schema in anyOf.' });
+    }
+    if (sch.oneOf) {
+      let matchCount = 0;
+      sch.oneOf.forEach(s => { const save = violations.length; check(node, s, path); const introduced = violations.splice(save); if (introduced.length === 0) matchCount++; });
+      if (matchCount !== 1) violations.push({ path, message: 'Value must match exactly one schema in oneOf (matched ' + matchCount + ').' });
+    }
+  }
+  check(data, schema, '$');
+  return violations;
+}
+
+/* ---------- UI wiring ---------- */
+function bytes(str) { return new Blob([str]).size; }
+function fmtBytes(n) { return n < 1024 ? n + ' B' : (n/1024).toFixed(2) + ' KB'; }
+
+function onInputChange() { document.getElementById('input-size').textContent = fmtBytes(bytes(document.getElementById('input').value)); }
+
+function setTab(name) {
+  ['validate','schema','structure'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+function depthOf(data) {
+  let max = 0;
+  function walk(node, d) {
+    max = Math.max(max, d);
+    if (Array.isArray(node)) node.forEach(v => walk(v, d + 1));
+    else if (node !== null && typeof node === 'object') Object.values(node).forEach(v => walk(v, d + 1));
+  }
+  walk(data, 1);
+  return max;
+}
+
+function runValidate() {
+  const raw = document.getElementById('input').value;
+  const banner = document.getElementById('status-banner');
+  const list = document.getElementById('error-list');
+  const statsBar = document.getElementById('stats-bar');
+
+  if (!raw.trim()) {
+    banner.className = 'status-banner idle';
+    banner.textContent = 'Paste JSON and click Validate to check it.';
+    list.innerHTML = '';
+    statsBar.style.display = 'none';
+    return;
+  }
+
+  const errors = findAllErrors(raw, 25);
+  const strict = strictParse(raw);
+  const errorCount = errors.filter(e => e.kind !== 'warning').length;
+  const warningCount = errors.filter(e => e.kind === 'warning').length;
+
+  if (errorCount === 0) {
+    banner.className = 'status-banner valid';
+    banner.textContent = '✓ Valid JSON' + (warningCount ? ' (with ' + warningCount + ' warning' + (warningCount>1?'s':'') + ')' : '');
+  } else {
+    banner.className = 'status-banner invalid';
+    banner.textContent = '✗ Invalid JSON — ' + errorCount + ' error' + (errorCount>1?'s':'') + ' found';
+  }
+
+  if (errors.length === 0) {
+    list.innerHTML = '<div style="padding:32px;text-align:center;color:var(--text-hint);font-size:13px;">No issues found. 🎉</div>';
+  } else {
+    list.innerHTML = errors.map(e => (
+      '<div class="error-item ' + (e.kind || 'error') + '">' +
+        '<span class="dot"></span>' +
+        '<div><div class="error-loc">Line ' + e.line + ', Col ' + e.col + '</div><div>' + escapeHTML(e.message) + '</div></div>' +
+      '</div>'
+    )).join('');
+  }
+
+  if (strict.ok) {
+    statsBar.style.display = 'grid';
+    document.getElementById('stat-size').textContent = fmtBytes(bytes(raw));
+    document.getElementById('stat-errors').textContent = errorCount;
+    document.getElementById('stat-warnings').textContent = warningCount;
+    document.getElementById('stat-depth').textContent = depthOf(strict.data);
+    lastStructureSchema = inferStructure(strict.data);
+    renderStructure();
+  } else {
+    statsBar.style.display = 'none';
+    lastStructureSchema = null;
+    document.getElementById('structure-output').textContent = 'Fix the JSON errors first to see its inferred structure.';
+  }
+}
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderStructure() {
+  const out = document.getElementById('structure-output');
+  if (!lastStructureSchema) { out.textContent = 'Validate a valid JSON object first to see its inferred structure.'; return; }
+  out.innerHTML = '<pre style="margin:0;white-space:pre-wrap;">' + escapeHTML(JSON.stringify(lastStructureSchema, null, 2)) + '</pre>';
+}
+function copyStructure() {
+  if (!lastStructureSchema) return;
+  navigator.clipboard.writeText(JSON.stringify(lastStructureSchema, null, 2));
+}
+
+function runSchemaValidate() {
+  const schemaRaw = document.getElementById('schema-input').value;
+  const dataRaw = document.getElementById('schema-data-input').value;
+  const list = document.getElementById('schema-error-list');
+  if (!schemaRaw.trim() || !dataRaw.trim()) {
+    list.innerHTML = '<div class="error-item warning"><span class="dot"></span><span>Paste both a JSON Schema and JSON data to validate.</span></div>';
+    return;
+  }
+  const schemaParsed = strictParse(schemaRaw);
+  if (!schemaParsed.ok) {
+    list.innerHTML = '<div class="error-item error"><span class="dot"></span><span>Schema is not valid JSON: ' + escapeHTML(schemaParsed.error.message) + '</span></div>';
+    return;
+  }
+  const dataParsed = strictParse(dataRaw);
+  if (!dataParsed.ok) {
+    list.innerHTML = '<div class="error-item error"><span class="dot"></span><span>Data is not valid JSON: ' + escapeHTML(dataParsed.error.message) + '</span></div>';
+    return;
+  }
+  const violations = validateAgainstSchema(dataParsed.data, schemaParsed.data);
+  if (violations.length === 0) {
+    list.innerHTML = '<div style="padding:20px;color:var(--green);font-weight:600;font-size:13px;">✓ Data matches the schema — no violations found.</div>';
+  } else {
+    list.innerHTML = violations.map(v => (
+      '<div class="error-item error"><span class="dot"></span><div><div class="error-loc">' + escapeHTML(v.path) + '</div><div>' + escapeHTML(v.message) + '</div></div></div>'
+    )).join('');
+  }
+}
+
+/* ---------- File / sample / clear ---------- */
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => { document.getElementById('input').value = ev.target.result; onInputChange(); };
+  reader.readAsText(file);
+}
+function loadSample() {
+  const sample = { name: "Alice", age: 30, active: true, tags: ["admin","user"], address: { city: "Austin", zip: "78701" } };
+  document.getElementById('input').value = JSON.stringify(sample, null, 2);
+  onInputChange();
+}
+function loadInvalidSample() {
+  const sample = '{\n  "name": "Alice",\n  "age": ,\n  "tags": ["admin", "user",],\n  "active": true,\n  "active": false\n}';
+  document.getElementById('input').value = sample;
+  onInputChange();
+}
+function clearAll() {
+  document.getElementById('input').value = '';
+  document.getElementById('input-size').textContent = '0 bytes';
+  document.getElementById('error-list').innerHTML = '';
+  document.getElementById('stats-bar').style.display = 'none';
+  const banner = document.getElementById('status-banner');
+  banner.className = 'status-banner idle';
+  banner.textContent = 'Paste JSON and click Validate to check it.';
+  lastStructureSchema = null;
+  renderStructure();
+}
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
