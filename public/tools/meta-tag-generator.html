@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Meta Tag Generator — Free SEO, Open Graph &amp; Twitter Card Tool | SEOTriggers</title>
+<meta name="description" content="Free meta tag generator with live Google, Facebook, Twitter/X &amp; LinkedIn previews. Generates title, description, canonical, robots, Open Graph &amp; Twitter Card tags — plus ready WordPress, Shopify &amp; Next.js code. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/meta-tag-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Meta Tag Generator — Free SEO, Open Graph &amp; Twitter Card Tool | SEOTriggers" />
+<meta property="og:description" content="Generate title, description, canonical, robots, Open Graph &amp; Twitter Card meta tags with live Google/Facebook/X/LinkedIn previews. Free WordPress, Shopify &amp; Next.js code included." />
+<meta property="og:url" content="https://seotriggers.com/tools/meta-tag-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Meta Tag Generator — Free SEO, Open Graph &amp; Twitter Card Tool | SEOTriggers" />
+<meta name="twitter:description" content="Generate title, description, robots, Open Graph &amp; Twitter Card meta tags with live social previews. Free WordPress, Shopify &amp; Next.js snippets included." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Meta Tag Generator",
+  "url": "https://seotriggers.com/tools/meta-tag-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate title, description, canonical, robots, Open Graph and Twitter Card meta tags with live social previews and ready-made WordPress, Shopify and Next.js code."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Meta Tag Generator", "item": "https://seotriggers.com/tools/meta-tag-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Do I still need the meta keywords tag?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Google confirmed in 2009 that it does not use the meta keywords tag for ranking, and Bing gives it effectively no weight either. This tool deliberately leaves it out by default so you don't ship a tag that does nothing and can even look spammy to reviewers." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between meta description and og:description?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Meta description is what Google may show under your title in search results. og:description is what Facebook, LinkedIn and other platforms show when your link is shared. They can be identical, but writing them separately lets you optimize one for search intent and the other for social click-through." }
+    },
+    {
+      "@type": "Question",
+      "name": "What size should my Open Graph image be?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Facebook and LinkedIn recommend 1200×630px (a 1.91:1 ratio) so the image fills the card without cropping oddly. The minimum accepted size is around 200×200px, but anything smaller than 600×315px may display small or get skipped on some platforms." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between summary and summary_large_image Twitter Cards?",
+      "acceptedAnswer": { "@type": "Answer", "text": "summary shows a small square thumbnail next to the text, similar to a Facebook link preview. summary_large_image shows a full-width image above the text, which typically gets more attention and higher click-through in the X/Twitter feed." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why isn't my new preview showing up on Facebook or LinkedIn?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Facebook, LinkedIn and X cache the Open Graph data for a URL the first time it's shared. If you update your meta tags afterward, you need to force a re-scrape using Facebook's Sharing Debugger, LinkedIn's Post Inspector, or X's Card Validator before the new preview appears." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do meta tags affect Google rankings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "The title tag is a meaningful on-page ranking factor. The meta description doesn't directly affect rankings but strongly influences click-through rate from the search results, which is itself a quality signal. Open Graph and Twitter Card tags have no effect on Google rankings — they only control how links look when shared on social platforms." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=url], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:70px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row{grid-template-columns:1fr;}}
+
+.counter{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-size:11.5px;}
+.counter .bar{flex:1;height:5px;background:var(--border);border-radius:99px;margin:0 10px;overflow:hidden;}
+.counter .bar-fill{height:100%;border-radius:99px;transition:width .15s ease;}
+.counter .num{white-space:nowrap;font-weight:600;}
+.c-green{color:var(--green);} .c-amber{color:var(--amber);} .c-red{color:var(--red);}
+.bg-green{background:var(--green);} .bg-amber{background:var(--amber);} .bg-red{background:var(--red);}
+
+.preset-row{display:flex;flex-wrap:wrap;gap:8px;}
+.preset-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.preset-btn:hover{border-color:var(--brand);}
+.preset-btn.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.check-item{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:10px;}
+.check-item label{cursor:pointer;font-weight:500;}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;flex-shrink:0;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.7;white-space:pre-wrap;word-break:break-word;}
+
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.out-panel.hidden{display:none;}
+
+.format-toggle{display:flex;gap:8px;margin-bottom:10px;}
+.format-toggle button{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 14px;font-size:12px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.format-toggle button.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* ── Preview panel ── */
+.preview-panel{margin-top:26px;}
+.prev-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px;}
+.prev-tab{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.prev-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.prev-box{border:1px solid var(--border);border-radius:12px;padding:20px;background:var(--bg);min-height:120px;}
+
+/* Google SERP */
+.g-fav{width:22px;height:22px;border-radius:50%;background:#e5e7eb;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:var(--sub);margin-right:8px;flex-shrink:0;}
+.g-url-row{display:flex;align-items:center;font-size:14px;color:#202124;margin-bottom:4px;}
+.g-title{color:#1a0dab;font-size:20px;line-height:1.3;margin:2px 0 4px;font-family:arial,sans-serif;}
+.g-desc{color:#4d5156;font-size:14px;line-height:1.55;font-family:arial,sans-serif;}
+
+/* Facebook / LinkedIn card */
+.social-card{background:#fff;border:1px solid #dadde1;border-radius:8px;overflow:hidden;max-width:500px;}
+.social-card.summary{display:flex;}
+.social-img{background:#cbd5e1;display:flex;align-items:center;justify-content:center;color:#475569;font-size:12px;font-weight:600;text-align:center;overflow:hidden;}
+.social-card:not(.summary) .social-img{width:100%;height:260px;}
+.social-card.summary .social-img{width:90px;height:90px;flex-shrink:0;}
+.social-img img{width:100%;height:100%;object-fit:cover;}
+.social-body{padding:10px 12px;flex:1;min-width:0;}
+.social-domain{font-size:12px;color:#65676b;text-transform:uppercase;letter-spacing:.3px;margin-bottom:3px;}
+.social-title{font-size:15px;font-weight:700;color:#050505;line-height:1.3;margin-bottom:3px;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.social-desc{font-size:13px;color:#65676b;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+
+/* Twitter/X card */
+.tw-card{background:#fff;border:1px solid #cfd9de;border-radius:14px;overflow:hidden;max-width:500px;}
+.tw-card.summary{display:flex;}
+.tw-card:not(.summary) .social-img{width:100%;height:260px;}
+.tw-card.summary .social-img{width:90px;height:90px;flex-shrink:0;}
+.tw-body{padding:10px 12px;flex:1;min-width:0;}
+.tw-domain{font-size:13px;color:#536471;margin-bottom:2px;}
+.tw-title{font-size:14px;font-weight:700;color:#0f1419;line-height:1.3;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+.tw-desc{font-size:13px;color:#536471;overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Meta Tag Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Meta Tag Generator</h1>
+    <p>Build title, description, canonical, robots, Open Graph &amp; Twitter Card tags — with live Google, Facebook, X and LinkedIn previews, and ready-made WordPress, Shopify &amp; Next.js code.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Basic meta tags</div>
+
+    <div class="field">
+      <label for="fldTitle">Page title</label>
+      <input type="text" id="fldTitle" oninput="update()" placeholder="e.g. SEO Meta Tags Generator — Free Online Tool" />
+      <div class="counter">
+        <span class="num" id="titleCount">0 chars</span>
+        <div class="bar"><div class="bar-fill" id="titleBar" style="width:0%"></div></div>
+        <span id="titleVerdict" class="c-green">Good</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldDesc">Meta description</label>
+      <textarea id="fldDesc" oninput="update()" placeholder="e.g. Generate title, description, robots, Open Graph and Twitter Card meta tags with live social previews. Free, no signup."></textarea>
+      <div class="counter">
+        <span class="num" id="descCount">0 chars</span>
+        <div class="bar"><div class="bar-fill" id="descBar" style="width:0%"></div></div>
+        <span id="descVerdict" class="c-green">Good</span>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldCanonical">Canonical / page URL</label>
+        <input type="text" id="fldCanonical" oninput="update()" placeholder="https://example.com/page" />
+      </div>
+      <div class="field">
+        <label for="fldLang">Content language</label>
+        <select id="fldLang" onchange="update()">
+          <option value="en">English</option>
+          <option value="en-US">English (US)</option>
+          <option value="en-GB">English (UK)</option>
+          <option value="hi">Hindi</option>
+          <option value="es">Spanish</option>
+          <option value="fr">French</option>
+          <option value="de">German</option>
+          <option value="pt-BR">Portuguese (Brazil)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-label">Robots</div>
+    <div class="preset-row" id="robotsRow"></div>
+    <div class="small-note">Need advanced directives like max-snippet, noarchive, or per-bot targeting? Use the <a href="/tools/meta-robots-tag-generator">full Meta Robots Tag Generator →</a></div>
+
+    <div class="section-label">Open Graph (Facebook, LinkedIn, Pinterest)</div>
+
+    <div class="check-item">
+      <input type="checkbox" id="ogTitleSame" checked onchange="update()">
+      <label for="ogTitleSame">og:title same as page title</label>
+    </div>
+    <div class="field hidden" id="ogTitleField">
+      <input type="text" id="fldOgTitle" oninput="update()" placeholder="Custom Open Graph title" />
+    </div>
+
+    <div class="check-item">
+      <input type="checkbox" id="ogDescSame" checked onchange="update()">
+      <label for="ogDescSame">og:description same as meta description</label>
+    </div>
+    <div class="field hidden" id="ogDescField">
+      <textarea id="fldOgDesc" oninput="update()" placeholder="Custom Open Graph description"></textarea>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldOgImage">og:image URL</label>
+        <input type="text" id="fldOgImage" oninput="update()" placeholder="https://example.com/image.jpg" />
+        <div class="small-note">Recommended: 1200×630px (1.91:1 ratio)</div>
+      </div>
+      <div class="field">
+        <label for="fldOgType">og:type</label>
+        <select id="fldOgType" onchange="update()">
+          <option value="website">website</option>
+          <option value="article">article</option>
+          <option value="product">product</option>
+          <option value="profile">profile</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldSiteName">og:site_name</label>
+        <input type="text" id="fldSiteName" oninput="update()" placeholder="e.g. SEOTriggers" />
+      </div>
+      <div class="field">
+        <label for="fldLocale">og:locale</label>
+        <select id="fldLocale" onchange="update()">
+          <option value="en_US">en_US</option>
+          <option value="en_GB">en_GB</option>
+          <option value="hi_IN">hi_IN</option>
+          <option value="es_ES">es_ES</option>
+          <option value="fr_FR">fr_FR</option>
+          <option value="de_DE">de_DE</option>
+          <option value="pt_BR">pt_BR</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="section-label">Twitter / X Card</div>
+    <div class="toggle-pair" style="margin-bottom:14px;">
+      <button id="btnCardSummary" onclick="setCardType('summary')">Summary</button>
+      <button id="btnCardLarge" class="active" onclick="setCardType('summary_large_image')">Summary Large Image</button>
+    </div>
+    <div class="field-row">
+      <div class="field">
+        <label for="fldTwSite">twitter:site (your handle)</label>
+        <input type="text" id="fldTwSite" oninput="update()" placeholder="@yourbrand" />
+      </div>
+      <div class="field">
+        <label for="fldTwCreator">twitter:creator (author handle)</label>
+        <input type="text" id="fldTwCreator" oninput="update()" placeholder="@author" />
+      </div>
+    </div>
+    <div class="small-note">Twitter title, description and image reuse your Open Graph values automatically.</div>
+
+    <!-- ══════════════ LIVE PREVIEW ══════════════ -->
+    <div class="preview-panel">
+      <div class="section-label">Live preview</div>
+      <div class="prev-tabs">
+        <button class="prev-tab active" data-p="google" onclick="setPrevTab('google')">🔍 Google</button>
+        <button class="prev-tab" data-p="facebook" onclick="setPrevTab('facebook')">📘 Facebook</button>
+        <button class="prev-tab" data-p="twitter" onclick="setPrevTab('twitter')">✖️ Twitter / X</button>
+        <button class="prev-tab" data-p="linkedin" onclick="setPrevTab('linkedin')">💼 LinkedIn</button>
+      </div>
+      <div class="prev-box" id="prevBox"></div>
+    </div>
+
+    <!-- ══════════════ OUTPUT TABS ══════════════ -->
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="html" onclick="setOutTab('html')">📄 HTML Meta Tags</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-html" class="out-panel">
+      <div class="format-toggle">
+        <button class="active" data-fmt="pretty" onclick="setFormat('pretty',this)">Prettified</button>
+        <button data-fmt="min" onclick="setFormat('min',this)">Minified</button>
+      </div>
+      <div class="output-head"><h4>&lt;head&gt; meta tags</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="copyOutput('download')">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput('copy')">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="htmlOut"></pre>
+    </div>
+
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (functions.php)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (theme.liquid)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router metadata)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://developers.facebook.com/tools/debug/" target="_blank" rel="noopener">Facebook Sharing Debugger →</a>
+      <a href="https://cards-dev.twitter.com/validator" target="_blank" rel="noopener">Twitter/X Card Validator →</a>
+      <a href="https://www.linkedin.com/post-inspector/" target="_blank" rel="noopener">LinkedIn Post Inspector →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>What each tag actually does</h2>
+    <p class="sub">Different tags control different surfaces. Shipping the wrong one in the wrong place is the most common meta tag mistake.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Tag</th><th>Controls</th><th>Shows up on</th></tr></thead>
+        <tbody>
+          <tr><td><strong>&lt;title&gt;</strong></td><td>Primary on-page SEO signal and browser tab text</td><td>Google search results, browser tabs, external links</td></tr>
+          <tr><td><strong>meta description</strong></td><td>Search snippet copy (doesn't affect ranking directly)</td><td>Google, Bing search results</td></tr>
+          <tr><td><strong>meta robots</strong></td><td>Whether the page is indexed &amp; whether links are followed</td><td>All search crawlers</td></tr>
+          <tr><td><strong>Open Graph (og:*)</strong></td><td>Title, description &amp; image shown when a link is shared</td><td>Facebook, LinkedIn, Pinterest, Slack, WhatsApp</td></tr>
+          <tr><td><strong>Twitter Card (twitter:*)</strong></td><td>Same purpose as Open Graph, X-specific format</td><td>X (Twitter)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Note: the old <code>&lt;meta name="keywords"&gt;</code> tag is intentionally left out — Google has ignored it since 2009 and it adds no SEO value. Need robots.txt too? <a href="/tools/robots-txt-tester">Test it here →</a></p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most meta tag generators either skip social previews or skip framework-ready code. This one does both.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>metatags.io</th><th>SEOptimer</th></tr></thead>
+        <tbody>
+          <tr><td>Title / description / canonical / robots in one tool</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Open Graph + Twitter Card together</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Live Google, Facebook, X &amp; LinkedIn preview</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Pixel-based title/description truncation warnings</td><td class="yes">✓</td><td class="no">Char count only</td><td class="no">✗</td></tr>
+          <tr><td>Ready WordPress / Shopify / Next.js code</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Skips the obsolete meta keywords tag</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Still generates it</td></tr>
+          <tr><td>100% free, no signup</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🔍</div><h3>Pixel-accurate truncation</h3><p>Title and description warnings are based on estimated rendered pixel width, not just a character count — so what you see is much closer to what Google actually shows.</p></div>
+      <div class="feat-card"><div class="ic">🖼️</div><h3>Four live previews</h3><p>See exactly how your link will look on Google, Facebook, X/Twitter and LinkedIn before you publish — switch tabs instantly as you type.</p></div>
+      <div class="feat-card"><div class="ic">🧩</div><h3>Framework-ready code</h3><p>One click for a WordPress functions.php snippet, a Shopify theme.liquid block, or a Next.js App Router metadata object — not just raw HTML.</p></div>
+      <div class="feat-card"><div class="ic">🚫</div><h3>No obsolete keyword tag</h3><p>We don't generate the meta keywords tag by default because Google has ignored it since 2009 — one less thing cluttering your &lt;head&gt;.</p></div>
+      <div class="feat-card"><div class="ic">🔗</div><h3>Smart defaults</h3><p>Open Graph and Twitter fields default to your title and description automatically, and only need overriding when you actually want something different.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I still need the meta keywords tag? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Google confirmed in 2009 that it does not use the meta keywords tag for ranking, and Bing gives it effectively no weight either. This tool deliberately leaves it out by default so you don't ship a tag that does nothing and can even look spammy to reviewers.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between meta description and og:description? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Meta description is what Google may show under your title in search results. og:description is what Facebook, LinkedIn and other platforms show when your link is shared. They can be identical, but writing them separately lets you optimize one for search intent and the other for social click-through.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What size should my Open Graph image be? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Facebook and LinkedIn recommend 1200×630px (a 1.91:1 ratio) so the image fills the card without cropping oddly. The minimum accepted size is around 200×200px, but anything smaller than 600×315px may display small or get skipped on some platforms.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between summary and summary_large_image Twitter Cards? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>summary shows a small square thumbnail next to the text, similar to a Facebook link preview. summary_large_image shows a full-width image above the text, which typically gets more attention and higher click-through in the X/Twitter feed.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why isn't my new preview showing up on Facebook or LinkedIn? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Facebook, LinkedIn and X cache the Open Graph data for a URL the first time it's shared. If you update your meta tags afterward, you need to force a re-scrape using Facebook's Sharing Debugger, LinkedIn's Post Inspector, or X's Card Validator before the new preview appears.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do meta tags affect Google rankings? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>The title tag is a meaningful on-page ranking factor. The meta description doesn't directly affect rankings but strongly influences click-through rate from the search results, which is itself a quality signal. Open Graph and Twitter Card tags have no effect on Google rankings — they only control how links look when shared on social platforms.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   PIXEL WIDTH ESTIMATION (approximate Arial metrics)
+═══════════════════════════════════════════════════════════════════════ */
+var PX = {
+  ' ':2.7,'!':2.9,'"':3.9,'#':5.8,'$':5.8,'%':9.1,'&':8.2,"'":2.1,'(':3.5,')':3.5,'*':4.5,'+':6.4,',':2.7,'-':3.3,'.':2.7,'/':3.1,
+  '0':5.8,'1':5.8,'2':5.8,'3':5.8,'4':5.8,'5':5.8,'6':5.8,'7':5.8,'8':5.8,'9':5.8,
+  ':':2.9,';':2.9,'<':6.4,'=':6.4,'>':6.4,'?':4.7,'@':10.5,
+  'a':5.8,'b':5.9,'c':5.2,'d':5.9,'e':5.8,'f':3.2,'g':5.9,'h':5.9,'i':2.4,'j':2.4,'k':5.4,'l':2.4,'m':9.1,'n':5.9,'o':5.8,'p':5.9,'q':5.9,'r':3.7,'s':5,'t':3.2,'u':5.9,'v':5.2,'w':7.7,'x':5.2,'y':5.2,'z':5,
+  'A':7.2,'B':6.9,'C':7.5,'D':7.9,'E':6.4,'F':5.9,'G':8,'H':7.7,'I':2.9,'J':2.9,'K':6.7,'L':5.6,'M':9,'N':7.7,'O':8.1,'P':6.7,'Q':8.1,'R':7.3,'S':6.4,'T':5.9,'U':7.4,'V':7.2,'W':10.3,'X':6.7,'Y':6.4,'Z':6.4
+};
+function pixelWidth(str, scale){
+  var w = 0;
+  for (var i=0;i<str.length;i++){
+    var ch = str[i];
+    w += (PX[ch] !== undefined ? PX[ch] : (PX[ch.toLowerCase()] !== undefined ? PX[ch.toLowerCase()] : 6));
+  }
+  return w * scale;
+}
+var TITLE_SCALE = 20/13, DESC_SCALE = 14/13;
+var TITLE_MAX_PX = 600, DESC_MAX_PX = 920;
+
+function verdictFromRatio(ratio){
+  if (ratio <= 0.85) return {cls:"green", label:"Good"};
+  if (ratio <= 1.0) return {cls:"amber", label:"Near limit"};
+  return {cls:"red", label:"Will truncate"};
+}
+
+function truncateToPixels(str, maxPx, scale){
+  if (pixelWidth(str, scale) <= maxPx) return str;
+  var out = "";
+  for (var i=0;i<str.length;i++){
+    var next = out + str[i];
+    if (pixelWidth(next, scale) > maxPx - pixelWidth("…", scale)) return out.replace(/\s+$/,"") + "…";
+    out = next;
+  }
+  return out;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════════════ */
+var state = {
+  title:"", description:"", canonical:"", lang:"en",
+  robots:"index-follow",
+  ogTitleSame:true, ogTitle:"", ogDescSame:true, ogDesc:"",
+  ogImage:"", ogType:"website", siteName:"", locale:"en_US",
+  cardType:"summary_large_image", twSite:"", twCreator:""
+};
+
+var ROBOTS_PRESETS = [
+  { key:"index-follow", label:"Index, Follow (default)", content:"index, follow" },
+  { key:"noindex-follow", label:"Noindex, Follow", content:"noindex, follow" },
+  { key:"index-nofollow", label:"Index, Nofollow", content:"index, nofollow" },
+  { key:"noindex-nofollow", label:"Noindex, Nofollow", content:"noindex, nofollow" }
+];
+
+function renderRobotsRow(){
+  var row = document.getElementById("robotsRow");
+  row.innerHTML = ROBOTS_PRESETS.map(function(p){
+    return '<button class="preset-btn' + (state.robots===p.key?' active':'') + '" onclick="setRobots(\'' + p.key + '\')">' + p.label + '</button>';
+  }).join("");
+}
+function setRobots(key){ state.robots = key; renderRobotsRow(); update(); }
+function robotsContent(){
+  var p = ROBOTS_PRESETS.filter(function(x){return x.key===state.robots;})[0];
+  return p ? p.content : "index, follow";
+}
+
+function setCardType(t){
+  state.cardType = t;
+  document.getElementById("btnCardSummary").classList.toggle("active", t==="summary");
+  document.getElementById("btnCardLarge").classList.toggle("active", t==="summary_large_image");
+  update();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   READ FIELDS
+═══════════════════════════════════════════════════════════════════════ */
+function readState(){
+  state.title = document.getElementById("fldTitle").value;
+  state.description = document.getElementById("fldDesc").value;
+  state.canonical = document.getElementById("fldCanonical").value.trim();
+  state.lang = document.getElementById("fldLang").value;
+
+  state.ogTitleSame = document.getElementById("ogTitleSame").checked;
+  state.ogTitle = document.getElementById("fldOgTitle").value;
+  document.getElementById("ogTitleField").classList.toggle("hidden", state.ogTitleSame);
+
+  state.ogDescSame = document.getElementById("ogDescSame").checked;
+  state.ogDesc = document.getElementById("fldOgDesc").value;
+  document.getElementById("ogDescField").classList.toggle("hidden", state.ogDescSame);
+
+  state.ogImage = document.getElementById("fldOgImage").value.trim();
+  state.ogType = document.getElementById("fldOgType").value;
+  state.siteName = document.getElementById("fldSiteName").value;
+  state.locale = document.getElementById("fldLocale").value;
+
+  state.twSite = document.getElementById("fldTwSite").value.trim();
+  state.twCreator = document.getElementById("fldTwCreator").value.trim();
+}
+
+function effectiveOgTitle(){ return state.ogTitleSame ? state.title : (state.ogTitle || state.title); }
+function effectiveOgDesc(){ return state.ogDescSame ? state.description : (state.ogDesc || state.description); }
+
+function domainFromUrl(url){
+  try {
+    var u = new URL(url);
+    return u.hostname.replace(/^www\./,"");
+  } catch(e){ return ""; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COUNTERS
+═══════════════════════════════════════════════════════════════════════ */
+function updateCounters(){
+  var tPx = pixelWidth(state.title, TITLE_SCALE);
+  var tRatio = tPx / TITLE_MAX_PX;
+  var tV = verdictFromRatio(tRatio);
+  document.getElementById("titleCount").textContent = state.title.length + " chars";
+  document.getElementById("titleBar").style.width = Math.min(100, tRatio*100) + "%";
+  document.getElementById("titleBar").className = "bar-fill bg-" + tV.cls;
+  var tvEl = document.getElementById("titleVerdict");
+  tvEl.textContent = tV.label; tvEl.className = "c-" + tV.cls;
+
+  var dPx = pixelWidth(state.description, DESC_SCALE);
+  var dRatio = dPx / DESC_MAX_PX;
+  var dV = verdictFromRatio(dRatio);
+  document.getElementById("descCount").textContent = state.description.length + " chars";
+  document.getElementById("descBar").style.width = Math.min(100, dRatio*100) + "%";
+  document.getElementById("descBar").className = "bar-fill bg-" + dV.cls;
+  var dvEl = document.getElementById("descVerdict");
+  dvEl.textContent = dV.label; dvEl.className = "c-" + dV.cls;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUILD META TAG LINES
+═══════════════════════════════════════════════════════════════════════ */
+function escapeAttr(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function buildLines(){
+  var lines = [];
+  var title = state.title || "Untitled page";
+  var desc = state.description || "";
+  var ogTitle = effectiveOgTitle() || title;
+  var ogDesc = effectiveOgDesc() || desc;
+
+  lines.push('<title>' + escapeAttr(title) + '</title>');
+  if (desc) lines.push('<meta name="description" content="' + escapeAttr(desc) + '" />');
+  lines.push('<meta name="robots" content="' + robotsContent() + '" />');
+  if (state.canonical) lines.push('<link rel="canonical" href="' + escapeAttr(state.canonical) + '" />');
+  lines.push('<meta http-equiv="Content-Language" content="' + state.lang + '" />');
+
+  lines.push('');
+  lines.push('<meta property="og:type" content="' + state.ogType + '" />');
+  lines.push('<meta property="og:title" content="' + escapeAttr(ogTitle) + '" />');
+  if (ogDesc) lines.push('<meta property="og:description" content="' + escapeAttr(ogDesc) + '" />');
+  if (state.canonical) lines.push('<meta property="og:url" content="' + escapeAttr(state.canonical) + '" />');
+  if (state.ogImage) lines.push('<meta property="og:image" content="' + escapeAttr(state.ogImage) + '" />');
+  if (state.siteName) lines.push('<meta property="og:site_name" content="' + escapeAttr(state.siteName) + '" />');
+  lines.push('<meta property="og:locale" content="' + state.locale + '" />');
+
+  lines.push('');
+  lines.push('<meta name="twitter:card" content="' + state.cardType + '" />');
+  if (state.twSite) lines.push('<meta name="twitter:site" content="' + escapeAttr(state.twSite) + '" />');
+  if (state.twCreator) lines.push('<meta name="twitter:creator" content="' + escapeAttr(state.twCreator) + '" />');
+  lines.push('<meta name="twitter:title" content="' + escapeAttr(ogTitle) + '" />');
+  if (ogDesc) lines.push('<meta name="twitter:description" content="' + escapeAttr(ogDesc) + '" />');
+  if (state.ogImage) lines.push('<meta name="twitter:image" content="' + escapeAttr(state.ogImage) + '" />');
+
+  return lines.filter(function(l, i){ return !(l === '' && lines[i-1] === ''); });
+}
+
+var currentFormat = "pretty";
+function renderHtmlOutput(){
+  var lines = buildLines();
+  var text = currentFormat === "pretty" ? lines.join("\n") : lines.filter(function(l){return l!=="";}).join(" ");
+  document.getElementById("htmlOut").textContent = text;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CMS SNIPPETS
+═══════════════════════════════════════════════════════════════════════ */
+function buildWordPress(){
+  var lines = buildLines().filter(function(l){return l!=="";});
+  var echoLines = lines.map(function(l){ return "    echo '" + l.replace(/'/g,"\\'") + "' . \"\\n\";"; }).join("\n");
+  return "function seotriggers_custom_meta_tags() {\n" + echoLines + "\n}\nadd_action( 'wp_head', 'seotriggers_custom_meta_tags', 1 );";
+}
+
+function buildShopify(){
+  var title = escapeAttr(state.title || "Untitled page");
+  var desc = escapeAttr(state.description || "");
+  var ogTitle = escapeAttr(effectiveOgTitle() || state.title);
+  var ogDesc = escapeAttr(effectiveOgDesc() || state.description);
+  var lines = [];
+  lines.push('<title>' + title + '</title>');
+  if (desc) lines.push('<meta name="description" content="' + desc + '">');
+  lines.push('<meta name="robots" content="' + robotsContent() + '">');
+  lines.push('<link rel="canonical" href="{{ canonical_url }}">');
+  lines.push('');
+  lines.push('<meta property="og:type" content="' + state.ogType + '">');
+  lines.push('<meta property="og:title" content="' + ogTitle + '">');
+  if (ogDesc) lines.push('<meta property="og:description" content="' + ogDesc + '">');
+  lines.push('<meta property="og:url" content="{{ canonical_url }}">');
+  if (state.ogImage) lines.push('<meta property="og:image" content="' + escapeAttr(state.ogImage) + '">');
+  if (state.siteName) lines.push('<meta property="og:site_name" content="' + escapeAttr(state.siteName) + '">');
+  lines.push('');
+  lines.push('<meta name="twitter:card" content="' + state.cardType + '">');
+  lines.push('<meta name="twitter:title" content="' + ogTitle + '">');
+  if (ogDesc) lines.push('<meta name="twitter:description" content="' + ogDesc + '">');
+  if (state.ogImage) lines.push('<meta name="twitter:image" content="' + escapeAttr(state.ogImage) + '">');
+  return "{% comment %} Paste inside <head> in theme.liquid {% endcomment %}\n" + lines.join("\n");
+}
+
+function jsStr(v){ return "'" + String(v||"").replace(/\\/g,"\\\\").replace(/'/g,"\\'") + "'"; }
+
+function buildNextJS(){
+  var ogTitle = effectiveOgTitle() || state.title;
+  var ogDesc = effectiveOgDesc() || state.description;
+  var out = [];
+  out.push("export const metadata = {");
+  out.push("  title: " + jsStr(state.title || "Untitled page") + ",");
+  out.push("  description: " + jsStr(state.description) + ",");
+  if (state.canonical) out.push("  alternates: { canonical: " + jsStr(state.canonical) + " },");
+  out.push("  robots: " + jsStr(robotsContent()) + ",");
+  out.push("  openGraph: {");
+  out.push("    title: " + jsStr(ogTitle) + ",");
+  out.push("    description: " + jsStr(ogDesc) + ",");
+  out.push("    type: " + jsStr(state.ogType) + ",");
+  if (state.canonical) out.push("    url: " + jsStr(state.canonical) + ",");
+  if (state.siteName) out.push("    siteName: " + jsStr(state.siteName) + ",");
+  out.push("    locale: " + jsStr(state.locale) + ",");
+  if (state.ogImage) out.push("    images: [{ url: " + jsStr(state.ogImage) + " }],");
+  out.push("  },");
+  out.push("  twitter: {");
+  out.push("    card: " + jsStr(state.cardType) + ",");
+  if (state.twSite) out.push("    site: " + jsStr(state.twSite) + ",");
+  if (state.twCreator) out.push("    creator: " + jsStr(state.twCreator) + ",");
+  out.push("    title: " + jsStr(ogTitle) + ",");
+  out.push("    description: " + jsStr(ogDesc) + ",");
+  if (state.ogImage) out.push("    images: [" + jsStr(state.ogImage) + "],");
+  out.push("  },");
+  out.push("};");
+  return out.join("\n");
+}
+
+function renderCms(){
+  document.getElementById("wpOut").textContent = buildWordPress();
+  document.getElementById("shopifyOut").textContent = buildShopify();
+  document.getElementById("nextjsOut").textContent = buildNextJS();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PREVIEWS
+═══════════════════════════════════════════════════════════════════════ */
+var currentPrevTab = "google";
+
+function imgBox(){
+  if (state.ogImage) return '<img src="' + escapeAttr(state.ogImage) + '" onerror="this.parentElement.textContent=\'Image preview unavailable\'" alt="" />';
+  return 'Recommended 1200×630 image';
+}
+
+function renderPreview(){
+  var box = document.getElementById("prevBox");
+  var title = state.title || "Your page title will appear here";
+  var desc = state.description || "Your meta description will appear here.";
+  var domain = domainFromUrl(state.canonical) || "example.com";
+  var ogTitle = effectiveOgTitle() || title;
+  var ogDesc = effectiveOgDesc() || desc;
+
+  if (currentPrevTab === "google"){
+    var gTitle = truncateToPixels(title, TITLE_MAX_PX, TITLE_SCALE);
+    var gDesc = truncateToPixels(desc, DESC_MAX_PX, DESC_SCALE);
+    box.innerHTML =
+      '<div class="g-url-row"><span class="g-fav">🌐</span>' + (state.canonical || domain) + '</div>' +
+      '<div class="g-title">' + escapeAttr(gTitle) + '</div>' +
+      '<div class="g-desc">' + escapeAttr(gDesc) + '</div>';
+  } else if (currentPrevTab === "facebook"){
+    var cls = state.cardType === "summary" ? " summary" : "";
+    box.innerHTML =
+      '<div class="social-card' + cls + '">' +
+        '<div class="social-img">' + imgBox() + '</div>' +
+        '<div class="social-body">' +
+          '<div class="social-domain">' + domain.toUpperCase() + '</div>' +
+          '<div class="social-title">' + escapeAttr(ogTitle) + '</div>' +
+          '<div class="social-desc">' + escapeAttr(ogDesc) + '</div>' +
+        '</div>' +
+      '</div>';
+  } else if (currentPrevTab === "twitter"){
+    var twCls = state.cardType === "summary" ? " summary" : "";
+    box.innerHTML =
+      '<div class="tw-card' + twCls + '">' +
+        '<div class="social-img">' + imgBox() + '</div>' +
+        '<div class="tw-body">' +
+          '<div class="tw-title">' + escapeAttr(ogTitle) + '</div>' +
+          '<div class="tw-desc">' + escapeAttr(ogDesc) + '</div>' +
+          '<div class="tw-domain">🔗 ' + domain + '</div>' +
+        '</div>' +
+      '</div>';
+  } else if (currentPrevTab === "linkedin"){
+    box.innerHTML =
+      '<div class="social-card">' +
+        '<div class="social-img">' + imgBox() + '</div>' +
+        '<div class="social-body">' +
+          '<div class="social-title">' + escapeAttr(ogTitle) + '</div>' +
+          '<div class="social-domain" style="margin-top:4px;">' + domain + '</div>' +
+        '</div>' +
+      '</div>';
+  }
+}
+
+function setPrevTab(tab){
+  currentPrevTab = tab;
+  document.querySelectorAll(".prev-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.p === tab); });
+  renderPreview();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAB / FORMAT SWITCHING
+═══════════════════════════════════════════════════════════════════════ */
+function setOutTab(tab){
+  document.querySelectorAll(".out-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === tab); });
+  document.querySelectorAll(".out-panel").forEach(function(p){ p.classList.add("hidden"); });
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+function setFormat(fmt, btn){
+  currentFormat = fmt;
+  var container = btn.parentElement;
+  container.querySelectorAll("button").forEach(function(b){ b.classList.toggle("active", b === btn); });
+  renderHtmlOutput();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text;
+  ta.style.position = "fixed";
+  ta.style.opacity = "0";
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+
+function copyOutput(mode){
+  var text = document.getElementById("htmlOut").textContent;
+  if (mode === "download"){
+    var blob = new Blob([text], {type:"text/html"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "meta-tags.html";
+    a.click();
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else {
+    fallbackCopy(text);
+  }
+}
+
+function copyCms(which){
+  var id = which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut";
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  var done = function(){
+    var btn = el.previousElementSibling.querySelector(".copy-btn");
+    if (btn){
+      var original = btn.textContent;
+      btn.textContent = "Copied!";
+      btn.classList.add("copied");
+      setTimeout(function(){ btn.textContent = original; btn.classList.remove("copied"); }, 1500);
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text, done); });
+  } else {
+    fallbackCopy(text, done);
+  }
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  readState();
+  updateCounters();
+  renderHtmlOutput();
+  renderCms();
+  renderPreview();
+}
+
+renderRobotsRow();
+update();
+</script>
+</body>
+</html>
