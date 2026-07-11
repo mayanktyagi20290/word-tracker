@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>SERP Preview Tool — Free Google Search Snippet Simulator | SEOTriggers</title>
+<meta name="description" content="Free SERP preview tool with pixel-accurate desktop &amp; mobile simulation, live keyword bolding, star ratings, AI Overview &amp; People Also Ask mockups, a built-in SEO checklist, and one-click fetch from any live URL. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/serp-preview-tool" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="SERP Preview Tool — Free Google Search Snippet Simulator | SEOTriggers" />
+<meta property="og:description" content="Pixel-accurate Google SERP simulator: desktop &amp; mobile preview, keyword bolding, star ratings, AI Overview &amp; PAA mockups, built-in SEO checklist, and fetch-from-URL. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/serp-preview-tool" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="SERP Preview Tool — Free Google Search Snippet Simulator | SEOTriggers" />
+<meta name="twitter:description" content="Pixel-accurate Google SERP simulator with desktop/mobile preview, keyword bolding, rich result mockups, and a built-in SEO checklist. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "SERP Preview Tool",
+  "url": "https://seotriggers.com/tools/serp-preview-tool",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online SERP preview tool with pixel-accurate desktop and mobile simulation, keyword bolding, rich result mockups (star ratings, date prefix, AI Overview, People Also Ask), a built-in SEO checklist, and one-click fetch from a live URL."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "SERP Preview Tool", "item": "https://seotriggers.com/tools/serp-preview-tool" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does this SERP preview show exactly what Google will display?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's a close simulation, not a guarantee. Google truncates titles and descriptions based on rendered pixel width (not a fixed character count), and this tool estimates that width using standard font metrics. Google can also rewrite your title or description entirely if it thinks something else better matches the search query." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why is the mobile preview different from desktop?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Mobile search results render in a narrower column, so less pixel width is available before Google truncates your title or description with an ellipsis. This tool uses separate, tighter width limits for the mobile preview so you can check both before publishing." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why doesn't my keyword get bolded in the real Google results the same way it shows here?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google bolds terms in a snippet based on the searcher's actual query, which varies by search. This preview bolds the keyword you enter as a best-effort simulation of how a matching query would likely appear, not a live query result." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I preview star ratings and other rich results?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, this tool includes a mockup toggle for star ratings, a date prefix, an AI Overview placeholder, and a People Also Ask box, so you can see how your snippet might sit alongside these SERP features. Actually earning a star rating snippet in real search results requires valid Review or AggregateRating schema markup on the page." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the meta description affect Google rankings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not directly. Google doesn't use the meta description as a ranking signal, but a well-written one strongly influences click-through rate from the search results, and click-through rate is correlated with better performance over time. The title tag, by contrast, is a genuine on-page ranking factor." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does Google sometimes rewrite my title or description?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google dynamically rewrites snippets when it believes your written title or description doesn't match the searcher's query well enough, is too generic, is missing, or is truncated awkwardly. Writing a clear, specific title and description that reflects the page's actual content reduces how often this happens." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=url], .field input[type=date], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:70px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row{grid-template-columns:1fr;}}
+.field-with-btn{display:flex;gap:8px;align-items:flex-start;}
+.field-with-btn .field{flex:1;margin-bottom:0;}
+
+.counter{display:flex;justify-content:space-between;align-items:center;margin-top:5px;font-size:11.5px;}
+.counter .bar{flex:1;height:5px;background:var(--border);border-radius:99px;margin:0 10px;overflow:hidden;}
+.counter .bar-fill{height:100%;border-radius:99px;transition:width .15s ease;}
+.counter .num{white-space:nowrap;font-weight:600;}
+.c-green{color:var(--green);} .c-amber{color:var(--amber);} .c-red{color:var(--red);}
+.bg-green{background:var(--green);} .bg-amber{background:var(--amber);} .bg-red{background:var(--red);}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn:disabled{opacity:.6;cursor:default;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.check-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px 20px;}
+.check-item{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:4px;}
+.check-item label{cursor:pointer;font-weight:500;}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;flex-shrink:0;}
+.sub-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin:6px 0 4px 24px;}
+.sub-row select, .sub-row input{padding:6px 10px;border:1px solid var(--border);border-radius:7px;font-size:12.5px;font-family:inherit;}
+
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+/* Issues panel */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-tag.ok{background:var(--green-bg);color:var(--green);}
+
+/* ── Preview panel ── */
+.preview-panel{margin-top:26px;}
+.prev-controls{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;margin-bottom:14px;}
+.prev-box{border:1px solid var(--border);border-radius:12px;padding:20px;background:#fff;}
+.prev-box.mobile-frame{max-width:380px;margin:0 auto;}
+
+.ai-block{background:linear-gradient(135deg,#f0f4ff,#eef2ff);border:1px solid #e0e7ff;border-radius:10px;padding:12px 14px;margin-bottom:16px;font-size:12.5px;color:#4338ca;}
+.ai-block .ai-label{font-weight:700;font-size:11px;text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;display:flex;align-items:center;gap:6px;}
+.ai-block .ai-line{height:8px;background:#c7d2fe;border-radius:4px;margin:6px 0;}
+.ai-block .ai-line.short{width:70%;}
+
+.g-fav{width:22px;height:22px;border-radius:50%;background:#e5e7eb;display:inline-flex;align-items:center;justify-content:center;font-size:11px;color:var(--sub);margin-right:8px;flex-shrink:0;overflow:hidden;}
+.g-fav img{width:100%;height:100%;object-fit:cover;}
+.g-site-row{display:flex;align-items:center;font-size:14px;color:#202124;}
+.g-site-name{font-weight:400;}
+.g-url-path{color:#4d5156;font-size:12.5px;}
+.g-title{color:#1a0dab;font-size:20px;line-height:1.3;margin:4px 0 4px;font-family:arial,sans-serif;cursor:pointer;}
+.g-title:hover{text-decoration:underline;}
+.g-stars{color:#fbbc04;font-size:13px;margin:2px 0;}
+.g-stars .cnt{color:var(--sub);margin-left:4px;}
+.g-date{color:#70757a;}
+.g-desc{color:#4d5156;font-size:14px;line-height:1.55;font-family:arial,sans-serif;}
+.g-desc b, .g-title b{font-weight:700;}
+.result-divider{border-top:1px dashed var(--border);margin:18px 0;}
+
+.paa-box{border:1px solid var(--border);border-radius:8px;margin-top:16px;overflow:hidden;}
+.paa-head{padding:10px 14px;font-size:13px;font-weight:700;color:var(--ink);background:var(--bg);border-bottom:1px solid var(--border);}
+.paa-item{padding:11px 14px;font-size:13.5px;color:#202124;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;}
+.paa-item:last-child{border-bottom:none;}
+.paa-item .plus{color:var(--sub);font-size:16px;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / SERP Preview Tool
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>SERP Preview Tool</h1>
+    <p>Pixel-accurate Google SERP simulator with desktop &amp; mobile preview, keyword bolding, rich result mockups, and a built-in SEO checklist — plus one-click fetch from any live URL.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Page details</div>
+
+    <div class="field-with-btn">
+      <div class="field">
+        <label for="fldUrl">Page URL</label>
+        <input type="text" id="fldUrl" oninput="update()" placeholder="https://example.com/page" />
+      </div>
+      <button class="btn secondary" style="margin-top:22px;" onclick="fetchLiveUrl()" id="btnFetch">⟳ Fetch from URL</button>
+    </div>
+    <div class="small-note" id="fetchStatus"></div>
+
+    <div class="field">
+      <label for="fldTitle">Page title</label>
+      <input type="text" id="fldTitle" oninput="update()" placeholder="e.g. SERP Preview Tool — Free Google Search Snippet Simulator" />
+      <div class="counter">
+        <span class="num" id="titleCount">0 chars</span>
+        <div class="bar"><div class="bar-fill" id="titleBar" style="width:0%"></div></div>
+        <span id="titleVerdict" class="c-green">Good</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldDesc">Meta description</label>
+      <textarea id="fldDesc" oninput="update()" placeholder="e.g. Preview your title and description exactly as Google will show them, on desktop and mobile, before you publish."></textarea>
+      <div class="counter">
+        <span class="num" id="descCount">0 chars</span>
+        <div class="bar"><div class="bar-fill" id="descBar" style="width:0%"></div></div>
+        <span id="descVerdict" class="c-green">Good</span>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldKeyword">Target keyword <span style="font-weight:400;color:var(--sub);">(optional — bolds matches in the preview)</span></label>
+      <input type="text" id="fldKeyword" oninput="update()" placeholder="e.g. serp preview tool" />
+    </div>
+
+    <div class="section-label">Display options</div>
+    <div class="toggle-pair" style="margin-bottom:14px;">
+      <button id="btnDesktop" class="active" onclick="setDevice('desktop')">🖥 Desktop</button>
+      <button id="btnMobile" onclick="setDevice('mobile')">📱 Mobile</button>
+    </div>
+
+    <div class="check-grid">
+      <div class="check-item"><input type="checkbox" id="chkStars" onchange="update()"><label for="chkStars">⭐ Star rating snippet</label></div>
+      <div class="check-item"><input type="checkbox" id="chkDate" onchange="update()"><label for="chkDate">📅 Date prefix</label></div>
+      <div class="check-item"><input type="checkbox" id="chkAi" onchange="update()"><label for="chkAi">🤖 AI Overview placeholder</label></div>
+      <div class="check-item"><input type="checkbox" id="chkPaa" onchange="update()"><label for="chkPaa">❓ People Also Ask box</label></div>
+    </div>
+    <div class="sub-row hidden" id="starsRow">
+      Rating: <select id="fldStarValue" onchange="update()">
+        <option>5.0</option><option selected>4.5</option><option>4.0</option><option>3.5</option><option>3.0</option>
+      </select>
+      Reviews: <input type="text" id="fldStarCount" oninput="update()" value="128" style="width:70px;">
+    </div>
+    <div class="sub-row hidden" id="dateRow">
+      <input type="date" id="fldDateValue" oninput="update()">
+    </div>
+
+    <!-- ══════════════ LIVE PREVIEW ══════════════ -->
+    <div class="preview-panel">
+      <div class="prev-controls">
+        <div class="section-label" style="margin:0;">Live preview</div>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="copyTags()">Copy title + description</button>
+          <button class="copy-btn" onclick="saveAsImage()">⬇ Save as PNG</button>
+        </div>
+      </div>
+      <div class="prev-box" id="prevBox"></div>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel">
+      <div class="issues-head">SEO checklist</div>
+      <div id="issuesList"></div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>Why your snippet doesn't always match what you wrote</h2>
+    <p class="sub">Google assembles the visible snippet dynamically — this preview shows your intended version, which is the best starting point for optimizing it.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Factor</th><th>What it means for your snippet</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Pixel width, not character count</strong></td><td>Google truncates based on rendered pixel width. Wide characters like "W" or "M" eat the limit faster than "i" or "l" — this tool estimates that width rather than just counting letters.</td></tr>
+          <tr><td><strong>Desktop vs. mobile</strong></td><td>Mobile results render in a narrower column, so the same title can truncate on mobile even if it fits fine on desktop.</td></tr>
+          <tr><td><strong>Query-based bolding</strong></td><td>Google bolds terms that match what the searcher actually typed — it varies per search, so this preview is a representative simulation, not a guarantee.</td></tr>
+          <tr><td><strong>Dynamic rewriting</strong></td><td>If your title or description is missing, vague, or doesn't match search intent well, Google may substitute its own text pulled from the page or other sources.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Also want your Open Graph and Twitter Card previews sorted? Use the <a href="/tools/meta-tag-generator">Meta Tag Generator →</a></p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most SERP simulators cover the basics well but lock extras behind an account, or skip fetch-from-URL and an actionable checklist entirely.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Mangools</th><th>SEO Review Tools</th></tr></thead>
+        <tbody>
+          <tr><td>Desktop + mobile pixel-width preview</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Full feature set with no account required</td><td class="yes">✓</td><td class="partial">Free tier limited</td><td class="partial">Push to sign up</td></tr>
+          <tr><td>One-click fetch from a live URL</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Actionable SEO checklist (not just a preview)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Star rating / date / AI Overview / PAA mockups</td><td class="yes">✓</td><td class="partial">Some, no PAA</td><td class="yes">✓</td></tr>
+          <tr><td>Cross-linked meta tag &amp; schema generators</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">📏</div><h3>Pixel-accurate, not character count</h3><p>Title and description limits are estimated from rendered pixel width, so warnings closely match what Google actually truncates.</p></div>
+      <div class="feat-card"><div class="ic">📱</div><h3>Desktop &amp; mobile side by side</h3><p>Switch instantly between desktop and mobile width limits — mobile truncates sooner, and this catches it before you publish.</p></div>
+      <div class="feat-card"><div class="ic">🔗</div><h3>Fetch from a live URL</h3><p>Paste any published page's URL and pull its current title, description, and canonical straight into the preview.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in SEO checklist</h3><p>Beyond just showing a preview, this tool flags missing tags, weak lengths, duplicate title/description, and keyword gaps automatically.</p></div>
+      <div class="feat-card"><div class="ic">✨</div><h3>Rich result mockups</h3><p>Toggle star ratings, a date prefix, an AI Overview placeholder, and a People Also Ask box to see how your snippet sits in a realistic SERP.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does this SERP preview show exactly what Google will display? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It's a close simulation, not a guarantee. Google truncates titles and descriptions based on rendered pixel width (not a fixed character count), and this tool estimates that width using standard font metrics. Google can also rewrite your title or description entirely if it thinks something else better matches the search query.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why is the mobile preview different from desktop? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Mobile search results render in a narrower column, so less pixel width is available before Google truncates your title or description with an ellipsis. This tool uses separate, tighter width limits for the mobile preview so you can check both before publishing.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why doesn't my keyword get bolded in the real Google results the same way it shows here? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google bolds terms in a snippet based on the searcher's actual query, which varies by search. This preview bolds the keyword you enter as a best-effort simulation of how a matching query would likely appear, not a live query result.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I preview star ratings and other rich results? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes, this tool includes a mockup toggle for star ratings, a date prefix, an AI Overview placeholder, and a People Also Ask box, so you can see how your snippet might sit alongside these SERP features. Actually earning a star rating snippet in real search results requires valid Review or AggregateRating schema markup on the page.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does the meta description affect Google rankings? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Not directly. Google doesn't use the meta description as a ranking signal, but a well-written one strongly influences click-through rate from the search results, and click-through rate is correlated with better performance over time. The title tag, by contrast, is a genuine on-page ranking factor.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why does Google sometimes rewrite my title or description? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google dynamically rewrites snippets when it believes your written title or description doesn't match the searcher's query well enough, is too generic, is missing, or is truncated awkwardly. Writing a clear, specific title and description that reflects the page's actual content reduces how often this happens.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   PIXEL WIDTH ESTIMATION (approximate Arial metrics)
+═══════════════════════════════════════════════════════════════════════ */
+var PX = {
+  ' ':2.7,'!':2.9,'"':3.9,'#':5.8,'$':5.8,'%':9.1,'&':8.2,"'":2.1,'(':3.5,')':3.5,'*':4.5,'+':6.4,',':2.7,'-':3.3,'.':2.7,'/':3.1,
+  '0':5.8,'1':5.8,'2':5.8,'3':5.8,'4':5.8,'5':5.8,'6':5.8,'7':5.8,'8':5.8,'9':5.8,
+  ':':2.9,';':2.9,'<':6.4,'=':6.4,'>':6.4,'?':4.7,'@':10.5,
+  'a':5.8,'b':5.9,'c':5.2,'d':5.9,'e':5.8,'f':3.2,'g':5.9,'h':5.9,'i':2.4,'j':2.4,'k':5.4,'l':2.4,'m':9.1,'n':5.9,'o':5.8,'p':5.9,'q':5.9,'r':3.7,'s':5,'t':3.2,'u':5.9,'v':5.2,'w':7.7,'x':5.2,'y':5.2,'z':5,
+  'A':7.2,'B':6.9,'C':7.5,'D':7.9,'E':6.4,'F':5.9,'G':8,'H':7.7,'I':2.9,'J':2.9,'K':6.7,'L':5.6,'M':9,'N':7.7,'O':8.1,'P':6.7,'Q':8.1,'R':7.3,'S':6.4,'T':5.9,'U':7.4,'V':7.2,'W':10.3,'X':6.7,'Y':6.4,'Z':6.4
+};
+function pixelWidth(str, scale){
+  var w = 0;
+  for (var i=0;i<str.length;i++){
+    var ch = str[i];
+    w += (PX[ch] !== undefined ? PX[ch] : (PX[ch.toLowerCase()] !== undefined ? PX[ch.toLowerCase()] : 6));
+  }
+  return w * scale;
+}
+var TITLE_SCALE = 20/13, DESC_SCALE = 14/13;
+var LIMITS = {
+  desktop: { title: 600, desc: 920 },
+  mobile:  { title: 450, desc: 680 }
+};
+
+function verdictFromRatio(ratio){
+  if (ratio <= 0.85) return {cls:"green", label:"Good"};
+  if (ratio <= 1.0) return {cls:"amber", label:"Near limit"};
+  return {cls:"red", label:"Will truncate"};
+}
+
+function truncateToPixels(str, maxPx, scale){
+  if (pixelWidth(str, scale) <= maxPx) return str;
+  var out = "";
+  for (var i=0;i<str.length;i++){
+    var next = out + str[i];
+    if (pixelWidth(next, scale) > maxPx - pixelWidth("…", scale)) return out.replace(/\s+$/,"") + "…";
+    out = next;
+  }
+  return out;
+}
+
+function escapeAttr(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function boldKeyword(text, keyword){
+  var safe = escapeAttr(text);
+  if (!keyword || !keyword.trim()) return safe;
+  var esc = keyword.trim().replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  var re = new RegExp('(' + esc + ')', 'gi');
+  return safe.replace(re, '<b>$1</b>');
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════════════ */
+var device = "desktop";
+
+function setDevice(d){
+  device = d;
+  document.getElementById("btnDesktop").classList.toggle("active", d==="desktop");
+  document.getElementById("btnMobile").classList.toggle("active", d==="mobile");
+  document.getElementById("prevBox").classList.toggle("mobile-frame", d==="mobile");
+  update();
+}
+
+function domainFromUrl(url){
+  try { var u = new URL(url); return u.hostname.replace(/^www\./,""); } catch(e){ return ""; }
+}
+function pathSegmentsFromUrl(url){
+  try {
+    var u = new URL(url);
+    var segs = u.pathname.split("/").filter(Boolean);
+    return segs;
+  } catch(e){ return []; }
+}
+function faviconUrl(url){
+  var domain = domainFromUrl(url);
+  if (!domain) return "";
+  return "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(domain) + "&sz=32";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COUNTERS
+═══════════════════════════════════════════════════════════════════════ */
+function updateCounters(title, desc){
+  var lim = LIMITS[device];
+  var tPx = pixelWidth(title, TITLE_SCALE);
+  var tRatio = tPx / lim.title;
+  var tV = verdictFromRatio(tRatio);
+  document.getElementById("titleCount").textContent = title.length + " chars";
+  document.getElementById("titleBar").style.width = Math.min(100, tRatio*100) + "%";
+  document.getElementById("titleBar").className = "bar-fill bg-" + tV.cls;
+  var tvEl = document.getElementById("titleVerdict");
+  tvEl.textContent = tV.label; tvEl.className = "c-" + tV.cls;
+
+  var dPx = pixelWidth(desc, DESC_SCALE);
+  var dRatio = dPx / lim.desc;
+  var dV = verdictFromRatio(dRatio);
+  document.getElementById("descCount").textContent = desc.length + " chars";
+  document.getElementById("descBar").style.width = Math.min(100, dRatio*100) + "%";
+  document.getElementById("descBar").className = "bar-fill bg-" + dV.cls;
+  var dvEl = document.getElementById("descVerdict");
+  dvEl.textContent = dV.label; dvEl.className = "c-" + dV.cls;
+
+  return { tRatio: tRatio, dRatio: dRatio };
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PREVIEW RENDER
+═══════════════════════════════════════════════════════════════════════ */
+function renderPreview(title, desc, url, keyword){
+  var lim = LIMITS[device];
+  var box = document.getElementById("prevBox");
+  var domain = domainFromUrl(url) || "example.com";
+  var segs = pathSegmentsFromUrl(url);
+  var pathStr = segs.length ? (" › " + segs.join(" › ")) : "";
+  var displayTitle = title || "Your page title will appear here";
+  var displayDesc = desc || "Your meta description will appear here.";
+
+  var gTitle = truncateToPixels(displayTitle, lim.title, TITLE_SCALE);
+  var gDesc = truncateToPixels(displayDesc, lim.desc, DESC_SCALE);
+
+  var html = "";
+
+  if (document.getElementById("chkAi").checked){
+    html += '<div class="ai-block"><div class="ai-label">✦ AI Overview</div><div class="ai-line" style="width:95%"></div><div class="ai-line" style="width:88%"></div><div class="ai-line short"></div></div>';
+  }
+
+  var fav = faviconUrl(url);
+  html += '<div class="g-site-row"><span class="g-fav">' + (fav ? '<img src="' + fav + '" alt="" onerror="this.parentElement.textContent=\'🌐\'">' : '🌐') + '</span>' +
+          '<span class="g-site-name">' + escapeAttr(domain) + '</span><span class="g-url-path">' + escapeAttr(pathStr) + '</span></div>';
+
+  html += '<div class="g-title">' + boldKeyword(gTitle, keyword) + '</div>';
+
+  if (document.getElementById("chkStars").checked){
+    var stars = parseFloat(document.getElementById("fldStarValue").value);
+    var cnt = document.getElementById("fldStarCount").value || "0";
+    var full = Math.floor(stars), half = stars % 1 >= 0.5;
+    var starStr = "★".repeat(full) + (half ? "☆" : "") + "☆".repeat(Math.max(0,5-full-(half?1:0)));
+    html += '<div class="g-stars">' + starStr + ' <span class="cnt">' + escapeAttr(stars.toFixed(1)) + ' · ' + escapeAttr(cnt) + ' reviews</span></div>';
+  }
+
+  var descLine = boldKeyword(gDesc, keyword);
+  if (document.getElementById("chkDate").checked){
+    var dv = document.getElementById("fldDateValue").value;
+    var dLabel = dv ? new Date(dv+"T00:00:00").toLocaleDateString("en-US",{month:"short",day:"numeric",year:"numeric"}) : "";
+    if (dLabel) descLine = '<span class="g-date">' + dLabel + '</span> — ' + descLine;
+  }
+  html += '<div class="g-desc">' + descLine + '</div>';
+
+  if (document.getElementById("chkPaa").checked){
+    html += '<div class="paa-box"><div class="paa-head">People also ask</div>' +
+      '<div class="paa-item"><span>What is a ' + escapeAttr(keyword || "SERP preview tool") + '?</span><span class="plus">+</span></div>' +
+      '<div class="paa-item"><span>How do I optimize my Google snippet?</span><span class="plus">+</span></div>' +
+      '<div class="paa-item"><span>What is the ideal meta description length?</span><span class="plus">+</span></div>' +
+      '</div>';
+  }
+
+  box.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CHECKLIST
+═══════════════════════════════════════════════════════════════════════ */
+function renderChecklist(title, desc, url, keyword, ratios){
+  var issues = [];
+
+  if (!title.trim()){
+    issues.push({level:"error", text:"Missing page title — this is the single most important on-page SEO element."});
+  } else {
+    if (ratios.tRatio < 0.35) issues.push({level:"warning", text:"Title looks short — there's room to add more descriptive, click-worthy detail."});
+    if (ratios.tRatio > 1.0) issues.push({level:"error", text:"Title will likely be truncated by Google — shorten it to fit the pixel width limit."});
+  }
+
+  if (!desc.trim()){
+    issues.push({level:"warning", text:"No meta description set — Google may auto-generate one from page content instead."});
+  } else {
+    if (ratios.dRatio < 0.4) issues.push({level:"warning", text:"Description looks short — Google has room to show more compelling copy."});
+    if (ratios.dRatio > 1.0) issues.push({level:"error", text:"Description will likely be truncated — trim it to fit the pixel width limit."});
+  }
+
+  if (title.trim() && desc.trim() && title.trim().toLowerCase() === desc.trim().toLowerCase()){
+    issues.push({level:"warning", text:"Title and description are identical — write them separately so each does its own job."});
+  }
+
+  if (keyword && keyword.trim()){
+    var kw = keyword.trim().toLowerCase();
+    if (title && title.toLowerCase().indexOf(kw) === -1) issues.push({level:"warning", text:'Target keyword "' + keyword.trim() + '" was not found in the title.'});
+    if (desc && desc.toLowerCase().indexOf(kw) === -1) issues.push({level:"info", text:'Target keyword "' + keyword.trim() + '" was not found in the description.'});
+  }
+
+  if (url && url.trim()){
+    if (/[\s_]/.test(url)) issues.push({level:"warning", text:"URL contains spaces or underscores — use hyphens for better readability and SEO."});
+    var pathLen = url.replace(/^https?:\/\/[^/]+/,"").length;
+    if (pathLen > 75) issues.push({level:"info", text:"The URL path is on the longer side — shorter URLs are generally easier to read and share."});
+  }
+
+  if (issues.length === 0){
+    issues.push({level:"ok", text:"No issues found — title, description and URL all look healthy."});
+  }
+
+  var list = document.getElementById("issuesList");
+  list.innerHTML = issues.map(function(i){
+    return '<div class="issue-row"><span class="issue-tag ' + i.level + '">' + i.level + '</span><span>' + i.text + '</span></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  var title = document.getElementById("fldTitle").value;
+  var desc = document.getElementById("fldDesc").value;
+  var url = document.getElementById("fldUrl").value.trim();
+  var keyword = document.getElementById("fldKeyword").value;
+
+  document.getElementById("starsRow").classList.toggle("hidden", !document.getElementById("chkStars").checked);
+  document.getElementById("dateRow").classList.toggle("hidden", !document.getElementById("chkDate").checked);
+
+  var ratios = updateCounters(title, desc);
+  renderPreview(title, desc, url, keyword);
+  renderChecklist(title, desc, url, keyword, ratios);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FETCH FROM LIVE URL
+═══════════════════════════════════════════════════════════════════════ */
+async function fetchWithTimeout(url, opts, ms){
+  var controller = new AbortController();
+  var id = setTimeout(function(){ controller.abort(); }, ms || 12000);
+  try {
+    var res = await fetch(url, Object.assign({}, opts, {signal: controller.signal}));
+    return res;
+  } finally {
+    clearTimeout(id);
+  }
+}
+
+async function fetchLiveUrl(){
+  var urlField = document.getElementById("fldUrl");
+  var status = document.getElementById("fetchStatus");
+  var btn = document.getElementById("btnFetch");
+  var url = urlField.value.trim();
+  if (!url){ status.textContent = "Enter a URL first."; return; }
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+
+  btn.disabled = true;
+  status.textContent = "Fetching…";
+
+  var html = null;
+  try {
+    var r = await fetchWithTimeout(url, {mode:"cors"}, 12000);
+    if (r.ok) html = await r.text();
+  } catch(e){ /* fall through to proxy */ }
+
+  if (!html){
+    try {
+      var r2 = await fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(url), {}, 12000);
+      if (r2.ok) html = await r2.text();
+    } catch(e){ /* give up below */ }
+  }
+
+  btn.disabled = false;
+
+  if (!html){
+    status.textContent = "Couldn't fetch that URL directly (CORS or network issue) — you can paste the title/description manually instead.";
+    return;
+  }
+
+  try {
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    var t = doc.querySelector("title");
+    var d = doc.querySelector('meta[name="description" i]');
+    var canon = doc.querySelector('link[rel="canonical" i]');
+    if (t) document.getElementById("fldTitle").value = t.textContent.trim();
+    if (d) document.getElementById("fldDesc").value = (d.getAttribute("content")||"").trim();
+    if (canon && canon.getAttribute("href")) urlField.value = canon.getAttribute("href");
+    status.textContent = "Fetched title and description from the live page.";
+    update();
+  } catch(e){
+    status.textContent = "Fetched the page but couldn't parse its meta tags.";
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / SAVE
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+
+function copyTags(){
+  var title = document.getElementById("fldTitle").value;
+  var desc = document.getElementById("fldDesc").value;
+  var text = '<title>' + title + '</title>\n<meta name="description" content="' + desc + '" />';
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+
+function saveAsImage(){
+  var box = document.getElementById("prevBox");
+  var w = box.offsetWidth || 640, h = box.offsetHeight || 200;
+  var canvas = document.createElement("canvas");
+  var scale = 2;
+  canvas.width = w*scale; canvas.height = h*scale;
+  var ctx = canvas.getContext("2d");
+  ctx.scale(scale, scale);
+  ctx.fillStyle = "#ffffff";
+  ctx.fillRect(0,0,w,h);
+
+  var title = document.getElementById("fldTitle").value || "Your page title will appear here";
+  var desc = document.getElementById("fldDesc").value || "Your meta description will appear here.";
+  var url = document.getElementById("fldUrl").value.trim();
+  var domain = domainFromUrl(url) || "example.com";
+  var lim = LIMITS[device];
+  var gTitle = truncateToPixels(title, lim.title, TITLE_SCALE);
+  var gDesc = truncateToPixels(desc, lim.desc, DESC_SCALE);
+
+  ctx.fillStyle = "#202124"; ctx.font = "14px Arial";
+  ctx.fillText(domain, 4, 22);
+  ctx.fillStyle = "#1a0dab"; ctx.font = "20px Arial";
+  ctx.fillText(gTitle, 4, 50);
+  ctx.fillStyle = "#4d5156"; ctx.font = "14px Arial";
+  wrapText(ctx, gDesc, 4, 76, w-8, 20);
+
+  canvas.toBlob(function(blob){
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "serp-preview.png";
+    a.click();
+  });
+}
+
+function wrapText(ctx, text, x, y, maxWidth, lineHeight){
+  var words = text.split(" ");
+  var line = "";
+  var lines = 0;
+  for (var n=0;n<words.length && lines<3;n++){
+    var test = line + words[n] + " ";
+    if (ctx.measureText(test).width > maxWidth && n > 0){
+      ctx.fillText(line, x, y);
+      line = words[n] + " ";
+      y += lineHeight;
+      lines++;
+    } else {
+      line = test;
+    }
+  }
+  ctx.fillText(line, x, y);
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* init */
+(function(){
+  var d = new Date();
+  var iso = d.toISOString().slice(0,10);
+  document.getElementById("fldDateValue").value = iso;
+})();
+update();
+</script>
+</body>
+</html>
