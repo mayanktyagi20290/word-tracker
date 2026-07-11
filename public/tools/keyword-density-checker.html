@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Keyword Density Checker — Free Tool with Highlighting | SEOTriggers</title>
+<meta name="description" content="Free keyword density checker with live text highlighting, target-keyword tracking, competitor comparison, and readability scoring. Check text or any URL. No signup, no ads." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/keyword-density-checker" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Keyword Density Checker — Free Tool with Highlighting | SEOTriggers" />
+<meta property="og:description" content="Check keyword density with live text highlighting, target-keyword tracking, competitor comparison, and readability scoring. Free, no signup, no ads." />
+<meta property="og:url" content="https://seotriggers.com/tools/keyword-density-checker" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Keyword Density Checker — Free Tool with Highlighting | SEOTriggers" />
+<meta name="twitter:description" content="Check keyword density with live highlighting, target-keyword tracking, and competitor comparison. Free, no ads." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Keyword Density Checker",
+  "url": "https://seotriggers.com/tools/keyword-density-checker",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to check keyword density with live text highlighting, target-keyword tracking, competitor comparison, and readability scoring."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Keyword Density Checker", "item": "https://seotriggers.com/tools/keyword-density-checker" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What is a good keyword density percentage?",
+      "acceptedAnswer": { "@type": "Answer", "text": "There's no official Google guideline, but a widely-used rule of thumb is keeping your primary keyword between roughly 1% and 2.5% density, with secondary keywords lower. Above 3% starts to look overused, and above 5% risks looking like keyword stuffing to both readers and search engines." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does keyword density directly affect Google rankings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Not directly — modern search engines use semantic understanding (NLP) rather than counting exact keyword repetitions. However, unnaturally low density can mean a page under-signals its topic, and unnaturally high density can trigger quality algorithms that penalize keyword stuffing, so density is still a useful sanity check." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I check density on the raw text or after removing stop words?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a specific target keyword or phrase, check it against the raw word count, since that reflects what a reader (and a search engine) actually encounters. Removing stop words is more useful when scanning for your most-repeated words generally, since it filters out \"the\", \"and\", and similar filler words that would otherwise dominate the list." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why compare my content's keyword density against a competitor's?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Comparing density against a top-ranking competitor page for the same keyword gives you a realistic benchmark — if their page uses a keyword at 1.8% density and yours is at 0.2%, that's a signal your content may be under-optimized for that term, independent of any fixed \"ideal\" percentage." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I check the keyword density of a page I don't own?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — paste the page's URL instead of text, and this tool will attempt to fetch and analyze its visible content, which is useful for auditing your own older pages or benchmarking a competitor's published content." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:180px;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;margin-bottom:14px;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.check-item{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:4px;}
+.check-item label{cursor:pointer;font-weight:500;}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;}
+
+.chip-row{display:flex;gap:8px;flex-wrap:wrap;}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:6px 14px;font-size:12.5px;font-weight:600;color:var(--ink);cursor:pointer;}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.small{padding:6px 12px;font-size:12px;}
+.btn:disabled{opacity:.5;cursor:default;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.stat-card .l{font-size:11px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.stat-card .v{font-size:22px;font-weight:800;color:var(--ink);}
+
+table.density-table{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:10px;overflow:hidden;}
+table.density-table th, table.density-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;}
+table.density-table th{background:var(--bg);font-size:12px;text-transform:uppercase;color:var(--sub);}
+.density-bar-wrap{display:flex;align-items:center;gap:8px;}
+.density-bar{flex:1;height:6px;background:var(--border);border-radius:99px;overflow:hidden;min-width:60px;}
+.density-bar-fill{height:100%;border-radius:99px;}
+.status-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;text-transform:uppercase;white-space:nowrap;}
+.status-badge.good{background:var(--green-bg);color:var(--green);}
+.status-badge.low{background:var(--blue-bg);color:var(--blue);}
+.status-badge.warning{background:var(--amber-bg);color:var(--amber);}
+.status-badge.danger{background:var(--red-bg);color:var(--red);}
+
+.highlight-box{border:1px solid var(--border);border-radius:10px;padding:18px 20px;background:#fff;font-size:14.5px;line-height:1.9;white-space:pre-wrap;word-break:break-word;max-height:420px;overflow-y:auto;}
+.highlight-box mark{border-radius:3px;padding:1px 3px;font-weight:600;}
+.hl-good{background:#d1fae5;color:#065f46;}
+.hl-warning{background:#fef3c7;color:#78350f;}
+.hl-danger{background:#fecaca;color:#7f1d1d;}
+.legend-row{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:10px;}
+.legend-chip{font-size:11.5px;font-weight:600;padding:3px 10px;border-radius:6px;}
+
+.compare-cols{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+@media(max-width:720px){.compare-cols{grid-template-columns:1fr;}}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Keyword Density Checker
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · No Ads</span>
+    <h1>Keyword Density Checker</h1>
+    <p>Check keyword density with live text highlighting, target-keyword tracking, competitor comparison, and a readability score — for any text or URL.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="toggle-pair">
+      <button id="btnText" class="active" onclick="setInputMode('text')">Paste text</button>
+      <button id="btnUrl" onclick="setInputMode('url')">Analyze URL</button>
+    </div>
+
+    <div class="field" id="textField">
+      <textarea id="fldText" oninput="update()" placeholder="Paste your content here to analyze keyword density..."></textarea>
+    </div>
+    <div class="field hidden" id="urlField">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="fldPageUrl" placeholder="https://example.com/page" style="flex:1;">
+        <button class="btn" onclick="fetchPageText()" id="btnFetchPage">Fetch &amp; analyze</button>
+      </div>
+      <div class="small-note" id="fetchStatus"></div>
+    </div>
+
+    <div class="field">
+      <label for="fldKeywords">Target keyword(s) <span style="font-weight:400;color:var(--sub);">(comma separated, e.g. "seo tools, keyword density")</span></label>
+      <input type="text" id="fldKeywords" oninput="update()" placeholder="e.g. keyword density checker" />
+    </div>
+
+    <div class="section-label">Options</div>
+    <div class="check-item"><input type="checkbox" id="chkStopWords" checked onchange="update()"><label for="chkStopWords">Filter stop words in top-keywords table</label></div>
+    <div style="margin-top:10px;">
+      <span style="font-size:13px;font-weight:600;margin-right:8px;">Phrase length:</span>
+      <span class="chip-row" id="phraseChips" style="display:inline-flex;"></span>
+    </div>
+
+    <div id="resultsWrap" class="hidden">
+      <div class="section-label">Content overview</div>
+      <div class="stat-grid" id="statGrid"></div>
+
+      <div id="targetSection" class="hidden">
+        <div class="section-label">Target keyword tracking</div>
+        <div style="overflow-x:auto;"><table class="density-table" id="targetTable"></table></div>
+      </div>
+
+      <div class="section-label">Live highlighted content</div>
+      <div class="legend-row" id="legendRow"></div>
+      <div class="highlight-box" id="highlightBox"></div>
+
+      <div class="section-label">Top keywords &amp; phrases</div>
+      <div style="overflow-x:auto;"><table class="density-table" id="topTable"></table></div>
+      <button class="copy-btn" style="margin-top:8px;" onclick="downloadCsv()">⬇ Download CSV</button>
+
+      <div class="section-label">Competitor comparison <span style="font-weight:400;text-transform:none;">(optional)</span></div>
+      <div class="field">
+        <textarea id="fldCompText" oninput="update()" placeholder="Paste a competitor's content here to compare target keyword density side-by-side..." style="min-height:120px;"></textarea>
+      </div>
+      <div id="compareSection" class="hidden">
+        <div class="compare-cols">
+          <div>
+            <div class="small-note" style="font-weight:700;color:var(--ink);margin-bottom:6px;">Your content</div>
+            <div style="overflow-x:auto;"><table class="density-table" id="compareYourTable"></table></div>
+          </div>
+          <div>
+            <div class="small-note" style="font-weight:700;color:var(--ink);margin-bottom:6px;">Competitor content</div>
+            <div style="overflow-x:auto;"><table class="density-table" id="compareTheirTable"></table></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>Keyword density thresholds we use</h2>
+    <p class="sub">There's no single official rule, but these bands reflect widely-used SEO guidance.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Density</th><th>What it usually means</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Under 0.5%</strong></td><td>Low — the keyword may be under-represented relative to the page's apparent topic.</td></tr>
+          <tr><td><strong>0.5% – 3%</strong></td><td>Good — a natural, commonly recommended range for a primary keyword.</td></tr>
+          <tr><td><strong>3% – 5%</strong></td><td>Warning — starting to look repetitive; worth a read-through for natural flow.</td></tr>
+          <tr><td><strong>Above 5%</strong></td><td>Stuffing risk — likely to read unnaturally and may draw attention from quality-focused algorithms.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Want to check your title and meta description too? Try the <a href="/tools/meta-tag-generator">Meta Tag Generator</a> and <a href="/tools/serp-preview-tool">SERP Preview Tool</a>.</p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most free density checkers show a plain table of numbers. This one shows you exactly where those numbers came from.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>SmallSEOTools</th><th>SEO Review Tools</th></tr></thead>
+        <tbody>
+          <tr><td>Analyze pasted text or a live URL</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>1/2/3-word phrase density</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Live in-text highlighting by density level</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Focused target-keyword tracking with status badges</td><td class="yes">✓</td><td class="no">Generic list only</td><td class="no">Generic list only</td></tr>
+          <tr><td>Side-by-side competitor comparison</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Readability score included</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No ads, no signup</td><td class="yes">✓</td><td class="no">Ad-heavy</td><td class="partial">Pushes signup</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🎯</div><h3>Focused keyword tracking</h3><p>Enter your actual target keywords and see their exact count, density, and status — instead of scanning a generic top-words list for them.</p></div>
+      <div class="feat-card"><div class="ic">🖍️</div><h3>Live in-text highlighting</h3><p>See every occurrence of your keyword highlighted directly in your content, color-coded by whether it's healthy, borderline, or stuffed.</p></div>
+      <div class="feat-card"><div class="ic">🆚</div><h3>Competitor comparison</h3><p>Paste a competitor's content and compare their target-keyword density against yours, side by side.</p></div>
+      <div class="feat-card"><div class="ic">🔗</div><h3>Analyze any URL</h3><p>Paste a live page URL instead of text to audit your own older content or benchmark a competitor's published page.</p></div>
+      <div class="feat-card"><div class="ic">📖</div><h3>Readability included</h3><p>Get a Flesch-Kincaid readability score alongside density, since dense keyword usage and readable prose need to work together.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is a good keyword density percentage? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>There's no official Google guideline, but a widely-used rule of thumb is keeping your primary keyword between roughly 1% and 2.5% density, with secondary keywords lower. Above 3% starts to look overused, and above 5% risks looking like keyword stuffing to both readers and search engines.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does keyword density directly affect Google rankings? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Not directly — modern search engines use semantic understanding (NLP) rather than counting exact keyword repetitions. However, unnaturally low density can mean a page under-signals its topic, and unnaturally high density can trigger quality algorithms that penalize keyword stuffing, so density is still a useful sanity check.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should I check density on the raw text or after removing stop words? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>For a specific target keyword or phrase, check it against the raw word count, since that reflects what a reader (and a search engine) actually encounters. Removing stop words is more useful when scanning for your most-repeated words generally, since it filters out "the", "and", and similar filler words that would otherwise dominate the list.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why compare my content's keyword density against a competitor's? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Comparing density against a top-ranking competitor page for the same keyword gives you a realistic benchmark — if their page uses a keyword at 1.8% density and yours is at 0.2%, that's a signal your content may be under-optimized for that term, independent of any fixed "ideal" percentage.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I check the keyword density of a page I don't own? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes — paste the page's URL instead of text, and this tool will attempt to fetch and analyze its visible content, which is useful for auditing your own older pages or benchmarking a competitor's published content.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   NLP CORE
+═══════════════════════════════════════════════════════════════════════ */
+var STOP_WORDS = new Set(["a","about","above","after","again","against","all","am","an","and","any","are","aren't","as","at","be","because","been","before","being","below","between","both","but","by","can't","cannot","could","couldn't","did","didn't","do","does","doesn't","doing","don't","down","during","each","few","for","from","further","get","got","had","hadn't","has","hasn't","have","haven't","having","he","he'd","he'll","he's","her","here","here's","hers","herself","him","himself","his","how","how's","i","i'd","i'll","i'm","i've","if","in","into","is","isn't","it","it's","its","itself","let's","me","more","most","mustn't","my","myself","no","nor","not","of","off","on","once","only","or","other","ought","our","ours","ourselves","out","over","own","same","shan't","she","she'd","she'll","she's","should","shouldn't","so","some","such","than","that","that's","the","their","theirs","them","themselves","then","there","there's","these","they","they'd","they'll","they're","they've","this","those","through","to","too","under","until","up","very","was","wasn't","we","we'd","we'll","we're","we've","were","weren't","what","what's","when","when's","where","where's","which","while","who","who's","whom","why","why's","will","with","won't","would","wouldn't","you","you'd","you'll","you're","you've","your","yours","yourself","yourselves","also","just","like","use","using","used","one","two","three","vs","etc"]);
+
+function tokenize(text){
+  return text.toLowerCase().replace(/[^a-z0-9\s'-]/g," ").split(/\s+/).filter(Boolean);
+}
+function cleanTokens(tokens){
+  return tokens.filter(function(w){ return w.length > 2 && !STOP_WORDS.has(w); });
+}
+function getNgrams(tokens, n){
+  var g = {};
+  for (var i=0; i<=tokens.length-n; i++){
+    var k = tokens.slice(i, i+n).join(" ");
+    g[k] = (g[k]||0) + 1;
+  }
+  return g;
+}
+function extractSentences(text){
+  return text.match(/[^.!?]+[.!?]+/g) || [text];
+}
+function readabilityScore(text){
+  var sents = extractSentences(text);
+  var words = tokenize(text);
+  var syl = words.reduce(function(a,w){ return a + Math.max(1, (w.match(/[aeiou]/gi)||[]).length); }, 0);
+  var aws = words.length / (sents.length||1);
+  var asw = syl / (words.length||1);
+  var fk = Math.max(0, Math.min(100, 206.835 - 1.015*aws - 84.6*asw));
+  var label = fk>=70?"Easy":fk>=60?"Standard":fk>=50?"Fairly Difficult":fk>=30?"Difficult":"Very Difficult";
+  return { score: Math.round(fk), label: label };
+}
+function countPhrase(joinedWords, phrase){
+  var esc = phrase.trim().toLowerCase().replace(/[.*+?^${}()|[\]\\]/g, '\\$&').replace(/\s+/g, "\\s+");
+  if (!esc) return 0;
+  var re = new RegExp("\\b" + esc + "\\b", "g");
+  var m = joinedWords.match(re);
+  return m ? m.length : 0;
+}
+function densityStatus(d){
+  if (d > 5) return "danger";
+  if (d > 3) return "warning";
+  if (d >= 0.5) return "good";
+  return "low";
+}
+function statusLabel(s){
+  return {danger:"Stuffing risk", warning:"Overused", good:"Good", low:"Low"}[s];
+}
+function escapeHtml(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ANALYSIS
+═══════════════════════════════════════════════════════════════════════ */
+function analyze(text){
+  if (!text || !text.trim()) return null;
+  var tokens = tokenize(text);
+  var joined = tokens.join(" ");
+  var clean = cleanTokens(tokens);
+  var totalWords = tokens.length;
+  var uniqueWords = new Set(tokens).size;
+  var readability = readabilityScore(text);
+  return { text: text, tokens: tokens, joined: joined, clean: clean, totalWords: totalWords, uniqueWords: uniqueWords, readability: readability };
+}
+
+function targetKeywordRows(analysis, keywordsStr){
+  var kws = keywordsStr.split(",").map(function(s){ return s.trim(); }).filter(Boolean);
+  return kws.map(function(kw){
+    var count = countPhrase(analysis.joined, kw);
+    var wordCount = kw.trim().split(/\s+/).length;
+    var density = analysis.totalWords > 0 ? (count * wordCount / analysis.totalWords) * 100 : 0;
+    return { keyword: kw, count: count, density: density, status: densityStatus(density) };
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PHRASE LENGTH CHIPS
+═══════════════════════════════════════════════════════════════════════ */
+var phraseLen = 1;
+function renderPhraseChips(){
+  var el = document.getElementById("phraseChips");
+  el.innerHTML = [1,2,3,4].map(function(n){
+    return '<span class="chip' + (n===phraseLen?' active':'') + '" onclick="setPhraseLen(' + n + ')">' + n + (n===1?"-word":"-word") + '</span>';
+  }).join(" ");
+}
+function setPhraseLen(n){ phraseLen = n; renderPhraseChips(); update(); }
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INPUT MODE
+═══════════════════════════════════════════════════════════════════════ */
+var inputMode = "text";
+function setInputMode(m){
+  inputMode = m;
+  document.getElementById("btnText").classList.toggle("active", m==="text");
+  document.getElementById("btnUrl").classList.toggle("active", m==="url");
+  document.getElementById("textField").classList.toggle("hidden", m!=="text");
+  document.getElementById("urlField").classList.toggle("hidden", m!=="url");
+  update();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   FETCH URL
+═══════════════════════════════════════════════════════════════════════ */
+async function fetchWithTimeout(url, opts, ms){
+  var controller = new AbortController();
+  var id = setTimeout(function(){ controller.abort(); }, ms || 12000);
+  try { return await fetch(url, Object.assign({}, opts, {signal: controller.signal})); }
+  finally { clearTimeout(id); }
+}
+async function fetchPageText(){
+  var urlField = document.getElementById("fldPageUrl");
+  var status = document.getElementById("fetchStatus");
+  var btn = document.getElementById("btnFetchPage");
+  var url = urlField.value.trim();
+  if (!url){ status.textContent = "Enter a URL first."; return; }
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+  btn.disabled = true;
+  status.textContent = "Fetching…";
+  var html = null;
+  try {
+    var r = await fetchWithTimeout(url, {mode:"cors"}, 12000);
+    if (r.ok) html = await r.text();
+  } catch(e){}
+  if (!html){
+    try {
+      var r2 = await fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(url), {}, 12000);
+      if (r2.ok) html = await r2.text();
+    } catch(e2){}
+  }
+  btn.disabled = false;
+  if (!html){ status.textContent = "Couldn't fetch that URL (CORS or network issue) — try pasting the text instead."; return; }
+  try {
+    var doc = new DOMParser().parseFromString(html, "text/html");
+    doc.querySelectorAll("script, style, noscript, nav, footer").forEach(function(el){ el.remove(); });
+    var text = (doc.body ? doc.body.textContent : "").replace(/\s+/g, " ").trim();
+    document.getElementById("fldText").value = text;
+    setInputMode("text");
+    status.textContent = "Fetched " + text.split(/\s+/).length + " words from the page.";
+    update();
+  } catch(e){ status.textContent = "Fetched the page but couldn't parse its text content."; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   RENDER
+═══════════════════════════════════════════════════════════════════════ */
+function renderStats(a){
+  var stats = [
+    { l:"Total words", v: a.totalWords.toLocaleString() },
+    { l:"Unique words", v: a.uniqueWords.toLocaleString() },
+    { l:"Readability", v: a.readability.score + "/100" },
+    { l:"Readability level", v: a.readability.label }
+  ];
+  document.getElementById("statGrid").innerHTML = stats.map(function(s){
+    return '<div class="stat-card"><div class="l">' + s.l + '</div><div class="v">' + s.v + '</div></div>';
+  }).join("");
+}
+
+function renderTargetTable(rows){
+  var section = document.getElementById("targetSection");
+  if (rows.length === 0){ section.classList.add("hidden"); return; }
+  section.classList.remove("hidden");
+  var maxD = Math.max(5, Math.max.apply(null, rows.map(function(r){return r.density;})));
+  document.getElementById("targetTable").innerHTML =
+    '<tr><th>Keyword</th><th>Count</th><th>Density</th><th>Status</th></tr>' +
+    rows.map(function(r){
+      var color = r.status==="danger"?"#dc2626":r.status==="warning"?"#d97706":r.status==="good"?"#16a34a":"#2563eb";
+      return '<tr><td>' + escapeHtml(r.keyword) + '</td><td>' + r.count + '×</td>' +
+        '<td><div class="density-bar-wrap"><span>' + r.density.toFixed(2) + '%</span><div class="density-bar"><div class="density-bar-fill" style="width:' + Math.min(100, (r.density/maxD)*100) + '%;background:' + color + '"></div></div></div></td>' +
+        '<td><span class="status-badge ' + r.status + '">' + statusLabel(r.status) + '</span></td></tr>';
+    }).join("");
+}
+
+function renderTopTable(a){
+  var freq;
+  if (phraseLen === 1){
+    var source = document.getElementById("chkStopWords").checked ? a.clean : a.tokens;
+    freq = {};
+    source.forEach(function(w){ freq[w] = (freq[w]||0)+1; });
+  } else {
+    var base = document.getElementById("chkStopWords").checked ? a.clean : a.tokens;
+    freq = getNgrams(base, phraseLen);
+  }
+  var entries = Object.entries(freq).sort(function(x,y){ return y[1]-x[1]; }).slice(0, 30);
+  var maxC = entries[0] ? entries[0][1] : 1;
+  document.getElementById("topTable").innerHTML =
+    '<tr><th>#</th><th>Keyword / Phrase</th><th>Count</th><th>Density</th></tr>' +
+    entries.map(function(e, i){
+      var d = (e[1]/a.totalWords)*100;
+      var status = densityStatus(d);
+      var color = status==="danger"?"#dc2626":status==="warning"?"#d97706":status==="good"?"#16a34a":"#2563eb";
+      return '<tr><td>' + (i+1) + '</td><td>' + escapeHtml(e[0]) + '</td><td>' + e[1] + '×</td>' +
+        '<td><div class="density-bar-wrap"><span>' + d.toFixed(2) + '%</span><div class="density-bar"><div class="density-bar-fill" style="width:' + Math.min(100,(e[1]/maxC)*100) + '%;background:' + color + '"></div></div></div></td></tr>';
+    }).join("");
+  window._lastTopEntries = entries.map(function(e){ return [e[0], e[1], ((e[1]/a.totalWords)*100).toFixed(2)]; });
+}
+
+function renderHighlight(a, rows){
+  var legend = document.getElementById("legendRow");
+  legend.innerHTML =
+    '<span class="legend-chip hl-good">Good (0.5–3%)</span>' +
+    '<span class="legend-chip hl-warning">Overused (3–5%)</span>' +
+    '<span class="legend-chip hl-danger">Stuffing risk (&gt;5%)</span>';
+
+  var box = document.getElementById("highlightBox");
+  var text = a.text;
+  var keywords = rows.filter(function(r){ return r.count > 0; }).map(function(r){ return { phrase: r.keyword, status: r.status }; });
+  if (keywords.length === 0){ box.textContent = text || "Your content will appear here with keyword occurrences highlighted."; return; }
+
+  keywords.sort(function(x,y){ return y.phrase.length - x.phrase.length; });
+  var pattern = keywords.map(function(k){ return k.phrase.trim().replace(/[.*+?^${}()|[\]\\]/g,'\\$&').replace(/\s+/g,"\\s+"); }).join("|");
+  var re = new RegExp("\\b(" + pattern + ")\\b", "gi");
+  var statusByLower = {};
+  keywords.forEach(function(k){ statusByLower[k.phrase.trim().toLowerCase()] = k.status; });
+
+  var parts = []; var last = 0; var m; var count = 0;
+  re.lastIndex = 0;
+  while ((m = re.exec(text)) !== null && count < 5000){
+    count++;
+    if (m.index > last) parts.push(escapeHtml(text.slice(last, m.index)));
+    var st = statusByLower[m[0].toLowerCase()] || "good";
+    var cls = st === "danger" ? "hl-danger" : st === "warning" ? "hl-warning" : "hl-good";
+    parts.push('<mark class="' + cls + '">' + escapeHtml(m[0]) + '</mark>');
+    last = m.index + m[0].length;
+  }
+  if (last < text.length) parts.push(escapeHtml(text.slice(last)));
+  box.innerHTML = parts.join("");
+}
+
+function renderCompare(a, keywordsStr){
+  var compText = document.getElementById("fldCompText").value;
+  var section = document.getElementById("compareSection");
+  if (!compText.trim() || !keywordsStr.trim()){ section.classList.add("hidden"); return; }
+  section.classList.remove("hidden");
+  var compAnalysis = analyze(compText);
+  var yourRows = targetKeywordRows(a, keywordsStr);
+  var theirRows = targetKeywordRows(compAnalysis, keywordsStr);
+
+  function renderMini(id, rows){
+    document.getElementById(id).innerHTML =
+      '<tr><th>Keyword</th><th>Count</th><th>Density</th></tr>' +
+      rows.map(function(r){
+        var color = r.status==="danger"?"#dc2626":r.status==="warning"?"#d97706":r.status==="good"?"#16a34a":"#2563eb";
+        return '<tr><td>' + escapeHtml(r.keyword) + '</td><td>' + r.count + '×</td><td style="color:' + color + ';font-weight:700;">' + r.density.toFixed(2) + '%</td></tr>';
+      }).join("");
+  }
+  renderMini("compareYourTable", yourRows);
+  renderMini("compareTheirTable", theirRows);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CSV EXPORT
+═══════════════════════════════════════════════════════════════════════ */
+function downloadCsv(){
+  var rows = [["Keyword/Phrase","Count","Density %"]].concat(window._lastTopEntries || []);
+  var csv = rows.map(function(r){ return r.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(","); }).join("\n");
+  var blob = new Blob([csv], {type:"text/csv"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "keyword-density.csv";
+  a.click();
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  var text = document.getElementById("fldText").value;
+  var a = analyze(text);
+  var resultsWrap = document.getElementById("resultsWrap");
+  if (!a){ resultsWrap.classList.add("hidden"); return; }
+  resultsWrap.classList.remove("hidden");
+
+  var keywordsStr = document.getElementById("fldKeywords").value;
+  var targetRows = targetKeywordRows(a, keywordsStr);
+
+  renderStats(a);
+  renderTargetTable(targetRows);
+  renderTopTable(a);
+  renderHighlight(a, targetRows);
+  renderCompare(a, keywordsStr);
+}
+
+/* init */
+renderPhraseChips();
+update();
+</script>
+</body>
+</html>
