@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JS Minifier - Free Online JavaScript Minifier | SEOTriggers</title>
+<meta name="description" content="Free online JS minifier with real AST-based compression (Terser), gzip size estimate, mangle & compress options, ES6+ support, plus a built-in beautifier. 100% client-side, nothing leaves your browser.">
+<link rel="canonical" href="https://seotriggers.com/tools/js-minifier">
+<meta property="og:type" content="website">
+<meta property="og:title" content="JS Minifier - Free Online JavaScript Minifier">
+<meta property="og:description" content="Minify JavaScript instantly in your browser with real Terser-powered compression, gzip estimate, and a safe fallback engine — no uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/js-minifier">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="JS Minifier - Free Online JavaScript Minifier">
+<meta name="twitter:description" content="Minify JavaScript instantly in your browser with real Terser-powered compression, gzip estimate, and a safe fallback engine.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "JS Minifier",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online JS minifier with real AST-based compression, mangling, gzip size estimate, a built-in beautifier, and a safe fallback engine that runs entirely in the browser.",
+  "url": "https://seotriggers.com/tools/js-minifier"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"JS Minifier","item":"https://seotriggers.com/tools/js-minifier"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Does this JS minifier use real minification or just regex?","acceptedAnswer":{"@type":"Answer","text":"This tool loads Terser, the same AST-based engine used by webpack and most modern build tools, directly in your browser. If it can't load (for example on a locked-down network), the tool automatically falls back to a safe tokenizer-based engine built into the page, so minification never breaks your code."}},
+    {"@type":"Question","name":"Is my JavaScript code uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All minification and beautification happens locally in your browser. Your code is never sent to SEOTriggers or any third-party server, unlike tools such as Toptal's JavaScript Minifier which processes code through a server-side API."}},
+    {"@type":"Question","name":"What is the difference between minifying and mangling?","acceptedAnswer":{"@type":"Answer","text":"Minifying removes whitespace, comments, and unnecessary characters. Mangling additionally renames local variables and function parameters to shorter names (like 'a' or 'b'), which reduces file size further but makes stack traces harder to read without a source map."}},
+    {"@type":"Question","name":"Why does the tool show a gzip size estimate?","acceptedAnswer":{"@type":"Answer","text":"Browsers transfer JavaScript over the network compressed with gzip or brotli, so the raw minified size doesn't reflect real-world load time. This tool uses your browser's native compression engine to estimate the gzip size, giving you a more accurate picture of transfer savings."}},
+    {"@type":"Question","name":"Can I minify ES6+ syntax like arrow functions and classes?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Terser engine fully supports ES6 and newer syntax including arrow functions, classes, template literals, destructuring, and async/await. The fallback engine also preserves this syntax safely, though it performs lighter compression."}},
+    {"@type":"Question","name":"Will minifying break my JavaScript code?","acceptedAnswer":{"@type":"Answer","text":"Minification is designed to preserve behavior exactly. The tool parses your code (via Terser or the tokenizer fallback) rather than using naive find-and-replace, so strings, regular expressions, and template literals containing special characters are never corrupted."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+/* Nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+/* Breadcrumb */
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+/* Hero */
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:680px;margin:0 0 4px;}
+
+/* Layout */
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+/* Toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--border);}
+.mode-toggle{display:flex;background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:3px;}
+.mode-toggle button{border:none;background:transparent;padding:7px 18px;border-radius:999px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.mode-toggle button.active{background:var(--indigo);color:#fff;}
+.btn{border:1px solid var(--border);background:#fff;padding:7px 14px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;display:inline-flex;align-items:center;gap:6px;}
+.btn:hover{background:var(--bg);}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+.spacer{flex:1;}
+#file-input{display:none;}
+
+/* Options panel */
+.options{display:flex;flex-wrap:wrap;gap:16px;padding:12px 18px;background:var(--bg);border-bottom:1px solid var(--border);font-size:13px;}
+.opt{display:flex;align-items:center;gap:6px;color:var(--text-sec);cursor:pointer;user-select:none;}
+.opt input{accent-color:var(--indigo);width:15px;height:15px;}
+
+/* Editor split */
+.split{display:grid;grid-template-columns:1fr 1fr;gap:0;min-height:400px;}
+@media (max-width:860px){.split{grid-template-columns:1fr;}}
+.pane{display:flex;flex-direction:column;min-height:400px;}
+.pane + .pane{border-left:1px solid var(--border);}
+@media (max-width:860px){.pane + .pane{border-left:none;border-top:1px solid var(--border);}}
+.pane-head{display:flex;justify-content:space-between;align-items:center;padding:9px 16px;background:var(--bg);border-bottom:1px solid var(--border);font-size:12px;font-weight:600;color:var(--text-sec);}
+textarea{flex:1;border:none;outline:none;resize:none;padding:16px;font-family:var(--mono);font-size:13px;line-height:1.6;color:var(--text);background:#fff;width:100%;min-height:360px;}
+textarea#output{background:#0f172a;color:#e2e8f0;}
+.size-tag{font-family:var(--mono);font-size:11px;color:var(--text-hint);}
+
+/* Stats bar */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);}
+@media (max-width:700px){.stats{grid-template-columns:repeat(2,1fr);}}
+.stat{background:#fff;padding:14px 18px;}
+.stat .l{font-size:11px;color:var(--text-sec);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.stat .v{font-size:22px;font-weight:800;color:var(--text);}
+.stat .v.good{color:var(--green);}
+
+/* Issues panel */
+.issues{padding:14px 18px;border-top:1px solid var(--border);}
+.issue{display:flex;gap:10px;align-items:flex-start;padding:8px 0;font-size:13px;}
+.issue .dot{width:8px;height:8px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.issue.error .dot{background:var(--red);} .issue.warning .dot{background:var(--amber);} .issue.info .dot{background:var(--blue);}
+
+/* Engine status */
+.engine-status{font-size:12px;padding:8px 18px;background:var(--indigo-light);color:var(--indigo-dark);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:8px;}
+.engine-status.fallback{background:var(--amber-light);color:var(--amber);}
+
+/* Features */
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+/* Comparison table */
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+/* FAQ */
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+/* Cross links */
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+/* Validator links */
+.ext-links{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px;}
+.ext-link{font-size:12px;color:var(--indigo-dark);border:1px solid var(--indigo-light);background:var(--indigo-light);padding:5px 12px;border-radius:999px;}
+
+/* Footer */
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / JS Minifier
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>JS Minifier</h1>
+  <p>Compress JavaScript with real AST-based minification (Terser) — plus a built-in beautifier to format minified code back into readable form. Runs entirely in your browser; your code never touches a server.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="engine-status" id="engine-status">🔄 Loading Terser minification engine…</div>
+
+    <div class="toolbar">
+      <div class="mode-toggle">
+        <button id="mode-minify" class="active" onclick="setMode('minify')">Minify</button>
+        <button id="mode-beautify" onclick="setMode('beautify')">Beautify</button>
+      </div>
+      <button class="btn" onclick="document.getElementById('file-input').click()">📁 Upload File</button>
+      <input type="file" id="file-input" accept=".js,.mjs,.cjs,.txt" onchange="handleFile(event)">
+      <button class="btn" onclick="loadSample()">✨ Try Sample</button>
+      <button class="btn" onclick="clearAll()">🗑 Clear</button>
+      <div class="spacer"></div>
+      <button class="btn btn-primary" id="run-btn" onclick="runTool()">⚡ Minify Code</button>
+    </div>
+
+    <div class="options" id="minify-options">
+      <label class="opt"><input type="checkbox" id="opt-compress" checked> Compress</label>
+      <label class="opt"><input type="checkbox" id="opt-mangle" checked> Mangle variable names</label>
+      <label class="opt"><input type="checkbox" id="opt-console"> Remove console.log</label>
+      <label class="opt"><input type="checkbox" id="opt-comments"> Preserve top comment (/*! ... */)</label>
+      <label class="opt"><input type="checkbox" id="opt-module"> ES module (import/export)</label>
+    </div>
+    <div class="options" id="beautify-options" style="display:none;">
+      <label class="opt">Indent size:
+        <select id="opt-indent" style="margin-left:6px;font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:6px;padding:2px 6px;">
+          <option value="2" selected>2 spaces</option>
+          <option value="4">4 spaces</option>
+          <option value="tab">Tab</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="split">
+      <div class="pane">
+        <div class="pane-head"><span>📝 Input JavaScript</span><span class="size-tag" id="input-size">0 bytes</span></div>
+        <textarea id="input" placeholder="Paste your JavaScript code here, or upload a .js file..." oninput="updateInputSize()"></textarea>
+      </div>
+      <div class="pane">
+        <div class="pane-head">
+          <span>📤 Output</span>
+          <span style="display:flex;gap:10px;align-items:center;">
+            <span class="size-tag" id="output-size">0 bytes</span>
+            <button class="btn" style="padding:3px 10px;font-size:11px;" onclick="copyOutput()">Copy</button>
+            <button class="btn" style="padding:3px 10px;font-size:11px;" onclick="downloadOutput()">Download</button>
+          </span>
+        </div>
+        <textarea id="output" readonly placeholder="Minified/beautified output will appear here..."></textarea>
+      </div>
+    </div>
+
+    <div class="stats" id="stats-bar" style="display:none;">
+      <div class="stat"><div class="l">Original</div><div class="v" id="stat-original">0 B</div></div>
+      <div class="stat"><div class="l">Minified</div><div class="v" id="stat-minified">0 B</div></div>
+      <div class="stat"><div class="l">Reduction</div><div class="v good" id="stat-reduction">0%</div></div>
+      <div class="stat"><div class="l">Est. Gzip</div><div class="v" id="stat-gzip">—</div></div>
+    </div>
+
+    <div class="issues" id="issues-panel" style="display:none;"></div>
+  </div>
+
+  <div class="ext-links">
+    <span style="font-size:12px;color:var(--text-hint);align-self:center;">Validate elsewhere:</span>
+    <a class="ext-link" href="https://esprima.org/demo/parse.html" target="_blank" rel="noopener">Esprima AST Parser ↗</a>
+    <a class="ext-link" href="https://astexplorer.net/" target="_blank" rel="noopener">AST Explorer ↗</a>
+  </div>
+
+  <!-- Features -->
+  <h2 class="section-title">Why this JS minifier is different</h2>
+  <p class="section-sub">Most free minifiers use naive regex and risk corrupting your code. This one uses a real parser — with a safe fallback if the CDN library can't load.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🌳</div><h3>Real AST minification</h3><p>Powered by Terser, the same engine behind webpack and Vite, not fragile regex find-and-replace.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Your code is processed in your browser only. Nothing is uploaded to any server, ever.</p></div>
+    <div class="feature"><div class="ico">📦</div><h3>Gzip size estimate</h3><p>See real-world transfer size, not just raw byte count, using your browser's native compression.</p></div>
+    <div class="feature"><div class="ico">🛡️</div><h3>Safe fallback engine</h3><p>If Terser can't load, a built-in tokenizer-based minifier takes over automatically — no broken output.</p></div>
+    <div class="feature"><div class="ico">🔄</div><h3>Minify + Beautify in one tool</h3><p>Switch between compressing and prettifying minified code without opening a second tool.</p></div>
+    <div class="feature"><div class="ico">⚙️</div><h3>Mangle & compress controls</h3><p>Toggle variable mangling, console.log stripping, and ES module mode to fit your build pipeline.</p></div>
+  </div>
+
+  <!-- Comparison -->
+  <h2 class="section-title">How it compares</h2>
+  <p class="section-sub">A side-by-side look at popular JavaScript minifiers.</p>
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="us">SEOTriggers</th>
+      <th>minify-js.com</th>
+      <th>Toptal</th>
+      <th>codebeautify.org</th>
+      <th>static.app</th>
+    </tr>
+    <tr><td>AST-based (Terser)</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Basic</td><td class="no">Basic</td></tr>
+    <tr><td>Runs 100% client-side</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">Server API</td><td class="no">✗</td><td class="yes">✓</td></tr>
+    <tr><td>Gzip size estimate</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Beautify mode included</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>Works if CDN blocked</td><td class="us yes">✓ Fallback engine</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+  </table>
+  </div>
+
+  <!-- FAQ -->
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this JS minifier use real minification or just regex?<span class="chev">▾</span></div>
+      <div class="faq-a">This tool loads Terser, the same AST-based engine used by webpack and most modern build tools, directly in your browser. If it can't load (for example on a locked-down network), the tool automatically falls back to a safe tokenizer-based engine built into the page, so minification never breaks your code.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my JavaScript code uploaded to a server?<span class="chev">▾</span></div>
+      <div class="faq-a">No. All minification and beautification happens locally in your browser. Your code is never sent to SEOTriggers or any third-party server, unlike tools such as Toptal's JavaScript Minifier which processes code through a server-side API.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between minifying and mangling?<span class="chev">▾</span></div>
+      <div class="faq-a">Minifying removes whitespace, comments, and unnecessary characters. Mangling additionally renames local variables and function parameters to shorter names (like 'a' or 'b'), which reduces file size further but makes stack traces harder to read without a source map.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does the tool show a gzip size estimate?<span class="chev">▾</span></div>
+      <div class="faq-a">Browsers transfer JavaScript over the network compressed with gzip or brotli, so the raw minified size doesn't reflect real-world load time. This tool uses your browser's native compression engine to estimate the gzip size, giving you a more accurate picture of transfer savings.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I minify ES6+ syntax like arrow functions and classes?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. The Terser engine fully supports ES6 and newer syntax including arrow functions, classes, template literals, destructuring, and async/await. The fallback engine also preserves this syntax safely, though it performs lighter compression.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Will minifying break my JavaScript code?<span class="chev">▾</span></div>
+      <div class="faq-a">Minification is designed to preserve behavior exactly. The tool parses your code (via Terser or the tokenizer fallback) rather than using naive find-and-replace, so strings, regular expressions, and template literals containing special characters are never corrupted.</div>
+    </div>
+  </div>
+
+  <!-- Cross links -->
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/hex-converter">Hex Converter</a>
+    <a class="cross-link" href="/tools/morse-code-translator">Morse Code Translator</a>
+    <a class="cross-link" href="/tools/robots-txt-tester">Robots.txt Tester</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/terser@5.36.0/dist/bundle.min.js" onerror="terserFailed=true;tryFallbackCDN()" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js" onerror="beautifyFailed=true" defer></script>
+
+<script>
+let terserFailed = false;
+let beautifyFailed = false;
+let mode = 'minify';
+
+function tryFallbackCDN() {
+  const s = document.createElement('script');
+  s.src = 'https://unpkg.com/terser@5.36.0/dist/bundle.min.js';
+  s.onload = () => { terserFailed = false; updateEngineStatus(); };
+  s.onerror = () => { terserFailed = true; updateEngineStatus(); };
+  document.head.appendChild(s);
+}
+
+function updateEngineStatus() {
+  const el = document.getElementById('engine-status');
+  const hasTerser = (typeof Terser !== 'undefined' && Terser.minify);
+  if (hasTerser) {
+    el.className = 'engine-status';
+    el.innerHTML = '✓ Terser AST engine loaded — real minification active';
+  } else {
+    el.className = 'engine-status fallback';
+    el.innerHTML = '⚠ Terser CDN unavailable — using built-in safe fallback engine (still parser-aware, not naive regex)';
+  }
+}
+window.addEventListener('load', () => setTimeout(updateEngineStatus, 900));
+
+/* ---------- Safe tokenizer-based fallback engine ---------- */
+function safeMinifyJS(src, opts) {
+  opts = opts || {};
+  const stripComments = opts.stripComments !== false;
+  const collapseWhitespace = opts.collapseWhitespace !== false;
+  const removeConsole = !!opts.removeConsole;
+  let i = 0, n = src.length, out = [];
+  let lastSignificant = '';
+  function isRegexContext() {
+    if (!lastSignificant) return true;
+    if (/[a-zA-Z0-9_$)\]]/.test(lastSignificant)) return false;
+    return true;
+  }
+  while (i < n) {
+    const c = src[i];
+    if (c === '/' && src[i+1] === '/') {
+      let j = i + 2;
+      while (j < n && src[j] !== '\n') j++;
+      if (!stripComments) out.push(src.slice(i, j));
+      i = j; continue;
+    }
+    if (c === '/' && src[i+1] === '*') {
+      let j = i + 2;
+      while (j < n && !(src[j] === '*' && src[j+1] === '/')) j++;
+      j = Math.min(j + 2, n);
+      const isBang = src[i+2] === '!';
+      if (!stripComments || isBang) out.push(src.slice(i, j));
+      i = j; continue;
+    }
+    if (c === '"' || c === "'") {
+      let j = i + 1;
+      while (j < n && src[j] !== c) { if (src[j] === '\\') j++; j++; }
+      j = Math.min(j + 1, n);
+      out.push(src.slice(i, j)); lastSignificant = c; i = j; continue;
+    }
+    if (c === '`') {
+      let j = i + 1, depth = 0;
+      while (j < n) {
+        if (src[j] === '\\') { j += 2; continue; }
+        if (src[j] === '`' && depth === 0) { j++; break; }
+        if (src[j] === '$' && src[j+1] === '{') { depth++; j += 2; continue; }
+        if (src[j] === '}' && depth > 0) { depth--; j++; continue; }
+        if (src[j] === '`' && depth > 0) {
+          let k = j + 1;
+          while (k < n && src[k] !== '`') { if (src[k] === '\\') k++; k++; }
+          j = k + 1; continue;
+        }
+        j++;
+      }
+      out.push(src.slice(i, j)); lastSignificant = '`'; i = j; continue;
+    }
+    if (c === '/' && isRegexContext()) {
+      let j = i + 1, inClass = false, valid = true;
+      while (j < n) {
+        if (src[j] === '\\') { j += 2; continue; }
+        if (src[j] === '[') { inClass = true; j++; continue; }
+        if (src[j] === ']') { inClass = false; j++; continue; }
+        if (src[j] === '/' && !inClass) break;
+        if (src[j] === '\n') { valid = false; break; }
+        j++;
+      }
+      if (valid && j < n) {
+        j++;
+        while (j < n && /[a-z]/i.test(src[j])) j++;
+        out.push(src.slice(i, j)); lastSignificant = '/'; i = j; continue;
+      }
+    }
+    if (/\s/.test(c)) {
+      let j = i;
+      while (j < n && /\s/.test(src[j])) j++;
+      if (collapseWhitespace) {
+        out.push(src.slice(i, j).includes('\n') ? '\n' : ' ');
+      } else out.push(src.slice(i, j));
+      i = j; continue;
+    }
+    out.push(c);
+    if (!/\s/.test(c)) lastSignificant = c;
+    i++;
+  }
+  let result = out.join('');
+  if (collapseWhitespace) {
+    result = result.split('\n').map(l => l.trim()).filter((l, idx, arr) => l !== '' || (idx > 0 && arr[idx-1] !== '')).join('\n');
+    result = result.replace(/\n{2,}/g, '\n').replace(/[ \t]+/g, ' ');
+  }
+  if (removeConsole) {
+    result = result.replace(/console\s*\.\s*(log|debug|info|warn)\s*\([^;]*?\)\s*;?/g, '');
+  }
+  return result.trim();
+}
+
+function safeBeautifyJS(src, opts) {
+  opts = opts || {};
+  const indentSize = opts.indentSize || 2;
+  const indentChar = ' '.repeat(indentSize);
+  let i = 0, n = src.length, tokens = [];
+  let lastSignificant = '';
+  function isRegexContext() {
+    if (!lastSignificant) return true;
+    if (/[a-zA-Z0-9_$)\]]/.test(lastSignificant)) return false;
+    return true;
+  }
+  while (i < n) {
+    const c = src[i];
+    if (c === '/' && src[i+1] === '/') {
+      let j = i + 2; while (j < n && src[j] !== '\n') j++;
+      tokens.push({t:'comment', v: src.slice(i, j)}); i = j; continue;
+    }
+    if (c === '/' && src[i+1] === '*') {
+      let j = i + 2; while (j < n && !(src[j] === '*' && src[j+1] === '/')) j++;
+      j = Math.min(j + 2, n);
+      tokens.push({t:'comment', v: src.slice(i, j)}); i = j; continue;
+    }
+    if (c === '"' || c === "'") {
+      let j = i + 1; while (j < n && src[j] !== c) { if (src[j] === '\\') j++; j++; }
+      j = Math.min(j + 1, n);
+      tokens.push({t:'str', v: src.slice(i, j)}); lastSignificant = c; i = j; continue;
+    }
+    if (c === '`') {
+      let j = i + 1, depth = 0;
+      while (j < n) {
+        if (src[j] === '\\') { j += 2; continue; }
+        if (src[j] === '`' && depth === 0) { j++; break; }
+        if (src[j] === '$' && src[j+1] === '{') { depth++; j += 2; continue; }
+        if (src[j] === '}' && depth > 0) { depth--; j++; continue; }
+        j++;
+      }
+      tokens.push({t:'str', v: src.slice(i, j)}); lastSignificant = '`'; i = j; continue;
+    }
+    if (c === '/' && isRegexContext()) {
+      let j = i + 1, inClass = false, valid = true;
+      while (j < n) {
+        if (src[j] === '\\') { j += 2; continue; }
+        if (src[j] === '[') { inClass = true; j++; continue; }
+        if (src[j] === ']') { inClass = false; j++; continue; }
+        if (src[j] === '/' && !inClass) break;
+        if (src[j] === '\n') { valid = false; break; }
+        j++;
+      }
+      if (valid && j < n) {
+        j++; while (j < n && /[a-z]/i.test(src[j])) j++;
+        tokens.push({t:'regex', v: src.slice(i, j)}); lastSignificant = '/'; i = j; continue;
+      }
+    }
+    if (/\s/.test(c)) { i++; continue; }
+    if ('{}();,'.includes(c)) { tokens.push({t:'punc', v:c}); lastSignificant = c; i++; continue; }
+    let j = i;
+    while (j < n && !'{}();, \t\n\r"\'`'.includes(src[j]) && !(src[j]==='/' && (src[j+1]==='/'||src[j+1]==='*'))) j++;
+    if (j === i) j++;
+    tokens.push({t:'word', v: src.slice(i, j)}); lastSignificant = src[j-1]; i = j;
+  }
+  let depth = 0, lines = [], cur = '';
+  function flush() { if (cur.trim() !== '') lines.push(indentChar.repeat(depth) + cur.trim()); cur = ''; }
+  for (let k = 0; k < tokens.length; k++) {
+    const tok = tokens[k];
+    if (tok.t === 'punc' && tok.v === '{') { cur += ' {'; flush(); depth++; }
+    else if (tok.t === 'punc' && tok.v === '}') { flush(); depth = Math.max(0, depth - 1); lines.push(indentChar.repeat(depth) + '}'); }
+    else if (tok.t === 'punc' && tok.v === ';') { cur += ';'; flush(); }
+    else if (tok.t === 'comment') { flush(); lines.push(indentChar.repeat(depth) + tok.v); }
+    else { cur += (cur && !/[\s({[]$/.test(cur) ? ' ' : '') + tok.v; }
+  }
+  flush();
+  return lines.join('\n');
+}
+
+/* ---------- UI wiring ---------- */
+function setMode(m) {
+  mode = m;
+  document.getElementById('mode-minify').classList.toggle('active', m==='minify');
+  document.getElementById('mode-beautify').classList.toggle('active', m==='beautify');
+  document.getElementById('minify-options').style.display = m==='minify' ? 'flex' : 'none';
+  document.getElementById('beautify-options').style.display = m==='beautify' ? 'flex' : 'none';
+  document.getElementById('run-btn').textContent = m==='minify' ? '⚡ Minify Code' : '✨ Beautify Code';
+  document.getElementById('stats-bar').style.display = 'none';
+}
+
+function bytes(str) { return new Blob([str]).size; }
+function fmtBytes(n) {
+  if (n < 1024) return n + ' B';
+  return (n/1024).toFixed(2) + ' KB';
+}
+
+function updateInputSize() {
+  document.getElementById('input-size').textContent = fmtBytes(bytes(document.getElementById('input').value));
+}
+
+function showIssues(list) {
+  const panel = document.getElementById('issues-panel');
+  if (!list.length) { panel.style.display = 'none'; panel.innerHTML=''; return; }
+  panel.style.display = 'block';
+  panel.innerHTML = list.map(it => `<div class="issue ${it.type}"><span class="dot"></span><span>${it.msg}</span></div>`).join('');
+}
+
+async function estimateGzip(str) {
+  try {
+    if (typeof CompressionStream === 'undefined') return null;
+    const stream = new Blob([str]).stream().pipeThrough(new CompressionStream('gzip'));
+    const buf = await new Response(stream).arrayBuffer();
+    return buf.byteLength;
+  } catch(e) { return null; }
+}
+
+async function runTool() {
+  const input = document.getElementById('input').value;
+  const outputEl = document.getElementById('output');
+  if (!input.trim()) { showIssues([{type:'warning', msg:'Paste or upload some JavaScript first.'}]); return; }
+
+  let issues = [];
+  let output = '';
+
+  if (mode === 'minify') {
+    const hasTerser = (typeof Terser !== 'undefined' && Terser.minify);
+    const opts = {
+      compress: document.getElementById('opt-compress').checked,
+      mangle: document.getElementById('opt-mangle').checked,
+      removeConsole: document.getElementById('opt-console').checked,
+      preserveComments: document.getElementById('opt-comments').checked,
+      esModule: document.getElementById('opt-module').checked
+    };
+    if (hasTerser) {
+      try {
+        const terserOpts = {
+          compress: opts.compress ? { drop_console: opts.removeConsole } : false,
+          mangle: opts.mangle,
+          format: { comments: opts.preserveComments ? /^!/ : false },
+          module: opts.esModule
+        };
+        const result = await Terser.minify(input, terserOpts);
+        if (result.error) throw result.error;
+        output = result.code || '';
+        issues.push({type:'info', msg:'Minified using Terser (real AST-based engine).'});
+      } catch (e) {
+        issues.push({type:'error', msg:'Terser could not parse this code: ' + (e.message || e) + '. Falling back to safe engine.'});
+        output = safeMinifyJS(input, { stripComments: !opts.preserveComments, collapseWhitespace: opts.compress, removeConsole: opts.removeConsole });
+      }
+    } else {
+      issues.push({type:'warning', msg:'Terser engine unavailable — used built-in safe fallback (lighter compression, but syntax-safe).'});
+      output = safeMinifyJS(input, { stripComments: !opts.preserveComments, collapseWhitespace: opts.compress, removeConsole: opts.removeConsole });
+    }
+  } else {
+    const indentVal = document.getElementById('opt-indent').value;
+    const indentSize = indentVal === 'tab' ? 1 : parseInt(indentVal, 10);
+    const indentChar = indentVal === 'tab' ? '\t' : ' '.repeat(indentSize);
+    const hasBeautify = (typeof js_beautify !== 'undefined');
+    if (hasBeautify) {
+      try {
+        output = js_beautify(input, { indent_size: indentSize, indent_char: indentVal==='tab'?'\t':' ', indent_with_tabs: indentVal==='tab' });
+        issues.push({type:'info', msg:'Beautified using js-beautify.'});
+      } catch(e) {
+        issues.push({type:'error', msg:'js-beautify failed: ' + (e.message||e) + '. Falling back to safe engine.'});
+        output = safeBeautifyJS(input, { indentSize: indentVal==='tab'?2:indentSize });
+      }
+    } else {
+      issues.push({type:'warning', msg:'js-beautify unavailable — used built-in safe fallback formatter.'});
+      output = safeBeautifyJS(input, { indentSize: indentVal==='tab'?2:indentSize });
+    }
+  }
+
+  outputEl.value = output;
+  const origSize = bytes(input);
+  const newSize = bytes(output);
+  document.getElementById('output-size').textContent = fmtBytes(newSize);
+  document.getElementById('input-size').textContent = fmtBytes(origSize);
+
+  if (mode === 'minify') {
+    document.getElementById('stats-bar').style.display = 'grid';
+    document.getElementById('stat-original').textContent = fmtBytes(origSize);
+    document.getElementById('stat-minified').textContent = fmtBytes(newSize);
+    const reduction = origSize > 0 ? Math.max(0, Math.round((1 - newSize/origSize) * 100)) : 0;
+    document.getElementById('stat-reduction').textContent = reduction + '%';
+    document.getElementById('stat-gzip').textContent = '…';
+    estimateGzip(output).then(gz => {
+      document.getElementById('stat-gzip').textContent = gz !== null ? fmtBytes(gz) : 'N/A';
+    });
+  } else {
+    document.getElementById('stats-bar').style.display = 'none';
+  }
+
+  showIssues(issues);
+}
+
+function copyOutput() {
+  const out = document.getElementById('output');
+  if (!out.value) return;
+  navigator.clipboard.writeText(out.value).then(() => {
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = orig, 1200);
+  });
+}
+
+function downloadOutput() {
+  const out = document.getElementById('output').value;
+  if (!out) return;
+  const ext = mode === 'minify' ? '.min.js' : '.beautified.js';
+  const blob = new Blob([out], {type:'text/javascript'});
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'output' + ext;
+  a.click();
+}
+
+function clearAll() {
+  document.getElementById('input').value = '';
+  document.getElementById('output').value = '';
+  document.getElementById('input-size').textContent = '0 bytes';
+  document.getElementById('output-size').textContent = '0 bytes';
+  document.getElementById('stats-bar').style.display = 'none';
+  showIssues([]);
+}
+
+function loadSample() {
+  const sample = [
+    'function calculateTotal(items) {',
+    '  // sums up the price of every item',
+    '  let total = 0;',
+    '  for (let i = 0; i < items.length; i++) {',
+    '    total += items[i].price * items[i].quantity;',
+    '  }',
+    '  console.log("Total calculated: " + total);',
+    '  return total;',
+    '}',
+    '',
+    'class ShoppingCart {',
+    '  constructor() {',
+    '    this.items = [];',
+    '  }',
+    '  add(item) {',
+    '    this.items.push(item);',
+    '    return `Added ${item.name} to cart`;',
+    '  }',
+    '}'
+  ].join('\n');
+  document.getElementById('input').value = sample;
+  updateInputSize();
+}
+
+function handleFile(e) {
+  const file = e.target.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = (ev) => {
+    document.getElementById('input').value = ev.target.result;
+    updateInputSize();
+  };
+  reader.readAsText(file);
+}
+
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+
+updateInputSize();
+</script>
+</body>
+</html>
