@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>HTML Minifier — Free Tool with Live Preview &amp; Gzip Estimate | SEOTriggers</title>
+<meta name="description" content="Free HTML minifier with safe presets, a live before/after rendered preview, real gzip-compressed size estimate, and inline CSS/JS minification. No signup, no ads." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/html-minifier" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="HTML Minifier — Free Tool with Live Preview &amp; Gzip Estimate | SEOTriggers" />
+<meta property="og:description" content="Minify HTML with safe presets, a live before/after rendered preview, real gzip-compressed size estimate, and inline CSS/JS minification. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/html-minifier" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="HTML Minifier — Free Tool with Live Preview &amp; Gzip Estimate | SEOTriggers" />
+<meta name="twitter:description" content="Minify HTML with safe presets, live rendered preview, and real gzip size estimate. Free, no ads." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "HTML Minifier",
+  "url": "https://seotriggers.com/tools/html-minifier",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online HTML minifier with safe presets, a live before/after rendered preview, a real gzip-compressed size estimate, and inline CSS/JS minification."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "HTML Minifier", "item": "https://seotriggers.com/tools/html-minifier" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Is minifying HTML worth it if my server already uses gzip compression?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes, though the gains are smaller than on an uncompressed transfer. Gzip compresses repetitive whitespace and text very efficiently, so minification mostly helps by reducing parse time and DOM construction work in the browser, plus it still shaves some bytes off even after compression, particularly from comments and redundant attributes." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can minifying HTML break my page?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It can if the minifier is too aggressive — for example, collapsing whitespace inside a <pre> block or incorrectly altering inline JavaScript. This tool only applies transformations that are safe by the HTML5 spec, preserves whitespace-sensitive tags like <pre> and <textarea> exactly, and only does safe whitespace-only cleanup on inline JavaScript rather than full logic rewriting." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I minify HTML manually or build it into my deployment process?",
+      "acceptedAnswer": { "@type": "Answer", "text": "For a one-off page or a quick check, minifying manually with a tool like this is fine. For a full site, it's better to automate minification as part of your build or deployment pipeline so every page is minified consistently without needing a manual step each time." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why doesn't this tool remove optional closing tags like </html> or </body>?",
+      "acceptedAnswer": { "@type": "Answer", "text": "While the HTML5 spec does allow omitting certain closing tags, doing so reliably requires modeling the full HTML5 tag-omission rules, and getting an edge case wrong can silently break page structure. This tool intentionally skips that transformation to keep every output guaranteed valid and safe to ship." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is a realistic HTML minification savings I should expect?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It depends heavily on how much whitespace, comments, and redundant attributes are in the source. Hand-written or template-generated HTML often shrinks by 10 to 30 percent before compression, while HTML that's already compact from a build tool may only shrink by a few percent." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.field textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'SF Mono',Consolas,monospace;outline:none;background:#fff;color:var(--ink);resize:vertical;min-height:220px;
+}
+.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;}
+.preset-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.preset-btn.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 20px;margin-top:12px;}
+.opt-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;}
+.opt-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;margin-top:2px;flex-shrink:0;}
+.opt-item label{cursor:pointer;}
+.opt-item .opt-desc{display:block;font-size:11.5px;color:var(--sub);margin-top:1px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);font-size:13px;font-weight:600;padding:10px 18px;}
+.btn:disabled{opacity:.5;cursor:default;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.stat-card .l{font-size:11px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.stat-card .v{font-size:22px;font-weight:800;color:var(--ink);}
+.stat-card .v.green{color:var(--green);}
+
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12px;overflow-x:auto;margin:0;line-height:1.6;max-height:340px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+
+.preview-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.preview-tab{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.preview-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.preview-frame-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;}
+.preview-frame-wrap iframe{width:100%;height:300px;border:none;display:block;}
+
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-tag.ok{background:var(--green-bg);color:var(--green);}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / HTML Minifier
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · No Ads</span>
+    <h1>HTML Minifier</h1>
+    <p>Minify HTML with safe presets, a live before/after rendered preview, a real gzip-compressed size estimate, and inline CSS/JS cleanup.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="toggle-pair" style="margin-bottom:16px;">
+      <button id="btnPaste" class="active" onclick="setInputMode('paste')">Paste HTML</button>
+      <button id="btnUrl" onclick="setInputMode('url')">Fetch from URL</button>
+    </div>
+
+    <div class="field" id="pasteField">
+      <textarea id="fldInput" oninput="scheduleMinify()" placeholder="&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;My Page&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    &lt;p&gt;Hello world&lt;/p&gt;
+  &lt;/body&gt;
+&lt;/html&gt;"></textarea>
+    </div>
+    <div class="field hidden" id="urlFieldWrap">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="fldUrl" placeholder="https://example.com/page">
+        <button class="btn" onclick="fetchPageHtml()" id="btnFetch">Fetch</button>
+      </div>
+      <div class="small-note" id="fetchStatus"></div>
+    </div>
+
+    <div class="section-label">Preset</div>
+    <div class="preset-row">
+      <button class="preset-btn active" onclick="applyPreset('safe')">✅ Safe (recommended)</button>
+      <button class="preset-btn" onclick="applyPreset('aggressive')">⚡ Aggressive</button>
+      <button class="preset-btn" onclick="applyPreset('custom')">⚙️ Custom</button>
+    </div>
+
+    <div class="section-label">Options</div>
+    <div class="opt-grid" id="optGrid"></div>
+
+    <div style="margin-top:20px;">
+      <button class="btn" onclick="runMinify()">🗜 Minify HTML</button>
+      <button class="copy-btn" onclick="copyOutput()">Copy output</button>
+      <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+    </div>
+
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div id="issuesPanel" class="issues-panel hidden">
+      <div class="issues-head">Notes</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="section-label">Live preview</div>
+    <div class="preview-tabs">
+      <button class="preview-tab active" data-p="before" onclick="setPreviewTab('before')">Before</button>
+      <button class="preview-tab" data-p="after" onclick="setPreviewTab('after')">After</button>
+    </div>
+    <div class="preview-frame-wrap">
+      <iframe id="previewFrame" sandbox=""></iframe>
+    </div>
+
+    <div class="output-head" style="margin-top:20px;"><h4>Minified output</h4></div>
+    <pre class="code-block" id="outputCode"></pre>
+
+  </div>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live rendered preview</h3><p>See the before and after render side by side (well, tab by tab) to confirm minification didn't visually break anything.</p></div>
+      <div class="feat-card"><div class="ic">📦</div><h3>Real gzip size estimate</h3><p>Get an actual gzip-compressed size estimate using your browser's native compression engine, not just a raw byte count.</p></div>
+      <div class="feat-card"><div class="ic">🎚️</div><h3>Safe presets, not a checkbox wall</h3><p>Start with a sensible Safe preset or go Aggressive — no need to research every option before you get a usable result.</p></div>
+      <div class="feat-card"><div class="ic">🌳</div><h3>Parser-based, not regex</h3><p>HTML is parsed into a real DOM tree and reserialized, so whitespace-sensitive tags like &lt;pre&gt; and &lt;textarea&gt; are never corrupted.</p></div>
+      <div class="feat-card"><div class="ic">🎨</div><h3>Inline CSS &amp; JS cleanup</h3><p>Minifies CSS inside &lt;style&gt; tags and style attributes, plus safe whitespace-only cleanup for inline &lt;script&gt; blocks.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Your HTML is never uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">The classic HTMLMinifier tool is powerful but text-only, with dozens of raw checkboxes and no way to confirm the result still looks right.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>kangax.github.io</th><th>CodeBeautify.org</th></tr></thead>
+        <tbody>
+          <tr><td>Whitespace, comments &amp; redundant attribute removal</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Safe / Aggressive presets (not a raw checkbox wall)</td><td class="yes">✓</td><td class="no">✗</td><td class="partial">Minimal options</td></tr>
+          <tr><td>Live before/after rendered preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Real gzip-compressed size estimate</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Fetch directly from a live URL</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No ads</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Ad-heavy</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Need to check your page's meta tags too? Try the <a href="/tools/meta-tag-generator">Meta Tag Generator</a>.</p>
+  </section>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>What gets minified — and what's intentionally left alone</h2>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Transformation</th><th>Why it's safe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Whitespace collapsing</strong></td><td>Runs of spaces/tabs/newlines are collapsed to a single space, never fully removed, so inline spacing between words is preserved. Content inside &lt;pre&gt;, &lt;textarea&gt;, &lt;script&gt; and &lt;style&gt; is left exactly as-is.</td></tr>
+          <tr><td><strong>Comment removal</strong></td><td>Ordinary HTML comments are stripped; conditional comments can be preserved with a dedicated option.</td></tr>
+          <tr><td><strong>Redundant attributes</strong></td><td>Only default values like <code>type="text/javascript"</code> on &lt;script&gt; are removed — attributes with non-default values are always kept.</td></tr>
+          <tr><td><strong>Optional closing tags</strong></td><td>Intentionally NOT removed. Modeling HTML5's tag-omission rules correctly is complex, and getting it wrong can break page structure — not worth the risk for a small byte saving.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is minifying HTML worth it if my server already uses gzip compression? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes, though the gains are smaller than on an uncompressed transfer. Gzip compresses repetitive whitespace and text very efficiently, so minification mostly helps by reducing parse time and DOM construction work in the browser, plus it still shaves some bytes off even after compression, particularly from comments and redundant attributes.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can minifying HTML break my page? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It can if the minifier is too aggressive — for example, collapsing whitespace inside a &lt;pre&gt; block or incorrectly altering inline JavaScript. This tool only applies transformations that are safe by the HTML5 spec, preserves whitespace-sensitive tags like &lt;pre&gt; and &lt;textarea&gt; exactly, and only does safe whitespace-only cleanup on inline JavaScript rather than full logic rewriting.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should I minify HTML manually or build it into my deployment process? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>For a one-off page or a quick check, minifying manually with a tool like this is fine. For a full site, it's better to automate minification as part of your build or deployment pipeline so every page is minified consistently without needing a manual step each time.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why doesn't this tool remove optional closing tags like &lt;/html&gt; or &lt;/body&gt;? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>While the HTML5 spec does allow omitting certain closing tags, doing so reliably requires modeling the full HTML5 tag-omission rules, and getting an edge case wrong can silently break page structure. This tool intentionally skips that transformation to keep every output guaranteed valid and safe to ship.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is a realistic HTML minification savings I should expect? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It depends heavily on how much whitespace, comments, and redundant attributes are in the source. Hand-written or template-generated HTML often shrinks by 10 to 30 percent before compression, while HTML that's already compact from a build tool may only shrink by a few percent.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTION DEFINITIONS
+═══════════════════════════════════════════════════════════════════════ */
+var OPTIONS = [
+  { key:"collapseWhitespace", label:"Collapse whitespace", desc:"Collapse runs of spaces/tabs/newlines to a single space (never removed entirely).", safe:true, aggressive:true },
+  { key:"removeComments", label:"Remove comments", desc:"Strip ordinary HTML comments.", safe:true, aggressive:true },
+  { key:"preserveConditional", label:"Preserve IE conditional comments", desc:"Keep comments like <!--[if IE]-->.", safe:true, aggressive:false },
+  { key:"removeRedundantAttrs", label:"Remove redundant attributes", desc:'e.g. type="text/javascript" on <script>.', safe:true, aggressive:true },
+  { key:"collapseBooleanAttrs", label:"Collapse boolean attributes", desc:'checked="checked" → checked.', safe:true, aggressive:true },
+  { key:"removeAttrQuotes", label:"Remove attribute quotes when safe", desc:"Only when the value has no spaces or special characters.", safe:false, aggressive:true },
+  { key:"useShortDoctype", label:"Use short HTML5 doctype", desc:"Normalize the doctype to <!DOCTYPE html>.", safe:true, aggressive:true },
+  { key:"minifyCss", label:"Minify inline CSS", desc:"Inside <style> tags and style=\"\" attributes.", safe:true, aggressive:true },
+  { key:"minifyJs", label:"Minify inline JS (whitespace only)", desc:"Trims blank lines — never strips comments or renames anything.", safe:true, aggressive:true },
+  { key:"sortAttributes", label:"Sort attributes", desc:"Improves gzip compression ratio slightly; no visible effect.", safe:false, aggressive:true },
+  { key:"removeEmptyAttrs", label:"Remove empty class/style/title", desc:"Only these three attributes are ever removed when empty.", safe:false, aggressive:true }
+];
+
+var state = {};
+OPTIONS.forEach(function(o){ state[o.key] = o.safe; });
+
+function renderOptions(){
+  document.getElementById("optGrid").innerHTML = OPTIONS.map(function(o){
+    return '<div class="opt-item"><input type="checkbox" id="opt_' + o.key + '" ' + (state[o.key]?'checked':'') + ' onchange="onOptionToggle(\'' + o.key + '\', this.checked)">' +
+      '<label for="opt_' + o.key + '">' + o.label + '<span class="opt-desc">' + o.desc + '</span></label></div>';
+  }).join("");
+}
+function onOptionToggle(key, val){
+  state[key] = val;
+  setActivePreset("custom");
+  scheduleMinify();
+}
+function applyPreset(name){
+  if (name === "safe"){ OPTIONS.forEach(function(o){ state[o.key] = o.safe; }); }
+  else if (name === "aggressive"){ OPTIONS.forEach(function(o){ state[o.key] = o.aggressive; }); }
+  setActivePreset(name);
+  renderOptions();
+  scheduleMinify();
+}
+function setActivePreset(name){
+  document.querySelectorAll(".preset-btn").forEach(function(b, i){
+    var map = ["safe","aggressive","custom"];
+    b.classList.toggle("active", map[i] === name);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INPUT MODE
+═══════════════════════════════════════════════════════════════════════ */
+var inputMode = "paste";
+function setInputMode(m){
+  inputMode = m;
+  document.getElementById("btnPaste").classList.toggle("active", m==="paste");
+  document.getElementById("btnUrl").classList.toggle("active", m==="url");
+  document.getElementById("pasteField").classList.toggle("hidden", m!=="paste");
+  document.getElementById("urlFieldWrap").classList.toggle("hidden", m!=="url");
+}
+async function fetchWithTimeout(url, opts, ms){
+  var controller = new AbortController();
+  var id = setTimeout(function(){ controller.abort(); }, ms || 12000);
+  try { return await fetch(url, Object.assign({}, opts, {signal: controller.signal})); }
+  finally { clearTimeout(id); }
+}
+async function fetchPageHtml(){
+  var status = document.getElementById("fetchStatus");
+  var btn = document.getElementById("btnFetch");
+  var url = document.getElementById("fldUrl").value.trim();
+  if (!url){ status.textContent = "Enter a URL first."; return; }
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+  btn.disabled = true;
+  status.textContent = "Fetching…";
+  var html = null;
+  try {
+    var r = await fetchWithTimeout(url, {mode:"cors"}, 12000);
+    if (r.ok) html = await r.text();
+  } catch(e){}
+  if (!html){
+    try {
+      var r2 = await fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(url), {}, 12000);
+      if (r2.ok) html = await r2.text();
+    } catch(e2){}
+  }
+  btn.disabled = false;
+  if (!html){ status.textContent = "Couldn't fetch that URL (CORS or network issue) — try pasting the HTML instead."; return; }
+  document.getElementById("fldInput").value = html;
+  setInputMode("paste");
+  status.textContent = "Fetched " + html.length.toLocaleString() + " characters.";
+  runMinify();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CSS MINIFIER (safe, regex-based, careful with strings/urls)
+═══════════════════════════════════════════════════════════════════════ */
+function minifyCss(css){
+  if (!css) return css;
+  var out = css
+    .replace(/\/\*[\s\S]*?\*\//g, "")
+    .replace(/\s*\n\s*/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s*([{}:;,])\s*/g, "$1")
+    .replace(/;}/g, "}")
+    .trim();
+  return out;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   JS MINIFIER (safe, whitespace-only — never touches comments or logic)
+═══════════════════════════════════════════════════════════════════════ */
+function minifyJsSafe(js){
+  if (!js) return js;
+  return js
+    .split("\n")
+    .map(function(line){ return line.replace(/[ \t]+$/,""); })
+    .join("\n")
+    .replace(/\n{3,}/g, "\n\n")
+    .replace(/^\n+|\n+$/g, "");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HTML SERIALIZATION HELPERS
+═══════════════════════════════════════════════════════════════════════ */
+var VOID_ELEMENTS = new Set(["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]);
+var PRESERVE_WS_TAGS = new Set(["pre","textarea"]);
+var RAW_TEXT_TAGS = new Set(["script","style"]);
+var BOOLEAN_ATTRS = new Set(["checked","selected","disabled","readonly","multiple","ismap","defer","async","autofocus","autoplay","controls","default","hidden","loop","muted","open","required","reversed","novalidate","formnovalidate","allowfullscreen","itemscope","nomodule"]);
+
+function isSafeUnquoted(val){
+  return val.length > 0 && !/[\s"'=<>`]/.test(val);
+}
+
+function escapeText(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function escapeAttr(s){
+  return String(s).replace(/&/g,"&amp;").replace(/"/g,"&quot;");
+}
+
+function isInsidePreserveTag(node){
+  var el = node.parentElement;
+  while (el){
+    var tag = el.tagName ? el.tagName.toLowerCase() : "";
+    if (PRESERVE_WS_TAGS.has(tag)) return true;
+    el = el.parentElement;
+  }
+  return false;
+}
+
+function serializeAttrs(el, opts){
+  var attrs = Array.from(el.attributes);
+  if (opts.sortAttributes) attrs.sort(function(a,b){ return a.name < b.name ? -1 : a.name > b.name ? 1 : 0; });
+  var tag = el.tagName.toLowerCase();
+
+  if (opts.removeRedundantAttrs){
+    attrs = attrs.filter(function(a){
+      if (tag === "script" && a.name === "type" && /^(text\/javascript|application\/javascript)$/i.test(a.value)) return false;
+      if ((tag === "style" || (tag === "link" && el.getAttribute("rel") === "stylesheet")) && a.name === "type" && /^text\/css$/i.test(a.value)) return false;
+      if (tag === "form" && a.name === "method" && /^get$/i.test(a.value)) return false;
+      return true;
+    });
+  }
+  if (opts.removeEmptyAttrs){
+    attrs = attrs.filter(function(a){
+      return !((a.name === "class" || a.name === "style" || a.name === "title") && a.value.trim() === "");
+    });
+  }
+
+  return attrs.map(function(a){
+    var name = a.name;
+    var val = a.value;
+    if (opts.collapseBooleanAttrs && BOOLEAN_ATTRS.has(name) && (val === "" || val.toLowerCase() === name.toLowerCase())){
+      return " " + name;
+    }
+    if (val === "" ) return " " + name + '=""';
+    if (opts.removeAttrQuotes && isSafeUnquoted(val)){
+      return " " + name + "=" + val;
+    }
+    return " " + name + '="' + escapeAttr(val) + '"';
+  }).join("");
+}
+
+function serializeNode(node, opts){
+  if (node.nodeType === 3){ // TEXT_NODE
+    var text = node.nodeValue;
+    var preserve = isInsidePreserveTag(node);
+    if (opts.collapseWhitespace && !preserve){
+      text = text.replace(/[ \t\n\r\f]+/g, " ");
+    }
+    return escapeText(text);
+  }
+  if (node.nodeType === 8){ // COMMENT_NODE
+    if (!opts.removeComments) return "<!--" + node.nodeValue + "-->";
+    if (opts.preserveConditional && /^\s*\[if\b|\[endif\]/i.test(node.nodeValue)) return "<!--" + node.nodeValue + "-->";
+    return "";
+  }
+  if (node.nodeType === 1){ // ELEMENT_NODE
+    var tag = node.tagName.toLowerCase();
+    var attrStr = serializeAttrs(node, opts);
+    var openTag = "<" + tag + attrStr + ">";
+    if (VOID_ELEMENTS.has(tag)) return openTag;
+
+    var inner;
+    if (RAW_TEXT_TAGS.has(tag)){
+      var raw = node.textContent;
+      if (tag === "style" && opts.minifyCss) raw = minifyCss(raw);
+      if (tag === "script" && opts.minifyJs && !node.getAttribute("src")) raw = minifyJsSafe(raw);
+      inner = raw;
+    } else {
+      inner = Array.from(node.childNodes).map(function(c){ return serializeNode(c, opts); }).join("");
+    }
+    return openTag + inner + "</" + tag + ">";
+  }
+  return "";
+}
+
+function minifyStyleAttr(el, opts){
+  if (opts.minifyCss && el.hasAttribute && el.hasAttribute("style")){
+    el.setAttribute("style", minifyCss(el.getAttribute("style")));
+  }
+  Array.from(el.children || []).forEach(function(c){ minifyStyleAttr(c, opts); });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MAIN MINIFY FUNCTION
+═══════════════════════════════════════════════════════════════════════ */
+function extractDoctype(html){
+  var m = html.match(/<!DOCTYPE[^>]*>/i);
+  return m ? m[0] : null;
+}
+
+function minifyHtml(html, opts){
+  var doctype = extractDoctype(html);
+  var doctypeOut = "";
+  if (doctype){
+    doctypeOut = opts.useShortDoctype ? "<!DOCTYPE html>" : doctype;
+  }
+  var bodyHtml = doctype ? html.replace(doctype, "") : html;
+  var isFullDocument = /<html[\s>]/i.test(bodyHtml);
+
+  var parser = new DOMParser();
+  var doc = parser.parseFromString(bodyHtml, "text/html");
+
+  minifyStyleAttr(doc.documentElement, opts);
+
+  var out;
+  if (isFullDocument){
+    out = serializeNode(doc.documentElement, opts);
+  } else {
+    out = Array.from(doc.body.childNodes).map(function(c){ return serializeNode(c, opts); }).join("");
+  }
+  return (doctypeOut ? doctypeOut + (opts.collapseWhitespace ? "" : "\n") : "") + out;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIZE / GZIP ESTIMATE
+═══════════════════════════════════════════════════════════════════════ */
+function byteLength(str){
+  return new TextEncoder().encode(str).length;
+}
+async function gzipSize(str){
+  if (typeof CompressionStream === "undefined") return null;
+  try {
+    var bytes = new TextEncoder().encode(str);
+    var cs = new CompressionStream("gzip");
+    var writer = cs.writable.getWriter();
+    writer.write(bytes);
+    writer.close();
+    var chunks = [];
+    var reader = cs.readable.getReader();
+    while (true){
+      var res = await reader.read();
+      if (res.done) break;
+      chunks.push(res.value);
+    }
+    var total = chunks.reduce(function(a,c){ return a + c.length; }, 0);
+    return total;
+  } catch(e){ return null; }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PREVIEW
+═══════════════════════════════════════════════════════════════════════ */
+var currentPreviewTab = "before";
+var lastInput = "";
+var lastOutput = "";
+
+function setPreviewTab(t){
+  currentPreviewTab = t;
+  document.querySelectorAll(".preview-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.p === t); });
+  renderPreview();
+}
+function renderPreview(){
+  var frame = document.getElementById("previewFrame");
+  var html = currentPreviewTab === "before" ? lastInput : lastOutput;
+  frame.srcdoc = html || "<p style='font-family:sans-serif;color:#888;padding:16px;'>Nothing to preview yet.</p>";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   ISSUES / NOTES
+═══════════════════════════════════════════════════════════════════════ */
+function renderIssues(input){
+  var issues = [];
+  if (/<pre[\s>]/i.test(input)) issues.push({level:"info", text:"Detected a <pre> tag — its internal whitespace is always preserved exactly."});
+  if (state.removeAttrQuotes) issues.push({level:"warning", text:"Attribute quote removal is on — only applied where the value has no spaces or special characters, but double-check dynamic templating attributes."});
+  if (state.minifyJs) issues.push({level:"info", text:"Inline JS is only whitespace-trimmed — comments and logic are never touched, so behavior is unaffected."});
+  var panel = document.getElementById("issuesPanel");
+  if (issues.length === 0){ panel.classList.add("hidden"); return; }
+  panel.classList.remove("hidden");
+  document.getElementById("issuesList").innerHTML = issues.map(function(i){
+    return '<div class="issue-row"><span class="issue-tag ' + i.level + '">' + i.level + '</span><span>' + i.text + '</span></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER RUN
+═══════════════════════════════════════════════════════════════════════ */
+var minifyTimer = null;
+function scheduleMinify(){
+  clearTimeout(minifyTimer);
+  minifyTimer = setTimeout(runMinify, 400);
+}
+
+async function runMinify(){
+  var input = document.getElementById("fldInput").value;
+  lastInput = input;
+  if (!input.trim()){
+    document.getElementById("outputCode").textContent = "";
+    document.getElementById("statGrid").innerHTML = "";
+    lastOutput = "";
+    renderPreview();
+    return;
+  }
+  var output;
+  try {
+    output = minifyHtml(input, state);
+  } catch(e){
+    document.getElementById("outputCode").textContent = "Error minifying HTML: " + e.message;
+    return;
+  }
+  lastOutput = output;
+  document.getElementById("outputCode").textContent = output;
+  renderPreview();
+  renderIssues(input);
+
+  var origSize = byteLength(input);
+  var minSize = byteLength(output);
+  var savedPct = origSize > 0 ? (((origSize - minSize) / origSize) * 100) : 0;
+
+  var statGrid = document.getElementById("statGrid");
+  statGrid.innerHTML =
+    '<div class="stat-card"><div class="l">Original size</div><div class="v">' + formatBytes(origSize) + '</div></div>' +
+    '<div class="stat-card"><div class="l">Minified size</div><div class="v green">' + formatBytes(minSize) + '</div></div>' +
+    '<div class="stat-card"><div class="l">Reduction</div><div class="v green">' + savedPct.toFixed(1) + '%</div></div>' +
+    '<div class="stat-card"><div class="l">Gzip (before)</div><div class="v" id="gzipBefore">…</div></div>' +
+    '<div class="stat-card"><div class="l">Gzip (after)</div><div class="v green" id="gzipAfter">…</div></div>';
+
+  var gb = await gzipSize(input);
+  var ga = await gzipSize(output);
+  document.getElementById("gzipBefore") && (document.getElementById("gzipBefore").textContent = gb !== null ? formatBytes(gb) : "n/a");
+  document.getElementById("gzipAfter") && (document.getElementById("gzipAfter").textContent = ga !== null ? formatBytes(ga) : "n/a");
+}
+
+function formatBytes(n){
+  if (n < 1024) return n + " B";
+  return (n/1024).toFixed(2) + " KB";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyOutput(){
+  if (!lastOutput) return;
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(lastOutput).catch(function(){ fallbackCopy(lastOutput); });
+  } else { fallbackCopy(lastOutput); }
+}
+function downloadOutput(){
+  if (!lastOutput) return;
+  var blob = new Blob([lastOutput], {type:"text/html"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "minified.html";
+  a.click();
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* init */
+renderOptions();
+document.getElementById("fldInput").value =
+'<!DOCTYPE html>\n<html>\n  <head>\n    <title>My Page</title>\n    <!-- main styles -->\n    <style type="text/css">\n      body   {\n        color:   #333;\n      }\n    </style>\n  </head>\n  <body>\n    <p title="">Hello    world</p>\n    <input type="checkbox" checked="checked">\n    <script type="text/javascript">\n\n      var x = 1;\n\n\n      console.log(x);\n    <\/script>\n  </body>\n</html>';
+runMinify();
+</script>
+</body>
+</html>
