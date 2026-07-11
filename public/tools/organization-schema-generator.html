@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Organization Schema Generator — Free JSON-LD Tool | SEOTriggers</title>
+<meta name="description" content="Free organization schema generator with multiple contact points, founders with profile links, a Knowledge Panel preview, and a built-in validation checklist. Generates clean JSON-LD in seconds. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/organization-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Organization Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta property="og:description" content="Generate Organization JSON-LD with multiple contact points, founders with profile links, a Knowledge Panel preview, and a validation checklist. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/organization-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Organization Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta name="twitter:description" content="Generate Organization JSON-LD with multiple contact points, founders, a Knowledge Panel preview, and a validation checklist. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Organization Schema Generator",
+  "url": "https://seotriggers.com/tools/organization-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate Organization JSON-LD structured data with multiple contact points, founders with profile links, a Knowledge Panel preview, and a built-in validation checklist."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Organization Schema Generator", "item": "https://seotriggers.com/tools/organization-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does Organization schema guarantee a Google Knowledge Panel?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Google generates Knowledge Panels using multiple signals — Wikipedia, Wikidata, entity prominence, and corroborating sources across the web — and Organization schema is only one input. It helps Google confirm details it already suspects, but strong sameAs links, consistent branding, and authoritative mentions elsewhere matter just as much." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between Organization and LocalBusiness schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "LocalBusiness is a subtype of Organization — it inherits properties like name, url, logo, and sameAs, but adds location-specific fields like address, geo-coordinates, and opening hours. Use Organization for a brand or company overall, and LocalBusiness for a business with a physical location customers visit." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I list one contact point or several?",
+      "acceptedAnswer": { "@type": "Answer", "text": "List one contactPoint per distinct purpose — customer service, sales, technical support, billing — rather than a single generic phone number. This lets Google (and any tool reading your structured data) route the right query to the right department, which is closer to how real-world organizations actually work." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need to list founders in the schema?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It's optional, but including founders with a link to their profile (LinkedIn, personal site) strengthens entity relationships in Google's Knowledge Graph — it helps establish who is behind the organization, which is a meaningful E-E-A-T signal for many industries." }
+    },
+    {
+      "@type": "Question",
+      "name": "What logo size and format does Google recommend?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google recommends a square logo of at least 112×112px, in JPG, PNG, or GIF format. The logo should be on a solid or transparent background and should be clearly your official brand mark, since it's a required field for Knowledge Panel eligibility." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I test that my Organization schema is valid?",
+      "acceptedAnswer": { "@type": "Answer", "text": "After adding the JSON-LD to your page's <head>, run the page through Google's Rich Results Test and the Schema.org Validator to confirm there are no syntax errors or missing required properties before you publish." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=url], .field input[type=date], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:64px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row, .field-row3{grid-template-columns:1fr;}}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.small{padding:6px 12px;font-size:12px;}
+.btn.danger{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.7;}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+
+.details{border:1px solid var(--border);border-radius:10px;margin-bottom:14px;overflow:hidden;}
+.details > summary{cursor:pointer;padding:12px 16px;background:var(--bg);font-size:13px;font-weight:700;color:var(--ink);list-style:none;display:flex;justify-content:space-between;align-items:center;}
+.details > summary::-webkit-details-marker{display:none;}
+.details > summary:after{content:"+";color:var(--brand);font-size:16px;}
+.details[open] > summary:after{content:"−";}
+.details-body{padding:16px;}
+
+.repeat-card{border:1px solid var(--border);border-radius:10px;padding:14px;margin-bottom:12px;background:var(--bg);}
+.repeat-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;}
+.repeat-card-head h4{margin:0;font-size:13px;font-weight:700;color:var(--ink);}
+
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.out-panel.hidden{display:none;}
+
+/* Issues panel */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-tag.ok{background:var(--green-bg);color:var(--green);}
+
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Knowledge panel preview */
+.kp-preview{border:1px solid var(--border);border-radius:12px;padding:20px;background:#fff;max-width:360px;}
+.kp-logo{width:72px;height:72px;border-radius:8px;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px;}
+.kp-logo img{width:100%;height:100%;object-fit:contain;}
+.kp-name{font-size:19px;font-weight:700;color:#202124;margin-bottom:2px;}
+.kp-type{font-size:13px;color:#70757a;margin-bottom:10px;}
+.kp-desc{font-size:13.5px;color:#3c4043;line-height:1.5;margin-bottom:12px;}
+.kp-row{font-size:13px;color:#3c4043;padding:5px 0;border-top:1px solid var(--border);display:flex;gap:8px;}
+.kp-row .k{color:#70757a;min-width:80px;flex-shrink:0;}
+.kp-social{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap;}
+.kp-social span{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:4px 10px;font-size:11.5px;color:var(--sub);}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Organization Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Organization Schema Generator</h1>
+    <p>Build valid Organization JSON-LD with multiple contact points, founders, a Knowledge Panel preview, and a built-in validation checklist.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Organization details</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldName">Organization name</label>
+        <input type="text" id="fldName" oninput="update()" placeholder="e.g. Acme Corp" />
+      </div>
+      <div class="field">
+        <label for="fldType">Organization type</label>
+        <select id="fldType" onchange="update()">
+          <option value="Organization">Organization (general)</option>
+          <option value="Corporation">Corporation</option>
+          <option value="NGO">NGO / Nonprofit</option>
+          <option value="EducationalOrganization">Educational Organization</option>
+          <option value="GovernmentOrganization">Government Organization</option>
+          <option value="SportsOrganization">Sports Organization</option>
+          <option value="NewsMediaOrganization">News / Media Organization</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldLegalName">Legal name <span style="font-weight:400;color:var(--sub);">(if different)</span></label>
+        <input type="text" id="fldLegalName" oninput="update()" placeholder="e.g. Acme Corporation Pvt. Ltd." />
+      </div>
+      <div class="field">
+        <label for="fldAltName">Alternate name / short name</label>
+        <input type="text" id="fldAltName" oninput="update()" placeholder="e.g. Acme" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldDesc">Description</label>
+      <textarea id="fldDesc" oninput="update()" placeholder="A short description of what the organization does"></textarea>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldUrl">Website URL</label>
+        <input type="text" id="fldUrl" oninput="update()" placeholder="https://example.com" />
+      </div>
+      <div class="field">
+        <label for="fldLogo">Logo URL</label>
+        <input type="text" id="fldLogo" oninput="update()" placeholder="https://example.com/logo.png" />
+        <div class="small-note">Google recommends a square logo, min. 112×112px.</div>
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldEmail">Email</label>
+        <input type="text" id="fldEmail" oninput="update()" placeholder="hello@example.com" />
+      </div>
+      <div class="field">
+        <label for="fldPhone">Main phone number</label>
+        <input type="text" id="fldPhone" oninput="update()" placeholder="+1-415-555-1234" />
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldSocial">Social profiles / sameAs <span style="font-weight:400;color:var(--sub);">(one URL per line)</span></label>
+      <textarea id="fldSocial" oninput="update()" placeholder="https://linkedin.com/company/example&#10;https://twitter.com/example&#10;https://facebook.com/example"></textarea>
+    </div>
+
+    <details class="details">
+      <summary>Advanced fields <span style="font-weight:400;">(founding date, employees, tax ID, slogan)</span></summary>
+      <div class="details-body">
+        <div class="field-row3">
+          <div class="field">
+            <label for="fldFounded">Founding date</label>
+            <input type="date" id="fldFounded" oninput="update()" />
+          </div>
+          <div class="field">
+            <label for="fldEmployees">Number of employees <span style="font-weight:400;color:var(--sub);">(or range, e.g. 51-200)</span></label>
+            <input type="text" id="fldEmployees" oninput="update()" placeholder="e.g. 50 or 51-200" />
+          </div>
+          <div class="field">
+            <label for="fldTaxId">Tax / VAT ID</label>
+            <input type="text" id="fldTaxId" oninput="update()" placeholder="e.g. GB123456789" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="fldSlogan">Slogan / tagline</label>
+          <input type="text" id="fldSlogan" oninput="update()" placeholder="e.g. Software that just works" />
+        </div>
+        <div class="section-label" style="margin-top:16px;">Address <span style="font-weight:400;text-transform:none;">(optional — for a registered/HQ address)</span></div>
+        <div class="field-row">
+          <div class="field"><label>Street address</label><input type="text" id="fldStreet" oninput="update()" placeholder="123 Main St"></div>
+          <div class="field"><label>City</label><input type="text" id="fldCity" oninput="update()" placeholder="San Francisco"></div>
+        </div>
+        <div class="field-row3">
+          <div class="field"><label>State / Region</label><input type="text" id="fldRegion" oninput="update()" placeholder="CA"></div>
+          <div class="field"><label>Postal code</label><input type="text" id="fldPostal" oninput="update()" placeholder="94103"></div>
+          <div class="field"><label>Country code</label><input type="text" id="fldCountry" oninput="update()" placeholder="US" value="US"></div>
+        </div>
+      </div>
+    </details>
+
+    <div class="section-label">Contact points</div>
+    <div id="contactsContainer"></div>
+    <button class="btn secondary small" onclick="addContact()">+ Add contact point</button>
+    <div class="small-note">Add one entry per department — customer service, sales, support, billing — rather than a single generic number.</div>
+
+    <div class="section-label">Founders</div>
+    <div id="foundersContainer"></div>
+    <button class="btn secondary small" onclick="addFounder()">+ Add founder</button>
+
+    <div id="issuesPanel" class="issues-panel" style="margin-top:24px;">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <div class="section-label">Knowledge Panel preview</div>
+    <div class="kp-preview" id="kpPreview"></div>
+
+    <!-- ══════════════ OUTPUT TABS ══════════════ -->
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="output-head"><h4>Script tag</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="copyOutput('download')">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput('copy')">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (functions.php)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (theme.liquid)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>Organization vs. LocalBusiness — which one do you need?</h2>
+    <p class="sub">They're closely related, but built for different situations.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Use</th><th>When</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Organization</strong></td><td>For your brand or company as a whole — SaaS products, online-only businesses, national/global brands, or as a general entity reference alongside other schema types.</td></tr>
+          <tr><td><strong>LocalBusiness</strong></td><td>For a business with one or more physical locations customers visit — adds address, geo-coordinates, and opening hours on top of everything Organization supports.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Have a physical storefront or office customers visit? Use the <a href="/tools/local-business-schema-generator">Local Business Schema Generator</a> instead.</p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most free generators cover the basics well but stop at a single contact field and a plain JSON output.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Aubrey Yung</th><th>iLoveSchema</th></tr></thead>
+        <tbody>
+          <tr><td>Core fields (name, logo, url, sameAs, description)</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Founders with profile URLs</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+          <tr><td>Multiple contact points (sales/support/billing)</td><td class="yes">✓</td><td class="no">Single contact</td><td class="no">Single contact</td></tr>
+          <tr><td>Knowledge Panel visual preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Org subtype selector (Corporation/NGO/Educational/Gov)</td><td class="yes">✓</td><td class="no">Generic only</td><td class="no">Generic only</td></tr>
+          <tr><td>Built-in validation checklist</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>WordPress / Shopify / Next.js ready code</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">☎️</div><h3>Multiple contact points</h3><p>Add a separate contactPoint for customer service, sales, support, or billing, each with its own phone, email, and languages.</p></div>
+      <div class="feat-card"><div class="ic">👥</div><h3>Founders with profile links</h3><p>List one or more founders with linked profile URLs to strengthen entity relationships in Google's Knowledge Graph.</p></div>
+      <div class="feat-card"><div class="ic">🖼️</div><h3>Knowledge Panel preview</h3><p>See a live mockup of how your logo, name, and description might appear before you ever publish anything.</p></div>
+      <div class="feat-card"><div class="ic">🏛️</div><h3>Organization subtypes</h3><p>Choose Corporation, NGO, Educational, Government, Sports, or News/Media — not just generic Organization.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in validation checklist</h3><p>Flags missing required fields, malformed sameAs URLs, and incomplete contact points before you test in Google's tools.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does Organization schema guarantee a Google Knowledge Panel? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Google generates Knowledge Panels using multiple signals — Wikipedia, Wikidata, entity prominence, and corroborating sources across the web — and Organization schema is only one input. It helps Google confirm details it already suspects, but strong sameAs links, consistent branding, and authoritative mentions elsewhere matter just as much.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between Organization and LocalBusiness schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>LocalBusiness is a subtype of Organization — it inherits properties like name, url, logo, and sameAs, but adds location-specific fields like address, geo-coordinates, and opening hours. Use Organization for a brand or company overall, and LocalBusiness for a business with a physical location customers visit.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should I list one contact point or several? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>List one contactPoint per distinct purpose — customer service, sales, technical support, billing — rather than a single generic phone number. This lets Google (and any tool reading your structured data) route the right query to the right department, which is closer to how real-world organizations actually work.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need to list founders in the schema? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It's optional, but including founders with a link to their profile (LinkedIn, personal site) strengthens entity relationships in Google's Knowledge Graph — it helps establish who is behind the organization, which is a meaningful E-E-A-T signal for many industries.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What logo size and format does Google recommend? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Google recommends a square logo of at least 112×112px, in JPG, PNG, or GIF format. The logo should be on a solid or transparent background and should be clearly your official brand mark, since it's a required field for Knowledge Panel eligibility.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I test that my Organization schema is valid? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>After adding the JSON-LD to your page's &lt;head&gt;, run the page through Google's Rich Results Test and the Schema.org Validator to confirm there are no syntax errors or missing required properties before you publish.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE: CONTACTS & FOUNDERS
+═══════════════════════════════════════════════════════════════════════ */
+var idSeq = 1;
+var CONTACT_TYPES = ["customer service","sales","technical support","billing support","bill payment","reservations","credit card support","emergency","baggage tracking","roadside assistance"];
+
+function freshContact(){ return { id: idSeq++, type:"customer service", phone:"", email:"", areaServed:"", languages:"" }; }
+function freshFounder(){ return { id: idSeq++, name:"", url:"" }; }
+
+var contacts = [ freshContact() ];
+var founders = [ ];
+
+function addContact(){ contacts.push(freshContact()); renderContacts(); update(); }
+function removeContact(id){ contacts = contacts.filter(function(c){ return c.id !== id; }); renderContacts(); update(); }
+function setContact(id, field, val){
+  var c = contacts.filter(function(x){ return x.id === id; })[0];
+  if (c) c[field] = val;
+  update();
+}
+
+function addFounder(){ founders.push(freshFounder()); renderFounders(); update(); }
+function removeFounder(id){ founders = founders.filter(function(f){ return f.id !== id; }); renderFounders(); update(); }
+function setFounder(id, field, val){
+  var f = founders.filter(function(x){ return x.id === id; })[0];
+  if (f) f[field] = val;
+  update();
+}
+
+function escapeAttr(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderContacts(){
+  var el = document.getElementById("contactsContainer");
+  if (contacts.length === 0){ el.innerHTML = '<div class="small-note">No contact points added.</div>'; return; }
+  el.innerHTML = contacts.map(function(c, idx){
+    return '<div class="repeat-card">' +
+      '<div class="repeat-card-head"><h4>Contact point ' + (idx+1) + '</h4><button class="btn danger small" onclick="removeContact(' + c.id + ')">Remove</button></div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Type</label><select onchange="setContact(' + c.id + ',\'type\',this.value)">' + CONTACT_TYPES.map(function(t){ return '<option value="' + t + '"' + (t===c.type?' selected':'') + '>' + t + '</option>'; }).join("") + '</select></div>' +
+        '<div class="field"><label>Phone</label><input type="text" value="' + escapeAttr(c.phone) + '" oninput="setContact(' + c.id + ',\'phone\',this.value)" placeholder="+1-415-555-1234"></div>' +
+      '</div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Email</label><input type="text" value="' + escapeAttr(c.email) + '" oninput="setContact(' + c.id + ',\'email\',this.value)" placeholder="support@example.com"></div>' +
+        '<div class="field"><label>Area served <span style="font-weight:400;color:var(--sub);">(optional)</span></label><input type="text" value="' + escapeAttr(c.areaServed) + '" oninput="setContact(' + c.id + ',\'areaServed\',this.value)" placeholder="e.g. US, Worldwide"></div>' +
+      '</div>' +
+      '<div class="field"><label>Languages <span style="font-weight:400;color:var(--sub);">(comma separated, optional)</span></label><input type="text" value="' + escapeAttr(c.languages) + '" oninput="setContact(' + c.id + ',\'languages\',this.value)" placeholder="English, Spanish"></div>' +
+    '</div>';
+  }).join("");
+}
+
+function renderFounders(){
+  var el = document.getElementById("foundersContainer");
+  if (founders.length === 0){ el.innerHTML = '<div class="small-note">No founders added yet.</div>'; return; }
+  el.innerHTML = founders.map(function(f, idx){
+    return '<div class="repeat-card">' +
+      '<div class="repeat-card-head"><h4>Founder ' + (idx+1) + '</h4><button class="btn danger small" onclick="removeFounder(' + f.id + ')">Remove</button></div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Name</label><input type="text" value="' + escapeAttr(f.name) + '" oninput="setFounder(' + f.id + ',\'name\',this.value)" placeholder="Jane Doe"></div>' +
+        '<div class="field"><label>Profile URL <span style="font-weight:400;color:var(--sub);">(optional)</span></label><input type="text" value="' + escapeAttr(f.url) + '" oninput="setFounder(' + f.id + ',\'url\',this.value)" placeholder="https://linkedin.com/in/janedoe"></div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════════════════════ */
+function parseLines(id){
+  return document.getElementById(id).value.split("\n").map(function(s){ return s.trim(); }).filter(Boolean);
+}
+function val(id){
+  var el = document.getElementById(id);
+  return el ? el.value.trim() : "";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUILD SCHEMA OBJECT
+═══════════════════════════════════════════════════════════════════════ */
+function buildSchema(){
+  var obj = { "@context": "https://schema.org", "@type": val("fldType") || "Organization" };
+  var name = val("fldName");
+  if (name) obj.name = name;
+  if (val("fldLegalName")) obj.legalName = val("fldLegalName");
+  if (val("fldAltName")) obj.alternateName = val("fldAltName");
+  if (val("fldDesc")) obj.description = val("fldDesc");
+  if (val("fldUrl")) obj.url = val("fldUrl");
+  if (val("fldLogo")) obj.logo = val("fldLogo");
+  if (val("fldEmail")) obj.email = val("fldEmail");
+  if (val("fldPhone")) obj.telephone = val("fldPhone");
+  if (val("fldSlogan")) obj.slogan = val("fldSlogan");
+  if (val("fldFounded")) obj.foundingDate = val("fldFounded");
+  if (val("fldEmployees")) {
+    var emp = val("fldEmployees");
+    if (/^\d+$/.test(emp)) {
+      obj.numberOfEmployees = { "@type": "QuantitativeValue", "value": emp };
+    } else {
+      var parts = emp.split("-");
+      if (parts.length === 2 && /^\d+$/.test(parts[0].trim()) && /^\d+$/.test(parts[1].trim())){
+        obj.numberOfEmployees = { "@type": "QuantitativeValue", "minValue": parts[0].trim(), "maxValue": parts[1].trim() };
+      } else {
+        obj.numberOfEmployees = emp;
+      }
+    }
+  }
+  if (val("fldTaxId")) obj.taxID = val("fldTaxId");
+
+  var street = val("fldStreet"), city = val("fldCity"), region = val("fldRegion"), postal = val("fldPostal"), country = val("fldCountry");
+  if (street || city || region || postal){
+    obj.address = { "@type": "PostalAddress" };
+    if (street) obj.address.streetAddress = street;
+    if (city) obj.address.addressLocality = city;
+    if (region) obj.address.addressRegion = region;
+    if (postal) obj.address.postalCode = postal;
+    if (country) obj.address.addressCountry = country;
+  }
+
+  var social = parseLines("fldSocial");
+  if (social.length) obj.sameAs = social;
+
+  var validContacts = contacts.filter(function(c){ return c.phone || c.email; });
+  if (validContacts.length){
+    obj.contactPoint = validContacts.map(function(c){
+      var cp = { "@type": "ContactPoint", "contactType": c.type };
+      if (c.phone) cp.telephone = c.phone;
+      if (c.email) cp.email = c.email;
+      if (c.areaServed) cp.areaServed = c.areaServed;
+      if (c.languages) cp.availableLanguage = c.languages.split(",").map(function(s){ return s.trim(); }).filter(Boolean);
+      return cp;
+    });
+  }
+
+  var validFounders = founders.filter(function(f){ return f.name; });
+  if (validFounders.length){
+    obj.founder = validFounders.map(function(f){
+      var p = { "@type": "Person", "name": f.name };
+      if (f.url) p.url = f.url;
+      return p;
+    });
+  }
+
+  return obj;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OUTPUT RENDERING
+═══════════════════════════════════════════════════════════════════════ */
+function renderCode(){
+  var obj = buildSchema();
+  var json = JSON.stringify(obj, null, 2);
+  document.getElementById("codeOut").textContent = '<script type="application/ld+json">\n' + json + '\n</script' + '>';
+}
+
+function buildWordPress(){
+  var json = JSON.stringify(buildSchema(), null, 2).replace(/'/g, "\\'");
+  var lines = json.split("\n").map(function(l){ return "    echo '" + l + "' . \"\\n\";"; }).join("\n");
+  return "function seotriggers_organization_schema() {\n    echo '<script type=\"application/ld+json\">' . \"\\n\";\n" + lines + "\n    echo '</script" + "' . '>' . \"\\n\";\n}\nadd_action( 'wp_head', 'seotriggers_organization_schema' );";
+}
+function buildShopify(){
+  var json = JSON.stringify(buildSchema(), null, 2);
+  return "{% comment %} Paste inside theme.liquid, in the <head> section {% endcomment %}\n<script type=\"application/ld+json\">\n" + json + "\n</script" + ">";
+}
+function buildNextJS(){
+  var obj = buildSchema();
+  return "export function OrganizationSchema() {\n  return (\n    <script type=\"application/ld+json\"\n      dangerouslySetInnerHTML={{ __html: JSON.stringify(" + JSON.stringify(obj) + ") }}\n    />\n  );\n}";
+}
+function renderCms(){
+  document.getElementById("wpOut").textContent = buildWordPress();
+  document.getElementById("shopifyOut").textContent = buildShopify();
+  document.getElementById("nextjsOut").textContent = buildNextJS();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   KNOWLEDGE PANEL PREVIEW
+═══════════════════════════════════════════════════════════════════════ */
+function renderPreview(){
+  var name = val("fldName") || "Your Organization Name";
+  var type = val("fldType") || "Organization";
+  var desc = val("fldDesc") || "A short description of the organization will appear here.";
+  var logo = val("fldLogo");
+  var social = parseLines("fldSocial");
+  var founded = val("fldFounded");
+  var employees = val("fldEmployees");
+  var phone = val("fldPhone");
+
+  var html = '<div class="kp-logo">' + (logo ? '<img src="' + escapeAttr(logo) + '" alt="" onerror="this.parentElement.textContent=\'No logo\'">' : 'Logo') + '</div>';
+  html += '<div class="kp-name">' + escapeAttr(name) + '</div>';
+  html += '<div class="kp-type">' + escapeAttr(type.replace(/([A-Z])/g," $1").trim()) + '</div>';
+  html += '<div class="kp-desc">' + escapeAttr(desc) + '</div>';
+  if (founded) html += '<div class="kp-row"><span class="k">Founded</span><span>' + escapeAttr(founded) + '</span></div>';
+  if (employees) html += '<div class="kp-row"><span class="k">Employees</span><span>' + escapeAttr(employees) + '</span></div>';
+  if (phone) html += '<div class="kp-row"><span class="k">Phone</span><span>' + escapeAttr(phone) + '</span></div>';
+  if (social.length){
+    html += '<div class="kp-social">' + social.map(function(s){
+      var domain = "";
+      try { domain = new URL(s).hostname.replace(/^www\./,"").split(".")[0]; } catch(e){ domain = "link"; }
+      return '<span>' + escapeAttr(domain) + '</span>';
+    }).join("") + '</div>';
+  }
+  document.getElementById("kpPreview").innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VALIDATION CHECKLIST
+═══════════════════════════════════════════════════════════════════════ */
+function renderChecklist(){
+  var issues = [];
+  if (!val("fldName")) issues.push({level:"error", text:"Missing organization name — this is a required field."});
+  if (!val("fldUrl")) issues.push({level:"error", text:"Missing website URL — this is a required field."});
+  if (!val("fldLogo")) issues.push({level:"warning", text:"No logo set — a logo is required for Knowledge Panel eligibility."});
+  if (!val("fldDesc")) issues.push({level:"info", text:"No description set — a short description helps clarify what the organization does."});
+
+  var social = parseLines("fldSocial");
+  social.forEach(function(s){
+    if (!/^https?:\/\//i.test(s)) issues.push({level:"warning", text:'Social profile "' + s + '" doesn\'t look like a valid URL — it should start with https://'});
+  });
+
+  var seenTypes = {};
+  contacts.forEach(function(c, i){
+    if (!c.phone && !c.email) return;
+    if (seenTypes[c.type]) issues.push({level:"info", text:'More than one contact point uses the "' + c.type + '" type — consider differentiating them.'});
+    seenTypes[c.type] = true;
+  });
+  if (contacts.length && contacts.every(function(c){ return !c.phone && !c.email; })){
+    issues.push({level:"info", text:"Contact point added but no phone or email filled in — it will be excluded from the output."});
+  }
+
+  founders.forEach(function(f){
+    if (f.url && !/^https?:\/\//i.test(f.url)) issues.push({level:"warning", text:'Founder "' + (f.name||"unnamed") + '" has a profile URL that doesn\'t start with https://'});
+  });
+
+  if (issues.filter(function(i){return i.level==="error";}).length === 0 && issues.filter(function(i){return i.level==="warning";}).length === 0){
+    issues.unshift({level:"ok", text:"Required fields look good."});
+  }
+
+  document.getElementById("issuesList").innerHTML = issues.map(function(i){
+    return '<div class="issue-row"><span class="issue-tag ' + i.level + '">' + i.level + '</span><span>' + i.text + '</span></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════════════════════════════════ */
+function setOutTab(tab){
+  document.querySelectorAll(".out-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === tab); });
+  document.querySelectorAll(".out-panel").forEach(function(p){ p.classList.add("hidden"); });
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyOutput(mode){
+  var text = document.getElementById("codeOut").textContent;
+  if (mode === "download"){
+    var blob = new Blob([text], {type:"text/html"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "organization-schema.html";
+    a.click();
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function copyCms(which){
+  var id = which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut";
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  var done = function(){
+    var btn = el.previousElementSibling.querySelector(".copy-btn");
+    if (btn){
+      var original = btn.textContent;
+      btn.textContent = "Copied!";
+      btn.classList.add("copied");
+      setTimeout(function(){ btn.textContent = original; btn.classList.remove("copied"); }, 1500);
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text, done); });
+  } else { fallbackCopy(text, done); }
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  renderCode();
+  renderCms();
+  renderPreview();
+  renderChecklist();
+}
+
+/* init */
+renderContacts();
+renderFounders();
+update();
+</script>
+</body>
+</html>
