@@ -117,10 +117,11 @@
 
   <!-- Filter tabs -->
   <div class="filter-tabs">
-    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (39)</button>
+    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (51)</button>
     <button class="filter-tab" data-cat="text" onclick="setFilter(this)">✍️ Text</button>
     <button class="filter-tab" data-cat="calculator" onclick="setFilter(this)">🧮 Calculators</button>
     <button class="filter-tab" data-cat="converter" onclick="setFilter(this)">🔄 Converters</button>
+    <button class="filter-tab" data-cat="developer" onclick="setFilter(this)">💻 Developer</button>
     <button class="filter-tab" data-cat="image" onclick="setFilter(this)">🖼️ Image</button>
     <button class="filter-tab" data-cat="pdf" onclick="setFilter(this)">📄 PDF</button>
     <button class="filter-tab" data-cat="seo" onclick="setFilter(this)">📈 SEO</button>
@@ -133,7 +134,7 @@
   <div class="section-wrap" data-section="text">
     <div class="section-head">
       <h2>✍️ Text Tools</h2>
-      <span class="count">6 tools</span>
+      <span class="count">8 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -167,6 +168,22 @@
         <div class="tool-info">
           <div class="tool-name">Lorem Ipsum Generator</div>
           <div class="tool-desc">Generate placeholder text by paragraphs, sentences, words or characters. Copy as plain text or HTML.</div>
+        </div>
+      </a>
+
+      <a href="/tools/random-paragraph-generator" class="tool-card" data-cat="text" data-name="random paragraph generator placeholder">
+        <span class="tool-icon">📄</span>
+        <div class="tool-info">
+          <div class="tool-name">Random Paragraph Generator</div>
+          <div class="tool-desc">Generate random paragraphs by topic, with adjustable length and per-paragraph regeneration.</div>
+        </div>
+      </a>
+
+      <a href="/tools/random-sentence-generator" class="tool-card" data-cat="text" data-name="random sentence generator">
+        <span class="tool-icon">💬</span>
+        <div class="tool-info">
+          <div class="tool-name">Random Sentence Generator</div>
+          <div class="tool-desc">Generate random sentences by topic — statements, questions or exclamations, instantly copyable.</div>
         </div>
       </a>
 
@@ -301,7 +318,7 @@
   <div class="section-wrap" data-section="converter">
     <div class="section-head">
       <h2>🔄 Converters</h2>
-      <span class="count">6 tools</span>
+      <span class="count">5 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
@@ -330,14 +347,6 @@
         </div>
       </a>
 
-      <a href="/tools/json-formatter" class="tool-card" data-cat="converter text" data-name="json formatter validator beautify">
-        <span class="tool-icon">{ }</span>
-        <div class="tool-info">
-          <div class="tool-name">JSON Formatter</div>
-          <div class="tool-desc">Beautify, minify & validate JSON with error messages — nothing uploaded.</div>
-        </div>
-      </a>
-
       <a href="/tools/hex-converter" class="tool-card" data-cat="converter" data-name="hex converter hexadecimal decimal binary octal text">
         <span class="tool-icon">#️⃣</span>
         <div class="tool-info">
@@ -351,6 +360,58 @@
         <div class="tool-info">
           <div class="tool-name">Word to HTML Converter</div>
           <div class="tool-desc">Paste from Word or Google Docs, get clean semantic HTML instantly.</div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+
+  <!-- ── DEVELOPER TOOLS ── -->
+  <div class="section-wrap" data-section="developer">
+    <div class="section-head">
+      <h2>💻 Developer Tools</h2>
+      <span class="count">5 tools</span>
+    </div>
+    <hr class="section-divider" />
+    <div class="tools-grid">
+
+      <a href="/tools/json-formatter" class="tool-card" data-cat="developer" data-name="json formatter validator beautify">
+        <span class="tool-icon">{ }</span>
+        <div class="tool-info">
+          <div class="tool-name">JSON Formatter</div>
+          <div class="tool-desc">Beautify, validate, auto-fix and convert JSON to XML/CSV/YAML — nothing uploaded.</div>
+        </div>
+      </a>
+
+      <a href="/tools/json-validator" class="tool-card" data-cat="developer" data-name="json validator schema validate">
+        <span class="tool-icon">✔️</span>
+        <div class="tool-info">
+          <div class="tool-name">JSON Validator</div>
+          <div class="tool-desc">Finds every JSON error in one pass, flags duplicate keys, and validates against a JSON Schema.</div>
+        </div>
+      </a>
+
+      <a href="/tools/js-minifier" class="tool-card" data-cat="developer" data-name="js javascript minifier beautifier compressor">
+        <span class="tool-icon">🗜️</span>
+        <div class="tool-info">
+          <div class="tool-name">JS Minifier</div>
+          <div class="tool-desc">Real AST-based JavaScript minification (Terser) with gzip size estimate and a safe fallback engine.</div>
+        </div>
+      </a>
+
+      <a href="/tools/css-minifier" class="tool-card" data-cat="developer" data-name="css minifier compressor">
+        <span class="tool-icon">🎨</span>
+        <div class="tool-info">
+          <div class="tool-name">CSS Minifier</div>
+          <div class="tool-desc">Never reorders your rules — live before/after preview and real gzip size estimate.</div>
+        </div>
+      </a>
+
+      <a href="/tools/html-minifier" class="tool-card" data-cat="developer" data-name="html minifier compressor">
+        <span class="tool-icon">🌐</span>
+        <div class="tool-info">
+          <div class="tool-name">HTML Minifier</div>
+          <div class="tool-desc">Safe presets, live before/after preview, gzip estimate, and inline CSS/JS minification.</div>
         </div>
       </a>
 
@@ -671,7 +732,14 @@ function applyFilters(query, cat) {
     { "@type": "SoftwareApplication", "name": "Local Business Schema Generator", "url": "https://seotriggers.com/tools/local-business-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Organization Schema Generator", "url": "https://seotriggers.com/tools/organization-schema-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "UTM Builder", "url": "https://seotriggers.com/tools/utm-builder", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
-    { "@type": "SoftwareApplication", "name": "Keyword Density Checker", "url": "https://seotriggers.com/tools/keyword-density-checker", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
+    { "@type": "SoftwareApplication", "name": "Keyword Density Checker", "url": "https://seotriggers.com/tools/keyword-density-checker", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "JSON Formatter", "url": "https://seotriggers.com/tools/json-formatter", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "JSON Validator", "url": "https://seotriggers.com/tools/json-validator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "JS Minifier", "url": "https://seotriggers.com/tools/js-minifier", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "CSS Minifier", "url": "https://seotriggers.com/tools/css-minifier", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "HTML Minifier", "url": "https://seotriggers.com/tools/html-minifier", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Random Paragraph Generator", "url": "https://seotriggers.com/tools/random-paragraph-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Random Sentence Generator", "url": "https://seotriggers.com/tools/random-sentence-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
   ]
 }
 </script>
