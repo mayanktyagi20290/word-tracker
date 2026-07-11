@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Local Business Schema Generator — Free JSON-LD Tool | SEOTriggers</title>
+<meta name="description" content="Free local business schema generator with a visual opening-hours builder, multi-location support (separate JSON-LD per branch), 30+ business types, and a built-in validation checklist. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/local-business-schema-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Local Business Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta property="og:description" content="Generate LocalBusiness JSON-LD with a visual opening-hours builder, multi-location support, 30+ business types, and a built-in validation checklist. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/local-business-schema-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Local Business Schema Generator — Free JSON-LD Tool | SEOTriggers" />
+<meta name="twitter:description" content="Generate LocalBusiness JSON-LD with a visual hours builder, multi-location support, 30+ business types, and a validation checklist. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Local Business Schema Generator",
+  "url": "https://seotriggers.com/tools/local-business-schema-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate LocalBusiness JSON-LD structured data with a visual opening-hours builder, multi-location support, 30+ business types, and a built-in validation checklist."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Local Business Schema Generator", "item": "https://seotriggers.com/tools/local-business-schema-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does LocalBusiness schema help my Google rankings?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It doesn't directly boost rankings, but it helps Google confidently confirm your business name, address, phone number, hours, and category, which supports eligibility for rich results like the local knowledge panel and can improve how accurately you're matched to relevant local searches." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use LocalBusiness or a more specific type like Restaurant or Dentist?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Always pick the most specific type available. Google and other consumers of structured data get more value from a precise type like Restaurant or Dentist than the generic LocalBusiness, because specific types unlock type-specific properties (like servesCuisine or availableService) that generic LocalBusiness doesn't support." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I add schema for a business with multiple locations?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Each physical location should have its own LocalBusiness entry with its own address, phone number, and geo-coordinates, since these are location-specific. This tool lets you add multiple locations and generates a separate, self-contained JSON-LD block for each one — place each block on that location's own page, or all of them on a single locations/store-finder page." }
+    },
+    {
+      "@type": "Question",
+      "name": "What is NAP consistency and why does it matter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "NAP stands for Name, Address, and Phone number. Search engines cross-reference your NAP across your website, Google Business Profile, and other directories to verify your business is legitimate and correctly located — inconsistent NAP data across these sources is one of the most common causes of poor local search visibility." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do I need latitude and longitude coordinates?",
+      "acceptedAnswer": { "@type": "Answer", "text": "They're optional but recommended, especially for map-based and \"near me\" results. Google can usually geocode your address on its own, but supplying exact coordinates removes any ambiguity. You can find your coordinates by right-clicking your business location on Google Maps." }
+    },
+    {
+      "@type": "Question",
+      "name": "How do I test that my schema markup is valid?",
+      "acceptedAnswer": { "@type": "Answer", "text": "After pasting the generated JSON-LD into your page's <head> or before the closing </body> tag, run the page through Google's Rich Results Test and the Schema.org Validator to confirm there are no errors or missing required properties." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=url], .field input[type=time], .field input[type=number], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:64px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row, .field-row3{grid-template-columns:1fr;}}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.small{padding:6px 12px;font-size:12px;}
+.btn.danger{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12.5px;overflow-x:auto;margin:0;line-height:1.7;}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+
+.check-item{display:flex;align-items:center;gap:8px;font-size:13px;margin-bottom:4px;}
+.check-item label{cursor:pointer;font-weight:500;}
+.check-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;flex-shrink:0;}
+
+.loc-card{border:1px solid var(--border);border-radius:10px;padding:16px;margin-bottom:14px;background:var(--bg);}
+.loc-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.loc-card-head h4{margin:0;font-size:13px;font-weight:700;color:var(--ink);}
+
+.hours-table{width:100%;border-collapse:collapse;}
+.hours-table td{padding:6px 8px;font-size:13px;vertical-align:middle;}
+.hours-table td:first-child{width:100px;font-weight:600;}
+.hours-table input[type=time]{padding:6px 8px;width:110px;font-size:13px;}
+.hours-row.closed input[type=time]{opacity:.4;pointer-events:none;}
+
+.out-tabs{display:flex;gap:6px;margin:22px 0 12px;flex-wrap:wrap;border-bottom:1px solid var(--border);}
+.out-tab{background:none;border:none;padding:10px 4px;margin-right:16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;border-bottom:2px solid transparent;}
+.out-tab.active{color:var(--brand-dark);border-bottom-color:var(--brand);}
+.out-panel.hidden{display:none;}
+
+/* Issues panel */
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-tag.ok{background:var(--green-bg);color:var(--green);}
+
+.validate-links{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;}
+.validate-links a{font-size:12.5px;font-weight:600;background:var(--blue-bg);color:var(--blue);padding:6px 12px;border-radius:7px;text-decoration:none;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Local Business Schema Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>Local Business Schema Generator</h1>
+    <p>Build valid LocalBusiness JSON-LD with a visual opening-hours builder, multi-location support, 30+ business types, and a built-in validation checklist.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Business details</div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldName">Business name</label>
+        <input type="text" id="fldName" oninput="update()" placeholder="e.g. Joe's Italian Kitchen" />
+      </div>
+      <div class="field">
+        <label for="fldType">Business type</label>
+        <select id="fldType" onchange="handleTypeChange()"></select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="fldDesc">Description</label>
+      <textarea id="fldDesc" oninput="update()" placeholder="A short description of the business"></textarea>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldUrl">Website URL</label>
+        <input type="text" id="fldUrl" oninput="update()" placeholder="https://example.com" />
+      </div>
+      <div class="field">
+        <label for="fldImage">Image URL</label>
+        <input type="text" id="fldImage" oninput="update()" placeholder="https://example.com/photo.jpg" />
+      </div>
+    </div>
+
+    <div class="field-row">
+      <div class="field">
+        <label for="fldPriceRange">Price range</label>
+        <select id="fldPriceRange" onchange="update()">
+          <option value="">— not set —</option>
+          <option value="$">$ (budget)</option>
+          <option value="$$">$$ (moderate)</option>
+          <option value="$$$">$$$ (upscale)</option>
+          <option value="$$$$">$$$$ (fine dining / luxury)</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fldSocial">Social profiles / sameAs <span style="font-weight:400;color:var(--sub);">(one URL per line)</span></label>
+        <textarea id="fldSocial" oninput="update()" placeholder="https://facebook.com/yourbusiness&#10;https://instagram.com/yourbusiness"></textarea>
+      </div>
+    </div>
+
+    <div id="typeSpecificFields"></div>
+
+    <div class="section-label">Reviews (optional)</div>
+    <div class="check-item">
+      <input type="checkbox" id="chkRating" onchange="update()">
+      <label for="chkRating">Include an aggregate rating</label>
+    </div>
+    <div class="field-row hidden" id="ratingFields" style="margin-top:10px;">
+      <div class="field">
+        <label for="fldRatingValue">Average rating (1–5)</label>
+        <input type="text" id="fldRatingValue" oninput="update()" value="4.8" />
+      </div>
+      <div class="field">
+        <label for="fldRatingCount">Number of reviews</label>
+        <input type="text" id="fldRatingCount" oninput="update()" value="120" />
+      </div>
+    </div>
+    <div class="small-note">Only use this if the reviews are genuinely displayed on this page — Google requires visible, verifiable review content for aggregateRating.</div>
+
+    <div class="section-label">Opening hours <span style="text-transform:none;font-weight:400;">(shared across all locations below)</span></div>
+    <table class="hours-table" id="hoursTable"></table>
+    <button class="btn secondary small" style="margin-top:8px;" onclick="copyMondayToAll()">Copy Monday's hours to all open days</button>
+
+    <div class="section-label">Location(s)</div>
+    <div id="locationsContainer"></div>
+    <button class="btn secondary small" onclick="addLocation()">+ Add another location</button>
+    <div class="small-note">Each location gets its own self-contained JSON-LD block below — place a location's block on that location's own page, or all of them on one store-finder page.</div>
+
+    <div id="issuesPanel" class="issues-panel" style="margin-top:24px;">
+      <div class="issues-head">Validation</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <!-- ══════════════ OUTPUT TABS ══════════════ -->
+    <div class="out-tabs">
+      <button class="out-tab active" data-tab="code" onclick="setOutTab('code')">📄 JSON-LD Code</button>
+      <button class="out-tab" data-tab="wordpress" onclick="setOutTab('wordpress')">WordPress</button>
+      <button class="out-tab" data-tab="shopify" onclick="setOutTab('shopify')">Shopify</button>
+      <button class="out-tab" data-tab="nextjs" onclick="setOutTab('nextjs')">Next.js</button>
+    </div>
+
+    <div id="panel-code" class="out-panel">
+      <div class="output-head"><h4>Script tag(s)</h4>
+        <div style="display:flex;gap:6px;">
+          <button class="copy-btn" onclick="copyOutput('download')">⬇ Download</button>
+          <button class="copy-btn" onclick="copyOutput('copy')">Copy</button>
+        </div>
+      </div>
+      <pre class="code-block" id="codeOut"></pre>
+    </div>
+    <div id="panel-wordpress" class="out-panel hidden">
+      <div class="output-head"><h4>WordPress (functions.php)</h4><button class="copy-btn" onclick="copyCms('wordpress')">Copy</button></div>
+      <pre class="code-block" id="wpOut"></pre>
+    </div>
+    <div id="panel-shopify" class="out-panel hidden">
+      <div class="output-head"><h4>Shopify (theme.liquid)</h4><button class="copy-btn" onclick="copyCms('shopify')">Copy</button></div>
+      <pre class="code-block" id="shopifyOut"></pre>
+    </div>
+    <div id="panel-nextjs" class="out-panel hidden">
+      <div class="output-head"><h4>Next.js (App Router, JSON-LD via script tag)</h4><button class="copy-btn" onclick="copyCms('nextjs')">Copy</button></div>
+      <pre class="code-block" id="nextjsOut"></pre>
+    </div>
+
+    <div class="validate-links">
+      <a href="https://search.google.com/test/rich-results" target="_blank" rel="noopener">Validate in Google Rich Results Test →</a>
+      <a href="https://validator.schema.org/" target="_blank" rel="noopener">Validate in Schema.org Validator →</a>
+      <a href="https://www.google.com/maps" target="_blank" rel="noopener">Find lat/long on Google Maps →</a>
+    </div>
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>NAP consistency matters more than the schema itself</h2>
+    <p class="sub">Structured data only helps if the underlying facts are accurate and match everywhere else your business is listed.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Element</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Name, Address, Phone (NAP)</strong></td><td>Must match exactly across your website, Google Business Profile, and other directories — mismatches undermine trust signals.</td></tr>
+          <tr><td><strong>Business type</strong></td><td>Use the most specific type available (Restaurant, Dentist, Plumber...) instead of generic LocalBusiness for access to type-specific properties.</td></tr>
+          <tr><td><strong>Opening hours</strong></td><td>Feeds directly into Google's "Open now" / "Closes at" labels — incorrect hours are a common source of poor customer experience.</td></tr>
+          <tr><td><strong>Geo-coordinates</strong></td><td>Removes ambiguity for map-based and "near me" results, especially for businesses that are hard to geocode from address alone.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Also want your homepage's meta tags and SERP snippet sorted? Try the <a href="/tools/meta-tag-generator">Meta Tag Generator</a> and <a href="/tools/serp-preview-tool">SERP Preview Tool</a>.</p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most free generators handle a single location with a plain text hours field. This one is built for real businesses with real complexity.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>TechnicalSEO.com</th><th>Localo</th></tr></thead>
+        <tbody>
+          <tr><td>JSON-LD output</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Visual day-by-day opening hours builder</td><td class="yes">✓</td><td class="no">Plain text</td><td class="partial">Basic</td></tr>
+          <tr><td>Multi-location support (one block per branch)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">Paid feature</td></tr>
+          <tr><td>Type-specific fields (cuisine, star rating, etc.)</td><td class="yes">✓</td><td class="partial">Generic fields</td><td class="no">✗</td></tr>
+          <tr><td>Built-in validation checklist</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>WordPress / Shopify / Next.js ready code</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No account or upsell required</td><td class="yes">✓</td><td class="yes">✓</td><td class="partial">Pushes paid app</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🕒</div><h3>Visual hours builder</h3><p>Set open/close times per day with one click, and copy Monday's hours to every open day instantly — no manual openingHoursSpecification syntax needed.</p></div>
+      <div class="feat-card"><div class="ic">📍</div><h3>True multi-location support</h3><p>Add as many branches as you need — each gets its own address, phone, and geo-coordinates in a separate, ready-to-paste JSON-LD block.</p></div>
+      <div class="feat-card"><div class="ic">🍽️</div><h3>Type-specific properties</h3><p>Pick Restaurant, Hotel, or 30+ other business types and get the extra fields that type actually supports — not just generic LocalBusiness properties.</p></div>
+      <div class="feat-card"><div class="ic">✅</div><h3>Built-in validation checklist</h3><p>Flags missing required fields, incomplete addresses, and suspicious phone formats before you ever hit Google's Rich Results Test.</p></div>
+      <div class="feat-card"><div class="ic">🧩</div><h3>Framework-ready snippets</h3><p>One click for WordPress, Shopify Liquid, or Next.js code — not just raw JSON.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% client-side &amp; private</h3><p>Everything runs in your browser. Nothing you type is ever uploaded or stored.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does LocalBusiness schema help my Google rankings? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It doesn't directly boost rankings, but it helps Google confidently confirm your business name, address, phone number, hours, and category, which supports eligibility for rich results like the local knowledge panel and can improve how accurately you're matched to relevant local searches.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should I use LocalBusiness or a more specific type like Restaurant or Dentist? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Always pick the most specific type available. Google and other consumers of structured data get more value from a precise type like Restaurant or Dentist than the generic LocalBusiness, because specific types unlock type-specific properties (like servesCuisine or availableService) that generic LocalBusiness doesn't support.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I add schema for a business with multiple locations? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Each physical location should have its own LocalBusiness entry with its own address, phone number, and geo-coordinates, since these are location-specific. This tool lets you add multiple locations and generates a separate, self-contained JSON-LD block for each one — place each block on that location's own page, or all of them on a single locations/store-finder page.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What is NAP consistency and why does it matter? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>NAP stands for Name, Address, and Phone number. Search engines cross-reference your NAP across your website, Google Business Profile, and other directories to verify your business is legitimate and correctly located — inconsistent NAP data across these sources is one of the most common causes of poor local search visibility.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do I need latitude and longitude coordinates? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>They're optional but recommended, especially for map-based and "near me" results. Google can usually geocode your address on its own, but supplying exact coordinates removes any ambiguity. You can find your coordinates by right-clicking your business location on Google Maps.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">How do I test that my schema markup is valid? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>After pasting the generated JSON-LD into your page's &lt;head&gt; or before the closing &lt;/body&gt; tag, run the page through Google's Rich Results Test and the Schema.org Validator to confirm there are no errors or missing required properties.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   BUSINESS TYPES
+═══════════════════════════════════════════════════════════════════════ */
+var TYPE_GROUPS = [
+  { label:"General", types:["LocalBusiness"] },
+  { label:"Food & Drink", types:["Restaurant","CafeOrCoffeeShop","BarOrPub","FastFoodRestaurant","Bakery"] },
+  { label:"Retail", types:["Store","ClothingStore","ElectronicsStore","GroceryStore","HardwareStore","FurnitureStore","JewelryStore","ShoeStore","SportingGoodsStore","BookStore","PetStore"] },
+  { label:"Professional Services", types:["ProfessionalService","Attorney","AccountingService","InsuranceAgency","RealEstateAgent","EmploymentAgency","TravelAgency","FinancialService"] },
+  { label:"Medical & Health", types:["MedicalBusiness","Dentist","Physician","Pharmacy","VeterinaryCare"] },
+  { label:"Health & Beauty", types:["BeautySalon","DaySpa","HairSalon","NailSalon"] },
+  { label:"Automotive", types:["AutoRepair","AutoDealer","GasStation"] },
+  { label:"Home & Construction", types:["Electrician","Plumber","HVACBusiness","RoofingContractor","GeneralContractor"] },
+  { label:"Lodging", types:["Hotel","BedAndBreakfast","LodgingBusiness"] },
+  { label:"Other", types:["GymOrFitnessCenter","MovieTheater","ChildCare","Bank"] }
+];
+var FOOD_TYPES = ["Restaurant","CafeOrCoffeeShop","BarOrPub","FastFoodRestaurant","Bakery"];
+var LODGING_TYPES = ["Hotel","BedAndBreakfast","LodgingBusiness"];
+
+function renderTypeSelect(){
+  var sel = document.getElementById("fldType");
+  sel.innerHTML = TYPE_GROUPS.map(function(g){
+    return '<optgroup label="' + g.label + '">' + g.types.map(function(t){
+      return '<option value="' + t + '">' + t.replace(/([A-Z])/g," $1").trim() + '</option>';
+    }).join("") + '</optgroup>';
+  }).join("");
+}
+
+function renderTypeSpecificFields(){
+  var type = document.getElementById("fldType").value;
+  var el = document.getElementById("typeSpecificFields");
+  if (FOOD_TYPES.indexOf(type) !== -1){
+    el.innerHTML =
+      '<div class="section-label">Restaurant details</div>' +
+      '<div class="field-row3">' +
+        '<div class="field"><label for="fldCuisine">Cuisine type</label><input type="text" id="fldCuisine" oninput="update()" placeholder="e.g. Italian"></div>' +
+        '<div class="field"><label for="fldMenu">Menu URL</label><input type="text" id="fldMenu" oninput="update()" placeholder="https://example.com/menu"></div>' +
+        '<div class="field"><label for="fldReservations">Accepts reservations?</label><select id="fldReservations" onchange="update()"><option value="">— not set —</option><option value="True">Yes</option><option value="False">No</option></select></div>' +
+      '</div>';
+  } else if (LODGING_TYPES.indexOf(type) !== -1){
+    el.innerHTML =
+      '<div class="section-label">Lodging details</div>' +
+      '<div class="field"><label for="fldStarRating">Star rating (1–5)</label><select id="fldStarRating" onchange="update()"><option value="">— not set —</option><option>5</option><option>4</option><option>3</option><option>2</option><option>1</option></select></div>';
+  } else {
+    el.innerHTML = "";
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OPENING HOURS
+═══════════════════════════════════════════════════════════════════════ */
+var DAYS = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+var hours = DAYS.map(function(d,i){
+  return { day: d, closed: (i===6), open: "09:00", close: "17:00" };
+});
+
+function renderHoursTable(){
+  var t = document.getElementById("hoursTable");
+  t.innerHTML = hours.map(function(h,i){
+    return '<tr class="hours-row' + (h.closed?' closed':'') + '" id="hoursRow' + i + '">' +
+      '<td>' + h.day + '</td>' +
+      '<td><label style="display:flex;align-items:center;gap:6px;font-weight:400;"><input type="checkbox" ' + (h.closed?'':'checked') + ' onchange="toggleDayOpen(' + i + ', this.checked)"> Open</label></td>' +
+      '<td><input type="time" value="' + h.open + '" onchange="setHour(' + i + ',\'open\',this.value)"></td>' +
+      '<td>to</td>' +
+      '<td><input type="time" value="' + h.close + '" onchange="setHour(' + i + ',\'close\',this.value)"></td>' +
+    '</tr>';
+  }).join("");
+}
+function toggleDayOpen(i, isOpen){
+  hours[i].closed = !isOpen;
+  document.getElementById("hoursRow" + i).classList.toggle("closed", !isOpen);
+  update();
+}
+function setHour(i, field, val){
+  hours[i][field] = val;
+  update();
+}
+function copyMondayToAll(){
+  var mon = hours[0];
+  hours.forEach(function(h){ if (!h.closed){ h.open = mon.open; h.close = mon.close; } });
+  renderHoursTable();
+  update();
+}
+function buildOpeningHoursSpec(){
+  return hours.filter(function(h){ return !h.closed; }).map(function(h){
+    return {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": "https://schema.org/" + h.day,
+      "opens": h.open,
+      "closes": h.close
+    };
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LOCATIONS
+═══════════════════════════════════════════════════════════════════════ */
+var locIdSeq = 1;
+var locations = [ freshLocation() ];
+
+function freshLocation(){
+  return { id: locIdSeq++, label:"", street:"", city:"", region:"", postal:"", country:"US", telephone:"", email:"", lat:"", lng:"" };
+}
+
+function addLocation(){
+  locations.push(freshLocation());
+  renderLocations();
+  update();
+}
+function removeLocation(id){
+  if (locations.length <= 1) return;
+  locations = locations.filter(function(l){ return l.id !== id; });
+  renderLocations();
+  update();
+}
+function setLoc(id, field, val){
+  var loc = locations.filter(function(l){ return l.id === id; })[0];
+  if (loc) loc[field] = val;
+  update();
+}
+
+var COUNTRIES = ["US","CA","GB","AU","IN","DE","FR","ES","IT","BR","MX","NL","SG","AE"];
+
+function renderLocations(){
+  var el = document.getElementById("locationsContainer");
+  el.innerHTML = locations.map(function(loc, idx){
+    return '<div class="loc-card">' +
+      '<div class="loc-card-head"><h4>' + (locations.length > 1 ? "Location " + (idx+1) : "Location") + '</h4>' +
+        (locations.length > 1 ? '<button class="btn danger small" onclick="removeLocation(' + loc.id + ')">Remove</button>' : '') +
+      '</div>' +
+      (locations.length > 1 ? '<div class="field"><label>Location label <span style="font-weight:400;color:var(--sub);">(e.g. "Downtown", appended to business name)</span></label><input type="text" value="' + escapeAttr(loc.label) + '" oninput="setLoc(' + loc.id + ',\'label\',this.value)"></div>' : '') +
+      '<div class="field-row">' +
+        '<div class="field"><label>Street address</label><input type="text" value="' + escapeAttr(loc.street) + '" oninput="setLoc(' + loc.id + ',\'street\',this.value)" placeholder="123 Main St"></div>' +
+        '<div class="field"><label>City</label><input type="text" value="' + escapeAttr(loc.city) + '" oninput="setLoc(' + loc.id + ',\'city\',this.value)" placeholder="Springfield"></div>' +
+      '</div>' +
+      '<div class="field-row3">' +
+        '<div class="field"><label>State / Region</label><input type="text" value="' + escapeAttr(loc.region) + '" oninput="setLoc(' + loc.id + ',\'region\',this.value)" placeholder="CA"></div>' +
+        '<div class="field"><label>Postal code</label><input type="text" value="' + escapeAttr(loc.postal) + '" oninput="setLoc(' + loc.id + ',\'postal\',this.value)" placeholder="94103"></div>' +
+        '<div class="field"><label>Country</label><select onchange="setLoc(' + loc.id + ',\'country\',this.value)">' + COUNTRIES.map(function(c){ return '<option value="' + c + '"' + (c===loc.country?' selected':'') + '>' + c + '</option>'; }).join("") + '</select></div>' +
+      '</div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Telephone</label><input type="text" value="' + escapeAttr(loc.telephone) + '" oninput="setLoc(' + loc.id + ',\'telephone\',this.value)" placeholder="+1-415-555-1234"></div>' +
+        '<div class="field"><label>Email</label><input type="text" value="' + escapeAttr(loc.email) + '" oninput="setLoc(' + loc.id + ',\'email\',this.value)" placeholder="hello@example.com"></div>' +
+      '</div>' +
+      '<div class="field-row">' +
+        '<div class="field"><label>Latitude <span style="font-weight:400;color:var(--sub);">(optional)</span></label><input type="text" value="' + escapeAttr(loc.lat) + '" oninput="setLoc(' + loc.id + ',\'lat\',this.value)" placeholder="37.7749"></div>' +
+        '<div class="field"><label>Longitude <span style="font-weight:400;color:var(--sub);">(optional)</span></label><input type="text" value="' + escapeAttr(loc.lng) + '" oninput="setLoc(' + loc.id + ',\'lng\',this.value)" placeholder="-122.4194"></div>' +
+      '</div>' +
+    '</div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   HELPERS
+═══════════════════════════════════════════════════════════════════════ */
+function escapeAttr(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+function parseSocial(){
+  return document.getElementById("fldSocial").value.split("\n").map(function(s){ return s.trim(); }).filter(Boolean);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUILD SCHEMA OBJECT(S)
+═══════════════════════════════════════════════════════════════════════ */
+function buildSchemaObjects(){
+  var type = document.getElementById("fldType").value;
+  var name = document.getElementById("fldName").value.trim();
+  var desc = document.getElementById("fldDesc").value.trim();
+  var url = document.getElementById("fldUrl").value.trim();
+  var image = document.getElementById("fldImage").value.trim();
+  var priceRange = document.getElementById("fldPriceRange").value;
+  var social = parseSocial();
+  var openingHours = buildOpeningHoursSpec();
+
+  var ratingEnabled = document.getElementById("chkRating").checked;
+  var ratingValue = document.getElementById("fldRatingValue") ? document.getElementById("fldRatingValue").value : "";
+  var ratingCount = document.getElementById("fldRatingCount") ? document.getElementById("fldRatingCount").value : "";
+
+  var cuisine = document.getElementById("fldCuisine") ? document.getElementById("fldCuisine").value.trim() : "";
+  var menu = document.getElementById("fldMenu") ? document.getElementById("fldMenu").value.trim() : "";
+  var reservations = document.getElementById("fldReservations") ? document.getElementById("fldReservations").value : "";
+  var starRating = document.getElementById("fldStarRating") ? document.getElementById("fldStarRating").value : "";
+
+  return locations.map(function(loc){
+    var obj = { "@context": "https://schema.org", "@type": type };
+    obj.name = loc.label ? (name + " - " + loc.label) : name;
+    if (image) obj.image = image;
+    if (desc) obj.description = desc;
+    if (url) obj.url = url;
+    if (loc.telephone) obj.telephone = loc.telephone;
+    if (loc.email) obj.email = loc.email;
+    if (priceRange) obj.priceRange = priceRange;
+
+    if (loc.street || loc.city || loc.region || loc.postal){
+      obj.address = { "@type": "PostalAddress" };
+      if (loc.street) obj.address.streetAddress = loc.street;
+      if (loc.city) obj.address.addressLocality = loc.city;
+      if (loc.region) obj.address.addressRegion = loc.region;
+      if (loc.postal) obj.address.postalCode = loc.postal;
+      if (loc.country) obj.address.addressCountry = loc.country;
+    }
+
+    if (loc.lat && loc.lng){
+      obj.geo = { "@type": "GeoCoordinates", "latitude": loc.lat, "longitude": loc.lng };
+    }
+
+    if (openingHours.length) obj.openingHoursSpecification = openingHours;
+    if (social.length) obj.sameAs = social;
+
+    if (ratingEnabled && ratingValue && ratingCount){
+      obj.aggregateRating = { "@type": "AggregateRating", "ratingValue": ratingValue, "reviewCount": ratingCount, "bestRating": "5", "worstRating": "1" };
+    }
+
+    if (FOOD_TYPES.indexOf(type) !== -1){
+      if (cuisine) obj.servesCuisine = cuisine;
+      if (menu) obj.hasMenu = menu;
+      if (reservations) obj.acceptsReservations = reservations === "True";
+    }
+    if (LODGING_TYPES.indexOf(type) !== -1 && starRating){
+      obj.starRating = { "@type": "Rating", "ratingValue": starRating };
+    }
+
+    return obj;
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   OUTPUT RENDERING
+═══════════════════════════════════════════════════════════════════════ */
+function renderCode(){
+  var objs = buildSchemaObjects();
+  var blocks = objs.map(function(o){
+    return '<script type="application/ld+json">\n' + JSON.stringify(o, null, 2) + '\n</script' + '>';
+  });
+  document.getElementById("codeOut").textContent = blocks.join("\n\n");
+}
+
+function buildWordPress(){
+  var objs = buildSchemaObjects();
+  var fnBody = objs.map(function(o, i){
+    var json = JSON.stringify(o, null, 2).replace(/'/g, "\\'");
+    return "    echo '<script type=\"application/ld+json\">' . \"\\n\";\n    echo '" + json.replace(/\n/g,"\\n' . \"\\n\" . '") + "' . \"\\n\";\n    echo '</script" + "' . '>' . \"\\n\";";
+  }).join("\n\n");
+  return "function seotriggers_local_business_schema() {\n" + fnBody + "\n}\nadd_action( 'wp_footer', 'seotriggers_local_business_schema' );";
+}
+
+function buildShopify(){
+  var objs = buildSchemaObjects();
+  var blocks = objs.map(function(o){
+    return '{% schema %}\n<script type="application/ld+json">\n' + JSON.stringify(o, null, 2) + '\n</script' + '>\n{% endschema %}';
+  });
+  return "{% comment %} Paste inside theme.liquid, near the closing </body> tag {% endcomment %}\n\n" +
+    objs.map(function(o){ return '<script type="application/ld+json">\n' + JSON.stringify(o, null, 2) + '\n</script' + '>'; }).join("\n\n");
+}
+
+function buildNextJS(){
+  var objs = buildSchemaObjects();
+  var out = [];
+  out.push("// Add inside your page or layout component");
+  objs.forEach(function(o, i){
+    out.push("export function LocalBusinessSchema" + (objs.length>1 ? (i+1) : "") + "() {");
+    out.push("  return (");
+    out.push("    <script type=\"application/ld+json\"");
+    out.push("      dangerouslySetInnerHTML={{ __html: JSON.stringify(" + JSON.stringify(o) + ") }}");
+    out.push("    />");
+    out.push("  );");
+    out.push("}");
+    out.push("");
+  });
+  return out.join("\n");
+}
+
+function renderCms(){
+  document.getElementById("wpOut").textContent = buildWordPress();
+  document.getElementById("shopifyOut").textContent = buildShopify();
+  document.getElementById("nextjsOut").textContent = buildNextJS();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VALIDATION CHECKLIST
+═══════════════════════════════════════════════════════════════════════ */
+function renderChecklist(){
+  var issues = [];
+  var name = document.getElementById("fldName").value.trim();
+  var type = document.getElementById("fldType").value;
+
+  if (!name) issues.push({level:"error", text:"Missing business name — this is a required field."});
+  if (type === "LocalBusiness") issues.push({level:"info", text:"Using the generic LocalBusiness type — pick a more specific type if one fits (e.g. Restaurant, Dentist) for richer results."});
+
+  var hasAnyHours = hours.some(function(h){ return !h.closed; });
+  if (!hasAnyHours) issues.push({level:"warning", text:"No opening hours set — all days are marked closed."});
+
+  locations.forEach(function(loc, i){
+    var tag = locations.length > 1 ? "Location " + (i+1) + ": " : "";
+    if (!loc.street || !loc.city) issues.push({level:"warning", text: tag + "Address is incomplete — street and city are recommended for local search."});
+    if (!loc.telephone) issues.push({level:"warning", text: tag + "Missing telephone number."});
+    else if (!/^[+0-9() .-]{7,}$/.test(loc.telephone)) issues.push({level:"info", text: tag + "Phone number format looks unusual — double check it."});
+    if ((loc.lat && !loc.lng) || (!loc.lat && loc.lng)) issues.push({level:"info", text: tag + "Latitude and longitude should both be set, or both left blank."});
+  });
+
+  if (!document.getElementById("fldImage").value.trim()) issues.push({level:"info", text:"No image set — an image is recommended for richer local search results."});
+  if (!document.getElementById("fldDesc").value.trim()) issues.push({level:"info", text:"No description set — a short description helps clarify what the business offers."});
+
+  if (issues.filter(function(i){return i.level==="error";}).length === 0 && issues.filter(function(i){return i.level==="warning";}).length === 0){
+    issues.unshift({level:"ok", text:"Required fields look good."});
+  }
+
+  document.getElementById("issuesList").innerHTML = issues.map(function(i){
+    return '<div class="issue-row"><span class="issue-tag ' + i.level + '">' + i.level + '</span><span>' + i.text + '</span></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   TAB SWITCHING
+═══════════════════════════════════════════════════════════════════════ */
+function setOutTab(tab){
+  document.querySelectorAll(".out-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.tab === tab); });
+  document.querySelectorAll(".out-panel").forEach(function(p){ p.classList.add("hidden"); });
+  document.getElementById("panel-" + tab).classList.remove("hidden");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyOutput(mode){
+  var text = document.getElementById("codeOut").textContent;
+  if (mode === "download"){
+    var blob = new Blob([text], {type:"text/html"});
+    var a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "local-business-schema.html";
+    a.click();
+    return;
+  }
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function copyCms(which){
+  var id = which === "wordpress" ? "wpOut" : which === "shopify" ? "shopifyOut" : "nextjsOut";
+  var el = document.getElementById(id);
+  var text = el.textContent;
+  var done = function(){
+    var btn = el.previousElementSibling.querySelector(".copy-btn");
+    if (btn){
+      var original = btn.textContent;
+      btn.textContent = "Copied!";
+      btn.classList.add("copied");
+      setTimeout(function(){ btn.textContent = original; btn.classList.remove("copied"); }, 1500);
+    }
+  };
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(done).catch(function(){ fallbackCopy(text, done); });
+  } else { fallbackCopy(text, done); }
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  document.getElementById("ratingFields").classList.toggle("hidden", !document.getElementById("chkRating").checked);
+  renderCode();
+  renderCms();
+  renderChecklist();
+}
+
+function handleTypeChange(){
+  renderTypeSpecificFields();
+  update();
+}
+
+/* init */
+renderTypeSelect();
+renderTypeSpecificFields();
+renderHoursTable();
+renderLocations();
+update();
+</script>
+</body>
+</html>
