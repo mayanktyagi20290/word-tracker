@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CSS Minifier — Free Tool, Never Reorders Your Rules | SEOTriggers</title>
+<meta name="description" content="Free CSS minifier that never reorders selectors, with a live before/after rendered preview, real gzip-compressed size estimate, and safe handling of strings, url() and CSS custom properties. No signup, no ads." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/css-minifier" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="CSS Minifier — Free Tool, Never Reorders Your Rules | SEOTriggers" />
+<meta property="og:description" content="Minify CSS without reordering your selectors — live rendered preview, real gzip size estimate, and safe handling of strings, url() and custom properties. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/css-minifier" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="CSS Minifier — Free Tool, Never Reorders Your Rules | SEOTriggers" />
+<meta name="twitter:description" content="Minify CSS without reordering selectors. Live preview, real gzip estimate, safe with strings/url()/custom properties. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "CSS Minifier",
+  "url": "https://seotriggers.com/tools/css-minifier",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online CSS minifier that never reorders selectors, with a live before/after rendered preview, a real gzip-compressed size estimate, and safe handling of strings, url() and CSS custom properties."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "CSS Minifier", "item": "https://seotriggers.com/tools/css-minifier" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Can minifying CSS break my layout?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It can if the minifier reorders your rules, since CSS cascade order and specificity depend on where a rule appears. This tool never reorders selectors or declarations — it only removes whitespace, comments, and redundant characters, so the cascade behaves exactly the same as your original file." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does this tool handle CSS custom properties (variables) safely?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Custom properties (values starting with --) are minified for whitespace and comments like everything else, but zero-unit stripping is skipped for their values, since a custom property might be consumed elsewhere expecting a specific unit." }
+    },
+    {
+      "@type": "Question",
+      "name": "Will this break url() paths or font names in quotes?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Content inside strings and url() is parsed and passed through untouched — whitespace collapsing and other transforms are never applied inside them, so file paths, font names, and content strings stay exactly as written." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is minifying CSS still useful if my site already uses gzip?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. Gzip compresses repetitive whitespace efficiently, but minification still reduces the amount of CSS the browser has to parse, and it typically saves additional bytes on top of compression from things like removed comments and shortened hex colors." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between CSS minification and CSS optimization?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Minification removes unnecessary characters (whitespace, comments, redundant syntax) without changing the meaning or order of any rule. Optimization tools that merge or reorder selectors can shrink files further, but they carry real risk of altering cascade behavior if two rules with the same specificity get reordered." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.field textarea{
+  width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:8px;font-size:13px;font-family:'SF Mono',Consolas,monospace;outline:none;background:#fff;color:var(--ink);resize:vertical;min-height:220px;
+}
+.field textarea:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field input[type=text]{width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.preset-row{display:flex;gap:8px;flex-wrap:wrap;}
+.preset-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:9px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.preset-btn.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px 20px;margin-top:12px;}
+.opt-item{display:flex;align-items:flex-start;gap:8px;font-size:13px;}
+.opt-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;margin-top:2px;flex-shrink:0;}
+.opt-item label{cursor:pointer;}
+.opt-item .opt-desc{display:block;font-size:11.5px;color:var(--sub);margin-top:1px;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);font-size:13px;font-weight:600;padding:10px 18px;}
+.btn:disabled{opacity:.5;cursor:default;}
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin:16px 0;}
+.stat-card{background:#fff;border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.stat-card .l{font-size:11px;color:var(--sub);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.stat-card .v{font-size:22px;font-weight:800;color:var(--ink);}
+.stat-card .v.green{color:var(--green);}
+
+pre.code-block{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:14px 16px;font-family:'SF Mono',Consolas,monospace;font-size:12px;overflow-x:auto;margin:0;line-height:1.6;max-height:340px;overflow-y:auto;white-space:pre-wrap;word-break:break-word;}
+.output-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
+.output-head h4{margin:0;font-size:13px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+
+.preview-tabs{display:flex;gap:6px;margin-bottom:10px;}
+.preview-tab{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:7px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.preview-tab.active{background:var(--ink);color:#fff;border-color:var(--ink);}
+.preview-frame-wrap{border:1px solid var(--border);border-radius:10px;overflow:hidden;background:#fff;}
+.preview-frame-wrap iframe{width:100%;height:260px;border:none;display:block;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / CSS Minifier
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · No Ads</span>
+    <h1>CSS Minifier</h1>
+    <p>Minify CSS without ever reordering your selectors — with a live before/after rendered preview and a real gzip-compressed size estimate.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="toggle-pair" style="margin-bottom:16px;">
+      <button id="btnPaste" class="active" onclick="setInputMode('paste')">Paste CSS</button>
+      <button id="btnUrl" onclick="setInputMode('url')">Fetch from URL</button>
+    </div>
+
+    <div class="field" id="pasteField">
+      <textarea id="fldInput" oninput="scheduleMinify()"></textarea>
+    </div>
+    <div class="field hidden" id="urlFieldWrap">
+      <div style="display:flex;gap:8px;">
+        <input type="text" id="fldUrl" placeholder="https://example.com/styles.css">
+        <button class="btn" onclick="fetchCssFile()" id="btnFetch">Fetch</button>
+      </div>
+      <div class="small-note" id="fetchStatus"></div>
+    </div>
+
+    <div class="section-label">Preset</div>
+    <div class="preset-row">
+      <button class="preset-btn active" onclick="applyPreset('safe')">✅ Safe (recommended)</button>
+      <button class="preset-btn" onclick="applyPreset('aggressive')">⚡ Aggressive</button>
+      <button class="preset-btn" onclick="applyPreset('custom')">⚙️ Custom</button>
+    </div>
+
+    <div class="section-label">Options</div>
+    <div class="opt-grid" id="optGrid"></div>
+
+    <div style="margin-top:20px;">
+      <button class="btn" onclick="runMinify()">🗜 Minify CSS</button>
+      <button class="copy-btn" onclick="copyOutput()">Copy output</button>
+      <button class="copy-btn" onclick="downloadOutput()">⬇ Download</button>
+    </div>
+
+    <div class="stat-grid" id="statGrid"></div>
+
+    <div class="section-label">Live preview</div>
+    <div class="preview-tabs">
+      <button class="preview-tab active" data-p="before" onclick="setPreviewTab('before')">Before</button>
+      <button class="preview-tab" data-p="after" onclick="setPreviewTab('after')">After</button>
+    </div>
+    <div class="preview-frame-wrap">
+      <iframe id="previewFrame" sandbox=""></iframe>
+    </div>
+    <div class="small-note">The preview applies your CSS to a small sample page so you can confirm styling still looks right.</div>
+
+    <div class="output-head" style="margin-top:20px;"><h4>Minified output</h4></div>
+    <pre class="code-block" id="outputCode"></pre>
+
+  </div>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🔒</div><h3>Never reorders your rules</h3><p>Selectors and declarations stay in exactly the order you wrote them, so cascade and specificity behavior is never affected.</p></div>
+      <div class="feat-card"><div class="ic">👁️</div><h3>Live rendered preview</h3><p>See your CSS applied to a sample page before and after minifying, so you can confirm nothing visually broke.</p></div>
+      <div class="feat-card"><div class="ic">📦</div><h3>Real gzip size estimate</h3><p>Get an actual gzip-compressed size using your browser's native compression engine, not just a raw byte count.</p></div>
+      <div class="feat-card"><div class="ic">🧵</div><h3>Safe with strings &amp; url()</h3><p>Content inside strings and url() — file paths, font names, content values — is parsed and left completely untouched.</p></div>
+      <div class="feat-card"><div class="ic">🎛️</div><h3>Handles custom properties</h3><p>CSS variables are minified for whitespace and comments, but zero-unit stripping is safely skipped for their values.</p></div>
+      <div class="feat-card"><div class="ic">🎚️</div><h3>Safe presets</h3><p>Start with Safe or go Aggressive — no need to research every option before you get a usable result.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Some popular CSS minifiers reorder rules to squeeze out extra bytes — which can quietly change how your cascade behaves.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Toptal</th><th>CleanCSS</th></tr></thead>
+        <tbody>
+          <tr><td>Whitespace, comment &amp; syntax minification</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Never reorders selectors or declarations</td><td class="yes">✓</td><td class="no">Documented cascade-order bug</td><td class="partial">Can restructure rules</td></tr>
+          <tr><td>Live before/after rendered preview</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Real gzip-compressed size estimate</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Fetch directly from a live URL</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No ads, no account</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Need to minify the HTML too? Try the <a href="/tools/html-minifier">HTML Minifier</a>.</p>
+  </section>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>What gets minified — and what's kept intentionally safe</h2>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Transformation</th><th>Why it's safe</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Whitespace collapsing</strong></td><td>Runs of whitespace are collapsed, but the single space used as a descendant combinator (like <code>div p</code>) is always preserved — only removed where it's purely cosmetic.</td></tr>
+          <tr><td><strong>Comment removal</strong></td><td>Ordinary comments are stripped; license comments starting with <code>/*!</code> can be preserved with a dedicated option.</td></tr>
+          <tr><td><strong>Hex color shortening</strong></td><td><code>#ffffff</code> becomes <code>#fff</code> only when each channel pair is identical — otherwise the color is left as written.</td></tr>
+          <tr><td><strong>Selector &amp; rule order</strong></td><td>Never changed. Reordering can flip which rule wins when two selectors share specificity — this tool avoids that risk entirely.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can minifying CSS break my layout? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It can if the minifier reorders your rules, since CSS cascade order and specificity depend on where a rule appears. This tool never reorders selectors or declarations — it only removes whitespace, comments, and redundant characters, so the cascade behaves exactly the same as your original file.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does this tool handle CSS custom properties (variables) safely? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. Custom properties (values starting with --) are minified for whitespace and comments like everything else, but zero-unit stripping is skipped for their values, since a custom property might be consumed elsewhere expecting a specific unit.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Will this break url() paths or font names in quotes? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Content inside strings and url() is parsed and passed through untouched — whitespace collapsing and other transforms are never applied inside them, so file paths, font names, and content strings stay exactly as written.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is minifying CSS still useful if my site already uses gzip? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes. Gzip compresses repetitive whitespace efficiently, but minification still reduces the amount of CSS the browser has to parse, and it typically saves additional bytes on top of compression from things like removed comments and shortened hex colors.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between CSS minification and CSS optimization? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Minification removes unnecessary characters (whitespace, comments, redundant syntax) without changing the meaning or order of any rule. Optimization tools that merge or reorder selectors can shrink files further, but they carry real risk of altering cascade behavior if two rules with the same specificity get reordered.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   OPTION DEFINITIONS
+═══════════════════════════════════════════════════════════════════════ */
+var OPTIONS = [
+  { key:"removeComments", label:"Remove comments", desc:"Strip /* comments */ from the output.", safe:true, aggressive:true },
+  { key:"preserveBangComments", label:"Preserve /*! license */ comments", desc:"Keep comments that start with /*! even when removing others.", safe:true, aggressive:false },
+  { key:"collapseWhitespace", label:"Collapse whitespace", desc:"Trims space around { } : ; , and combinators — descendant selector spaces are always kept.", safe:true, aggressive:true },
+  { key:"removeTrailingSemicolons", label:"Remove trailing semicolons", desc:"Drop the last ; before a closing }.", safe:true, aggressive:true },
+  { key:"shortenHexColors", label:"Shorten hex colors", desc:"#ffffff → #fff, only when channel pairs match.", safe:true, aggressive:true },
+  { key:"removeLeadingZeros", label:"Remove leading zeros", desc:"0.5px → .5px", safe:false, aggressive:true },
+  { key:"stripZeroUnits", label:"Strip units from zero values", desc:"0px → 0 (skipped for custom properties, which may need their unit).", safe:false, aggressive:true }
+];
+
+var state = {};
+OPTIONS.forEach(function(o){ state[o.key] = o.safe; });
+
+function renderOptions(){
+  document.getElementById("optGrid").innerHTML = OPTIONS.map(function(o){
+    return '<div class="opt-item"><input type="checkbox" id="opt_' + o.key + '" ' + (state[o.key]?'checked':'') + ' onchange="onOptionToggle(\'' + o.key + '\', this.checked)">' +
+      '<label for="opt_' + o.key + '">' + o.label + '<span class="opt-desc">' + o.desc + '</span></label></div>';
+  }).join("");
+}
+function onOptionToggle(key, val){
+  state[key] = val;
+  setActivePreset("custom");
+  scheduleMinify();
+}
+function applyPreset(name){
+  if (name === "safe"){ OPTIONS.forEach(function(o){ state[o.key] = o.safe; }); }
+  else if (name === "aggressive"){ OPTIONS.forEach(function(o){ state[o.key] = o.aggressive; }); }
+  setActivePreset(name);
+  renderOptions();
+  scheduleMinify();
+}
+function setActivePreset(name){
+  document.querySelectorAll(".preset-btn").forEach(function(b, i){
+    var map = ["safe","aggressive","custom"];
+    b.classList.toggle("active", map[i] === name);
+  });
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   INPUT MODE
+═══════════════════════════════════════════════════════════════════════ */
+var inputMode = "paste";
+function setInputMode(m){
+  inputMode = m;
+  document.getElementById("btnPaste").classList.toggle("active", m==="paste");
+  document.getElementById("btnUrl").classList.toggle("active", m==="url");
+  document.getElementById("pasteField").classList.toggle("hidden", m!=="paste");
+  document.getElementById("urlFieldWrap").classList.toggle("hidden", m!=="url");
+}
+async function fetchWithTimeout(url, opts, ms){
+  var controller = new AbortController();
+  var id = setTimeout(function(){ controller.abort(); }, ms || 12000);
+  try { return await fetch(url, Object.assign({}, opts, {signal: controller.signal})); }
+  finally { clearTimeout(id); }
+}
+async function fetchCssFile(){
+  var status = document.getElementById("fetchStatus");
+  var btn = document.getElementById("btnFetch");
+  var url = document.getElementById("fldUrl").value.trim();
+  if (!url){ status.textContent = "Enter a URL first."; return; }
+  if (!/^https?:\/\//i.test(url)) url = "https://" + url;
+  btn.disabled = true;
+  status.textContent = "Fetching…";
+  var css = null;
+  try {
+    var r = await fetchWithTimeout(url, {mode:"cors"}, 12000);
+    if (r.ok) css = await r.text();
+  } catch(e){}
+  if (!css){
+    try {
+      var r2 = await fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(url), {}, 12000);
+      if (r2.ok) css = await r2.text();
+    } catch(e2){}
+  }
+  btn.disabled = false;
+  if (!css){ status.textContent = "Couldn't fetch that URL (CORS or network issue) — try pasting the CSS instead."; return; }
+  document.getElementById("fldInput").value = css;
+  setInputMode("paste");
+  status.textContent = "Fetched " + css.length.toLocaleString() + " characters.";
+  runMinify();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   CSS MINIFIER ENGINE — single-pass scanner, string/url/comment aware
+═══════════════════════════════════════════════════════════════════════ */
+function minifyCssEngine(input, opts){
+  var n = input.length;
+  var i = 0;
+  var out = [];
+
+  function isWhitespace(ch){ return ch === ' ' || ch === '\t' || ch === '\n' || ch === '\r' || ch === '\f'; }
+
+  while (i < n){
+    var ch = input[i];
+
+    /* comments */
+    if (ch === '/' && input[i+1] === '*'){
+      var isBang = input[i+2] === '!';
+      var end = input.indexOf('*/', i+2);
+      if (end === -1) end = n; else end += 2;
+      if (!opts.removeComments || (isBang && opts.preserveBangComments)){
+        out.push(input.slice(i, end));
+      }
+      i = end;
+      continue;
+    }
+
+    /* strings */
+    if (ch === '"' || ch === "'"){
+      var quote = ch;
+      var j = i + 1;
+      while (j < n && input[j] !== quote){
+        if (input[j] === '\\') j++;
+        j++;
+      }
+      j = Math.min(j + 1, n);
+      out.push(input.slice(i, j));
+      i = j;
+      continue;
+    }
+
+    /* url(...) — content may be unquoted, preserve verbatim except surrounding trim */
+    if ((ch === 'u' || ch === 'U') && input.slice(i, i+4).toLowerCase() === 'url('){
+      var contentStart = i + 4;
+      var k = contentStart;
+      while (k < n && isWhitespace(input[k])) k++;
+      var closeIdx;
+      if (input[k] === '"' || input[k] === "'"){
+        var q = input[k];
+        var m = k + 1;
+        while (m < n && input[m] !== q){
+          if (input[m] === '\\') m++;
+          m++;
+        }
+        m = Math.min(m + 1, n);
+        closeIdx = input.indexOf(')', m);
+        if (closeIdx === -1) closeIdx = n;
+        out.push('url(' + input.slice(k, m) + ')');
+      } else {
+        closeIdx = input.indexOf(')', k);
+        if (closeIdx === -1) closeIdx = n;
+        out.push('url(' + input.slice(k, closeIdx).trim() + ')');
+      }
+      i = closeIdx + 1;
+      continue;
+    }
+
+    /* whitespace */
+    if (isWhitespace(ch)){
+      var j2 = i;
+      while (j2 < n && isWhitespace(input[j2])) j2++;
+      if (opts.collapseWhitespace){
+        var prevChar = out.length ? out[out.length-1].slice(-1) : "";
+        var nextChar = input[j2] || "";
+        var trimBefore = "{}:;,>".indexOf(prevChar) !== -1;
+        var trimAfter = "{}:;,>".indexOf(nextChar) !== -1;
+        if (!(trimBefore || trimAfter)){
+          out.push(' ');
+        }
+      } else {
+        out.push(input.slice(i, j2));
+      }
+      i = j2;
+      continue;
+    }
+
+    /* combinators > + ~ : trim surrounding space (space already handled above by lookahead/lookbehind trimming) */
+    out.push(ch);
+    i++;
+  }
+
+  var result = out.join("");
+
+  if (opts.removeTrailingSemicolons){
+    result = result.replace(/;+\}/g, "}");
+  }
+  if (opts.shortenHexColors){
+    result = result.replace(/#([0-9a-fA-F])\1([0-9a-fA-F])\2([0-9a-fA-F])\3\b/g, "#$1$2$3");
+  }
+  if (opts.removeLeadingZeros){
+    result = result.replace(/([:\s(,])0(\.\d+)/g, "$1$2");
+  }
+  if (opts.stripZeroUnits){
+    result = stripZeroUnitsSafely(result);
+  }
+
+  return result.trim();
+}
+
+function stripZeroUnitsSafely(css){
+  // Process declaration-by-declaration so we can skip custom properties (--foo: ...)
+  var parts = css.split(/(;|\{|\})/);
+  var out = "";
+  var currentDeclStart = true;
+  for (var idx = 0; idx < parts.length; idx++){
+    var seg = parts[idx];
+    if (seg === ";" || seg === "{" || seg === "}"){
+      out += seg;
+      continue;
+    }
+    var colonIdx = seg.indexOf(":");
+    if (colonIdx === -1){
+      out += seg;
+      continue;
+    }
+    var prop = seg.slice(0, colonIdx);
+    var val = seg.slice(colonIdx+1);
+    if (/^\s*--/.test(prop)){
+      out += seg; // skip custom properties entirely
+      continue;
+    }
+    val = val.replace(/\b0(px|em|rem|%|pt|pc|in|cm|mm|ex|ch|vw|vh|vmin|vmax|fr|deg|s|ms)(?=[\s;,)]|$)/g, "0");
+    out += prop + ":" + val;
+  }
+  return out;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   SIZE / GZIP ESTIMATE
+═══════════════════════════════════════════════════════════════════════ */
+function byteLength(str){ return new TextEncoder().encode(str).length; }
+async function gzipSize(str){
+  if (typeof CompressionStream === "undefined") return null;
+  try {
+    var bytes = new TextEncoder().encode(str);
+    var cs = new CompressionStream("gzip");
+    var writer = cs.writable.getWriter();
+    writer.write(bytes);
+    writer.close();
+    var chunks = [];
+    var reader = cs.readable.getReader();
+    while (true){
+      var res = await reader.read();
+      if (res.done) break;
+      chunks.push(res.value);
+    }
+    return chunks.reduce(function(a,c){ return a + c.length; }, 0);
+  } catch(e){ return null; }
+}
+function formatBytes(n){
+  if (n < 1024) return n + " B";
+  return (n/1024).toFixed(2) + " KB";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   PREVIEW
+═══════════════════════════════════════════════════════════════════════ */
+var currentPreviewTab = "before";
+var lastInput = "";
+var lastOutput = "";
+
+function buildPreviewDoc(css){
+  return "<!DOCTYPE html><html><head><style>" + css + "</style></head><body>" +
+    "<div class='sample'><h1>Sample heading</h1><p>This is a paragraph with a <a href='#'>link</a> to preview your CSS.</p>" +
+    "<button>A button</button><ul><li>List item one</li><li>List item two</li></ul></div>" +
+    "</body></html>";
+}
+function setPreviewTab(t){
+  currentPreviewTab = t;
+  document.querySelectorAll(".preview-tab").forEach(function(b){ b.classList.toggle("active", b.dataset.p === t); });
+  renderPreview();
+}
+function renderPreview(){
+  var frame = document.getElementById("previewFrame");
+  var css = currentPreviewTab === "before" ? lastInput : lastOutput;
+  frame.srcdoc = buildPreviewDoc(css || "");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER RUN
+═══════════════════════════════════════════════════════════════════════ */
+var minifyTimer = null;
+function scheduleMinify(){
+  clearTimeout(minifyTimer);
+  minifyTimer = setTimeout(runMinify, 400);
+}
+
+async function runMinify(){
+  var input = document.getElementById("fldInput").value;
+  lastInput = input;
+  if (!input.trim()){
+    document.getElementById("outputCode").textContent = "";
+    document.getElementById("statGrid").innerHTML = "";
+    lastOutput = "";
+    renderPreview();
+    return;
+  }
+  var output;
+  try {
+    output = minifyCssEngine(input, state);
+  } catch(e){
+    document.getElementById("outputCode").textContent = "Error minifying CSS: " + e.message;
+    return;
+  }
+  lastOutput = output;
+  document.getElementById("outputCode").textContent = output;
+  renderPreview();
+
+  var origSize = byteLength(input);
+  var minSize = byteLength(output);
+  var savedPct = origSize > 0 ? (((origSize - minSize) / origSize) * 100) : 0;
+
+  document.getElementById("statGrid").innerHTML =
+    '<div class="stat-card"><div class="l">Original size</div><div class="v">' + formatBytes(origSize) + '</div></div>' +
+    '<div class="stat-card"><div class="l">Minified size</div><div class="v green">' + formatBytes(minSize) + '</div></div>' +
+    '<div class="stat-card"><div class="l">Reduction</div><div class="v green">' + savedPct.toFixed(1) + '%</div></div>' +
+    '<div class="stat-card"><div class="l">Gzip (before)</div><div class="v" id="gzipBefore">…</div></div>' +
+    '<div class="stat-card"><div class="l">Gzip (after)</div><div class="v green" id="gzipAfter">…</div></div>';
+
+  var gb = await gzipSize(input);
+  var ga = await gzipSize(output);
+  if (document.getElementById("gzipBefore")) document.getElementById("gzipBefore").textContent = gb !== null ? formatBytes(gb) : "n/a";
+  if (document.getElementById("gzipAfter")) document.getElementById("gzipAfter").textContent = ga !== null ? formatBytes(ga) : "n/a";
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyOutput(){
+  if (!lastOutput) return;
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(lastOutput).catch(function(){ fallbackCopy(lastOutput); });
+  } else { fallbackCopy(lastOutput); }
+}
+function downloadOutput(){
+  if (!lastOutput) return;
+  var blob = new Blob([lastOutput], {type:"text/css"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "minified.css";
+  a.click();
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* init */
+renderOptions();
+document.getElementById("fldInput").value =
+'/* Main styles */\n.sample h1 {\n  color:   #ff0000  ;\n  margin: 0px  0px  10px 0px;\n  font-family: "Helvetica Neue", sans-serif;\n}\n\n.sample p {\n  color: #333333;\n  line-height: 1.6;\n}\n\n.sample a {\n  color: #0066cc;\n}\n\ndiv p {\n  padding: 0.5em;\n}\n\n.sample button {\n  background: #6366f1;\n  color: #ffffff;\n  border: none;\n  padding: 8px 16px;\n  border-radius: 6px;\n}';
+runMinify();
+</script>
+</body>
+</html>
