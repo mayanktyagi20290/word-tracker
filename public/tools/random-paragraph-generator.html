@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Random Paragraph Generator — Free Tool, No Signup, No Ads | SEOTriggers</title>
+<meta name="description" content="Free random paragraph generator with topic categories, adjustable length, per-paragraph regeneration, and HTML output — no signup, no ads, no daily limit." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/random-paragraph-generator" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Random Paragraph Generator — Free Tool, No Signup, No Ads | SEOTriggers" />
+<meta property="og:description" content="Generate random paragraphs by topic, with adjustable length, per-paragraph regeneration, and HTML output. Free, no signup, no ads, no limit." />
+<meta property="og:url" content="https://seotriggers.com/tools/random-paragraph-generator" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Random Paragraph Generator — Free Tool, No Signup, No Ads | SEOTriggers" />
+<meta name="twitter:description" content="Random paragraphs by topic, adjustable length, per-paragraph regeneration, HTML output. Free, no ads, no limit." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Random Paragraph Generator",
+  "url": "https://seotriggers.com/tools/random-paragraph-generator",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online tool to generate random paragraphs by topic category, with adjustable length, per-paragraph regeneration, and HTML output — no signup, no ads, no daily limit."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Random Paragraph Generator", "item": "https://seotriggers.com/tools/random-paragraph-generator" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What can I use a random paragraph generator for?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Common uses include beating writer's block by starting with unrelated text to rewrite, filling placeholder space in a design mockup, practicing typing on varied real-looking sentences, testing how a layout handles different paragraph lengths, and sparking creative writing prompts by working an unexpected topic into a story." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are the generated paragraphs unique every time?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Each paragraph is assembled from a bank of sentence structures and vocabulary specific to its topic, then combined and shuffled on the fly, so the exact combination you get is generated fresh in your browser each time rather than served from a fixed pre-written list." }
+    },
+    {
+      "@type": "Question",
+      "name": "Do the paragraphs actually make grammatical sense?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — each sentence follows a complete grammatical template with a subject, verb, and object filled in from topic-relevant word banks, so the output reads as coherent (if sometimes unexpected) English rather than random word soup." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I generate paragraphs starting with a specific word?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes — enter a word or short phrase in the \"start with\" field and it will be placed at the beginning of the first paragraph, which is useful for writing prompts, games, or testing how a specific term flows in context." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is there a limit on how many paragraphs I can generate?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. There's no daily cap, no cooldown, and no account required — generate one paragraph or a hundred, as many times as you need, for free." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.chip-row{display:flex;flex-wrap:wrap;gap:8px;}
+.chip{background:var(--bg);border:1px solid var(--border);border-radius:999px;padding:8px 16px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.chip.active{background:var(--brand);color:#fff;border-color:var(--brand);}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=number]{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row{grid-template-columns:1fr;}}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.stepper{display:flex;align-items:center;border:1px solid var(--border);border-radius:8px;overflow:hidden;width:fit-content;}
+.stepper button{background:var(--bg);border:none;width:34px;height:38px;font-size:16px;font-weight:700;color:var(--ink);cursor:pointer;}
+.stepper input{width:50px;text-align:center;border:none;border-left:1px solid var(--border);border-right:1px solid var(--border);height:38px;font-size:14px;font-family:inherit;}
+
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:9px 16px;font-size:13px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:11px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);font-size:13px;font-weight:600;padding:10px 18px;}
+.btn.small{padding:6px 12px;font-size:12px;font-weight:600;}
+
+.stat-row{display:flex;gap:20px;flex-wrap:wrap;margin:14px 0;font-size:13px;color:var(--sub);}
+.stat-row b{color:var(--ink);}
+
+.para-card{border:1px solid var(--border);border-radius:10px;padding:16px 18px;margin-bottom:14px;background:#fff;position:relative;}
+.para-card .para-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
+.para-card .para-num{font-size:11px;font-weight:700;color:var(--sub);text-transform:uppercase;letter-spacing:.4px;}
+.para-card .para-actions{display:flex;gap:6px;}
+.para-text{font-size:14.5px;line-height:1.75;color:var(--ink);white-space:pre-wrap;}
+.para-empty{text-align:center;padding:40px 20px;color:var(--sub);font-size:14px;}
+
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / Random Paragraph Generator
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · No Ads · No Daily Limit</span>
+    <h1>Random Paragraph Generator</h1>
+    <p>Generate random paragraphs by topic, with adjustable length, per-paragraph regeneration, and HTML output — freshly assembled in your browser every time.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="section-label">Topic</div>
+    <div class="chip-row" id="topicChips"></div>
+
+    <div class="field-row" style="margin-top:20px;">
+      <div class="field">
+        <label>Number of paragraphs</label>
+        <div class="stepper">
+          <button onclick="stepValue('count',-1)">−</button>
+          <input type="text" id="fldCount" value="3" readonly>
+          <button onclick="stepValue('count',1)">+</button>
+        </div>
+      </div>
+      <div class="field">
+        <label>Paragraph length</label>
+        <div class="toggle-pair" id="lengthToggle">
+          <button data-l="short" onclick="setLength('short')">Short</button>
+          <button data-l="medium" class="active" onclick="setLength('medium')">Medium</button>
+          <button data-l="long" onclick="setLength('long')">Long</button>
+        </div>
+      </div>
+      <div class="field">
+        <label for="fldStartWord">Start with a word <span style="font-weight:400;color:var(--sub);">(optional)</span></label>
+        <input type="text" id="fldStartWord" placeholder="e.g. Suddenly">
+      </div>
+    </div>
+
+    <div class="section-label">Output format</div>
+    <div class="toggle-pair" id="formatToggle">
+      <button data-f="plain" class="active" onclick="setFormat('plain')">Plain text</button>
+      <button data-f="html" onclick="setFormat('html')">HTML (&lt;p&gt; tags)</button>
+    </div>
+
+    <div style="margin-top:24px;">
+      <button class="btn" onclick="generateAll()">🔀 Generate paragraphs</button>
+      <button class="btn secondary" onclick="copyAll()">Copy all</button>
+      <button class="btn secondary" onclick="downloadTxt()">⬇ Download .txt</button>
+    </div>
+
+    <div class="stat-row" id="statRow"></div>
+
+    <div id="paraContainer" style="margin-top:16px;"></div>
+
+  </div>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Why writers use random paragraphs</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">✍️</div><h3>Beat writer's block</h3><p>Start your writing session by rewriting a random paragraph in your own voice before moving to your actual project.</p></div>
+      <div class="feat-card"><div class="ic">🎨</div><h3>Fill design mockups</h3><p>Drop realistic-length paragraphs into a layout to see how real content will actually sit before the copy is final.</p></div>
+      <div class="feat-card"><div class="ic">⌨️</div><h3>Typing practice</h3><p>Practice on varied, real sentence structures instead of repeating the same memorized passage over and over.</p></div>
+      <div class="feat-card"><div class="ic">💡</div><h3>Spark creative writing</h3><p>Use an unexpected topic as a writing prompt to push your story or article in a direction you wouldn't have planned.</p></div>
+      <div class="feat-card"><div class="ic">🧪</div><h3>Test your program</h3><p>Generate blocks of realistic text to test how your app or script handles different lengths and content.</p></div>
+      <div class="feat-card"><div class="ic">🔒</div><h3>100% private &amp; client-side</h3><p>Every paragraph is assembled locally in your browser. Nothing you generate is ever sent anywhere.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Most free paragraph generators serve the same fixed, pre-written passages to every visitor, wrapped in ads.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>RandomWordGenerator.com</th><th>CodeBeautify.org</th></tr></thead>
+        <tbody>
+          <tr><td>Freshly assembled paragraphs (not a fixed pre-written list)</td><td class="yes">✓</td><td class="no">Fixed pool</td><td class="partial">Template-based</td></tr>
+          <tr><td>Topic categories to choose from</td><td class="yes">✓</td><td class="no">✗</td><td class="yes">✓</td></tr>
+          <tr><td>Adjustable paragraph length</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Per-paragraph regeneration</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>HTML output for developers</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>No ads</td><td class="yes">✓</td><td class="no">Ad-heavy</td><td class="no">Ad-heavy</td></tr>
+          <tr><td>No signup, no daily limit</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Need placeholder text for a design mockup instead? Try the <a href="/tools/lorem-ipsum-generator">Lorem Ipsum Generator</a>.</p>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What can I use a random paragraph generator for? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Common uses include beating writer's block by starting with unrelated text to rewrite, filling placeholder space in a design mockup, practicing typing on varied real-looking sentences, testing how a layout handles different paragraph lengths, and sparking creative writing prompts by working an unexpected topic into a story.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Are the generated paragraphs unique every time? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Each paragraph is assembled from a bank of sentence structures and vocabulary specific to its topic, then combined and shuffled on the fly, so the exact combination you get is generated fresh in your browser each time rather than served from a fixed pre-written list.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Do the paragraphs actually make grammatical sense? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes — each sentence follows a complete grammatical template with a subject, verb, and object filled in from topic-relevant word banks, so the output reads as coherent (if sometimes unexpected) English rather than random word soup.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Can I generate paragraphs starting with a specific word? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Yes — enter a word or short phrase in the "start with" field and it will be placed at the beginning of the first paragraph, which is useful for writing prompts, games, or testing how a specific term flows in context.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is there a limit on how many paragraphs I can generate? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. There's no daily cap, no cooldown, and no account required — generate one paragraph or a hundred, as many times as you need, for free.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   WORD BANKS & TEMPLATES (original content, per topic)
+═══════════════════════════════════════════════════════════════════════ */
+var TOPICS = {
+  mixed: { label: "🔀 Random Mix" },
+  business: {
+    label: "💼 Business",
+    noun: ["the marketing team","the new client","the startup","the quarterly report","the negotiation","the supply chain","the board of directors","the sales pipeline","the merger","the annual budget"],
+    noun2: ["market share","customer retention","operating costs","brand reputation","investor confidence","team morale","quarterly revenue","the product roadmap"],
+    adj: ["ambitious","cautious","overdue","competitive","unexpected","modest","aggressive","promising"],
+    verb: ["reconsider","finalize","restructure","announce","postpone","accelerate","review","renegotiate"]
+  },
+  motivational: {
+    label: "💡 Motivational",
+    noun: ["discipline","patience","a consistent daily habit","honest self-reflection","consistent effort","a clear sense of purpose","resilience","gratitude","curiosity","persistence"],
+    noun2: ["your long-term goals","personal growth","meaningful progress","a sense of fulfillment","lasting change","genuine confidence"],
+    adj: ["quiet","steady","unglamorous","deliberate","gradual","genuine","hard-won"],
+    verb: ["shape","strengthen","reveal","sustain","transform","reinforce","unlock"]
+  },
+  technology: {
+    label: "💻 Technology",
+    noun: ["the new algorithm","the software update","the data pipeline","the mobile app","the cloud migration","the security patch","the user interface","the API integration","the machine learning model","the server infrastructure"],
+    noun2: ["response times","data privacy","user engagement","system reliability","developer productivity","the overall architecture"],
+    adj: ["experimental","scalable","outdated","lightweight","resource-intensive","well-documented","fragile"],
+    verb: ["optimize","deprecate","refactor","deploy","benchmark","stabilize","redesign"]
+  },
+  nature: {
+    label: "🌿 Nature",
+    noun: ["the old oak tree","the mountain stream","the coastal forest","the migrating flock","the desert wind","the coral reef","the morning fog","the autumn foliage","the mountain ridge","the tide pool"],
+    noun2: ["the surrounding wildlife","the local ecosystem","the changing seasons","the forest floor","the river's current"],
+    adj: ["quiet","ancient","fragile","untouched","windswept","sunlit","remote"],
+    verb: ["shape","shelter","transform","sustain","reveal","withstand","nourish"]
+  },
+  history: {
+    label: "📜 History",
+    noun: ["the ancient trade route","the ruling council","the ancient library","the ruling dynasty","the border settlement","the old fortress","the merchant guild","the royal decree","the peace treaty","the founding charter"],
+    noun2: ["regional trade","local governance","the surrounding territories","future generations","the balance of power"],
+    adj: ["fragile","short-lived","contested","enduring","overlooked","turbulent","pivotal"],
+    verb: ["reshape","preserve","challenge","document","influence","disrupt","secure"]
+  }
+};
+
+var CONNECTORS = ["", "As a result, ", "Meanwhile, ", "Interestingly, ", "Over time, ", "In practice, ", "Even so, ", "Nevertheless, ", "In many cases, "];
+
+var TEMPLATES = [
+  "{c}{noun} had to {verb} {noun2} sooner than anyone expected.",
+  "{c}{noun} was {adj}, and it quietly {verb2} {noun2}.",
+  "Few people realized how {adj} {noun} truly was until it began to {verb} {noun2}.",
+  "{c}experts agreed that {noun} would eventually {verb} {noun2}, though the timeline stayed unclear.",
+  "{c}what started as {art} {adj} plan around {noun} soon began to {verb} {noun2} in ways nobody predicted.",
+  "{c}{noun} continued to {verb} {noun2}, even as conditions grew increasingly {adj}.",
+  "It took a long time before {noun} began to {verb} {noun2} in any noticeable way.",
+  "{c}some believed {noun} was too {adj} to {verb} {noun2}, but the evidence suggested otherwise.",
+  "{c}by the time anyone noticed, {noun} had already started to {verb} {noun2}.",
+  "{c}{noun}, {adj} as it was, ended up shaping {noun2} for years afterward.",
+  "Whether or not it was intentional, {noun} managed to {verb} {noun2} almost overnight.",
+  "{c}looking back, {noun} was far more {adj} than most people at the time assumed."
+];
+
+function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+function cap(s){ return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function article(word){ return /^[aeiou]/i.test(word) ? "an" : "a"; }
+function presentSingular(verb){
+  if (/[sxz]$|(ch|sh)$/.test(verb)) return verb + "es";
+  if (/[^aeiou]y$/.test(verb)) return verb.slice(0,-1) + "ies";
+  return verb + "s";
+}
+
+function fillTemplate(tpl, bank){
+  var noun = pick(bank.noun);
+  var noun2 = pick(bank.noun2);
+  var adj = pick(bank.adj);
+  var art = article(adj);
+  var verb = pick(bank.verb);
+  var verb2 = presentSingular(pick(bank.verb));
+  var c = pick(CONNECTORS);
+  var s = tpl
+    .replace(/\{c\}/g, c)
+    .replace(/\{noun2\}/g, noun2)
+    .replace(/\{noun\}/g, noun)
+    .replace(/\{art\}/g, art)
+    .replace(/\{adj\}/g, adj)
+    .replace(/\{verb2\}/g, verb2)
+    .replace(/\{verb\}/g, verb);
+  return cap(s);
+}
+
+function sentenceCountForLength(len){
+  if (len === "short") return 3 + Math.floor(Math.random()*1);
+  if (len === "long") return 7 + Math.floor(Math.random()*3);
+  return 5 + Math.floor(Math.random()*2);
+}
+
+function generateParagraph(topicKey, length, startWord){
+  var key = topicKey === "mixed" ? pick(Object.keys(TOPICS).filter(function(k){ return k !== "mixed"; })) : topicKey;
+  var bank = TOPICS[key];
+  var n = sentenceCountForLength(length);
+  var usedTemplates = [];
+  var sentences = [];
+  for (var i=0; i<n; i++){
+    var tpl;
+    var attempts = 0;
+    do { tpl = pick(TEMPLATES); attempts++; } while (usedTemplates.indexOf(tpl) !== -1 && attempts < 8 && usedTemplates.length < TEMPLATES.length);
+    usedTemplates.push(tpl);
+    sentences.push(fillTemplate(tpl, bank));
+  }
+  var text = sentences.join(" ");
+  if (startWord && startWord.trim()){
+    text = cap(startWord.trim()) + ", " + text.charAt(0).toLowerCase() + text.slice(1);
+  }
+  return text;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   STATE
+═══════════════════════════════════════════════════════════════════════ */
+var currentTopic = "mixed";
+var currentLength = "medium";
+var currentFormat = "plain";
+var paragraphs = [];
+
+function renderTopicChips(){
+  var el = document.getElementById("topicChips");
+  el.innerHTML = Object.keys(TOPICS).map(function(k){
+    return '<span class="chip' + (k===currentTopic?' active':'') + '" onclick="setTopic(\'' + k + '\')">' + TOPICS[k].label + '</span>';
+  }).join("");
+}
+function setTopic(k){ currentTopic = k; renderTopicChips(); }
+function setLength(l){
+  currentLength = l;
+  document.querySelectorAll("#lengthToggle button").forEach(function(b){ b.classList.toggle("active", b.dataset.l===l); });
+}
+function setFormat(f){
+  currentFormat = f;
+  document.querySelectorAll("#formatToggle button").forEach(function(b){ b.classList.toggle("active", b.dataset.f===f); });
+  renderParagraphs();
+}
+function stepValue(which, delta){
+  if (which === "count"){
+    var el = document.getElementById("fldCount");
+    var v = Math.max(1, Math.min(10, (parseInt(el.value)||1) + delta));
+    el.value = v;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   GENERATE / RENDER
+═══════════════════════════════════════════════════════════════════════ */
+function generateAll(){
+  var count = Math.max(1, Math.min(10, parseInt(document.getElementById("fldCount").value)||3));
+  var startWord = document.getElementById("fldStartWord").value;
+  paragraphs = [];
+  for (var i=0; i<count; i++){
+    paragraphs.push(generateParagraph(currentTopic, currentLength, i===0 ? startWord : ""));
+  }
+  renderParagraphs();
+}
+function regenerateOne(i){
+  var startWord = document.getElementById("fldStartWord").value;
+  paragraphs[i] = generateParagraph(currentTopic, currentLength, i===0 ? startWord : "");
+  renderParagraphs();
+}
+
+function escapeHtml(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+function renderParagraphs(){
+  var container = document.getElementById("paraContainer");
+  if (paragraphs.length === 0){
+    container.innerHTML = '<div class="para-empty">Click "Generate paragraphs" to get started.</div>';
+    document.getElementById("statRow").innerHTML = "";
+    return;
+  }
+  container.innerHTML = paragraphs.map(function(p, i){
+    var displayText = currentFormat === "html" ? escapeHtml("<p>" + p + "</p>") : escapeHtml(p);
+    return '<div class="para-card">' +
+      '<div class="para-head"><span class="para-num">Paragraph ' + (i+1) + '</span>' +
+        '<div class="para-actions"><button class="copy-btn" onclick="regenerateOne(' + i + ')">🔀 Regenerate</button><button class="copy-btn" onclick="copyOne(' + i + ')">Copy</button></div>' +
+      '</div>' +
+      '<div class="para-text">' + displayText + '</div>' +
+    '</div>';
+  }).join("");
+
+  var totalWords = paragraphs.reduce(function(a,p){ return a + p.split(/\s+/).filter(Boolean).length; }, 0);
+  var totalChars = paragraphs.reduce(function(a,p){ return a + p.length; }, 0);
+  document.getElementById("statRow").innerHTML =
+    '<span><b>' + paragraphs.length + '</b> paragraphs</span>' +
+    '<span><b>' + totalWords.toLocaleString() + '</b> words</span>' +
+    '<span><b>' + totalChars.toLocaleString() + '</b> characters</span>';
+}
+
+function getFullText(){
+  return paragraphs.map(function(p){
+    return currentFormat === "html" ? "<p>" + p + "</p>" : p;
+  }).join(currentFormat === "html" ? "\n" : "\n\n");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY / DOWNLOAD
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function copyOne(i){
+  var text = currentFormat === "html" ? "<p>" + paragraphs[i] + "</p>" : paragraphs[i];
+  copyText(text);
+}
+function copyAll(){
+  if (paragraphs.length === 0) return;
+  copyText(getFullText());
+}
+function downloadTxt(){
+  if (paragraphs.length === 0) return;
+  var blob = new Blob([getFullText()], {type:"text/plain"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "random-paragraphs." + (currentFormat === "html" ? "html" : "txt");
+  a.click();
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* init */
+renderTopicChips();
+generateAll();
+</script>
+</body>
+</html>
