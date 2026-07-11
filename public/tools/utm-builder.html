@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>UTM Builder — Free Campaign URL &amp; UTM Link Generator | SEOTriggers</title>
+<meta name="description" content="Free UTM builder with saved link history, naming-convention enforcement, bulk link generation, destination link checking, and QR codes — everything Google's Campaign URL Builder is missing. No signup." />
+<meta name="robots" content="index, follow" />
+<link rel="canonical" href="https://seotriggers.com/tools/utm-builder" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="UTM Builder — Free Campaign URL &amp; UTM Link Generator | SEOTriggers" />
+<meta property="og:description" content="Build UTM-tagged campaign URLs with saved link history, naming-convention enforcement, bulk generation, destination checking, and QR codes. Free, no signup." />
+<meta property="og:url" content="https://seotriggers.com/tools/utm-builder" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="UTM Builder — Free Campaign URL &amp; UTM Link Generator | SEOTriggers" />
+<meta name="twitter:description" content="UTM builder with link history, naming-convention enforcement, bulk generation, destination checking, and QR codes. Free." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="/legal.css" />
+
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "UTM Builder",
+  "url": "https://seotriggers.com/tools/utm-builder",
+  "applicationCategory": "UtilitiesApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free online UTM builder that generates campaign-tagged URLs with saved link history, naming-convention enforcement, bulk link generation, destination link checking, and QR codes."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "UTM Builder", "item": "https://seotriggers.com/tools/utm-builder" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "What are UTM parameters?",
+      "acceptedAnswer": { "@type": "Answer", "text": "UTM parameters are short text codes added to the end of a URL (utm_source, utm_medium, utm_campaign, utm_term, utm_content) that tell Google Analytics and other tools exactly where a click came from — which platform, which campaign, and even which specific ad or link variant." }
+    },
+    {
+      "@type": "Question",
+      "name": "Does the order of UTM parameters in the URL matter?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. Analytics platforms parse UTM parameters as a set of key-value pairs regardless of the order they appear in the query string, so utm_source before or after utm_medium makes no difference to tracking." }
+    },
+    {
+      "@type": "Question",
+      "name": "Should I use UTM parameters on internal links within my own site?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No — UTM tags are meant for external sources like ads, emails, and social posts. Using them on internal links overwrites the visitor's original session source in Google Analytics, corrupting your attribution data for that session." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why does consistent casing and formatting matter for UTM values?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Analytics platforms treat \"Facebook\", \"facebook\", and \"FACEBOOK\" as three different sources by default. Inconsistent casing or spacing splits what should be one channel into multiple fragmented rows in your reports, making campaign performance harder to compare accurately." }
+    },
+    {
+      "@type": "Question",
+      "name": "What's the difference between utm_content and utm_term?",
+      "acceptedAnswer": { "@type": "Answer", "text": "utm_term was originally built for paid search keywords, while utm_content is used to differentiate similar content or links within the same ad or email — for example, distinguishing a header link from a footer link that point to the same destination." }
+    },
+    {
+      "@type": "Question",
+      "name": "Is this UTM builder as reliable as Google's own Campaign URL Builder?",
+      "acceptedAnswer": { "@type": "Answer", "text": "It generates the exact same standard UTM parameter format that Google Analytics and every major analytics platform reads, so the resulting links work identically. This tool adds saved link history, naming-convention checks, bulk generation, and destination checking on top of that same core functionality." }
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --brand:#6366f1; --brand-dark:#4f46e5; --ink:#1e1b2e; --sub:#6b7280;
+  --bg:#f8f8fc; --card:#ffffff; --border:#e5e7eb;
+  --green:#16a34a; --green-bg:#ecfdf3; --red:#dc2626; --red-bg:#fef2f2;
+  --amber:#d97706; --amber-bg:#fffbeb; --blue:#2563eb; --blue-bg:#eff6ff;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--ink);line-height:1.6;}
+.wrap{max-width:1100px;margin:0 auto;padding:0 20px;}
+a{color:var(--brand-dark);}
+
+.site-nav{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:64px;}
+.logo{font-size:20px;font-weight:800;color:var(--ink);text-decoration:none;}
+.logo span{color:var(--brand);}
+.nav-links{display:flex;gap:24px;list-style:none;margin:0;padding:0;}
+.nav-links a{text-decoration:none;color:var(--sub);font-weight:500;font-size:14px;}
+.nav-links a:hover{color:var(--brand-dark);}
+
+.breadcrumb{padding:16px 0 0;font-size:13px;color:var(--sub);}
+.breadcrumb a{color:var(--sub);text-decoration:none;}
+.breadcrumb a:hover{color:var(--brand-dark);}
+
+.hero{padding:32px 0 8px;text-align:center;}
+.hero .badge{display:inline-block;background:var(--blue-bg);color:var(--blue);font-size:12px;font-weight:600;padding:5px 14px;border-radius:999px;margin-bottom:16px;}
+.hero h1{font-size:clamp(28px,4vw,42px);font-weight:800;margin:0 0 12px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--sub);max-width:680px;margin:0 auto;}
+
+.card{background:var(--card);border:1px solid var(--border);border-radius:14px;box-shadow:0 1px 3px rgba(20,20,43,.04);}
+.tool-card{margin:28px 0;padding:24px;}
+@media(min-width:640px){.tool-card{padding:32px;}}
+
+.section-label{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--sub);margin:26px 0 10px;}
+.section-label:first-child{margin-top:0;}
+
+.field{margin-bottom:14px;}
+.field label{display:block;font-size:13px;font-weight:600;color:var(--ink);margin-bottom:6px;}
+.field input[type=text], .field input[type=url], .field textarea, .field select{
+  width:100%;padding:10px 12px;border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;outline:none;background:#fff;color:var(--ink);
+}
+.field input:focus, .field textarea:focus, .field select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(99,102,241,.12);}
+.field textarea{resize:vertical;min-height:64px;}
+.field-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.field-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;}
+@media(max-width:640px){.field-row, .field-row3{grid-template-columns:1fr;}}
+.small-note{font-size:12px;color:var(--sub);margin-top:6px;}
+
+.preset-row{display:flex;flex-wrap:wrap;gap:8px;}
+.preset-btn{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:8px 14px;font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.preset-btn:hover{border-color:var(--brand);}
+
+.toggle-row{display:flex;gap:16px;flex-wrap:wrap;margin:10px 0;}
+.toggle-item{display:flex;align-items:center;gap:8px;font-size:13px;}
+.toggle-item input[type=checkbox]{width:16px;height:16px;accent-color:var(--brand);cursor:pointer;}
+.toggle-pair{display:inline-flex;border:1px solid var(--border);border-radius:9px;overflow:hidden;}
+.toggle-pair button{background:#fff;border:none;padding:8px 14px;font-size:12.5px;font-weight:600;color:var(--sub);cursor:pointer;font-family:inherit;}
+.toggle-pair button.active{background:var(--brand);color:#fff;}
+
+.btn{display:inline-flex;align-items:center;gap:6px;background:var(--brand);color:#fff;border:none;border-radius:9px;padding:10px 18px;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;white-space:nowrap;}
+.btn.secondary{background:var(--bg);color:var(--ink);border:1px solid var(--border);}
+.btn.small{padding:6px 12px;font-size:12px;}
+.btn.danger{background:var(--red-bg);color:var(--red);border:1px solid #fecaca;}
+.btn:disabled{opacity:.5;cursor:default;}
+
+.copy-btn{background:var(--bg);border:1px solid var(--border);border-radius:7px;padding:5px 12px;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;font-family:inherit;}
+.copy-btn:hover{border-color:var(--brand);}
+.copy-btn.copied{background:var(--green-bg);color:var(--green);border-color:#bbf7d0;}
+
+.url-output{background:#1e1b2e;color:#e5e7eb;border-radius:10px;padding:16px;font-family:'SF Mono',Consolas,monospace;font-size:13.5px;overflow-x:auto;word-break:break-all;margin-top:10px;}
+.url-output .base{color:#e5e7eb;}
+.url-output .key{color:#a5b4fc;}
+.url-output .val{color:#86efac;}
+.url-output .amp{color:#6b7280;}
+
+.result-row{display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap;margin-top:16px;}
+.result-main{flex:1;min-width:260px;}
+.qr-box{border:1px solid var(--border);border-radius:10px;padding:12px;background:#fff;text-align:center;width:150px;flex-shrink:0;}
+.qr-box img{width:120px;height:120px;}
+.qr-box .qr-label{font-size:11px;color:var(--sub);margin-top:6px;}
+
+.issues-panel{margin-top:18px;border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+.issues-head{padding:10px 16px;background:var(--bg);font-size:13px;font-weight:700;border-bottom:1px solid var(--border);}
+.issue-row{display:flex;gap:10px;padding:9px 16px;border-bottom:1px solid var(--border);font-size:13px;}
+.issue-row:last-child{border-bottom:none;}
+.issue-tag{flex-shrink:0;font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;height:fit-content;text-transform:uppercase;}
+.issue-tag.error{background:var(--red-bg);color:var(--red);}
+.issue-tag.warning{background:var(--amber-bg);color:var(--amber);}
+.issue-tag.info{background:var(--blue-bg);color:var(--blue);}
+.issue-tag.ok{background:var(--green-bg);color:var(--green);}
+
+.hist-table{width:100%;border-collapse:collapse;font-size:12.5px;}
+.hist-table th, .hist-table td{padding:8px 10px;border-bottom:1px solid var(--border);text-align:left;vertical-align:middle;}
+.hist-table th{background:var(--bg);font-size:11px;text-transform:uppercase;color:var(--sub);}
+.hist-table td.url-cell{max-width:280px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'SF Mono',Consolas,monospace;font-size:12px;}
+.hist-empty{padding:20px;text-align:center;color:var(--sub);font-size:13px;}
+
+.check-badge{font-size:11px;font-weight:700;padding:2px 8px;border-radius:999px;}
+.check-badge.ok{background:var(--green-bg);color:var(--green);}
+.check-badge.bad{background:var(--red-bg);color:var(--red);}
+.check-badge.pending{background:var(--bg);color:var(--sub);}
+
+/* Comparison + features (shared pattern) */
+.compare-wrap{overflow-x:auto;}
+table.compare{width:100%;border-collapse:collapse;font-size:13.5px;background:#fff;border-radius:12px;overflow:hidden;}
+table.compare th, table.compare td{padding:12px 14px;border-bottom:1px solid var(--border);text-align:center;}
+table.compare th{background:var(--bg);font-size:12.5px;}
+table.compare td:first-child, table.compare th:first-child{text-align:left;font-weight:600;}
+table.compare th.us{background:var(--brand);color:#fff;}
+.yes{color:var(--green);font-weight:800;}
+.no{color:#d1d5db;font-weight:800;}
+.partial{color:var(--amber);font-weight:700;font-size:12px;}
+
+.feat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px;margin:20px 0 40px;}
+.feat-card{background:#fff;border:1px solid var(--border);border-radius:12px;padding:20px;}
+.feat-card .ic{font-size:24px;margin-bottom:10px;}
+.feat-card h3{font-size:15px;margin:0 0 6px;}
+.feat-card p{font-size:13px;color:var(--sub);margin:0;}
+
+table.explain-table{width:100%;border-collapse:collapse;font-size:13px;}
+table.explain-table th, table.explain-table td{padding:10px 14px;border-bottom:1px solid var(--border);text-align:left;vertical-align:top;}
+table.explain-table th{background:var(--bg);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{width:100%;text-align:left;background:none;border:none;padding:18px 4px;font-size:15px;font-weight:600;cursor:pointer;display:flex;justify-content:space-between;align-items:center;font-family:inherit;color:var(--ink);}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .2s ease;font-size:14px;color:var(--sub);}
+.faq-a p{margin:0 4px 16px;}
+.faq-item.open .faq-a{max-height:300px;}
+.faq-plus{transition:transform .2s;color:var(--brand);font-size:20px;}
+.faq-item.open .faq-plus{transform:rotate(45deg);}
+
+section.section{margin:44px 0;}
+section.section h2{font-size:24px;font-weight:800;margin:0 0 6px;}
+section.section .sub{color:var(--sub);font-size:14px;margin:0 0 20px;}
+
+footer.site-footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 0;text-align:center;font-size:13px;color:var(--sub);}
+footer.site-footer a{color:var(--sub);margin:0 8px;text-decoration:none;}
+
+.hidden{display:none !important;}
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="wrap">
+    <a href="/" class="logo">SEO<span>Triggers</span></a>
+    <ul class="nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/tools/">All Tools</a></li>
+      <li><a href="/blog/">Blog</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="wrap">
+  <div class="breadcrumb">
+    <a href="/">Home</a> / <a href="/tools/">Tools</a> / UTM Builder
+  </div>
+
+  <div class="hero">
+    <span class="badge">100% Free · No Signup · Runs in Your Browser</span>
+    <h1>UTM Builder</h1>
+    <p>Build UTM-tagged campaign URLs with saved link history, naming-convention enforcement, bulk generation, destination checking, and QR codes.</p>
+  </div>
+
+  <!-- ══════════════ TOOL CARD ══════════════ -->
+  <div class="card tool-card">
+
+    <div class="toggle-pair" style="margin-bottom:18px;">
+      <button id="btnSingle" class="active" onclick="setMode('single')">Single link</button>
+      <button id="btnBulk" onclick="setMode('bulk')">Bulk links</button>
+    </div>
+
+    <div class="section-label">Quick-fill by platform</div>
+    <div class="preset-row" id="presetRow"></div>
+
+    <div class="section-label">Website URL</div>
+    <div class="field" id="singleUrlField">
+      <input type="text" id="fldUrl" oninput="update()" placeholder="https://example.com/landing-page" />
+    </div>
+    <div class="field hidden" id="bulkUrlField">
+      <label for="fldBulkUrls">Destination URLs <span style="font-weight:400;color:var(--sub);">(one per line)</span></label>
+      <textarea id="fldBulkUrls" oninput="update()" placeholder="https://example.com/page-1&#10;https://example.com/page-2&#10;https://example.com/page-3"></textarea>
+    </div>
+
+    <div class="section-label">Campaign parameters</div>
+    <div class="field-row3">
+      <div class="field">
+        <label for="fldSource">Campaign Source *</label>
+        <input type="text" id="fldSource" oninput="update()" placeholder="e.g. google, facebook, newsletter" />
+      </div>
+      <div class="field">
+        <label for="fldMedium">Campaign Medium *</label>
+        <input type="text" id="fldMedium" oninput="update()" placeholder="e.g. cpc, email, social" />
+      </div>
+      <div class="field">
+        <label for="fldCampaign">Campaign Name *</label>
+        <input type="text" id="fldCampaign" oninput="update()" placeholder="e.g. spring-sale-2026" />
+      </div>
+    </div>
+    <div class="field-row3">
+      <div class="field">
+        <label for="fldTerm">Campaign Term <span style="font-weight:400;color:var(--sub);">(optional)</span></label>
+        <input type="text" id="fldTerm" oninput="update()" placeholder="e.g. running-shoes" />
+      </div>
+      <div class="field">
+        <label for="fldContent">Campaign Content <span style="font-weight:400;color:var(--sub);">(optional)</span></label>
+        <input type="text" id="fldContent" oninput="update()" placeholder="e.g. header-link vs footer-link" />
+      </div>
+      <div class="field">
+        <label for="fldId">Campaign ID <span style="font-weight:400;color:var(--sub);">(optional, GA4)</span></label>
+        <input type="text" id="fldId" oninput="update()" placeholder="e.g. abc123" />
+      </div>
+    </div>
+
+    <div class="section-label">Naming convention</div>
+    <div class="toggle-row">
+      <div class="toggle-item"><input type="checkbox" id="chkLowercase" checked onchange="update()"><label for="chkLowercase">Force lowercase</label></div>
+      <div class="toggle-item">
+        <label style="font-weight:500;">Replace spaces with:</label>
+        <div class="toggle-pair">
+          <button id="btnHyphen" class="active" onclick="setSpaceChar('-')">-</button>
+          <button id="btnUnderscore" onclick="setSpaceChar('_')">_</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="issuesPanel" class="issues-panel">
+      <div class="issues-head">Checks</div>
+      <div id="issuesList"></div>
+    </div>
+
+    <!-- SINGLE MODE RESULT -->
+    <div id="singleResult">
+      <div class="section-label">Generated URL</div>
+      <div class="url-output" id="urlOut"></div>
+      <div class="result-row">
+        <div class="result-main">
+          <button class="btn" onclick="copyUrl()">Copy URL</button>
+          <button class="btn secondary" onclick="saveToHistory()">💾 Save to history</button>
+          <button class="btn secondary" onclick="checkDestination()" id="btnCheckDest">🔗 Check destination</button>
+          <span id="destStatus" style="margin-left:8px;font-size:13px;"></span>
+        </div>
+        <div class="qr-box">
+          <img id="qrImg" src="" alt="QR code" onerror="this.style.display='none'">
+          <div class="qr-label">Scan to test link</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BULK MODE RESULT -->
+    <div id="bulkResult" class="hidden">
+      <div class="section-label">Generated URLs</div>
+      <div style="overflow-x:auto;">
+        <table class="hist-table" id="bulkTable"></table>
+      </div>
+      <button class="btn secondary small" style="margin-top:10px;" onclick="downloadBulkCsv()">⬇ Download CSV</button>
+      <button class="btn secondary small" style="margin-top:10px;" onclick="copyAllBulk()">Copy all URLs</button>
+    </div>
+
+    <div class="section-label">Link history <span style="font-weight:400;text-transform:none;">(saved in this browser)</span></div>
+    <div style="overflow-x:auto;">
+      <table class="hist-table" id="historyTable"></table>
+    </div>
+    <button class="btn secondary small" style="margin-top:10px;" onclick="clearHistory()">Clear history</button>
+
+  </div>
+
+  <!-- ══════════════ EXPLANATION ══════════════ -->
+  <section class="section">
+    <h2>The five UTM parameters, explained</h2>
+    <p class="sub">Only three are required — but the other two solve real reporting problems once your campaigns get bigger.</p>
+    <div class="compare-wrap">
+      <table class="explain-table">
+        <thead><tr><th>Parameter</th><th>Purpose</th></tr></thead>
+        <tbody>
+          <tr><td><strong>utm_source</strong> *</td><td>Where the traffic comes from — google, facebook, newsletter, a specific partner site.</td></tr>
+          <tr><td><strong>utm_medium</strong> *</td><td>The marketing medium — cpc, email, social, referral, banner.</td></tr>
+          <tr><td><strong>utm_campaign</strong> *</td><td>The specific campaign or promotion this link belongs to — spring-sale-2026.</td></tr>
+          <tr><td><strong>utm_term</strong></td><td>Paid search keyword being targeted, if relevant.</td></tr>
+          <tr><td><strong>utm_content</strong></td><td>Differentiates similar links or ads pointing to the same destination — header-link vs. footer-link.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:14px;color:var(--sub);margin-top:14px;">Building a full local business or organization presence too? Check out the <a href="/tools/local-business-schema-generator">Local Business Schema Generator</a> and <a href="/tools/organization-schema-generator">Organization Schema Generator</a>.</p>
+  </section>
+
+  <!-- ══════════════ COMPARISON ══════════════ -->
+  <section class="section">
+    <h2>How this compares</h2>
+    <p class="sub">Google's own Campaign URL Builder is a great starting point, but it has no memory, no validation, and no bulk mode.</p>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="us">SEOTriggers</th><th>Google URL Builder</th><th>utmbuilder.net</th></tr></thead>
+        <tbody>
+          <tr><td>Standard UTM parameter generation</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+          <tr><td>Saved link history (no account needed)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Naming-convention enforcement (case, spacing)</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Bulk link generation with CSV export</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Destination link checking</td><td class="yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+          <tr><td>Built-in QR code</td><td class="yes">✓</td><td class="no">✗</td><td class="partial">Paid tier</td></tr>
+          <tr><td>No account or signup required</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ══════════════ FEATURES ══════════════ -->
+  <section class="section">
+    <h2>Everything in one tool</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="ic">🧭</div><h3>Platform quick-fill</h3><p>One click auto-fills source and medium with the right lowercase convention for Google Ads, Meta, LinkedIn, email, and more.</p></div>
+      <div class="feat-card"><div class="ic">🔡</div><h3>Naming enforcement</h3><p>Force lowercase and consistent space handling automatically, so "Facebook" and "facebook" never fragment your reports again.</p></div>
+      <div class="feat-card"><div class="ic">📚</div><h3>Saved link history</h3><p>Every link you save stays in this browser — no account needed — so you can find and reuse past campaigns instantly.</p></div>
+      <div class="feat-card"><div class="ic">📦</div><h3>Bulk generation</h3><p>Paste a list of destination URLs and generate every UTM link at once, then export the whole batch as CSV.</p></div>
+      <div class="feat-card"><div class="ic">🔗</div><h3>Destination checking</h3><p>Verify the destination URL actually resolves before you ship a link to a broken or redirected page.</p></div>
+      <div class="feat-card"><div class="ic">📱</div><h3>Instant QR codes</h3><p>Every generated link comes with a scannable QR code, ready to drop into print, packaging, or presentations.</p></div>
+    </div>
+  </section>
+
+  <!-- ══════════════ FAQ ══════════════ -->
+  <section class="section">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What are UTM parameters? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>UTM parameters are short text codes added to the end of a URL (utm_source, utm_medium, utm_campaign, utm_term, utm_content) that tell Google Analytics and other tools exactly where a click came from — which platform, which campaign, and even which specific ad or link variant.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Does the order of UTM parameters in the URL matter? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No. Analytics platforms parse UTM parameters as a set of key-value pairs regardless of the order they appear in the query string, so utm_source before or after utm_medium makes no difference to tracking.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Should I use UTM parameters on internal links within my own site? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>No — UTM tags are meant for external sources like ads, emails, and social posts. Using them on internal links overwrites the visitor's original session source in Google Analytics, corrupting your attribution data for that session.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Why does consistent casing and formatting matter for UTM values? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>Analytics platforms treat "Facebook", "facebook", and "FACEBOOK" as three different sources by default. Inconsistent casing or spacing splits what should be one channel into multiple fragmented rows in your reports, making campaign performance harder to compare accurately.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">What's the difference between utm_content and utm_term? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>utm_term was originally built for paid search keywords, while utm_content is used to differentiate similar content or links within the same ad or email — for example, distinguishing a header link from a footer link that point to the same destination.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFaq(this)">Is this UTM builder as reliable as Google's own Campaign URL Builder? <span class="faq-plus">+</span></button>
+        <div class="faq-a"><p>It generates the exact same standard UTM parameter format that Google Analytics and every major analytics platform reads, so the resulting links work identically. This tool adds saved link history, naming-convention checks, bulk generation, and destination checking on top of that same core functionality.</p></div>
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <div><a href="/">Home</a> · <a href="/tools/">All Tools</a> · <a href="/blog/">Blog</a> · <a href="/privacy-policy">Privacy</a> · <a href="/terms">Terms</a></div>
+    <div style="margin-top:10px;">© 2026 SEOTriggers.com — Free SEO tools, forever.</div>
+  </div>
+</footer>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════════
+   PLATFORM PRESETS
+═══════════════════════════════════════════════════════════════════════ */
+var PRESETS = [
+  { label:"Google Ads", source:"google", medium:"cpc" },
+  { label:"Facebook / Meta", source:"facebook", medium:"social" },
+  { label:"Instagram", source:"instagram", medium:"social" },
+  { label:"LinkedIn", source:"linkedin", medium:"social" },
+  { label:"X / Twitter", source:"twitter", medium:"social" },
+  { label:"Email newsletter", source:"newsletter", medium:"email" },
+  { label:"YouTube", source:"youtube", medium:"video" },
+  { label:"Referral partner", source:"partner", medium:"referral" }
+];
+function renderPresets(){
+  document.getElementById("presetRow").innerHTML = PRESETS.map(function(p, i){
+    return '<button class="preset-btn" onclick="applyPreset(' + i + ')">' + p.label + '</button>';
+  }).join("");
+}
+function applyPreset(i){
+  document.getElementById("fldSource").value = PRESETS[i].source;
+  document.getElementById("fldMedium").value = PRESETS[i].medium;
+  update();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MODE / NAMING CONVENTION STATE
+═══════════════════════════════════════════════════════════════════════ */
+var mode = "single";
+var spaceChar = "-";
+
+function setMode(m){
+  mode = m;
+  document.getElementById("btnSingle").classList.toggle("active", m==="single");
+  document.getElementById("btnBulk").classList.toggle("active", m==="bulk");
+  document.getElementById("singleUrlField").classList.toggle("hidden", m!=="single");
+  document.getElementById("bulkUrlField").classList.toggle("hidden", m!=="bulk");
+  document.getElementById("singleResult").classList.toggle("hidden", m!=="single");
+  document.getElementById("bulkResult").classList.toggle("hidden", m!=="bulk");
+  update();
+}
+function setSpaceChar(c){
+  spaceChar = c;
+  document.getElementById("btnHyphen").classList.toggle("active", c==="-");
+  document.getElementById("btnUnderscore").classList.toggle("active", c==="_");
+  update();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   NORMALIZATION
+═══════════════════════════════════════════════════════════════════════ */
+function normalize(str){
+  if (!str) return "";
+  var s = str.trim().replace(/\s+/g, spaceChar);
+  if (document.getElementById("chkLowercase").checked) s = s.toLowerCase();
+  return s;
+}
+function rawHasIssues(str){
+  if (!str) return null;
+  var issues = [];
+  if (/\s/.test(str)) issues.push("contains spaces");
+  if (document.getElementById("chkLowercase").checked && /[A-Z]/.test(str)) issues.push("contains uppercase letters");
+  return issues.length ? issues : null;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BUILD URL
+═══════════════════════════════════════════════════════════════════════ */
+function buildParams(){
+  var source = normalize(document.getElementById("fldSource").value);
+  var medium = normalize(document.getElementById("fldMedium").value);
+  var campaign = normalize(document.getElementById("fldCampaign").value);
+  var term = normalize(document.getElementById("fldTerm").value);
+  var content = normalize(document.getElementById("fldContent").value);
+  var id = normalize(document.getElementById("fldId").value);
+  var params = [];
+  if (source) params.push(["utm_source", source]);
+  if (medium) params.push(["utm_medium", medium]);
+  if (campaign) params.push(["utm_campaign", campaign]);
+  if (term) params.push(["utm_term", term]);
+  if (content) params.push(["utm_content", content]);
+  if (id) params.push(["utm_id", id]);
+  return params;
+}
+
+function buildFullUrl(baseUrl, params){
+  if (!baseUrl) return "";
+  var sep = baseUrl.indexOf("?") !== -1 ? "&" : "?";
+  var query = params.map(function(p){ return p[0] + "=" + encodeURIComponent(p[1]); }).join("&");
+  return query ? baseUrl + sep + query : baseUrl;
+}
+
+function renderUrlOutput(baseUrl, params){
+  if (!baseUrl || params.length === 0){
+    document.getElementById("urlOut").innerHTML = '<span class="base">Fill in the fields above to generate your URL…</span>';
+    document.getElementById("qrImg").src = "";
+    return;
+  }
+  var sep = baseUrl.indexOf("?") !== -1 ? "&" : "?";
+  var html = '<span class="base">' + escapeHtml(baseUrl) + '</span>' + escapeHtml(sep);
+  params.forEach(function(p, i){
+    html += '<span class="key">' + escapeHtml(p[0]) + '</span>=<span class="val">' + escapeHtml(encodeURIComponent(p[1])) + '</span>';
+    if (i < params.length - 1) html += '<span class="amp">&amp;</span>';
+  });
+  document.getElementById("urlOut").innerHTML = html;
+
+  var fullUrl = buildFullUrl(baseUrl, params);
+  document.getElementById("qrImg").src = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(fullUrl);
+  document.getElementById("qrImg").style.display = "";
+}
+
+function escapeHtml(s){
+  return String(s||"").replace(/&/g,"&amp;").replace(/"/g,"&quot;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   VALIDATION CHECKLIST
+═══════════════════════════════════════════════════════════════════════ */
+function renderChecklist(){
+  var issues = [];
+  var url = mode === "single" ? document.getElementById("fldUrl").value.trim() : document.getElementById("fldBulkUrls").value.trim();
+  var source = document.getElementById("fldSource").value.trim();
+  var medium = document.getElementById("fldMedium").value.trim();
+  var campaign = document.getElementById("fldCampaign").value.trim();
+
+  if (!url) issues.push({level:"error", text: mode === "single" ? "Missing website URL." : "Add at least one destination URL."});
+  else if (mode === "single" && !/^https?:\/\//i.test(url)) issues.push({level:"warning", text:"URL doesn't start with http:// or https:// — most analytics tools expect a full URL."});
+
+  if (!source) issues.push({level:"error", text:"Missing Campaign Source (utm_source) — this is required."});
+  if (!medium) issues.push({level:"error", text:"Missing Campaign Medium (utm_medium) — this is required."});
+  if (!campaign) issues.push({level:"error", text:"Missing Campaign Name (utm_campaign) — this is required."});
+
+  [["Campaign Source", source], ["Campaign Medium", medium], ["Campaign Name", campaign]].forEach(function(pair){
+    var probs = rawHasIssues(pair[1]);
+    if (probs) issues.push({level:"info", text: pair[0] + " " + probs.join(" and ") + " — will be auto-corrected based on your naming convention settings above."});
+  });
+
+  var history = loadHistory();
+  if (source){
+    var norm = normalize(source);
+    var pastMatch = history.find(function(h){ return h.source && h.source.toLowerCase() === norm.toLowerCase() && h.source !== norm; });
+    if (pastMatch) issues.push({level:"warning", text:'You\'ve previously used utm_source="' + pastMatch.source + '" — make sure this is intentionally different from "' + norm + '".'});
+  }
+
+  if (issues.filter(function(i){return i.level==="error";}).length === 0){
+    issues.unshift({level:"ok", text:"Required fields look good."});
+  }
+
+  document.getElementById("issuesList").innerHTML = issues.map(function(i){
+    return '<div class="issue-row"><span class="issue-tag ' + i.level + '">' + i.level + '</span><span>' + i.text + '</span></div>';
+  }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   BULK MODE
+═══════════════════════════════════════════════════════════════════════ */
+var lastBulkResults = [];
+
+function renderBulk(){
+  var urls = document.getElementById("fldBulkUrls").value.split("\n").map(function(s){ return s.trim(); }).filter(Boolean);
+  var params = buildParams();
+  lastBulkResults = urls.map(function(u){ return { url: u, full: buildFullUrl(u, params) }; });
+
+  var table = document.getElementById("bulkTable");
+  if (lastBulkResults.length === 0){
+    table.innerHTML = '<tr><td class="hist-empty">Paste one or more destination URLs above to generate links.</td></tr>';
+    return;
+  }
+  table.innerHTML =
+    '<tr><th>Destination</th><th>Generated URL</th><th></th></tr>' +
+    lastBulkResults.map(function(r, i){
+      return '<tr><td class="url-cell">' + escapeHtml(r.url) + '</td><td class="url-cell">' + escapeHtml(r.full) + '</td><td><button class="copy-btn" onclick="copyBulkRow(' + i + ')">Copy</button></td></tr>';
+    }).join("");
+}
+function copyBulkRow(i){
+  copyText(lastBulkResults[i].full);
+}
+function copyAllBulk(){
+  copyText(lastBulkResults.map(function(r){ return r.full; }).join("\n"));
+}
+function downloadBulkCsv(){
+  var rows = [["Destination URL","Generated UTM URL"]].concat(lastBulkResults.map(function(r){ return [r.url, r.full]; }));
+  var csv = rows.map(function(r){ return r.map(function(v){ return '"' + String(v).replace(/"/g,'""') + '"'; }).join(","); }).join("\n");
+  var blob = new Blob([csv], {type:"text/csv"});
+  var a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "utm-links.csv";
+  a.click();
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   LINK HISTORY (localStorage)
+═══════════════════════════════════════════════════════════════════════ */
+var HISTORY_KEY = "seotriggers_utm_history";
+
+function loadHistory(){
+  try {
+    var raw = window.localStorage.getItem(HISTORY_KEY);
+    return raw ? JSON.parse(raw) : [];
+  } catch(e){ return []; }
+}
+function saveHistoryList(list){
+  try { window.localStorage.setItem(HISTORY_KEY, JSON.stringify(list)); } catch(e){ /* storage unavailable */ }
+}
+function saveToHistory(){
+  var baseUrl = document.getElementById("fldUrl").value.trim();
+  var params = buildParams();
+  if (!baseUrl || params.length === 0) return;
+  var full = buildFullUrl(baseUrl, params);
+  var history = loadHistory();
+  history.unshift({
+    id: Date.now(),
+    url: baseUrl,
+    full: full,
+    source: normalize(document.getElementById("fldSource").value),
+    medium: normalize(document.getElementById("fldMedium").value),
+    campaign: normalize(document.getElementById("fldCampaign").value),
+    ts: new Date().toISOString()
+  });
+  history = history.slice(0, 100);
+  saveHistoryList(history);
+  renderHistory();
+}
+function deleteHistoryItem(id){
+  var history = loadHistory().filter(function(h){ return h.id !== id; });
+  saveHistoryList(history);
+  renderHistory();
+}
+function clearHistory(){
+  saveHistoryList([]);
+  renderHistory();
+}
+function copyHistoryItem(id){
+  var item = loadHistory().find(function(h){ return h.id === id; });
+  if (item) copyText(item.full);
+}
+function renderHistory(){
+  var history = loadHistory();
+  var table = document.getElementById("historyTable");
+  if (history.length === 0){
+    table.innerHTML = '<tr><td class="hist-empty">No saved links yet — click "Save to history" after generating a link.</td></tr>';
+    return;
+  }
+  table.innerHTML =
+    '<tr><th>Date</th><th>Source / Medium / Campaign</th><th>URL</th><th></th></tr>' +
+    history.map(function(h){
+      var date = new Date(h.ts).toLocaleDateString();
+      return '<tr><td>' + date + '</td><td>' + escapeHtml(h.source) + ' / ' + escapeHtml(h.medium) + ' / ' + escapeHtml(h.campaign) + '</td>' +
+        '<td class="url-cell">' + escapeHtml(h.full) + '</td>' +
+        '<td style="display:flex;gap:4px;"><button class="copy-btn" onclick="copyHistoryItem(' + h.id + ')">Copy</button><button class="copy-btn" onclick="deleteHistoryItem(' + h.id + ')">✕</button></td></tr>';
+    }).join("");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   DESTINATION CHECK
+═══════════════════════════════════════════════════════════════════════ */
+async function fetchWithTimeout(url, opts, ms){
+  var controller = new AbortController();
+  var id = setTimeout(function(){ controller.abort(); }, ms || 10000);
+  try {
+    return await fetch(url, Object.assign({}, opts, {signal: controller.signal}));
+  } finally {
+    clearTimeout(id);
+  }
+}
+async function checkDestination(){
+  var baseUrl = document.getElementById("fldUrl").value.trim();
+  var statusEl = document.getElementById("destStatus");
+  var btn = document.getElementById("btnCheckDest");
+  if (!baseUrl){ statusEl.textContent = "Enter a URL first."; return; }
+  btn.disabled = true;
+  statusEl.textContent = "Checking…";
+  var ok = false;
+  try {
+    var r = await fetchWithTimeout(baseUrl, {mode:"cors"}, 10000);
+    ok = r.ok;
+  } catch(e){
+    try {
+      var r2 = await fetchWithTimeout("/api/fetch-url?url=" + encodeURIComponent(baseUrl), {}, 10000);
+      ok = r2.ok;
+    } catch(e2){ ok = null; }
+  }
+  btn.disabled = false;
+  if (ok === true) statusEl.innerHTML = '<span class="check-badge ok">Reachable</span>';
+  else if (ok === false) statusEl.innerHTML = '<span class="check-badge bad">Returned an error</span>';
+  else statusEl.innerHTML = '<span class="check-badge pending">Could not verify (CORS/network)</span>';
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   COPY
+═══════════════════════════════════════════════════════════════════════ */
+function fallbackCopy(text, cb){
+  var ta = document.createElement("textarea");
+  ta.value = text; ta.style.position = "fixed"; ta.style.opacity = "0";
+  document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); } catch(e) {}
+  document.body.removeChild(ta);
+  if (cb) cb();
+}
+function copyText(text){
+  if (navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).catch(function(){ fallbackCopy(text); });
+  } else { fallbackCopy(text); }
+}
+function copyUrl(){
+  var baseUrl = document.getElementById("fldUrl").value.trim();
+  var params = buildParams();
+  copyText(buildFullUrl(baseUrl, params));
+}
+
+function toggleFaq(btn){
+  var item = btn.parentElement;
+  var wasOpen = item.classList.contains("open");
+  document.querySelectorAll(".faq-item").forEach(function(i){ i.classList.remove("open"); });
+  if (!wasOpen) item.classList.add("open");
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+   MASTER UPDATE
+═══════════════════════════════════════════════════════════════════════ */
+function update(){
+  var params = buildParams();
+  if (mode === "single"){
+    var baseUrl = document.getElementById("fldUrl").value.trim();
+    renderUrlOutput(baseUrl, params);
+  } else {
+    renderBulk();
+  }
+  renderChecklist();
+}
+
+/* init */
+renderPresets();
+renderHistory();
+update();
+</script>
+</body>
+</html>
