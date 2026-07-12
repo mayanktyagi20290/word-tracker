@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>llms.txt Generator - Free AI-Readable Site Map Tool | SEOTriggers</title>
+<meta name="description" content="Free llms.txt generator following the official llmstxt.org spec. Build a Markdown file that helps ChatGPT, Claude, and Perplexity understand your site — with live validation, import/edit for existing files, and instant preview. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/llms-txt-generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="llms.txt Generator - Free AI-Readable Site Map Tool">
+<meta property="og:description" content="Build a spec-compliant llms.txt file with live validation and instant preview — no uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/llms-txt-generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="llms.txt Generator - Free AI-Readable Site Map Tool">
+<meta name="twitter:description" content="Build a spec-compliant llms.txt file with live validation and instant preview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "llms.txt Generator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free llms.txt generator following the llmstxt.org specification, with live validation, import/edit support for existing files, and instant Markdown preview.",
+  "url": "https://seotriggers.com/tools/llms-txt-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"llms.txt Generator","item":"https://seotriggers.com/tools/llms-txt-generator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is llms.txt?","acceptedAnswer":{"@type":"Answer","text":"llms.txt is a plain-text Markdown file placed at your site's root (yoursite.com/llms.txt) that gives AI systems like ChatGPT, Claude, and Perplexity a clean, curated summary of your site and links to its most important resources, without the HTML, navigation, and ads a normal page contains."}},
+    {"@type":"Question","name":"Where does robots.txt end and llms.txt begin?","acceptedAnswer":{"@type":"Answer","text":"Robots.txt tells crawlers what they are and are not allowed to request. llms.txt does the opposite job: it tells AI systems what your site is about and points them to the content you most want them to read. One restricts access, the other provides curated signal."}},
+    {"@type":"Question","name":"Is llms.txt an official web standard?","acceptedAnswer":{"@type":"Answer","text":"Not yet in the way robots.txt or sitemap.xml are. It was proposed by Jeremy Howard of Answer.AI in September 2024 and has seen adoption from companies like Anthropic, Mintlify, and Vercel, but it isn't governed by a body like the IETF or W3C, and not every AI system commits to reading it."}},
+    {"@type":"Question","name":"Can I import my existing llms.txt to edit it here?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste your current file into the Import tab and this tool will parse it back into the name, summary, context, and sections fields so you can edit and regenerate it without starting from scratch."}},
+    {"@type":"Question","name":"What should I avoid putting in my llms.txt?","acceptedAnswer":{"@type":"Answer","text":"Avoid marketing language like \"revolutionary\" or \"industry-leading\" — factual, specific descriptions are more useful to a model than promotional phrasing. Also avoid linking to pages that are noindexed or blocked in robots.txt, since that sends a contradictory signal."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.gen-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media (max-width:900px){.gen-body{grid-template-columns:1fr;}}
+.form-panel{padding:18px;}
+.output-panel{padding:18px;border-left:1px solid var(--border);}
+@media (max-width:900px){.output-panel{border-left:none;border-top:1px solid var(--border);}}
+
+.field-label{font-size:12px;color:var(--text-sec);margin-bottom:6px;display:block;font-weight:600;}
+.field-input,.field-textarea{width:100%;font-family:inherit;font-size:13px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-bottom:14px;}
+.field-textarea{resize:vertical;min-height:60px;font-family:inherit;}
+.field-hint{font-size:11px;color:var(--text-hint);margin-top:-10px;margin-bottom:12px;}
+
+.section-block{border:1px solid var(--border);border-radius:8px;padding:12px;margin-bottom:12px;background:var(--bg);}
+.section-block .field-input{background:#fff;}
+.section-head-row{display:flex;gap:8px;align-items:center;margin-bottom:8px;}
+.section-head-row input{flex:1;}
+.remove-btn{border:1px solid var(--border);background:#fff;color:var(--red);padding:5px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;}
+.link-row{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:6px;margin-bottom:6px;}
+@media (max-width:700px){.link-row{grid-template-columns:1fr;}}
+.link-row input{font-size:12px;padding:6px 8px;border:1px solid var(--border);border-radius:6px;font-family:inherit;}
+.small-btn{border:1px solid var(--border);background:#fff;padding:6px 12px;border-radius:6px;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:inherit;}
+.small-btn:hover{background:var(--indigo-light);color:var(--indigo-dark);}
+
+.warn-list{margin-bottom:14px;}
+.warn-item{display:flex;gap:8px;align-items:flex-start;padding:7px 0;font-size:12px;border-bottom:1px solid var(--border);}
+.warn-item:last-child{border-bottom:none;}
+.warn-item .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.warn-item.error{color:var(--red);} .warn-item.error .dot{background:var(--red);}
+.warn-item.warning{color:var(--amber);} .warn-item.warning .dot{background:var(--amber);}
+.warn-item.info{color:var(--blue);} .warn-item.info .dot{background:var(--blue);}
+
+.snippet-box{position:relative;}
+.snippet-box pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:16px;font-family:var(--mono);font-size:12.5px;line-height:1.6;overflow-x:auto;margin:0;white-space:pre-wrap;word-break:break-word;min-height:300px;}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:4px 10px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;}
+.copy-btn:hover{background:rgba(255,255,255,.2);}
+.download-btn{margin-top:10px;}
+
+.import-panel{padding:18px;}
+.import-panel textarea{width:100%;min-height:260px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--border);border-radius:8px;padding:14px;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / llms.txt Generator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>llms.txt Generator</h1>
+  <p>Build a spec-compliant llms.txt file that gives ChatGPT, Claude, and Perplexity a clean map of your site — with live validation and instant preview. Nothing is uploaded.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="tabs">
+      <div class="tab active" data-tab="build" onclick="setTab('build')">Build</div>
+      <div class="tab" data-tab="import" onclick="setTab('import')">Import Existing File</div>
+    </div>
+
+    <!-- Build tab -->
+    <div id="panel-build">
+      <div class="gen-body">
+        <div class="form-panel">
+          <label class="field-label">Site / project name (required — becomes the H1)</label>
+          <input type="text" class="field-input" id="f-name" placeholder="SEOTriggers" oninput="render()">
+
+          <label class="field-label">One-line summary (becomes the blockquote)</label>
+          <input type="text" class="field-input" id="f-summary" placeholder="Free browser-based SEO and developer tools." oninput="render()">
+
+          <label class="field-label">Additional context (optional paragraph)</label>
+          <textarea class="field-textarea" id="f-context" placeholder="A growing library of client-side tools covering SEO, JSON, text, and calculators." oninput="render()"></textarea>
+
+          <label class="field-label">Sections</label>
+          <div class="field-hint">Each section becomes an H2 with a list of links. Use "Optional" as a heading for secondary links per the spec.</div>
+          <div id="sections-container"></div>
+          <button class="small-btn" onclick="addSection()">+ Add section</button>
+        </div>
+
+        <div class="output-panel">
+          <div class="warn-list" id="warn-list"></div>
+          <div class="snippet-box">
+            <button class="copy-btn" onclick="copyOutput()">Copy</button>
+            <pre id="output-text"></pre>
+          </div>
+          <button class="small-btn download-btn" onclick="downloadOutput()">⬇ Download as llms.txt</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Import tab -->
+    <div id="panel-import" style="display:none;">
+      <div class="import-panel">
+        <label class="field-label">Paste your existing llms.txt content</label>
+        <textarea id="import-input" placeholder="# Your Site&#10;&#10;> Summary...&#10;&#10;## Docs&#10;- [Guide](https://example.com/guide): description"></textarea>
+        <button class="small-btn" style="margin-top:10px;" onclick="importFile()">Import into Build tab</button>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this llms.txt generator is different</h2>
+  <p class="section-sub">Most generators just fill a template. This one keeps you spec-compliant and lets you edit what you already have.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">📐</div><h3>Follows the real llmstxt.org spec</h3><p>H1 name, blockquote summary, context paragraph, then H2 sections with markdown links — in the order the specification defines.</p></div>
+    <div class="feature"><div class="ico">✅</div><h3>Live validation</h3><p>Flags missing required fields, duplicate URLs, relative links that should be absolute, and empty sections as you type.</p></div>
+    <div class="feature"><div class="ico">✍️</div><h3>Marketing fluff detector</h3><p>Catches promotional words like "revolutionary" or "industry-leading" that add noise instead of signal for a model.</p></div>
+    <div class="feature"><div class="ico">📥</div><h3>Import and edit existing files</h3><p>Paste a current llms.txt and it's parsed back into editable fields — no rebuilding from scratch.</p></div>
+    <div class="feature"><div class="ico">🗂️</div><h3>Reserved "Optional" section support</h3><p>Mark secondary links the way the spec intends, so models can skip them under tight context limits.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Your site structure and content never leave your browser.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is llms.txt?<span class="chev">▾</span></div>
+      <div class="faq-a">llms.txt is a plain-text Markdown file placed at your site's root (yoursite.com/llms.txt) that gives AI systems like ChatGPT, Claude, and Perplexity a clean, curated summary of your site and links to its most important resources, without the HTML, navigation, and ads a normal page contains.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Where does robots.txt end and llms.txt begin?<span class="chev">▾</span></div>
+      <div class="faq-a">Robots.txt tells crawlers what they are and are not allowed to request. llms.txt does the opposite job: it tells AI systems what your site is about and points them to the content you most want them to read. One restricts access, the other provides curated signal.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is llms.txt an official web standard?<span class="chev">▾</span></div>
+      <div class="faq-a">Not yet in the way robots.txt or sitemap.xml are. It was proposed by Jeremy Howard of Answer.AI in September 2024 and has seen adoption from companies like Anthropic, Mintlify, and Vercel, but it isn't governed by a body like the IETF or W3C, and not every AI system commits to reading it.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I import my existing llms.txt to edit it here?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. Paste your current file into the Import tab and this tool will parse it back into the name, summary, context, and sections fields so you can edit and regenerate it without starting from scratch.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What should I avoid putting in my llms.txt?<span class="chev">▾</span></div>
+      <div class="faq-a">Avoid marketing language like "revolutionary" or "industry-leading" — factual, specific descriptions are more useful to a model than promotional phrasing. Also avoid linking to pages that are noindexed or blocked in robots.txt, since that sends a contradictory signal.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/robots-txt-generator">Robots.txt Generator</a>
+    <a class="cross-link" href="/tools/ai-crawler-blocker-generator">AI Crawler Blocker Generator</a>
+    <a class="cross-link" href="/tools/sitemap-generator">XML Sitemap Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+function buildLlmsTxt(model) {
+  model = model || {};
+  const lines = [];
+  lines.push('# ' + (model.name || '').trim());
+  lines.push('');
+  if (model.summary && model.summary.trim()) {
+    lines.push('> ' + model.summary.trim());
+    lines.push('');
+  }
+  if (model.context && model.context.trim()) {
+    lines.push(model.context.trim());
+    lines.push('');
+  }
+  (model.sections || []).forEach(section => {
+    if (!section.heading || !section.heading.trim()) return;
+    lines.push('## ' + section.heading.trim());
+    (section.links || []).forEach(link => {
+      if (!link.title || !link.url) return;
+      const desc = link.description && link.description.trim() ? ': ' + link.description.trim() : '';
+      lines.push('- [' + link.title.trim() + '](' + link.url.trim() + ')' + desc);
+    });
+    lines.push('');
+  });
+  while (lines.length && lines[lines.length - 1] === '') lines.pop();
+  return lines.join('\n') + '\n';
+}
+
+const FLUFF_WORDS = ['revolutionary', 'world-class', 'best-in-class', 'cutting-edge', 'game-changing', 'industry-leading', 'unparalleled', 'next-generation'];
+
+function validateLlmsTxt(model) {
+  model = model || {};
+  const warnings = [];
+  if (!model.name || !model.name.trim()) warnings.push({ level: 'error', message: 'Site name (H1) is required and is the only mandatory field in the spec.' });
+  if (!model.summary || !model.summary.trim()) warnings.push({ level: 'warning', message: 'No summary blockquote — a one-line summary is strongly recommended so models can understand your site at a glance.' });
+  const sections = model.sections || [];
+  if (sections.length === 0) warnings.push({ level: 'warning', message: 'No sections with links — llms.txt is most useful when it points to your key resources.' });
+  const seenUrls = new Set();
+  sections.forEach(section => {
+    if (!section.heading || !section.heading.trim()) warnings.push({ level: 'error', message: 'A section is missing its heading.' });
+    const links = section.links || [];
+    if (links.length === 0 && section.heading) warnings.push({ level: 'warning', message: 'Section "' + section.heading + '" has no links.' });
+    links.forEach(link => {
+      if (!link.title || !link.title.trim()) warnings.push({ level: 'error', message: 'A link in section "' + (section.heading || '?') + '" is missing a title.' });
+      if (!link.url || !link.url.trim()) warnings.push({ level: 'error', message: 'A link in section "' + (section.heading || '?') + '" is missing a URL.' });
+      if (link.url) {
+        if (seenUrls.has(link.url)) warnings.push({ level: 'warning', message: 'Duplicate URL across sections: ' + link.url });
+        seenUrls.add(link.url);
+        if (!/^https?:\/\//i.test(link.url)) warnings.push({ level: 'warning', message: 'URL should be absolute (start with http:// or https://): ' + link.url });
+      }
+    });
+  });
+  const fluffCheck = ((model.summary || '') + ' ' + (model.context || '')).toLowerCase();
+  FLUFF_WORDS.forEach(word => {
+    if (fluffCheck.includes(word)) warnings.push({ level: 'info', message: 'Marketing language detected ("' + word + '") — factual, specific descriptions work better for models than promotional phrasing.' });
+  });
+  return warnings;
+}
+
+function parseLlmsTxt(text) {
+  const lines = (text || '').split('\n');
+  const model = { name: '', summary: '', context: '', sections: [] };
+  let i = 0;
+  while (i < lines.length && lines[i].trim() === '') i++;
+  if (i < lines.length && lines[i].startsWith('# ')) { model.name = lines[i].slice(2).trim(); i++; }
+  while (i < lines.length && lines[i].trim() === '') i++;
+  if (i < lines.length && lines[i].startsWith('>')) { model.summary = lines[i].replace(/^>\s?/, '').trim(); i++; }
+  while (i < lines.length && lines[i].trim() === '') i++;
+  const contextLines = [];
+  while (i < lines.length && !lines[i].startsWith('## ')) { if (lines[i].trim() !== '') contextLines.push(lines[i]); i++; }
+  model.context = contextLines.join('\n').trim();
+  let currentSection = null;
+  const linkRegex = /^-\s*\[([^\]]*)\]\(([^)]*)\)(?::\s*(.*))?$/;
+  while (i < lines.length) {
+    const line = lines[i];
+    if (line.startsWith('## ')) {
+      if (currentSection) model.sections.push(currentSection);
+      currentSection = { heading: line.slice(3).trim(), links: [] };
+    } else if (currentSection && line.trim().startsWith('-')) {
+      const m = line.trim().match(linkRegex);
+      if (m) currentSection.links.push({ title: m[1], url: m[2], description: m[3] || '' });
+    }
+    i++;
+  }
+  if (currentSection) model.sections.push(currentSection);
+  return model;
+}
+
+/* ---------- UI state and wiring ---------- */
+let sections = [
+  { heading: 'Docs', links: [{ title: '', url: '', description: '' }] }
+];
+
+function getModel() {
+  return {
+    name: document.getElementById('f-name').value,
+    summary: document.getElementById('f-summary').value,
+    context: document.getElementById('f-context').value,
+    sections: sections
+  };
+}
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderSections() {
+  const container = document.getElementById('sections-container');
+  container.innerHTML = sections.map((section, si) => {
+    const linkRows = section.links.map((link, li) =>
+      '<div class="link-row">' +
+        '<input type="text" placeholder="Link title" value="' + escapeHTML(link.title) + '" oninput="updateLink(' + si + ',' + li + ',\'title\',this.value)">' +
+        '<input type="text" placeholder="https://..." value="' + escapeHTML(link.url) + '" oninput="updateLink(' + si + ',' + li + ',\'url\',this.value)">' +
+        '<input type="text" placeholder="Description (optional)" value="' + escapeHTML(link.description) + '" oninput="updateLink(' + si + ',' + li + ',\'description\',this.value)">' +
+        '<button class="remove-btn" onclick="removeLink(' + si + ',' + li + ')">✕</button>' +
+      '</div>'
+    ).join('');
+    return (
+      '<div class="section-block">' +
+        '<div class="section-head-row">' +
+          '<input type="text" placeholder="Section heading (e.g. Docs, Optional)" value="' + escapeHTML(section.heading) + '" oninput="updateSectionHeading(' + si + ',this.value)">' +
+          '<button class="remove-btn" onclick="removeSection(' + si + ')">Remove section</button>' +
+        '</div>' +
+        linkRows +
+        '<button class="small-btn" onclick="addLink(' + si + ')">+ Add link</button>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+function addSection() { sections.push({ heading: '', links: [{ title: '', url: '', description: '' }] }); renderSections(); render(); }
+function removeSection(si) { sections.splice(si, 1); renderSections(); render(); }
+function updateSectionHeading(si, val) { sections[si].heading = val; render(); }
+function addLink(si) { sections[si].links.push({ title: '', url: '', description: '' }); renderSections(); render(); }
+function removeLink(si, li) { sections[si].links.splice(li, 1); renderSections(); render(); }
+function updateLink(si, li, field, val) { sections[si].links[li][field] = val; render(); }
+
+function render() {
+  const model = getModel();
+  const output = buildLlmsTxt(model);
+  document.getElementById('output-text').textContent = output;
+
+  const warnings = validateLlmsTxt(model);
+  document.getElementById('warn-list').innerHTML = warnings.map(w =>
+    '<div class="warn-item ' + w.level + '"><span class="dot"></span><span>' + escapeHTML(w.message) + '</span></div>'
+  ).join('');
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+}
+function downloadOutput() {
+  const text = document.getElementById('output-text').textContent;
+  if (!text) return;
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'llms.txt';
+  a.click();
+}
+
+function setTab(name) {
+  ['build','import'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+function importFile() {
+  const text = document.getElementById('import-input').value;
+  if (!text.trim()) return;
+  const model = parseLlmsTxt(text);
+  document.getElementById('f-name').value = model.name;
+  document.getElementById('f-summary').value = model.summary;
+  document.getElementById('f-context').value = model.context;
+  sections = model.sections.length ? model.sections.map(s => ({
+    heading: s.heading,
+    links: s.links.length ? s.links : [{ title: '', url: '', description: '' }]
+  })) : [{ heading: 'Docs', links: [{ title: '', url: '', description: '' }] }];
+  renderSections();
+  render();
+  setTab('build');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+renderSections();
+render();
+</script>
+</body>
+</html>
