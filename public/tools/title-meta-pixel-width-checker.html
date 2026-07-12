@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Title & Meta Description Pixel Width Checker - Free SERP Preview | SEOTriggers</title>
+<meta name="description" content="Free title tag and meta description pixel width checker. Measures real rendered width using canvas font metrics (not just character count), shows live desktop and mobile SERP previews, and predicts exactly where Google will truncate. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/title-meta-pixel-width-checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Title & Meta Description Pixel Width Checker - Free SERP Preview">
+<meta property="og:description" content="Measure the real rendered pixel width of your title and meta description and preview exactly how Google will display and truncate them.">
+<meta property="og:url" content="https://seotriggers.com/tools/title-meta-pixel-width-checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Title & Meta Description Pixel Width Checker - Free SERP Preview">
+<meta name="twitter:description" content="Measure the real rendered pixel width of your title and meta description and preview exactly how Google will display and truncate them.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Arial&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Title & Meta Description Pixel Width Checker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free title tag and meta description pixel width checker measuring real rendered width via canvas font metrics, with live desktop and mobile SERP previews and truncation prediction.",
+  "url": "https://seotriggers.com/tools/title-meta-pixel-width-checker"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Title & Meta Description Pixel Width Checker","item":"https://seotriggers.com/tools/title-meta-pixel-width-checker"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why does pixel width matter more than character count?","acceptedAnswer":{"@type":"Answer","text":"Google truncates titles and descriptions based on how much horizontal space they take up when rendered, not how many characters they contain. A title full of narrow letters like i and l can be much longer than one full of wide letters like W and M while taking up the same visual space, so a character-count limit is only a rough proxy for the real constraint."}},
+    {"@type":"Question","name":"What pixel limits does this tool use?","acceptedAnswer":{"@type":"Answer","text":"Approximately 600px for desktop titles, 920px for desktop meta descriptions, and roughly 680px for both title and description on mobile. These are widely-cited industry approximations based on observed rendering, not an official specification Google publishes — Google has said repeatedly that there's no fixed maximum length."}},
+    {"@type":"Question","name":"Does this tool use real font measurement or an estimate?","acceptedAnswer":{"@type":"Answer","text":"It measures the actual rendered width using your browser's canvas text-measurement API with the same Arial font Google uses for search snippets, rather than a character-count approximation or a generic average-width table."}},
+    {"@type":"Question","name":"Why might my title still get rewritten by Google even if it fits?","acceptedAnswer":{"@type":"Answer","text":"Fitting within the pixel width only prevents truncation. Google separately decides whether to display your title and description as written or generate its own version based on the search query, and does this for a large share of results regardless of length."}},
+    {"@type":"Question","name":"Should I optimize for desktop or mobile limits?","acceptedAnswer":{"@type":"Answer","text":"Mobile generally, since it accounts for the majority of search traffic on most sites. Writing to the tighter of the two limits and confirming both previews look acceptable is the safest approach."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.input-panel{padding:18px;}
+.field-label{font-size:12px;color:var(--text-sec);margin-bottom:6px;display:flex;justify-content:space-between;font-weight:600;}
+.field-input{width:100%;font-family:inherit;font-size:14px;border:1px solid var(--border);border-radius:8px;padding:10px 12px;margin-bottom:8px;}
+textarea.field-input{resize:vertical;min-height:70px;}
+.meter-row{display:flex;align-items:center;gap:10px;margin-bottom:16px;}
+.meter-bar{flex:1;height:8px;background:var(--border);border-radius:99px;overflow:hidden;position:relative;}
+.meter-fill{height:100%;border-radius:99px;transition:width .15s;}
+.meter-fill.safe{background:var(--green);} .meter-fill.caution{background:var(--amber);} .meter-fill.truncated{background:var(--red);}
+.meter-label{font-size:11px;font-family:var(--mono);color:var(--text-hint);white-space:nowrap;min-width:150px;text-align:right;}
+
+.serp-preview{padding:18px;border-top:1px solid var(--border);background:var(--bg);}
+.serp-tabs{display:flex;gap:6px;margin-bottom:12px;}
+.serp-tab{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.serp-tab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.serp-card{background:#fff;border:1px solid var(--border);border-radius:8px;padding:16px 20px;max-width:600px;font-family:Arial, sans-serif;}
+.serp-card.mobile{max-width:380px;}
+.serp-url{color:#202124;font-size:14px;margin-bottom:2px;}
+.serp-title{color:#1a0dab;font-size:20px;line-height:1.3;margin-bottom:4px;cursor:pointer;}
+.serp-title:hover{text-decoration:underline;}
+.serp-desc{color:#4d5156;font-size:14px;line-height:1.58;}
+.serp-card.mobile .serp-title{font-size:18px;}
+.serp-card.mobile .serp-desc{font-size:13px;}
+
+.detail-note{padding:0 18px 18px;font-size:12px;color:var(--text-hint);}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Title & Meta Description Pixel Width Checker
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Title & Meta Description Pixel Width Checker</h1>
+  <p>Measures the real rendered pixel width of your title and description — not just character count — with live desktop and mobile SERP previews showing exactly where Google will truncate.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="input-panel">
+      <label class="field-label"><span>Page URL (for the preview)</span></label>
+      <input type="text" class="field-input" id="input-url" placeholder="https://seotriggers.com/tools/json-formatter" oninput="render()">
+
+      <label class="field-label"><span>Title tag</span><span id="title-char-count">0 characters</span></label>
+      <input type="text" class="field-input" id="input-title" placeholder="JSON Formatter - Free Online JSON Validator & Beautifier" oninput="render()">
+      <div class="meter-row">
+        <div class="meter-bar"><div class="meter-fill" id="title-desktop-fill"></div></div>
+        <span class="meter-label" id="title-desktop-label">Desktop: 0 / 600px</span>
+      </div>
+      <div class="meter-row">
+        <div class="meter-bar"><div class="meter-fill" id="title-mobile-fill"></div></div>
+        <span class="meter-label" id="title-mobile-label">Mobile: 0 / 680px</span>
+      </div>
+
+      <label class="field-label"><span>Meta description</span><span id="desc-char-count">0 characters</span></label>
+      <textarea class="field-input" id="input-desc" placeholder="Free online JSON formatter, validator, and tree viewer with auto-fix for common JSON errors..." oninput="render()"></textarea>
+      <div class="meter-row">
+        <div class="meter-bar"><div class="meter-fill" id="desc-desktop-fill"></div></div>
+        <span class="meter-label" id="desc-desktop-label">Desktop: 0 / 920px</span>
+      </div>
+      <div class="meter-row">
+        <div class="meter-bar"><div class="meter-fill" id="desc-mobile-fill"></div></div>
+        <span class="meter-label" id="desc-mobile-label">Mobile: 0 / 680px</span>
+      </div>
+    </div>
+
+    <div class="serp-preview">
+      <div class="serp-tabs">
+        <div class="serp-tab active" data-device="desktop" onclick="setDevice('desktop')">🖥 Desktop</div>
+        <div class="serp-tab" data-device="mobile" onclick="setDevice('mobile')">📱 Mobile</div>
+      </div>
+      <div class="serp-card" id="serp-card">
+        <div class="serp-url" id="serp-url">https://example.com</div>
+        <div class="serp-title" id="serp-title">Your title will appear here</div>
+        <div class="serp-desc" id="serp-desc">Your meta description will appear here.</div>
+      </div>
+    </div>
+    <div class="detail-note">Preview approximates Google's desktop and mobile rendering using canvas-measured Arial font widths. Actual SERP appearance can vary by device, query, and Google's own rewrite behavior.</div>
+  </div>
+
+  <h2 class="section-title">Why this pixel width checker is different</h2>
+  <p class="section-sub">Most checkers only count characters. This one measures what actually gets rendered.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">📐</div><h3>Real canvas font measurement</h3><p>Uses your browser's text-measurement API with Arial, the same font family Google renders search snippets in — not a generic character-count guess.</p></div>
+    <div class="feature"><div class="ico">🖥️</div><h3>Live desktop + mobile preview</h3><p>See both renderings side by side, since mobile and desktop use different limits and most traffic is mobile.</p></div>
+    <div class="feature"><div class="ico">✂️</div><h3>Word-boundary truncation preview</h3><p>Shows exactly where the ellipsis would land, cutting at a word boundary rather than mid-word.</p></div>
+    <div class="feature"><div class="ico">🚦</div><h3>Safe / caution / truncated zones</h3><p>A traffic-light meter for each field, with a caution buffer before the hard limit so you have room to adjust.</p></div>
+    <div class="feature"><div class="ico">🔤</div><h3>Character count alongside pixel width</h3><p>Both numbers shown together, so you can see exactly how far character count diverges from real rendered width.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Everything is measured and rendered locally in your browser. Nothing is uploaded.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does pixel width matter more than character count?<span class="chev">▾</span></div>
+      <div class="faq-a">Google truncates titles and descriptions based on how much horizontal space they take up when rendered, not how many characters they contain. A title full of narrow letters like i and l can be much longer than one full of wide letters like W and M while taking up the same visual space, so a character-count limit is only a rough proxy for the real constraint.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What pixel limits does this tool use?<span class="chev">▾</span></div>
+      <div class="faq-a">Approximately 600px for desktop titles, 920px for desktop meta descriptions, and roughly 680px for both title and description on mobile. These are widely-cited industry approximations based on observed rendering, not an official specification Google publishes — Google has said repeatedly that there's no fixed maximum length.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this tool use real font measurement or an estimate?<span class="chev">▾</span></div>
+      <div class="faq-a">It measures the actual rendered width using your browser's canvas text-measurement API with the same Arial font Google uses for search snippets, rather than a character-count approximation or a generic average-width table.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why might my title still get rewritten by Google even if it fits?<span class="chev">▾</span></div>
+      <div class="faq-a">Fitting within the pixel width only prevents truncation. Google separately decides whether to display your title and description as written or generate its own version based on the search query, and does this for a large share of results regardless of length.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Should I optimize for desktop or mobile limits?<span class="chev">▾</span></div>
+      <div class="faq-a">Mobile generally, since it accounts for the majority of search traffic on most sites. Writing to the tighter of the two limits and confirming both previews look acceptable is the safest approach.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/serp-preview-tool">SERP Preview Tool</a>
+    <a class="cross-link" href="/tools/meta-tag-generator">Meta Tag Generator</a>
+    <a class="cross-link" href="/tools/keyword-density-checker">Keyword Density Checker</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested, with real canvas measurer injected) ---------- */
+const LIMITS = {
+  desktopTitle: { px: 600, warnAt: 560 },
+  desktopDescription: { px: 920, warnAt: 860 },
+  mobileTitle: { px: 680, warnAt: 630 },
+  mobileDescription: { px: 680, warnAt: 630 }
+};
+
+function classifyWidth(px, limit) {
+  if (px > limit.px) return 'truncated';
+  if (px > limit.warnAt) return 'caution';
+  return 'safe';
+}
+
+function truncateToWidth(text, measureFn, limitPx) {
+  const fullWidth = measureFn(text);
+  if (fullWidth <= limitPx) return { truncatedText: text, isTruncated: false, pixelWidth: fullWidth };
+  const ellipsis = '…';
+  const ellipsisWidth = measureFn(ellipsis);
+  const budget = limitPx - ellipsisWidth;
+  const words = text.split(/\s+/);
+  let result = '';
+  for (let i = 0; i < words.length; i++) {
+    const candidate = result ? result + ' ' + words[i] : words[i];
+    if (measureFn(candidate) > budget) break;
+    result = candidate;
+  }
+  if (!result) {
+    let chars = '';
+    for (const ch of text) {
+      if (measureFn(chars + ch) > budget) break;
+      chars += ch;
+    }
+    result = chars;
+  }
+  return { truncatedText: result + ellipsis, isTruncated: true, pixelWidth: measureFn(result + ellipsis) };
+}
+
+function buildReport(title, description, measureFn) {
+  const titleFont = { desktop: '20px Arial', mobile: '16px Arial' };
+  const descFont = { desktop: '14px Arial', mobile: '14px Arial' };
+  function measureWith(text, font) { return measureFn(text, font); }
+  const desktopTitlePx = measureWith(title, titleFont.desktop);
+  const mobileTitlePx = measureWith(title, titleFont.mobile);
+  const desktopDescPx = measureWith(description, descFont.desktop);
+  const mobileDescPx = measureWith(description, descFont.mobile);
+  return {
+    title: {
+      desktop: { pixelWidth: desktopTitlePx, status: classifyWidth(desktopTitlePx, LIMITS.desktopTitle), truncated: truncateToWidth(title, t => measureWith(t, titleFont.desktop), LIMITS.desktopTitle.px) },
+      mobile: { pixelWidth: mobileTitlePx, status: classifyWidth(mobileTitlePx, LIMITS.mobileTitle), truncated: truncateToWidth(title, t => measureWith(t, titleFont.mobile), LIMITS.mobileTitle.px) }
+    },
+    description: {
+      desktop: { pixelWidth: desktopDescPx, status: classifyWidth(desktopDescPx, LIMITS.desktopDescription), truncated: truncateToWidth(description, t => measureWith(t, descFont.desktop), LIMITS.desktopDescription.px) },
+      mobile: { pixelWidth: mobileDescPx, status: classifyWidth(mobileDescPx, LIMITS.mobileDescription), truncated: truncateToWidth(description, t => measureWith(t, descFont.mobile), LIMITS.mobileDescription.px) }
+    }
+  };
+}
+
+/* ---------- Real canvas-based measurer ---------- */
+const measureCanvas = document.createElement('canvas');
+const measureCtx = measureCanvas.getContext('2d');
+function canvasMeasure(text, font) {
+  measureCtx.font = font;
+  return measureCtx.measureText(text || '').width;
+}
+
+/* ---------- UI wiring ---------- */
+let activeDevice = 'desktop';
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function setDevice(device) {
+  activeDevice = device;
+  document.querySelectorAll('.serp-tab').forEach(el => el.classList.toggle('active', el.dataset.device === device));
+  render();
+}
+
+function updateMeter(fillId, labelId, px, limit, labelPrefix) {
+  const fill = document.getElementById(fillId);
+  const label = document.getElementById(labelId);
+  const status = classifyWidth(px, limit);
+  const pct = Math.min(100, (px / limit.px) * 100);
+  fill.style.width = pct + '%';
+  fill.className = 'meter-fill ' + status;
+  label.textContent = labelPrefix + ': ' + Math.round(px) + ' / ' + limit.px + 'px';
+}
+
+function render() {
+  const url = document.getElementById('input-url').value.trim() || 'https://example.com/page';
+  const title = document.getElementById('input-title').value || '';
+  const desc = document.getElementById('input-desc').value || '';
+
+  document.getElementById('title-char-count').textContent = title.length + ' characters';
+  document.getElementById('desc-char-count').textContent = desc.length + ' characters';
+
+  const report = buildReport(title, desc, canvasMeasure);
+
+  updateMeter('title-desktop-fill', 'title-desktop-label', report.title.desktop.pixelWidth, LIMITS.desktopTitle, 'Desktop');
+  updateMeter('title-mobile-fill', 'title-mobile-label', report.title.mobile.pixelWidth, LIMITS.mobileTitle, 'Mobile');
+  updateMeter('desc-desktop-fill', 'desc-desktop-label', report.description.desktop.pixelWidth, LIMITS.desktopDescription, 'Desktop');
+  updateMeter('desc-mobile-fill', 'desc-mobile-label', report.description.mobile.pixelWidth, LIMITS.mobileDescription, 'Mobile');
+
+  const deviceData = report.title[activeDevice];
+  const descDeviceData = report.description[activeDevice];
+  const displayTitle = deviceData.truncated.truncatedText || 'Your title will appear here';
+  const displayDesc = descDeviceData.truncated.truncatedText || 'Your meta description will appear here.';
+
+  let displayUrl = url;
+  try {
+    const u = new URL(url);
+    displayUrl = u.hostname + (u.pathname !== '/' ? ' › ' + u.pathname.split('/').filter(Boolean).join(' › ') : '');
+  } catch (e) { /* leave as raw text */ }
+
+  document.getElementById('serp-url').textContent = displayUrl;
+  document.getElementById('serp-title').textContent = displayTitle;
+  document.getElementById('serp-desc').textContent = displayDesc;
+
+  const card = document.getElementById('serp-card');
+  card.className = 'serp-card' + (activeDevice === 'mobile' ? ' mobile' : '');
+}
+
+render();
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
