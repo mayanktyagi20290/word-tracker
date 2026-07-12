@@ -1,12 +1,19 @@
-// Vercel serverless function — fetches a URL server-side (no browser CORS limits)
-// and returns CLEAN, analyzable body text. Deployed automatically at /api/fetch-url
-// Upload this file inside an "api" folder at the repo root.
+// Vercel serverless function — fetches a URL server-side (no browser CORS limits).
+// Deployed automatically at /api/fetch-url. Upload this file inside an "api" folder at the repo root.
+//
+// Default behavior (unchanged): ?url=... returns { title, text, url } — clean extracted
+// page text, used by the SEO content analyzer and as a CORS-proxy fallback by other tools.
+//
+// New: ?url=...&mode=chain returns { chain, finalUrl, finalStatus, ok, warnings } —
+// walks every redirect hop manually (server-side, so no browser CORS/opaque-response limits)
+// and reports the status code and Location header at each step. Used by the Redirect Chain Checker.
 
 module.exports = async (req, res) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
   if (req.method === "OPTIONS") { res.status(204).end(); return; }
 
   const url = (req.query && req.query.url) || "";
+  const mode = (req.query && req.query.mode) || "";
   if (!url) { res.status(400).json({ error: "Missing url parameter" }); return; }
 
   let target;
@@ -15,6 +22,17 @@ module.exports = async (req, res) => {
     if (!/^https?:$/.test(target.protocol)) throw new Error("bad protocol");
   } catch {
     res.status(400).json({ error: "Invalid URL" }); return;
+  }
+
+  if (mode === "chain") {
+    try {
+      const result = await followRedirectChain(target.href, nodeFetchAdapter, 15);
+      res.setHeader("Cache-Control", "s-maxage=300, stale-while-revalidate=3600");
+      res.status(200).json(result);
+    } catch (e) {
+      res.status(500).json({ error: "Redirect chain check failed: " + ((e && e.message) || "unknown") });
+    }
+    return;
   }
 
   try {
@@ -35,6 +53,86 @@ module.exports = async (req, res) => {
   }
 };
 
+// ============ Redirect chain walking (server-side, so headers are fully visible) ============
+async function nodeFetchAdapter(url, opts) {
+  const upstream = await fetch(url, {
+    method: "GET",
+    redirect: "manual",
+    headers: {
+      "User-Agent": "Mozilla/5.0 (compatible; SEOTriggersBot/1.0; +https://seotriggers.com)",
+    },
+  });
+  return {
+    status: upstream.status,
+    headers: { get: (name) => upstream.headers.get(name) },
+    url,
+  };
+}
+
+async function followRedirectChain(startUrl, fetchFn, maxHops) {
+  maxHops = maxHops || 15;
+  const chain = [];
+  const visited = new Set();
+  let currentUrl = startUrl;
+  const warnings = [];
+
+  for (let hop = 0; hop < maxHops; hop++) {
+    if (visited.has(currentUrl)) {
+      warnings.push("Redirect loop detected: " + currentUrl + " was visited twice.");
+      chain.push({ step: hop + 1, url: currentUrl, status: null, statusText: "LOOP DETECTED", location: null });
+      return { chain, finalUrl: currentUrl, finalStatus: null, warnings, ok: false };
+    }
+    visited.add(currentUrl);
+
+    let r;
+    try {
+      r = await fetchFn(currentUrl, { redirect: "manual" });
+    } catch (e) {
+      warnings.push("Request failed at hop " + (hop + 1) + " (" + currentUrl + "): " + (e && e.message ? e.message : "unknown error"));
+      chain.push({ step: hop + 1, url: currentUrl, status: null, statusText: "REQUEST FAILED", location: null });
+      return { chain, finalUrl: currentUrl, finalStatus: null, warnings, ok: false };
+    }
+
+    const isRedirect = r.status >= 300 && r.status < 400;
+    const location = isRedirect ? r.headers.get("location") : null;
+
+    chain.push({ step: hop + 1, url: currentUrl, status: r.status, statusText: statusText(r.status), location });
+
+    if (!isRedirect) {
+      return { chain, finalUrl: currentUrl, finalStatus: r.status, warnings, ok: true };
+    }
+    if (!location) {
+      warnings.push("Got a " + r.status + " redirect at " + currentUrl + " with no Location header.");
+      return { chain, finalUrl: currentUrl, finalStatus: r.status, warnings, ok: false };
+    }
+
+    let nextUrl;
+    try {
+      nextUrl = new URL(location, currentUrl).href;
+    } catch (e) {
+      warnings.push("Invalid Location header at " + currentUrl + ": " + location);
+      return { chain, finalUrl: currentUrl, finalStatus: r.status, warnings, ok: false };
+    }
+
+    const curProto = new URL(currentUrl).protocol;
+    const nextProto = new URL(nextUrl).protocol;
+    if (curProto === "https:" && nextProto === "http:") {
+      warnings.push("Protocol downgrade: " + currentUrl + " (https) redirects to " + nextUrl + " (http).");
+    }
+
+    currentUrl = nextUrl;
+  }
+
+  warnings.push("Exceeded maximum of " + maxHops + " redirect hops without reaching a final destination.");
+  return { chain, finalUrl: currentUrl, finalStatus: null, warnings, ok: false };
+}
+
+function statusText(code) {
+  const map = { 301: "Moved Permanently", 302: "Found", 303: "See Other", 307: "Temporary Redirect", 308: "Permanent Redirect", 200: "OK", 404: "Not Found", 500: "Internal Server Error", 403: "Forbidden" };
+  return map[code] || String(code);
+}
+
+// ============ Existing content-extraction helpers (unchanged) ============
 function decodeEntities(str) {
   return str
     .replace(/&nbsp;/g, " ").replace(/&amp;/g, "&").replace(/&lt;/g, "<").replace(/&gt;/g, ">")
@@ -79,18 +177,13 @@ function extractText(html) {
   const title = tm ? decodeEntities(tm[1]).trim() : "";
 
   s = s.replace(/<head\b[\s\S]*?<\/head>/i, " ");
-  // strip site chrome (menus, footers, sidebars, forms)
   s = s.replace(/<(nav|footer|aside|form)\b[\s\S]*?<\/\1>/gi, " ");
-  // focus on the real content region if the page exposes one
   const main = pickMainRegion(s);
   if (main) s = main;
 
-  // headings → markdown (real content words; keeps Structure tab H1/H2 working)
   s = s.replace(/<h1\b[^>]*>/gi, "\n# ").replace(/<h2\b[^>]*>/gi, "\n## ")
        .replace(/<h3\b[^>]*>/gi, "\n### ").replace(/<h[4-6]\b[^>]*>/gi, "\n#### ");
-  // links → keep ONLY the anchor text, drop the URL (URLs pollute keyword analysis)
   s = s.replace(/<a\b[^>]*>([\s\S]*?)<\/a>/gi, (m, txt) => " " + txt.replace(/<[^>]+>/g, " ") + " ");
-  // images → drop entirely (icon/CDN URLs are pure noise)
   s = s.replace(/<img\b[^>]*>/gi, " ");
 
   s = s.replace(/<li\b[^>]*>/gi, "\n- ");
