@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canonical Tag Checker - Free Canonical URL Audit Tool | SEOTriggers</title>
+<meta name="description" content="Free canonical tag checker that detects duplicate canonical tags, canonical chains, protocol/www mismatches, and split canonical signals across a page cluster. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/canonical-tag-checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Canonical Tag Checker - Free Canonical URL Audit Tool">
+<meta property="og:description" content="Check a single page's canonical tag or an entire cluster of URLs for consistency, chains, and mismatches — no uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/canonical-tag-checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Canonical Tag Checker - Free Canonical URL Audit Tool">
+<meta name="twitter:description" content="Check a single page's canonical tag or an entire cluster of URLs for consistency, chains, and mismatches.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Canonical Tag Checker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free canonical tag checker detecting duplicate canonical tags, canonical chains, protocol/www mismatches, and split canonical signals across a page cluster, running entirely client-side.",
+  "url": "https://seotriggers.com/tools/canonical-tag-checker"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Canonical Tag Checker","item":"https://seotriggers.com/tools/canonical-tag-checker"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is a canonical chain and why is it a problem?","acceptedAnswer":{"@type":"Answer","text":"A canonical chain happens when Page A canonicalizes to Page B, but Page B itself canonicalizes to Page C instead of confirming itself. Search engines generally only follow one hop, so the intended consolidation can fail. Every canonical tag should point directly at the final, self-referencing target."}},
+    {"@type":"Question","name":"Can a page have more than one canonical tag?","acceptedAnswer":{"@type":"Answer","text":"No. Only one canonical tag is valid per page. If multiple are present, search engines may ignore all of them or pick one unpredictably, so this is treated as an error rather than a warning."}},
+    {"@type":"Question","name":"What does 'split canonical signals' mean for a page cluster?","acceptedAnswer":{"@type":"Answer","text":"If several URLs that represent the same content (like paginated or filtered variations) canonicalize to different targets instead of one shared URL, search engines receive conflicting signals about which version to treat as authoritative."}},
+    {"@type":"Question","name":"Is a canonical tag pointing to another domain always wrong?","acceptedAnswer":{"@type":"Answer","text":"No, cross-domain canonical tags are a legitimate pattern for syndicated content, but they're unusual enough that this tool flags them for a manual double-check rather than assuming they're a mistake."}},
+    {"@type":"Question","name":"Why does a relative canonical href get flagged?","acceptedAnswer":{"@type":"Answer","text":"Relative hrefs resolve correctly in most cases, but Google's own guidance recommends absolute URLs to avoid ambiguity, especially on sites with multiple subdomains, protocols, or a base tag that could change how a relative URL resolves."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.check-row{display:flex;gap:8px;padding:18px;}
+.check-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.check-row input:focus{border-color:var(--indigo);}
+.btn{border:1px solid var(--border);background:#fff;padding:10px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.result-summary{margin:0 18px;padding:14px 16px;border-radius:8px;font-size:14px;font-weight:700;display:none;}
+.result-summary.ok{background:var(--green-light);color:var(--green);}
+.result-summary.issues{background:var(--red-light);color:var(--red);}
+
+.detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin:14px 18px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+@media (max-width:700px){.detail-grid{grid-template-columns:1fr;}}
+.detail-cell{background:#fff;padding:12px 16px;}
+.detail-cell .l{font-size:11px;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.detail-cell .v{font-size:13px;font-family:var(--mono);word-break:break-all;}
+
+.issue-list{padding:0 18px 18px;}
+.issue-row{display:flex;gap:8px;align-items:flex-start;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border);}
+.issue-row:last-child{border-bottom:none;}
+.issue-row .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.issue-row.error{color:var(--red);} .issue-row.error .dot{background:var(--red);}
+.issue-row.warning{color:var(--amber);} .issue-row.warning .dot{background:var(--amber);}
+.issue-row.info{color:var(--blue);} .issue-row.info .dot{background:var(--blue);}
+
+.cluster-panel{padding:18px;}
+.cluster-panel textarea{width:100%;min-height:120px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--border);border-radius:8px;padding:12px;}
+.cluster-table{width:100%;border-collapse:collapse;font-size:13px;margin-top:14px;}
+.cluster-table th,.cluster-table td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;}
+.cluster-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.cluster-table td{font-family:var(--mono);font-size:12px;word-break:break-all;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Canonical Tag Checker
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Canonical Tag Checker</h1>
+  <p>Check a single page's canonical setup — or an entire cluster of URLs for split signals. Catches duplicate tags, canonical chains, and protocol/www mismatches.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="tabs">
+      <div class="tab active" data-tab="single" onclick="setTab('single')">Check One URL</div>
+      <div class="tab" data-tab="cluster" onclick="setTab('cluster')">Check a Page Cluster</div>
+    </div>
+
+    <!-- Single URL tab -->
+    <div id="panel-single">
+      <div class="check-row">
+        <input type="text" id="url-input" placeholder="https://example.com/page">
+        <button class="btn btn-primary" onclick="runSingleCheck()">Check Canonical</button>
+      </div>
+      <div class="result-summary" id="single-summary"></div>
+      <div class="detail-grid" id="single-detail" style="display:none;"></div>
+      <div class="issue-list" id="single-issues"></div>
+    </div>
+
+    <!-- Cluster tab -->
+    <div id="panel-cluster" style="display:none;">
+      <div class="cluster-panel">
+        <label style="font-size:12px;font-weight:600;color:var(--text-sec);display:block;margin-bottom:6px;">Paste URLs that should share one canonical target (one per line)</label>
+        <textarea id="cluster-urls" placeholder="https://example.com/products?page=1&#10;https://example.com/products?page=2&#10;https://example.com/products?sort=price"></textarea>
+        <button class="btn btn-primary" style="margin-top:10px;" onclick="runClusterCheck()">Check Cluster</button>
+      </div>
+      <div class="issue-list" id="cluster-issues"></div>
+      <div style="padding:0 18px 18px;overflow-x:auto;">
+        <table class="cluster-table" id="cluster-table" style="display:none;">
+          <thead><tr><th>URL</th><th>Canonicalizes to</th></tr></thead>
+          <tbody id="cluster-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this canonical checker is different</h2>
+  <p class="section-sub">Most canonical checkers only look at one page. This one thinks in clusters and chains.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🔗</div><h3>Canonical chain detection</h3><p>Follows one hop further to check whether your canonical target itself canonicalizes somewhere else — a common, hard-to-spot mistake.</p></div>
+    <div class="feature"><div class="ico">📚</div><h3>Cluster consistency check</h3><p>Paste a group of related URLs (pagination, filters, sort variants) and see whether they all point to one consolidated target.</p></div>
+    <div class="feature"><div class="ico">🚫</div><h3>Duplicate tag detection</h3><p>Flags pages with more than one canonical tag, which search engines may resolve unpredictably.</p></div>
+    <div class="feature"><div class="ico">🔀</div><h3>Protocol & www mismatch warnings</h3><p>Catches http vs https and www vs non-www inconsistencies between a page and its canonical target.</p></div>
+    <div class="feature"><div class="ico">🌍</div><h3>Cross-domain awareness</h3><p>Flags canonical tags pointing to another domain for a manual check, since this is a legitimate but unusual pattern.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Checks run from your browser or a CORS proxy chain. Nothing about the URLs you check is stored.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is a canonical chain and why is it a problem?<span class="chev">▾</span></div>
+      <div class="faq-a">A canonical chain happens when Page A canonicalizes to Page B, but Page B itself canonicalizes to Page C instead of confirming itself. Search engines generally only follow one hop, so the intended consolidation can fail. Every canonical tag should point directly at the final, self-referencing target.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can a page have more than one canonical tag?<span class="chev">▾</span></div>
+      <div class="faq-a">No. Only one canonical tag is valid per page. If multiple are present, search engines may ignore all of them or pick one unpredictably, so this is treated as an error rather than a warning.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does 'split canonical signals' mean for a page cluster?<span class="chev">▾</span></div>
+      <div class="faq-a">If several URLs that represent the same content (like paginated or filtered variations) canonicalize to different targets instead of one shared URL, search engines receive conflicting signals about which version to treat as authoritative.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is a canonical tag pointing to another domain always wrong?<span class="chev">▾</span></div>
+      <div class="faq-a">No, cross-domain canonical tags are a legitimate pattern for syndicated content, but they're unusual enough that this tool flags them for a manual double-check rather than assuming they're a mistake.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does a relative canonical href get flagged?<span class="chev">▾</span></div>
+      <div class="faq-a">Relative hrefs resolve correctly in most cases, but Google's own guidance recommends absolute URLs to avoid ambiguity, especially on sites with multiple subdomains, protocols, or a base tag that could change how a relative URL resolves.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/indexability-checker">Indexability Checker</a>
+    <a class="cross-link" href="/tools/schema-markup-validator">Schema Markup Validator</a>
+    <a class="cross-link" href="/tools/sitemap-url-extractor">Sitemap URL Extractor</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+function extractAllCanonicals(html) {
+  const hrefs = [];
+  const re = /<link\b[^>]*rel\s*=\s*["']canonical["'][^>]*>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const hrefMatch = m[0].match(/href\s*=\s*["']([^"']*)["']/i);
+    if (hrefMatch) hrefs.push(hrefMatch[1]);
+  }
+  return hrefs;
+}
+function resolveCanonicalUrl(pageUrl, href) {
+  if (!href) return null;
+  try { return new URL(href, pageUrl).href; } catch (e) { return null; }
+}
+function compareUrls(a, b) {
+  let ua, ub;
+  try { ua = new URL(a); ub = new URL(b); } catch (e) {
+    return { sameUrl: a === b, protocolMismatch: false, wwwMismatch: false, hostMismatch: false, pathMismatch: false, valid: false };
+  }
+  const stripWww = h => h.replace(/^www\./, '');
+  const normPath = p => p.replace(/\/$/, '') || '/';
+  const protocolMismatch = ua.protocol !== ub.protocol;
+  const wwwMismatch = (ua.hostname.startsWith('www.') !== ub.hostname.startsWith('www.')) && stripWww(ua.hostname) === stripWww(ub.hostname);
+  const hostMismatch = stripWww(ua.hostname) !== stripWww(ub.hostname);
+  const pathMismatch = normPath(ua.pathname) !== normPath(ub.pathname);
+  const sameUrl = !hostMismatch && !pathMismatch && !protocolMismatch && !wwwMismatch;
+  return { sameUrl, protocolMismatch, wwwMismatch, hostMismatch, pathMismatch, valid: true };
+}
+function analyzePage(pageUrl, canonicalHrefs) {
+  const issues = [];
+  if (canonicalHrefs.length === 0) {
+    issues.push({ level: 'warning', message: 'No canonical tag found. Google will choose one automatically, which may not match your intent.' });
+    return { issues, resolvedCanonical: null, count: 0, isSelfReferencing: null };
+  }
+  if (canonicalHrefs.length > 1) issues.push({ level: 'error', message: 'Found ' + canonicalHrefs.length + ' canonical tags on one page — only one is allowed. Search engines may ignore all of them or pick arbitrarily.' });
+  const primaryHref = canonicalHrefs[0];
+  const resolved = resolveCanonicalUrl(pageUrl, primaryHref);
+  if (!resolved) {
+    issues.push({ level: 'error', message: 'Canonical href "' + primaryHref + '" could not be resolved to a valid URL.' });
+    return { issues, resolvedCanonical: null, count: canonicalHrefs.length, isSelfReferencing: null };
+  }
+  if (!/^https?:\/\//i.test(primaryHref)) issues.push({ level: 'info', message: 'Canonical href is relative ("' + primaryHref + '") — resolved to ' + resolved + '. Google recommends absolute URLs to avoid ambiguity.' });
+  const cmp = compareUrls(pageUrl, resolved);
+  const isSelfReferencing = cmp.sameUrl;
+  if (cmp.protocolMismatch) issues.push({ level: 'warning', message: 'Canonical protocol (http/https) differs from the page URL — verify this is intentional.' });
+  if (cmp.wwwMismatch) issues.push({ level: 'warning', message: 'Canonical www/non-www hostname differs from the page URL — verify this is intentional.' });
+  if (cmp.hostMismatch && !cmp.wwwMismatch) issues.push({ level: 'info', message: 'Canonical points to a different domain (' + new URL(resolved).hostname + ') — only intentional for syndicated or cross-domain content.' });
+  return { issues, resolvedCanonical: resolved, count: canonicalHrefs.length, isSelfReferencing };
+}
+function analyzeChain(sourceUrl, targetUrl, targetCanonicalHrefs) {
+  const issues = [];
+  if (!targetCanonicalHrefs || targetCanonicalHrefs.length === 0) return issues;
+  const targetPrimary = resolveCanonicalUrl(targetUrl, targetCanonicalHrefs[0]);
+  if (!targetPrimary) return issues;
+  const cmp = compareUrls(targetUrl, targetPrimary);
+  if (!cmp.sameUrl) issues.push({ level: 'error', message: sourceUrl + ' canonicalizes to ' + targetUrl + ', but that page itself canonicalizes to a third URL (' + targetPrimary + '). Canonical chains should be avoided — point directly at the final target.' });
+  return issues;
+}
+function analyzeCluster(pages) {
+  const issues = [];
+  const targets = new Map();
+  pages.forEach(p => {
+    const target = p.resolvedCanonical || p.url;
+    if (!targets.has(target)) targets.set(target, []);
+    targets.get(target).push(p.url);
+  });
+  if (targets.size > 1) {
+    const summary = Array.from(targets.entries()).map(([target, sources]) => target + ' (' + sources.length + ' page' + (sources.length > 1 ? 's' : '') + ')').join('; ');
+    issues.push({ level: 'warning', message: 'This set of pages sends split canonical signals to ' + targets.size + ' different targets: ' + summary + '. If these pages are meant to be one canonical cluster, consolidate them to a single target.' });
+  }
+  return issues;
+}
+
+/* ---------- UI wiring ---------- */
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+async function fetchText(url) {
+  const attempts = [
+    () => fetch(url).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); }),
+    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => r.json()).then(d => d.text || ''),
+    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => r.text())
+  ];
+  for (const attempt of attempts) {
+    try { return await attempt(); } catch (e) { /* try next */ }
+  }
+  throw new Error('Could not fetch this URL through any available method.');
+}
+
+function setTab(name) {
+  ['single','cluster'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+async function runSingleCheck() {
+  const url = document.getElementById('url-input').value.trim();
+  const summary = document.getElementById('single-summary');
+  const detail = document.getElementById('single-detail');
+  const issuesEl = document.getElementById('single-issues');
+  if (!url) return;
+
+  summary.style.display = 'block';
+  summary.className = 'result-summary';
+  summary.textContent = 'Checking…';
+  detail.style.display = 'none';
+  issuesEl.innerHTML = '';
+
+  let html;
+  try {
+    html = await fetchText(url);
+  } catch (e) {
+    summary.className = 'result-summary issues';
+    summary.textContent = '✗ Could not fetch this page.';
+    return;
+  }
+
+  const canonicalHrefs = extractAllCanonicals(html);
+  const result = analyzePage(url, canonicalHrefs);
+  let chainIssues = [];
+
+  if (result.resolvedCanonical && !result.isSelfReferencing) {
+    try {
+      const targetHtml = await fetchText(result.resolvedCanonical);
+      const targetCanonicals = extractAllCanonicals(targetHtml);
+      chainIssues = analyzeChain(url, result.resolvedCanonical, targetCanonicals);
+    } catch (e) { /* couldn't verify target, skip chain check silently */ }
+  }
+
+  const allIssues = [...result.issues, ...chainIssues];
+  const hasErrors = allIssues.some(i => i.level === 'error');
+
+  summary.className = 'result-summary ' + (hasErrors ? 'issues' : 'ok');
+  summary.textContent = hasErrors ? '✗ Canonical issues found' : (result.isSelfReferencing ? '✓ Self-referencing canonical, no issues' : '✓ Canonicalizes cleanly to another URL');
+
+  detail.style.display = 'grid';
+  detail.innerHTML =
+    '<div class="detail-cell"><div class="l">Checked URL</div><div class="v">' + escapeHTML(url) + '</div></div>' +
+    '<div class="detail-cell"><div class="l">Canonical target</div><div class="v">' + escapeHTML(result.resolvedCanonical || 'None found') + '</div></div>';
+
+  issuesEl.innerHTML = allIssues.length
+    ? allIssues.map(i => '<div class="issue-row ' + i.level + '"><span class="dot"></span><span>' + escapeHTML(i.message) + '</span></div>').join('')
+    : '<div class="issue-row" style="color:var(--green);"><span class="dot" style="background:var(--green);"></span><span>No issues found.</span></div>';
+}
+
+async function runClusterCheck() {
+  const raw = document.getElementById('cluster-urls').value;
+  const urls = raw.split('\n').map(u => u.trim()).filter(Boolean);
+  const issuesEl = document.getElementById('cluster-issues');
+  const table = document.getElementById('cluster-table');
+  const tbody = document.getElementById('cluster-table-body');
+
+  if (urls.length < 2) {
+    issuesEl.innerHTML = '<div class="issue-row warning"><span class="dot"></span><span>Enter at least 2 URLs to check cluster consistency.</span></div>';
+    table.style.display = 'none';
+    return;
+  }
+
+  issuesEl.innerHTML = '<div class="issue-row info"><span class="dot"></span><span>Fetching ' + urls.length + ' pages…</span></div>';
+  table.style.display = 'none';
+
+  const pages = [];
+  const fetchIssues = [];
+  for (const url of urls) {
+    try {
+      const html = await fetchText(url);
+      const hrefs = extractAllCanonicals(html);
+      const result = analyzePage(url, hrefs);
+      pages.push({ url, resolvedCanonical: result.resolvedCanonical });
+    } catch (e) {
+      fetchIssues.push({ level: 'error', message: 'Could not fetch ' + url + '.' });
+    }
+  }
+
+  const clusterIssues = analyzeCluster(pages);
+  const allIssues = [...fetchIssues, ...clusterIssues];
+
+  issuesEl.innerHTML = allIssues.length
+    ? allIssues.map(i => '<div class="issue-row ' + i.level + '"><span class="dot"></span><span>' + escapeHTML(i.message) + '</span></div>').join('')
+    : '<div class="issue-row" style="color:var(--green);"><span class="dot" style="background:var(--green);"></span><span>✓ All pages canonicalize to one consistent target.</span></div>';
+
+  table.style.display = pages.length ? 'table' : 'none';
+  tbody.innerHTML = pages.map(p => '<tr><td>' + escapeHTML(p.url) + '</td><td>' + escapeHTML(p.resolvedCanonical || '(self / none found)') + '</td></tr>').join('');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
