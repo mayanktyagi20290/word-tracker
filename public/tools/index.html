@@ -117,7 +117,7 @@
 
   <!-- Filter tabs -->
   <div class="filter-tabs">
-    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (51)</button>
+    <button class="filter-tab active" data-cat="all" onclick="setFilter(this)">All tools (60)</button>
     <button class="filter-tab" data-cat="text" onclick="setFilter(this)">✍️ Text</button>
     <button class="filter-tab" data-cat="calculator" onclick="setFilter(this)">🧮 Calculators</button>
     <button class="filter-tab" data-cat="converter" onclick="setFilter(this)">🔄 Converters</button>
@@ -486,10 +486,82 @@
   <div class="section-wrap" data-section="seo">
     <div class="section-head">
       <h2>📈 SEO Tools</h2>
-      <span class="count">16 tools</span>
+      <span class="count">25 tools</span>
     </div>
     <hr class="section-divider" />
     <div class="tools-grid">
+
+      <a href="/tools/x-robots-tag-generator" class="tool-card" data-cat="seo" data-name="x robots tag generator http header noindex pdf">
+        <span class="tool-icon">📡</span>
+        <div class="tool-info">
+          <div class="tool-name">X-Robots-Tag Generator</div>
+          <div class="tool-desc">HTTP header config for Apache/Nginx/Node/PHP/Vercel/Cloudflare — controls indexing of PDFs & non-HTML files.</div>
+        </div>
+      </a>
+
+      <a href="/tools/ai-crawler-blocker-generator" class="tool-card" data-cat="seo" data-name="ai crawler blocker gptbot claudebot perplexitybot robots">
+        <span class="tool-icon">🛡️</span>
+        <div class="tool-info">
+          <div class="tool-name">AI Crawler Blocker Generator</div>
+          <div class="tool-desc">Allow/block GPTBot, ClaudeBot, PerplexityBot & more — grouped by training vs search vs user-triggered.</div>
+        </div>
+      </a>
+
+      <a href="/tools/llms-txt-generator" class="tool-card" data-cat="seo" data-name="llms.txt generator ai search chatgpt claude">
+        <span class="tool-icon">🧠</span>
+        <div class="tool-info">
+          <div class="tool-name">llms.txt Generator</div>
+          <div class="tool-desc">Spec-compliant llms.txt with live validation, import/edit, and marketing-fluff detection.</div>
+        </div>
+      </a>
+
+      <a href="/tools/schema-markup-validator" class="tool-card" data-cat="seo" data-name="schema markup validator json-ld rich results">
+        <span class="tool-icon">🔎</span>
+        <div class="tool-info">
+          <div class="tool-name">Schema Markup Validator</div>
+          <div class="tool-desc">Validates JSON-LD against Google Rich Results requirements — paste code, HTML, or a live URL.</div>
+        </div>
+      </a>
+
+      <a href="/tools/hreflang-generator" class="tool-card" data-cat="seo" data-name="hreflang generator validator international seo">
+        <span class="tool-icon">🌍</span>
+        <div class="tool-info">
+          <div class="tool-name">Hreflang Generator &amp; Validator</div>
+          <div class="tool-desc">HTML/sitemap/HTTP-header hreflang tags, common-mistake detection & reciprocal link checking.</div>
+        </div>
+      </a>
+
+      <a href="/tools/indexability-checker" class="tool-card" data-cat="seo" data-name="indexability checker robots meta canonical audit">
+        <span class="tool-icon">🚦</span>
+        <div class="tool-info">
+          <div class="tool-name">Indexability Checker</div>
+          <div class="tool-desc">Audits robots.txt, meta robots, X-Robots-Tag & canonical for one URL in a single verdict.</div>
+        </div>
+      </a>
+
+      <a href="/tools/canonical-tag-checker" class="tool-card" data-cat="seo" data-name="canonical tag checker duplicate chain cluster">
+        <span class="tool-icon">🎯</span>
+        <div class="tool-info">
+          <div class="tool-name">Canonical Tag Checker</div>
+          <div class="tool-desc">Detects duplicate canonical tags, canonical chains, and split signals across a page cluster.</div>
+        </div>
+      </a>
+
+      <a href="/tools/redirect-chain-checker" class="tool-card" data-cat="seo" data-name="redirect chain checker 301 302 loop">
+        <span class="tool-icon">🔀</span>
+        <div class="tool-info">
+          <div class="tool-name">Redirect Chain Checker</div>
+          <div class="tool-desc">Traces every 301/302/307/308 hop with real status codes — catches loops & protocol downgrades.</div>
+        </div>
+      </a>
+
+      <a href="/tools/title-meta-pixel-width-checker" class="tool-card" data-cat="seo" data-name="title meta description pixel width checker serp truncation">
+        <span class="tool-icon">📏</span>
+        <div class="tool-info">
+          <div class="tool-name">Title &amp; Meta Pixel Width Checker</div>
+          <div class="tool-desc">Real canvas font measurement with live desktop/mobile SERP preview and truncation prediction.</div>
+        </div>
+      </a>
 
       <a href="/tools/robots-txt-generator" class="tool-card" data-cat="seo" data-name="robots txt generator seo crawl">
         <span class="tool-icon">🤖</span>
@@ -739,7 +811,16 @@ function applyFilters(query, cat) {
     { "@type": "SoftwareApplication", "name": "CSS Minifier", "url": "https://seotriggers.com/tools/css-minifier", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "HTML Minifier", "url": "https://seotriggers.com/tools/html-minifier", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
     { "@type": "SoftwareApplication", "name": "Random Paragraph Generator", "url": "https://seotriggers.com/tools/random-paragraph-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
-    { "@type": "SoftwareApplication", "name": "Random Sentence Generator", "url": "https://seotriggers.com/tools/random-sentence-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } }
+    { "@type": "SoftwareApplication", "name": "Random Sentence Generator", "url": "https://seotriggers.com/tools/random-sentence-generator", "applicationCategory": "UtilitiesApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "X-Robots-Tag Generator", "url": "https://seotriggers.com/tools/x-robots-tag-generator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "AI Crawler Blocker Generator", "url": "https://seotriggers.com/tools/ai-crawler-blocker-generator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "llms.txt Generator", "url": "https://seotriggers.com/tools/llms-txt-generator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Schema Markup Validator", "url": "https://seotriggers.com/tools/schema-markup-validator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Hreflang Generator & Validator", "url": "https://seotriggers.com/tools/hreflang-generator", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Indexability Checker", "url": "https://seotriggers.com/tools/indexability-checker", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Canonical Tag Checker", "url": "https://seotriggers.com/tools/canonical-tag-checker", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Redirect Chain Checker", "url": "https://seotriggers.com/tools/redirect-chain-checker", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } },
+    { "@type": "SoftwareApplication", "name": "Title & Meta Pixel Width Checker", "url": "https://seotriggers.com/tools/title-meta-pixel-width-checker", "applicationCategory": "DeveloperApplication", "offers": { "@type": "Offer", "price": "0" } }
   ]
 }
 </script>
