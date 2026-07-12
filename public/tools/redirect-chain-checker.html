@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Redirect Chain Checker - Free 301/302 Redirect Tester | SEOTriggers</title>
+<meta name="description" content="Free redirect chain checker that traces every 301/302/307/308 hop with status codes, detects redirect loops and protocol downgrades, and flags chains that are too long for SEO. 100% server-verified, no browser CORS limitations.">
+<link rel="canonical" href="https://seotriggers.com/tools/redirect-chain-checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Redirect Chain Checker - Free 301/302 Redirect Tester">
+<meta property="og:description" content="Trace every redirect hop with real status codes, catch loops and protocol downgrades, and get SEO warnings for chains that are too long.">
+<meta property="og:url" content="https://seotriggers.com/tools/redirect-chain-checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Redirect Chain Checker - Free 301/302 Redirect Tester">
+<meta name="twitter:description" content="Trace every redirect hop with real status codes, catch loops and protocol downgrades, and get SEO warnings.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Redirect Chain Checker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free redirect chain checker that traces every 301/302/307/308 hop with real status codes, detects redirect loops and protocol downgrades, and flags SEO issues like excessive hop count.",
+  "url": "https://seotriggers.com/tools/redirect-chain-checker"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Redirect Chain Checker","item":"https://seotriggers.com/tools/redirect-chain-checker"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why do I need a redirect chain checker instead of just visiting the URL?","acceptedAnswer":{"@type":"Answer","text":"Your browser follows redirects automatically and only shows you the final page, hiding how many hops happened, what status codes were used, and whether a loop or dead end exists partway through. A dedicated checker shows every step."}},
+    {"@type":"Question","name":"How many redirect hops is too many?","acceptedAnswer":{"@type":"Answer","text":"One hop is ideal, and two is generally acceptable. Three or more hops add measurable latency and can dilute link equity passed between pages, so most SEO guidance recommends keeping chains as short as possible."}},
+    {"@type":"Question","name":"What is the difference between a 301 and a 302 redirect?","acceptedAnswer":{"@type":"Answer","text":"A 301 is a permanent redirect, telling search engines to transfer ranking signals to the new URL and update their index. A 302 is temporary and tells search engines to keep the original URL indexed, since the redirect may not last."}},
+    {"@type":"Question","name":"Why can't my browser show me the redirect chain directly?","acceptedAnswer":{"@type":"Answer","text":"Browsers intentionally hide redirect details for cross-origin requests as a security and privacy measure, returning an opaque response with no visible status code or Location header. This tool works around that by checking each hop from the server side, where that restriction doesn't apply."}},
+    {"@type":"Question","name":"What does a protocol downgrade warning mean?","acceptedAnswer":{"@type":"Answer","text":"It means a step in the chain redirects from https to http, which is almost always a misconfiguration. It can trigger browser security warnings and undoes the SEO and security benefits of serving your site over HTTPS."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.check-row{display:flex;gap:8px;padding:18px;}
+.check-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.check-row input:focus{border-color:var(--indigo);}
+.btn{border:1px solid var(--border);background:#fff;padding:10px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.result-section{padding:0 18px 18px;}
+.status-banner{padding:14px 16px;border-radius:8px;font-size:14px;font-weight:700;margin-bottom:14px;}
+.status-banner.ok{background:var(--green-light);color:var(--green);}
+.status-banner.warn{background:var(--amber-light);color:var(--amber);}
+.status-banner.error{background:var(--red-light);color:var(--red);}
+.status-banner.idle{background:var(--bg);color:var(--text-hint);font-weight:600;}
+
+.chain-list{margin-bottom:14px;}
+.chain-hop{display:flex;gap:12px;align-items:flex-start;padding:12px 14px;border:1px solid var(--border);border-radius:8px;margin-bottom:8px;background:#fff;}
+.hop-num{width:26px;height:26px;border-radius:50%;background:var(--indigo-light);color:var(--indigo-dark);font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.hop-info{flex:1;min-width:0;}
+.hop-url{font-family:var(--mono);font-size:12.5px;color:var(--text);word-break:break-all;}
+.hop-meta{display:flex;gap:8px;align-items:center;margin-top:4px;flex-wrap:wrap;}
+.status-pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;}
+.status-pill.s2{background:var(--green-light);color:var(--green);}
+.status-pill.s3-perm{background:var(--blue-light);color:var(--blue);}
+.status-pill.s3-temp{background:var(--amber-light);color:var(--amber);}
+.status-pill.s4,.status-pill.s5{background:var(--red-light);color:var(--red);}
+.hop-arrow{text-align:center;color:var(--text-hint);font-size:16px;margin:2px 0;}
+
+.warn-list{margin-bottom:14px;}
+.warn-item{display:flex;gap:8px;align-items:flex-start;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border);}
+.warn-item:last-child{border-bottom:none;}
+.warn-item .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.warn-item.error{color:var(--red);} .warn-item.error .dot{background:var(--red);}
+.warn-item.warning{color:var(--amber);} .warn-item.warning .dot{background:var(--amber);}
+.warn-item.info{color:var(--blue);} .warn-item.info .dot{background:var(--blue);}
+
+.tech-note{background:var(--blue-light);border:1px solid var(--indigo-light);border-radius:8px;padding:12px 14px;font-size:12px;color:var(--text-sec);margin:0 18px 18px;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Redirect Chain Checker
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Redirect Chain Checker</h1>
+  <p>Trace every 301/302/307/308 hop with real status codes, catch redirect loops and protocol downgrades, and get SEO warnings for chains that are too long.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="check-row">
+      <input type="text" id="url-input" placeholder="https://example.com/old-page">
+      <button class="btn btn-primary" onclick="runCheck()">Trace Redirects</button>
+    </div>
+
+    <div class="tech-note">This tool checks each redirect hop from the server side rather than in your browser, because browsers intentionally hide status codes and Location headers for cross-origin redirects. Server-side checking is the only way to see the real chain.</div>
+
+    <div class="result-section" id="result-section" style="display:none;">
+      <div class="status-banner idle" id="status-banner"></div>
+      <div class="chain-list" id="chain-list"></div>
+      <div class="warn-list" id="warn-list"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this redirect checker is different</h2>
+  <p class="section-sub">Most "redirect checkers" only show you the final destination. This one shows every hop.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🔗</div><h3>Every hop, real status codes</h3><p>See each 301/302/307/308 in order with its exact status, not just where you eventually land.</p></div>
+    <div class="feature"><div class="ico">🔁</div><h3>Loop detection</h3><p>Catches redirect loops (A → B → A) instead of hanging or timing out silently.</p></div>
+    <div class="feature"><div class="ico">🔓</div><h3>Protocol downgrade warnings</h3><p>Flags any hop that redirects from https to http — almost always a misconfiguration worth fixing.</p></div>
+    <div class="feature"><div class="ico">⚖️</div><h3>Permanent vs temporary mix warnings</h3><p>Flags chains that mix 301/308 with 302/307/303, since mixing them can send contradictory signals to search engines.</p></div>
+    <div class="feature"><div class="ico">📏</div><h3>Hop count guidance</h3><p>Warns when a chain has more than the recommended 1–2 hops, since each one adds latency and can dilute link equity.</p></div>
+    <div class="feature"><div class="ico">🖥️</div><h3>Server-side accuracy</h3><p>Checks run server-side so status codes and headers are fully visible — not limited by browser cross-origin restrictions.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why do I need a redirect chain checker instead of just visiting the URL?<span class="chev">▾</span></div>
+      <div class="faq-a">Your browser follows redirects automatically and only shows you the final page, hiding how many hops happened, what status codes were used, and whether a loop or dead end exists partway through. A dedicated checker shows every step.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many redirect hops is too many?<span class="chev">▾</span></div>
+      <div class="faq-a">One hop is ideal, and two is generally acceptable. Three or more hops add measurable latency and can dilute link equity passed between pages, so most SEO guidance recommends keeping chains as short as possible.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between a 301 and a 302 redirect?<span class="chev">▾</span></div>
+      <div class="faq-a">A 301 is a permanent redirect, telling search engines to transfer ranking signals to the new URL and update their index. A 302 is temporary and tells search engines to keep the original URL indexed, since the redirect may not last.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why can't my browser show me the redirect chain directly?<span class="chev">▾</span></div>
+      <div class="faq-a">Browsers intentionally hide redirect details for cross-origin requests as a security and privacy measure, returning an opaque response with no visible status code or Location header. This tool works around that by checking each hop from the server side, where that restriction doesn't apply.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does a protocol downgrade warning mean?<span class="chev">▾</span></div>
+      <div class="faq-a">It means a step in the chain redirects from https to http, which is almost always a misconfiguration. It can trigger browser security warnings and undoes the SEO and security benefits of serving your site over HTTPS.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/robots-txt-tester">Robots.txt Tester</a>
+    <a class="cross-link" href="/tools/x-robots-tag-generator">X-Robots-Tag Generator</a>
+    <a class="cross-link" href="/tools/sitemap-url-extractor">Sitemap URL Extractor</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function statusPillClass(status) {
+  if (status === null) return 's5';
+  if (status >= 200 && status < 300) return 's2';
+  if (status === 301 || status === 308) return 's3-perm';
+  if (status === 302 || status === 307 || status === 303) return 's3-temp';
+  return 's4';
+}
+
+// Client-side analysis of a completed chain result (mirrors the tested server logic's shape)
+function analyzeChain(result) {
+  const issues = [];
+  const hops = result.chain.length;
+  if (hops > 3) issues.push({ level: 'warning', message: hops + ' redirect hops is more than recommended (aim for 1, max 2). Each hop adds latency and dilutes link equity.' });
+  const permCount = result.chain.filter(h => h.status === 301 || h.status === 308).length;
+  const tempCount = result.chain.filter(h => h.status === 302 || h.status === 307 || h.status === 303).length;
+  if (permCount > 0 && tempCount > 0) issues.push({ level: 'info', message: 'Chain mixes permanent (301/308) and temporary (302/307/303) redirects — verify this is intentional.' });
+  if (result.finalStatus && result.finalStatus >= 400) issues.push({ level: 'error', message: 'Chain ends in an error status (' + result.finalStatus + ') instead of a working page.' });
+  if (result.finalStatus === 200 && hops === 1) issues.push({ level: 'info', message: 'No redirect — this URL resolves directly.' });
+  (result.warnings || []).forEach(w => issues.push({ level: 'warning', message: w }));
+  return issues;
+}
+
+async function runCheck() {
+  const url = document.getElementById('url-input').value.trim();
+  const resultSection = document.getElementById('result-section');
+  const banner = document.getElementById('status-banner');
+  const chainList = document.getElementById('chain-list');
+  const warnList = document.getElementById('warn-list');
+  if (!url) return;
+
+  resultSection.style.display = '';
+  banner.className = 'status-banner idle';
+  banner.textContent = 'Checking…';
+  chainList.innerHTML = '';
+  warnList.innerHTML = '';
+
+  try {
+    const res = await fetch('/api/fetch-url?mode=chain&url=' + encodeURIComponent(url));
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(errBody.error || ('Request failed with status ' + res.status));
+    }
+    const result = await res.json();
+
+    const hops = result.chain.length;
+    if (result.ok && hops === 1 && result.finalStatus >= 200 && result.finalStatus < 300) {
+      banner.className = 'status-banner ok';
+      banner.textContent = '✓ No redirect — resolves directly with status ' + result.finalStatus;
+    } else if (result.ok && result.finalStatus >= 200 && result.finalStatus < 300) {
+      banner.className = 'status-banner ' + (hops > 3 ? 'warn' : 'ok');
+      banner.textContent = (hops > 3 ? '⚠ ' : '✓ ') + hops + ' hop' + (hops>1?'s':'') + ' → final status ' + result.finalStatus;
+    } else {
+      banner.className = 'status-banner error';
+      banner.textContent = '✗ Chain did not resolve cleanly — see details below';
+    }
+
+    chainList.innerHTML = result.chain.map((hop, i) => {
+      const arrow = i < result.chain.length - 1 ? '<div class="hop-arrow">↓</div>' : '';
+      return (
+        '<div class="chain-hop">' +
+          '<div class="hop-num">' + hop.step + '</div>' +
+          '<div class="hop-info">' +
+            '<div class="hop-url">' + escapeHTML(hop.url) + '</div>' +
+            '<div class="hop-meta">' +
+              '<span class="status-pill ' + statusPillClass(hop.status) + '">' + (hop.status !== null ? hop.status : '?') + ' ' + escapeHTML(hop.statusText || '') + '</span>' +
+              (hop.location ? '<span style="font-size:11px;color:var(--text-hint);">→ ' + escapeHTML(hop.location) + '</span>' : '') +
+            '</div>' +
+          '</div>' +
+        '</div>' + arrow
+      );
+    }).join('');
+
+    const issues = analyzeChain(result);
+    warnList.innerHTML = issues.map(w =>
+      '<div class="warn-item ' + w.level + '"><span class="dot"></span><span>' + escapeHTML(w.message) + '</span></div>'
+    ).join('');
+
+  } catch (e) {
+    banner.className = 'status-banner error';
+    banner.textContent = '✗ Could not check this URL: ' + escapeHTML(e.message || 'unknown error');
+    chainList.innerHTML = '';
+    warnList.innerHTML = '';
+  }
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
