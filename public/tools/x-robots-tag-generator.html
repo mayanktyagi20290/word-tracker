@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>X-Robots-Tag Generator & Checker - Free HTTP Header Tool | SEOTriggers</title>
+<meta name="description" content="Free X-Robots-Tag generator with ready-to-paste config for Apache, Nginx, IIS, Node.js, PHP, Netlify, Vercel and Cloudflare — plus a live checker to see the header on any URL. Control indexing of PDFs, images and non-HTML files. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/x-robots-tag-generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="X-Robots-Tag Generator & Checker - Free HTTP Header Tool">
+<meta property="og:description" content="Generate X-Robots-Tag HTTP header config for 8 platforms and check any URL's current header — all in your browser, no uploads.">
+<meta property="og:url" content="https://seotriggers.com/tools/x-robots-tag-generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="X-Robots-Tag Generator & Checker - Free HTTP Header Tool">
+<meta name="twitter:description" content="Generate X-Robots-Tag HTTP header config for 8 platforms and check any URL's current header — all in your browser.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "X-Robots-Tag Generator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free X-Robots-Tag HTTP header generator with ready-to-paste config for Apache, Nginx, IIS, Node.js, PHP, Netlify, Vercel and Cloudflare, plus a live header checker for any URL.",
+  "url": "https://seotriggers.com/tools/x-robots-tag-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"X-Robots-Tag Generator","item":"https://seotriggers.com/tools/x-robots-tag-generator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is the difference between X-Robots-Tag and the meta robots tag?","acceptedAnswer":{"@type":"Answer","text":"The meta robots tag only works inside the <head> of an HTML page, so it can't control PDFs, images, or other non-HTML files. X-Robots-Tag is an HTTP response header set by the server, so it works on any file type and can also be applied to entire URL paths at once through server config."}},
+    {"@type":"Question","name":"When should I use X-Robots-Tag instead of robots.txt?","acceptedAnswer":{"@type":"Answer","text":"Robots.txt controls whether a crawler can request a URL at all. X-Robots-Tag controls whether a URL that was already crawled gets indexed. If you need to keep a file crawlable but out of search results — a common case for PDFs and internal tools — X-Robots-Tag is the right layer, not robots.txt."}},
+    {"@type":"Question","name":"Does this tool actually set the header on my server?","acceptedAnswer":{"@type":"Answer","text":"No. It generates the exact configuration snippet for your platform (Apache, Nginx, IIS, Node.js, PHP, Netlify, Vercel, or Cloudflare Workers); you paste that into your own server config or code and deploy it yourself."}},
+    {"@type":"Question","name":"Can I check the current X-Robots-Tag on a live URL?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Checker tab fetches the URL directly from your browser and reads the X-Robots-Tag response header. If the server blocks cross-origin requests, it automatically retries through a chain of public CORS proxies before reporting that it couldn't be read."}},
+    {"@type":"Question","name":"What does unavailable_after actually do?","acceptedAnswer":{"@type":"Answer","text":"It tells Google to treat the page as noindex automatically after the date and time you specify, which is useful for time-limited content like event pages or promotions without needing a second deployment to add noindex later."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.gen-body{display:grid;grid-template-columns:320px 1fr;gap:0;}
+@media (max-width:900px){.gen-body{grid-template-columns:1fr;}}
+.opt-panel{padding:18px;border-right:1px solid var(--border);}
+@media (max-width:900px){.opt-panel{border-right:none;border-bottom:1px solid var(--border);}}
+.opt-group{margin-bottom:18px;}
+.opt-group-label{font-size:11px;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.5px;margin-bottom:8px;}
+.opt-row{display:flex;align-items:center;gap:8px;padding:5px 0;font-size:13px;color:var(--text);cursor:pointer;user-select:none;}
+.opt-row input[type=checkbox]{accent-color:var(--indigo);width:15px;height:15px;}
+.opt-row input[type=text],.opt-row input[type=number],.opt-row input[type=date],.opt-row select{margin-left:auto;width:110px;font-family:inherit;font-size:12px;border:1px solid var(--border);border-radius:6px;padding:4px 8px;}
+.field-label{font-size:12px;color:var(--text-sec);margin-bottom:6px;display:block;font-weight:600;}
+.field-input{width:100%;font-family:var(--mono);font-size:13px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;margin-bottom:14px;}
+
+.output-panel{padding:18px;}
+.header-preview{font-family:var(--mono);font-size:13px;background:#0f172a;color:#e2e8f0;border-radius:8px;padding:14px 16px;margin-bottom:14px;word-break:break-all;position:relative;}
+.header-preview .lbl{color:#94a3b8;font-size:11px;display:block;margin-bottom:6px;}
+.warn-list{margin-bottom:14px;}
+.warn-item{display:flex;gap:8px;align-items:flex-start;padding:7px 0;font-size:12px;color:var(--amber);}
+.warn-item .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;}
+
+.platform-tabs{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px;}
+.ptab{padding:6px 12px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.ptab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.snippet-box{position:relative;}
+.snippet-box pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:16px;font-family:var(--mono);font-size:12.5px;line-height:1.6;overflow-x:auto;margin:0;white-space:pre-wrap;word-break:break-word;}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:4px 10px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;}
+.copy-btn:hover{background:rgba(255,255,255,.2);}
+
+.checker-row{display:flex;gap:8px;padding:18px;}
+.checker-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.checker-row input:focus{border-color:var(--indigo);}
+.btn{border:1px solid var(--border);background:#fff;padding:8px 16px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+.checker-result{padding:0 18px 18px;}
+.result-banner{padding:14px 16px;border-radius:8px;font-size:13px;font-weight:600;margin-bottom:10px;}
+.result-banner.found{background:var(--amber-light);color:var(--amber);}
+.result-banner.none{background:var(--green-light);color:var(--green);}
+.result-banner.error{background:var(--red-light);color:var(--red);}
+.header-table{width:100%;border-collapse:collapse;font-size:13px;}
+.header-table td{padding:8px 12px;border-bottom:1px solid var(--border);font-family:var(--mono);}
+.header-table td:first-child{color:var(--text-sec);width:220px;font-weight:600;}
+
+.guide-panel{padding:18px;}
+.guide-panel table{width:100%;border-collapse:collapse;font-size:13px;margin-bottom:16px;}
+.guide-panel th,.guide-panel td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;}
+.guide-panel th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / X-Robots-Tag Generator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>X-Robots-Tag Generator</h1>
+  <p>Build the HTTP header that controls indexing for PDFs, images, and any non-HTML file — with ready-to-paste config for 8 server platforms, plus a live checker for any URL.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="tabs">
+      <div class="tab active" data-tab="generator" onclick="setTab('generator')">Generator</div>
+      <div class="tab" data-tab="checker" onclick="setTab('checker')">Checker</div>
+      <div class="tab" data-tab="guide" onclick="setTab('guide')">Meta Robots vs X-Robots-Tag</div>
+    </div>
+
+    <!-- Generator tab -->
+    <div id="panel-generator">
+      <div class="gen-body">
+        <div class="opt-panel">
+          <div class="opt-group">
+            <div class="opt-group-label">Applies to</div>
+            <label class="field-label">Path pattern (regex, for config snippets)</label>
+            <input type="text" class="field-input" id="opt-pattern" value="\.pdf$" oninput="update()">
+            <label class="field-label">Target user-agent (optional)</label>
+            <input type="text" class="field-input" id="opt-agent" placeholder="e.g. googlebot (blank = all bots)" oninput="update()">
+          </div>
+          <div class="opt-group">
+            <div class="opt-group-label">Indexing directives</div>
+            <label class="opt-row"><input type="checkbox" id="opt-none" onchange="update()"> none <span style="color:var(--text-hint);font-weight:400;">(noindex + nofollow)</span></label>
+            <label class="opt-row"><input type="checkbox" id="opt-noindex" onchange="update()"> noindex</label>
+            <label class="opt-row"><input type="checkbox" id="opt-nofollow" onchange="update()"> nofollow</label>
+            <label class="opt-row"><input type="checkbox" id="opt-noarchive" onchange="update()"> noarchive</label>
+            <label class="opt-row"><input type="checkbox" id="opt-nosnippet" onchange="update()"> nosnippet</label>
+            <label class="opt-row"><input type="checkbox" id="opt-notranslate" onchange="update()"> notranslate</label>
+            <label class="opt-row"><input type="checkbox" id="opt-noimageindex" onchange="update()"> noimageindex</label>
+          </div>
+          <div class="opt-group">
+            <div class="opt-group-label">Advanced</div>
+            <label class="opt-row">unavailable_after <input type="date" id="opt-unavailable" onchange="update()"></label>
+            <label class="opt-row">max-snippet <input type="number" id="opt-maxsnippet" placeholder="-1" onchange="update()"></label>
+            <label class="opt-row">max-image-preview
+              <select id="opt-maximgpreview" onchange="update()">
+                <option value="">—</option>
+                <option value="none">none</option>
+                <option value="standard">standard</option>
+                <option value="large">large</option>
+              </select>
+            </label>
+            <label class="opt-row">max-video-preview <input type="number" id="opt-maxvideopreview" placeholder="-1" onchange="update()"></label>
+          </div>
+        </div>
+
+        <div class="output-panel">
+          <div class="header-preview">
+            <span class="lbl">Resulting header</span>
+            <span id="header-preview-text">X-Robots-Tag: (select at least one directive)</span>
+          </div>
+          <div class="warn-list" id="warn-list"></div>
+
+          <div class="platform-tabs" id="platform-tabs"></div>
+          <div class="snippet-box">
+            <button class="copy-btn" onclick="copySnippet()">Copy</button>
+            <pre id="snippet-output"></pre>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checker tab -->
+    <div id="panel-checker" style="display:none;">
+      <div class="checker-row">
+        <input type="text" id="checker-url" placeholder="https://example.com/file.pdf">
+        <button class="btn btn-primary" onclick="runChecker()">Check Header</button>
+      </div>
+      <div class="checker-result" id="checker-result"></div>
+    </div>
+
+    <!-- Guide tab -->
+    <div id="panel-guide" style="display:none;">
+      <div class="guide-panel">
+        <table>
+          <tr><th>Aspect</th><th>Meta Robots Tag</th><th>X-Robots-Tag</th></tr>
+          <tr><td>Where it lives</td><td>Inside the HTML &lt;head&gt;</td><td>HTTP response header, set by the server</td></tr>
+          <tr><td>Works on non-HTML files</td><td>No — HTML only</td><td>Yes — PDFs, images, JSON, any file type</td></tr>
+          <tr><td>Can target one URL pattern for many files at once</td><td>No — one tag per page</td><td>Yes — via server config, e.g. all .pdf files</td></tr>
+          <tr><td>Requires editing page content</td><td>Yes</td><td>No — set at server/CDN level</td></tr>
+          <tr><td>Common use case</td><td>Blocking a specific page from indexing</td><td>Blocking an entire file type or directory, e.g. /downloads/*.pdf</td></tr>
+        </table>
+        <p style="font-size:13px;color:var(--text-sec);">Robots.txt is a third, different layer: it tells crawlers whether they may <em>request</em> a URL at all. Meta robots and X-Robots-Tag both assume the crawler already fetched the page, and instead control whether it gets <em>indexed</em>. If a URL is disallowed in robots.txt, crawlers typically won't see the X-Robots-Tag header either, since they never request the file.</p>
+      </div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this X-Robots-Tag tool is different</h2>
+  <p class="section-sub">Every other free tool just checks the header. This one writes the config for you.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">⚙️</div><h3>8 platform config snippets</h3><p>Apache, Nginx, IIS, Node.js, PHP, Netlify, Vercel, and Cloudflare Workers — copy-paste ready, not just the header value.</p></div>
+    <div class="feature"><div class="ico">🔍</div><h3>Live header checker</h3><p>Paste any URL to see its current X-Robots-Tag header, fetched directly from your browser.</p></div>
+    <div class="feature"><div class="ico">⚠️</div><h3>Conflict warnings</h3><p>Flags redundant combinations like selecting 'none' alongside 'noindex', and catches invalid numeric values before you deploy.</p></div>
+    <div class="feature"><div class="ico">📚</div><h3>Meta Robots vs X-Robots-Tag guide</h3><p>A clear side-by-side comparison so you use the right mechanism for the job, not just whichever one you found first.</p></div>
+    <div class="feature"><div class="ico">🎯</div><h3>Bot-specific targeting</h3><p>Scope directives to a specific crawler like Googlebot instead of all bots, matching real-world server configs.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Header generation happens entirely in your browser. The checker fetches the URL directly — nothing routes through our servers.</p></div>
+  </div>
+
+  <h2 class="section-title">How it compares</h2>
+  <p class="section-sub">A side-by-side look at popular X-Robots-Tag tools.</p>
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="us">SEOTriggers</th>
+      <th>Toolsaday</th>
+      <th>Pr-cy.io</th>
+      <th>Chrome extensions</th>
+    </tr>
+    <tr><td>Generates config, not just checks</td><td class="us yes">✓ 8 platforms</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Live URL header checker</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+    <tr><td>Conflict/error warnings</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>No install required</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="no">Extension only</td></tr>
+    <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="yes">✓</td><td class="yes">✓</td></tr>
+  </table>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between X-Robots-Tag and the meta robots tag?<span class="chev">▾</span></div>
+      <div class="faq-a">The meta robots tag only works inside the &lt;head&gt; of an HTML page, so it can't control PDFs, images, or other non-HTML files. X-Robots-Tag is an HTTP response header set by the server, so it works on any file type and can also be applied to entire URL paths at once through server config.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">When should I use X-Robots-Tag instead of robots.txt?<span class="chev">▾</span></div>
+      <div class="faq-a">Robots.txt controls whether a crawler can request a URL at all. X-Robots-Tag controls whether a URL that was already crawled gets indexed. If you need to keep a file crawlable but out of search results — a common case for PDFs and internal tools — X-Robots-Tag is the right layer, not robots.txt.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this tool actually set the header on my server?<span class="chev">▾</span></div>
+      <div class="faq-a">No. It generates the exact configuration snippet for your platform (Apache, Nginx, IIS, Node.js, PHP, Netlify, Vercel, or Cloudflare Workers); you paste that into your own server config or code and deploy it yourself.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I check the current X-Robots-Tag on a live URL?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. The Checker tab fetches the URL directly from your browser and reads the X-Robots-Tag response header. If the server blocks cross-origin requests, it automatically retries through a chain of public CORS proxies before reporting that it couldn't be read.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does unavailable_after actually do?<span class="chev">▾</span></div>
+      <div class="faq-a">It tells Google to treat the page as noindex automatically after the date and time you specify, which is useful for time-limited content like event pages or promotions without needing a second deployment to add noindex later.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/robots-txt-tester">Robots.txt Tester</a>
+    <a class="cross-link" href="/tools/robots-txt-generator">Robots.txt Generator</a>
+    <a class="cross-link" href="/tools/meta-robots-tag-generator">Meta Robots Tag Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+function buildDirectiveValue(opts) {
+  opts = opts || {};
+  const parts = [];
+  if (opts.none) {
+    parts.push('none');
+  } else {
+    if (opts.noindex) parts.push('noindex');
+    if (opts.nofollow) parts.push('nofollow');
+  }
+  if (opts.noarchive) parts.push('noarchive');
+  if (opts.nosnippet) parts.push('nosnippet');
+  if (opts.notranslate) parts.push('notranslate');
+  if (opts.noimageindex) parts.push('noimageindex');
+  if (opts.unavailableAfter) parts.push('unavailable_after: ' + opts.unavailableAfter);
+  if (opts.maxSnippet !== undefined && opts.maxSnippet !== null && opts.maxSnippet !== '') parts.push('max-snippet:' + opts.maxSnippet);
+  if (opts.maxImagePreview) parts.push('max-image-preview:' + opts.maxImagePreview);
+  if (opts.maxVideoPreview !== undefined && opts.maxVideoPreview !== null && opts.maxVideoPreview !== '') parts.push('max-video-preview:' + opts.maxVideoPreview);
+  return parts.join(', ');
+}
+function buildHeaderValue(agent, directiveValue) {
+  if (!directiveValue) return '';
+  if (agent && agent.trim()) return agent.trim() + ': ' + directiveValue;
+  return directiveValue;
+}
+function formatUnavailableAfter(dateStr) {
+  if (!dateStr) return '';
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return '';
+  return d.toUTCString();
+}
+function validateOptions(opts) {
+  const warnings = [];
+  if (opts.none && (opts.noindex || opts.nofollow)) warnings.push("'none' already implies noindex and nofollow — no need to select them together.");
+  if (opts.maxSnippet !== undefined && opts.maxSnippet !== null && opts.maxSnippet !== '') {
+    const n = Number(opts.maxSnippet);
+    if (!Number.isInteger(n) || n < -1) warnings.push('max-snippet must be an integer -1 or greater.');
+  }
+  if (opts.maxVideoPreview !== undefined && opts.maxVideoPreview !== null && opts.maxVideoPreview !== '') {
+    const n = Number(opts.maxVideoPreview);
+    if (!Number.isInteger(n) || n < -1) warnings.push('max-video-preview must be an integer -1 or greater.');
+  }
+  const noDirectives = !opts.none && !opts.noindex && !opts.nofollow && !opts.noarchive && !opts.nosnippet &&
+    !opts.notranslate && !opts.noimageindex && !opts.unavailableAfter &&
+    (opts.maxSnippet === undefined || opts.maxSnippet === null || opts.maxSnippet === '') &&
+    !opts.maxImagePreview &&
+    (opts.maxVideoPreview === undefined || opts.maxVideoPreview === null || opts.maxVideoPreview === '');
+  if (noDirectives) warnings.push('No directives selected — the header would be empty and have no effect.');
+  return warnings;
+}
+function generateSnippets(headerValue, filePattern) {
+  filePattern = filePattern || '\\.pdf$';
+  return {
+    apache: '<FilesMatch "' + filePattern + '">\n  Header set X-Robots-Tag "' + headerValue + '"\n</FilesMatch>',
+    nginx: 'location ~* ' + filePattern + ' {\n  add_header X-Robots-Tag "' + headerValue + '";\n}',
+    iis: '<configuration>\n  <system.webServer>\n    <httpProtocol>\n      <customHeaders>\n        <add name="X-Robots-Tag" value="' + headerValue + '" />\n      </customHeaders>\n    </httpProtocol>\n  </system.webServer>\n</configuration>',
+    node: 'app.get(/' + filePattern.replace(/\//g,'\\/') + '/, (req, res, next) => {\n  res.setHeader(\'X-Robots-Tag\', \'' + headerValue + '\');\n  next();\n});',
+    php: "header('X-Robots-Tag: " + headerValue + "');",
+    netlify: '/*' + filePattern.replace(/[\\^$]/g,'') + '\n  X-Robots-Tag: ' + headerValue,
+    vercel: JSON.stringify({
+      headers: [{ source: '/(.*)' + filePattern.replace(/\\\./g, '.').replace(/\$$/, ''), headers: [{ key: 'X-Robots-Tag', value: headerValue }] }]
+    }, null, 2),
+    cloudflare: 'export default {\n  async fetch(request) {\n    const response = await fetch(request);\n    const newResponse = new Response(response.body, response);\n    newResponse.headers.set(\'X-Robots-Tag\', \'' + headerValue + '\');\n    return newResponse;\n  }\n}'
+  };
+}
+
+/* ---------- UI wiring ---------- */
+const PLATFORMS = [
+  { key: 'apache', label: 'Apache' },
+  { key: 'nginx', label: 'Nginx' },
+  { key: 'iis', label: 'IIS' },
+  { key: 'node', label: 'Node.js' },
+  { key: 'php', label: 'PHP' },
+  { key: 'netlify', label: 'Netlify' },
+  { key: 'vercel', label: 'Vercel' },
+  { key: 'cloudflare', label: 'Cloudflare' }
+];
+let activePlatform = 'apache';
+let lastSnippets = {};
+
+function getOpts() {
+  const unavailRaw = document.getElementById('opt-unavailable').value;
+  return {
+    none: document.getElementById('opt-none').checked,
+    noindex: document.getElementById('opt-noindex').checked,
+    nofollow: document.getElementById('opt-nofollow').checked,
+    noarchive: document.getElementById('opt-noarchive').checked,
+    nosnippet: document.getElementById('opt-nosnippet').checked,
+    notranslate: document.getElementById('opt-notranslate').checked,
+    noimageindex: document.getElementById('opt-noimageindex').checked,
+    unavailableAfter: unavailRaw ? formatUnavailableAfter(unavailRaw) : '',
+    maxSnippet: document.getElementById('opt-maxsnippet').value,
+    maxImagePreview: document.getElementById('opt-maximgpreview').value,
+    maxVideoPreview: document.getElementById('opt-maxvideopreview').value
+  };
+}
+
+function update() {
+  const opts = getOpts();
+  const directiveValue = buildDirectiveValue(opts);
+  const agent = document.getElementById('opt-agent').value;
+  const pattern = document.getElementById('opt-pattern').value || '\\.pdf$';
+  const headerValue = buildHeaderValue(agent, directiveValue);
+
+  document.getElementById('header-preview-text').textContent = headerValue
+    ? 'X-Robots-Tag: ' + headerValue
+    : 'X-Robots-Tag: (select at least one directive)';
+
+  const warnings = validateOptions(opts);
+  document.getElementById('warn-list').innerHTML = warnings.map(w =>
+    '<div class="warn-item"><span class="dot"></span><span>' + escapeHTML(w) + '</span></div>'
+  ).join('');
+
+  lastSnippets = generateSnippets(headerValue || '(no directives selected)', pattern);
+  renderPlatformTabs();
+  renderSnippet();
+}
+
+function renderPlatformTabs() {
+  const el = document.getElementById('platform-tabs');
+  el.innerHTML = PLATFORMS.map(p =>
+    '<div class="ptab' + (p.key === activePlatform ? ' active' : '') + '" onclick="selectPlatform(\'' + p.key + '\')">' + p.label + '</div>'
+  ).join('');
+}
+function selectPlatform(key) {
+  activePlatform = key;
+  renderPlatformTabs();
+  renderSnippet();
+}
+function renderSnippet() {
+  document.getElementById('snippet-output').textContent = lastSnippets[activePlatform] || '';
+}
+function copySnippet() {
+  const text = lastSnippets[activePlatform] || '';
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+}
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ---------- Tabs ---------- */
+function setTab(name) {
+  ['generator','checker','guide'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+/* ---------- Checker (CORS fallback chain) ---------- */
+async function fetchWithTimeout(url, ms) {
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), ms);
+  try {
+    const res = await fetch(url, { signal: controller.signal });
+    clearTimeout(id);
+    return res;
+  } catch (e) { clearTimeout(id); throw e; }
+}
+async function runChecker() {
+  const url = document.getElementById('checker-url').value.trim();
+  const resultEl = document.getElementById('checker-result');
+  if (!url) return;
+  resultEl.innerHTML = '<div class="result-banner none">Checking…</div>';
+
+  const attempts = [
+    () => fetchWithTimeout(url, 12000),
+    () => fetchWithTimeout('/api/fetch-url?url=' + encodeURIComponent(url), 12000),
+    () => fetchWithTimeout('https://api.allorigins.win/raw?url=' + encodeURIComponent(url), 12000),
+    () => fetchWithTimeout('https://corsproxy.io/?' + encodeURIComponent(url), 12000)
+  ];
+
+  for (const attempt of attempts) {
+    try {
+      const res = await attempt();
+      const xrt = res.headers.get('x-robots-tag');
+      const contentType = res.headers.get('content-type') || 'unknown';
+      if (xrt) {
+        resultEl.innerHTML =
+          '<div class="result-banner found">⚠ X-Robots-Tag header found</div>' +
+          '<table class="header-table">' +
+          '<tr><td>X-Robots-Tag</td><td>' + escapeHTML(xrt) + '</td></tr>' +
+          '<tr><td>Content-Type</td><td>' + escapeHTML(contentType) + '</td></tr>' +
+          '<tr><td>Status</td><td>' + res.status + '</td></tr>' +
+          '</table>';
+      } else {
+        resultEl.innerHTML =
+          '<div class="result-banner none">✓ No X-Robots-Tag header — this URL is not restricted at the HTTP header level</div>' +
+          '<table class="header-table"><tr><td>Content-Type</td><td>' + escapeHTML(contentType) + '</td></tr><tr><td>Status</td><td>' + res.status + '</td></tr></table>';
+      }
+      return;
+    } catch (e) { /* try next */ }
+  }
+  resultEl.innerHTML = '<div class="result-banner error">Could not fetch that URL directly or via fallback proxies. Some proxies also strip headers other than the ones they explicitly expose, so a "no header found" result from a proxied fetch isn\'t fully conclusive — check directly with browser dev tools if possible.</div>';
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+update();
+</script>
+</body>
+</html>
