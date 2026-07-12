@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hreflang Generator & Validator - Free International SEO Tool | SEOTriggers</title>
+<meta name="description" content="Free hreflang tag generator and validator for international SEO. Generates HTML link tags, sitemap format, and HTTP headers, catches common mistakes like en-UK vs en-GB, and checks reciprocal linking across live pages. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/hreflang-generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hreflang Generator & Validator - Free International SEO Tool">
+<meta property="og:description" content="Generate spec-correct hreflang tags and validate reciprocal linking across your international pages — no uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/hreflang-generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Hreflang Generator & Validator - Free International SEO Tool">
+<meta name="twitter:description" content="Generate spec-correct hreflang tags and validate reciprocal linking across your international pages.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Hreflang Generator & Validator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free hreflang tag generator and validator for international SEO, producing HTML link tags, sitemap XML, and HTTP headers, with common-mistake detection and reciprocal-link checking across live pages.",
+  "url": "https://seotriggers.com/tools/hreflang-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Hreflang Generator & Validator","item":"https://seotriggers.com/tools/hreflang-generator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is hreflang and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Hreflang tells search engines which language and regional version of a page to show a searcher, so an English-speaking visitor in the US and one in the UK can be served different but equivalent pages. Getting it wrong can show the wrong-language page in search results or cause search engines to ignore the annotation entirely."}},
+    {"@type":"Question","name":"What is reciprocal linking in hreflang and why is it required?","acceptedAnswer":{"@type":"Answer","text":"If Page A declares an hreflang link to Page B, Page B must also declare a link back to Page A. Google explicitly ignores hreflang annotations that aren't confirmed in both directions, so a one-way link has no effect at all."}},
+    {"@type":"Question","name":"What is x-default and do I need it?","acceptedAnswer":{"@type":"Answer","text":"x-default marks the page to show visitors whose language or region doesn't match any of your listed alternates, such as a language selector page or your default locale. It's optional but recommended whenever you have more than one language version."}},
+    {"@type":"Question","name":"Why does the tool flag en-UK as an error?","acceptedAnswer":{"@type":"Answer","text":"Hreflang region codes follow ISO 3166-1, where the United Kingdom's code is GB, not UK. en-UK is a common but incorrect substitution that search engines won't recognize as intended."}},
+    {"@type":"Question","name":"Can hreflang be implemented outside of HTML head tags?","acceptedAnswer":{"@type":"Answer","text":"Yes. Google also supports hreflang annotations inside an XML sitemap using the xhtml:link element, or as an HTTP Link header for non-HTML files like PDFs — useful when you can't edit page markup directly."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.gen-body{padding:18px;}
+.entry-row{display:grid;grid-template-columns:140px 1fr auto;gap:8px;margin-bottom:8px;align-items:center;}
+@media (max-width:640px){.entry-row{grid-template-columns:1fr;}}
+.entry-row input{font-family:var(--mono);font-size:13px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;}
+.remove-btn{border:1px solid var(--border);background:#fff;color:var(--red);padding:6px 10px;border-radius:6px;font-size:12px;cursor:pointer;font-family:inherit;}
+.small-btn{border:1px solid var(--border);background:#fff;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;font-family:inherit;margin-top:6px;}
+.small-btn:hover{background:var(--indigo-light);color:var(--indigo-dark);}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.output-tabs{display:flex;gap:6px;padding:14px 18px 0;}
+.otab{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.otab.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+.snippet-box{position:relative;margin:14px 18px 0;}
+.snippet-box pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:16px;font-family:var(--mono);font-size:12.5px;line-height:1.6;overflow-x:auto;margin:0;white-space:pre-wrap;word-break:break-word;min-height:80px;}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:4px 10px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;}
+
+.warn-list{padding:14px 18px 18px;}
+.warn-item{display:flex;gap:8px;align-items:flex-start;padding:7px 0;font-size:13px;border-bottom:1px solid var(--border);}
+.warn-item:last-child{border-bottom:none;}
+.warn-item .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.warn-item.error{color:var(--red);} .warn-item.error .dot{background:var(--red);}
+.warn-item.warning{color:var(--amber);} .warn-item.warning .dot{background:var(--amber);}
+.warn-item.info{color:var(--blue);} .warn-item.info .dot{background:var(--blue);}
+
+.validate-panel{padding:18px;}
+.url-list-input{width:100%;min-height:100px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--border);border-radius:8px;padding:12px;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Hreflang Generator & Validator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Hreflang Generator & Validator</h1>
+  <p>Generate spec-correct hreflang tags in three formats, catch common mistakes like en-UK vs en-GB, and validate reciprocal linking across your live international pages.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="tabs">
+      <div class="tab active" data-tab="generate" onclick="setTab('generate')">Generate</div>
+      <div class="tab" data-tab="validate" onclick="setTab('validate')">Validate Live Pages</div>
+    </div>
+
+    <!-- Generate tab -->
+    <div id="panel-generate">
+      <div class="gen-body">
+        <div id="entries-container"></div>
+        <button class="small-btn" onclick="addEntry()">+ Add language/region</button>
+      </div>
+
+      <div class="output-tabs">
+        <div class="otab active" data-fmt="html" onclick="setFormat('html')">HTML &lt;link&gt; tags</div>
+        <div class="otab" data-fmt="sitemap" onclick="setFormat('sitemap')">Sitemap XML</div>
+        <div class="otab" data-fmt="header" onclick="setFormat('header')">HTTP Header</div>
+      </div>
+      <div class="snippet-box">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="output-text"></pre>
+      </div>
+      <div class="warn-list" id="warn-list"></div>
+    </div>
+
+    <!-- Validate tab -->
+    <div id="panel-validate" style="display:none;">
+      <div class="validate-panel">
+        <label style="font-size:12px;font-weight:600;color:var(--text-sec);display:block;margin-bottom:6px;">Paste one URL per line (2 or more, to check reciprocal linking)</label>
+        <textarea class="url-list-input" id="validate-urls" placeholder="https://example.com/en/&#10;https://example.com/fr/&#10;https://example.com/de/"></textarea>
+        <button class="small-btn btn-primary" style="color:#fff;" onclick="runValidateLive()">Fetch & Validate</button>
+      </div>
+      <div class="warn-list" id="validate-results"></div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this hreflang tool is different</h2>
+  <p class="section-sub">Most generators just fill a template. This one catches the mistakes that actually break hreflang in production.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🚩</div><h3>Common mistake detection</h3><p>Flags en-UK vs en-GB, reversed language-region order, and country codes used as language codes.</p></div>
+    <div class="feature"><div class="ico">🔗</div><h3>Reciprocal link checking</h3><p>Fetches your live pages and confirms hreflang links point back to each other — the single most common reason hreflang gets silently ignored.</p></div>
+    <div class="feature"><div class="ico">📄</div><h3>3 output formats</h3><p>HTML &lt;link&gt; tags, sitemap XML (xhtml:link), and HTTP Link headers for non-HTML files — generate once, use wherever you need it.</p></div>
+    <div class="feature"><div class="ico">⭐</div><h3>x-default guidance</h3><p>Reminds you to set a fallback page for visitors whose locale doesn't match any listed alternate.</p></div>
+    <div class="feature"><div class="ico">🧩</div><h3>Duplicate & conflict detection</h3><p>Catches the same hreflang code accidentally pointing to two different URLs.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side generation</h3><p>Building tags never leaves your browser. Live-page validation fetches your own URLs directly or via a CORS proxy chain.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is hreflang and why does it matter?<span class="chev">▾</span></div>
+      <div class="faq-a">Hreflang tells search engines which language and regional version of a page to show a searcher, so an English-speaking visitor in the US and one in the UK can be served different but equivalent pages. Getting it wrong can show the wrong-language page in search results or cause search engines to ignore the annotation entirely.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is reciprocal linking in hreflang and why is it required?<span class="chev">▾</span></div>
+      <div class="faq-a">If Page A declares an hreflang link to Page B, Page B must also declare a link back to Page A. Google explicitly ignores hreflang annotations that aren't confirmed in both directions, so a one-way link has no effect at all.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is x-default and do I need it?<span class="chev">▾</span></div>
+      <div class="faq-a">x-default marks the page to show visitors whose language or region doesn't match any of your listed alternates, such as a language selector page or your default locale. It's optional but recommended whenever you have more than one language version.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does the tool flag en-UK as an error?<span class="chev">▾</span></div>
+      <div class="faq-a">Hreflang region codes follow ISO 3166-1, where the United Kingdom's code is GB, not UK. en-UK is a common but incorrect substitution that search engines won't recognize as intended.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can hreflang be implemented outside of HTML head tags?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. Google also supports hreflang annotations inside an XML sitemap using the xhtml:link element, or as an HTTP Link header for non-HTML files like PDFs — useful when you can't edit page markup directly.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/sitemap-generator">XML Sitemap Generator</a>
+    <a class="cross-link" href="/tools/schema-markup-validator">Schema Markup Validator</a>
+    <a class="cross-link" href="/tools/meta-tag-generator">Meta Tag Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+const LANGUAGE_CODES = new Set(['en','es','fr','de','it','pt','nl','ru','zh','ja','ko','ar','hi','bn','pa','tr','vi',
+  'th','id','ms','fa','ur','pl','uk','ro','el','sv','fi','da','no','cs','hu','he','sk','bg','hr','sr','sl','lt','lv',
+  'et','ga','sq','mk','az','ka','hy','uz','kk','mn','ne','si','km','lo','my','am','sw','zu','af','is','mt','ca','eu',
+  'gl','cy','tl','so','ha','yo','ig','xh','zu']);
+const REGION_CODES = new Set(['US','GB','CA','AU','IN','DE','FR','ES','IT','NL','BR','PT','RU','CN','JP','KR','MX',
+  'AR','SA','AE','EG','TR','PL','SE','NO','DK','FI','CH','AT','BE','IE','NZ','ZA','SG','MY','TH','VN','ID','PH','PK',
+  'BD','NG','KE','GR','CZ','HU','RO','BG','HR','UA','IL','CO','CL','PE','VE','EC','UY','PY','BO','CR','PA','DO','GT',
+  'HN','SV','NI','CY','MT','LU','IS','LI']);
+const KNOWN_MISTAKES = {
+  'en-uk': "The correct ISO 3166-1 region code for the United Kingdom is GB, not UK. Use en-GB.",
+  'en-eu': "EU is not a valid ISO 3166-1 country code. Use a specific country like en-GB, en-DE, or en-FR.",
+  'jp': "'jp' is a country code, not a language code. The ISO 639-1 language code for Japanese is 'ja'.",
+  'cn': "'cn' is a country code, not a language code. Use 'zh' for Chinese, optionally with a region like zh-CN.",
+  'uk': "'uk' is ambiguous here: as a language code it means Ukrainian; the country is GB. Use en-GB for English (UK) or uk for Ukrainian language."
+};
+
+function analyzeHreflangCode(code) {
+  const issues = [];
+  if (!code || !code.trim()) { issues.push({ level: 'error', message: 'hreflang value is empty.' }); return issues; }
+  const trimmed = code.trim();
+  const lower = trimmed.toLowerCase();
+  if (lower === 'x-default') return issues;
+  if (KNOWN_MISTAKES[lower]) { issues.push({ level: 'error', message: '"' + trimmed + '": ' + KNOWN_MISTAKES[lower] }); return issues; }
+  const parts = trimmed.split('-');
+  if (parts.length > 2) issues.push({ level: 'warning', message: '"' + trimmed + '" has more than 2 segments — hreflang normally uses language or language-REGION only.' });
+  const lang = parts[0];
+  if (!/^[a-zA-Z]{2,3}$/.test(lang)) {
+    issues.push({ level: 'error', message: '"' + trimmed + '": language subtag "' + lang + '" should be 2-3 letters (ISO 639-1/2).' });
+  } else if (!LANGUAGE_CODES.has(lang.toLowerCase())) {
+    issues.push({ level: 'info', message: '"' + trimmed + '": language subtag "' + lang + '" is not in our common list — verify it against ISO 639-1.' });
+  }
+  if (parts.length === 2) {
+    const region = parts[1];
+    if (/^[a-zA-Z]{2}$/.test(lang) && lang === lang.toUpperCase() && /^[a-zA-Z]{2}$/.test(region) && region === region.toLowerCase()) {
+      issues.push({ level: 'error', message: '"' + trimmed + '" looks reversed — hreflang order is language-REGION (e.g. en-US), not REGION-language.' });
+    } else if (!/^[a-zA-Z]{2}$/.test(region)) {
+      issues.push({ level: 'error', message: '"' + trimmed + '": region subtag "' + region + '" should be a 2-letter ISO 3166-1 country code.' });
+    } else if (!REGION_CODES.has(region.toUpperCase())) {
+      issues.push({ level: 'info', message: '"' + trimmed + '": region subtag "' + region + '" is not in our common list — verify it against ISO 3166-1.' });
+    }
+  }
+  return issues;
+}
+
+function validateEntrySet(entries) {
+  const issues = [];
+  const seenCodes = new Map();
+  let hasXDefault = false;
+  entries.forEach((entry, i) => {
+    analyzeHreflangCode(entry.hreflang).forEach(ci => issues.push(Object.assign({}, ci, { entryIndex: i })));
+    if (!entry.url || !entry.url.trim()) issues.push({ level: 'error', message: 'Entry ' + (i + 1) + ' is missing a URL.', entryIndex: i });
+    else if (!/^https?:\/\//i.test(entry.url.trim())) issues.push({ level: 'error', message: 'Entry ' + (i + 1) + ' URL should be absolute (start with http:// or https://): ' + entry.url, entryIndex: i });
+    const lowerCode = (entry.hreflang || '').trim().toLowerCase();
+    if (lowerCode === 'x-default') hasXDefault = true;
+    if (lowerCode) {
+      if (seenCodes.has(lowerCode) && seenCodes.get(lowerCode) !== entry.url) issues.push({ level: 'error', message: 'Duplicate hreflang "' + entry.hreflang + '" used for two different URLs.', entryIndex: i });
+      seenCodes.set(lowerCode, entry.url);
+    }
+  });
+  if (!hasXDefault) issues.push({ level: 'warning', message: 'No x-default entry — recommended as a fallback for languages/regions not explicitly listed.' });
+  if (entries.length < 2) issues.push({ level: 'warning', message: 'Hreflang is only useful with 2 or more language/region versions of a page.' });
+  return issues;
+}
+
+function buildHtmlTags(entries) {
+  return entries.filter(e => e.hreflang && e.url).map(e => '<link rel="alternate" hreflang="' + e.hreflang.trim() + '" href="' + e.url.trim() + '" />').join('\n');
+}
+function buildSitemapXml(entries) {
+  return entries.filter(e => e.hreflang && e.url).map(e => '    <xhtml:link rel="alternate" hreflang="' + e.hreflang.trim() + '" href="' + escapeXmlAttr(e.url.trim()) + '" />').join('\n');
+}
+function buildHttpHeader(entries) {
+  return entries.filter(e => e.hreflang && e.url).map(e => '<' + e.url.trim() + '>; rel="alternate"; hreflang="' + e.hreflang.trim() + '"').join(',\n');
+}
+function escapeXmlAttr(s) { return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+
+function extractHreflangFromHtml(html) {
+  const entries = [];
+  const re = /<link\b[^>]*rel\s*=\s*["']alternate["'][^>]*>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const tag = m[0];
+    const hreflangMatch = tag.match(/hreflang\s*=\s*["']([^"']*)["']/i);
+    const hrefMatch = tag.match(/href\s*=\s*["']([^"']*)["']/i);
+    if (hreflangMatch && hrefMatch) entries.push({ hreflang: hreflangMatch[1], url: hrefMatch[1] });
+  }
+  return entries;
+}
+
+function checkReciprocity(pages) {
+  const issues = [];
+  const byUrl = new Map(pages.map(p => [normalizeUrl(p.url), p]));
+  pages.forEach(page => {
+    page.entries.forEach(entry => {
+      if ((entry.hreflang || '').toLowerCase() === 'x-default') return;
+      const targetUrl = normalizeUrl(entry.url);
+      if (targetUrl === normalizeUrl(page.url)) return;
+      const targetPage = byUrl.get(targetUrl);
+      if (!targetPage) { issues.push({ level: 'info', message: page.url + ' links to ' + entry.url + ' (hreflang="' + entry.hreflang + '") which was not included in this check, so reciprocity could not be verified.' }); return; }
+      const hasReciprocal = targetPage.entries.some(back => normalizeUrl(back.url) === normalizeUrl(page.url));
+      if (!hasReciprocal) issues.push({ level: 'error', message: page.url + ' links to ' + entry.url + ', but ' + entry.url + ' does not link back to ' + page.url + '. Hreflang requires reciprocal (bidirectional) links.' });
+    });
+  });
+  return issues;
+}
+function normalizeUrl(u) { return (u || '').trim().replace(/\/$/, ''); }
+
+/* ---------- UI wiring ---------- */
+let entries = [
+  { hreflang: 'en', url: '' },
+  { hreflang: 'x-default', url: '' }
+];
+let activeFormat = 'html';
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+
+function renderEntries() {
+  const container = document.getElementById('entries-container');
+  container.innerHTML = entries.map((e, i) =>
+    '<div class="entry-row">' +
+      '<input type="text" placeholder="en-US" value="' + escapeHTML(e.hreflang) + '" oninput="updateEntry(' + i + ',\'hreflang\',this.value)">' +
+      '<input type="text" placeholder="https://example.com/en-us/" value="' + escapeHTML(e.url) + '" oninput="updateEntry(' + i + ',\'url\',this.value)">' +
+      '<button class="remove-btn" onclick="removeEntry(' + i + ')">✕</button>' +
+    '</div>'
+  ).join('');
+}
+function addEntry() { entries.push({ hreflang: '', url: '' }); renderEntries(); render(); }
+function removeEntry(i) { entries.splice(i, 1); renderEntries(); render(); }
+function updateEntry(i, field, val) { entries[i][field] = val; render(); }
+
+function setFormat(fmt) {
+  activeFormat = fmt;
+  document.querySelectorAll('.otab').forEach(el => el.classList.toggle('active', el.dataset.fmt === fmt));
+  render();
+}
+
+function render() {
+  let output = '';
+  if (activeFormat === 'html') output = buildHtmlTags(entries);
+  else if (activeFormat === 'sitemap') output = buildSitemapXml(entries);
+  else if (activeFormat === 'header') output = buildHttpHeader(entries);
+  document.getElementById('output-text').textContent = output || '(add at least one language and URL)';
+
+  const issues = validateEntrySet(entries);
+  document.getElementById('warn-list').innerHTML = issues.map(w =>
+    '<div class="warn-item ' + w.level + '"><span class="dot"></span><span>' + escapeHTML(w.message) + '</span></div>'
+  ).join('');
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+}
+
+function setTab(name) {
+  ['generate','validate'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+async function fetchHtml(url) {
+  const attempts = [
+    () => fetch(url).then(r => r.text()),
+    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => r.json()).then(d => d.text || ''),
+    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => r.text())
+  ];
+  for (const attempt of attempts) {
+    try { return await attempt(); } catch (e) { /* try next */ }
+  }
+  throw new Error('Could not fetch this URL directly or via fallback proxies.');
+}
+
+async function runValidateLive() {
+  const raw = document.getElementById('validate-urls').value;
+  const urls = raw.split('\n').map(u => u.trim()).filter(Boolean);
+  const resultsEl = document.getElementById('validate-results');
+  if (urls.length < 2) {
+    resultsEl.innerHTML = '<div class="warn-item warning"><span class="dot"></span><span>Enter at least 2 URLs to check reciprocal linking.</span></div>';
+    return;
+  }
+  resultsEl.innerHTML = '<div class="warn-item info"><span class="dot"></span><span>Fetching ' + urls.length + ' pages…</span></div>';
+
+  const pages = [];
+  const fetchIssues = [];
+  for (const url of urls) {
+    try {
+      const html = await fetchHtml(url);
+      const pageEntries = extractHreflangFromHtml(html);
+      pages.push({ url, entries: pageEntries });
+    } catch (e) {
+      fetchIssues.push({ level: 'error', message: 'Could not fetch ' + url + ': ' + e.message });
+    }
+  }
+
+  const reciprocityIssues = checkReciprocity(pages);
+  const codeIssues = [];
+  pages.forEach(p => {
+    p.entries.forEach(e => {
+      analyzeHreflangCode(e.hreflang).forEach(ci => codeIssues.push(Object.assign({}, ci, { message: p.url + ': ' + ci.message })));
+    });
+  });
+
+  const allIssues = [...fetchIssues, ...reciprocityIssues, ...codeIssues];
+  if (allIssues.length === 0) {
+    resultsEl.innerHTML = '<div class="warn-item info" style="color:var(--green);"><span class="dot" style="background:var(--green);"></span><span>✓ All hreflang links across these pages are reciprocal and well-formed.</span></div>';
+  } else {
+    resultsEl.innerHTML = allIssues.map(w => '<div class="warn-item ' + w.level + '"><span class="dot"></span><span>' + escapeHTML(w.message) + '</span></div>').join('');
+  }
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+renderEntries();
+render();
+</script>
+</body>
+</html>
