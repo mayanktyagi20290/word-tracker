@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Broken Link Checker - Free Dead Link & 404 Finder | SEOTriggers</title>
+<meta name="description" content="Free broken link checker that scans any page for dead links, 404s, and redirects with real server-checked status codes. See internal vs external links, anchor text, and a summary you can act on. 100% server-verified.">
+<link rel="canonical" href="https://seotriggers.com/tools/broken-link-checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Broken Link Checker - Free Dead Link & 404 Finder">
+<meta property="og:description" content="Scan any page for broken links with real status codes, internal vs external breakdown, and anchor text — no uploads, no backend to manage.">
+<meta property="og:url" content="https://seotriggers.com/tools/broken-link-checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Broken Link Checker - Free Dead Link & 404 Finder">
+<meta name="twitter:description" content="Scan any page for broken links with real status codes, internal vs external breakdown, and anchor text.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Broken Link Checker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free broken link checker scanning a page for dead links and 404s with real server-checked status codes, internal vs external breakdown, and anchor text.",
+  "url": "https://seotriggers.com/tools/broken-link-checker"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Broken Link Checker","item":"https://seotriggers.com/tools/broken-link-checker"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Why does this tool check links server-side instead of in my browser?","acceptedAnswer":{"@type":"Answer","text":"Browsers block reading the real status code of cross-origin requests for security reasons, so a purely client-side checker could only tell you whether a request completed, not whether it returned a 200 or a 404. Checking from the server avoids that restriction and gives you the real status code for every link."}},
+    {"@type":"Question","name":"How many links does this tool check per page?","acceptedAnswer":{"@type":"Answer","text":"Up to 50 unique links per scan, to keep the check fast and within reasonable server limits. If a page has more, the tool tells you it truncated the list and checked the first 50 found."}},
+    {"@type":"Question","name":"What counts as a broken link?","acceptedAnswer":{"@type":"Answer","text":"Any link that returns a 4xx or 5xx status code, or one that fails to respond at all (timeout, DNS failure, connection refused). Redirects (3xx) are shown separately since they aren't necessarily broken, just worth reviewing."}},
+    {"@type":"Question","name":"Does this check internal and external links the same way?","acceptedAnswer":{"@type":"Answer","text":"Yes, every link gets the same real status check regardless of whether it points back to your own site or somewhere else, and the results clearly label which is which."}},
+    {"@type":"Question","name":"Is the page I check stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The page is fetched, its links are checked, and the results are returned to your browser — nothing about the URL or its links is stored after the request completes."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.check-row{display:flex;gap:8px;padding:18px;}
+.check-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.check-row input:focus{border-color:var(--indigo);}
+.btn{border:1px solid var(--border);background:#fff;padding:10px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.status-banner{margin:0 18px;padding:14px 16px;border-radius:8px;font-size:14px;font-weight:700;display:none;}
+.status-banner.ok{background:var(--green-light);color:var(--green);}
+.status-banner.issues{background:var(--red-light);color:var(--red);}
+.status-banner.idle{background:var(--bg);color:var(--text-hint);font-weight:600;}
+
+.summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:14px 18px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+@media (max-width:700px){.summary-bar{grid-template-columns:repeat(2,1fr);}}
+.summary-stat{background:#fff;padding:14px 16px;}
+.summary-stat .l{font-size:11px;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.summary-stat .v{font-size:22px;font-weight:800;}
+.summary-stat .v.ok{color:var(--green);} .summary-stat .v.warn{color:var(--amber);} .summary-stat .v.bad{color:var(--red);}
+
+.filter-row{display:flex;gap:6px;padding:0 18px 12px;flex-wrap:wrap;}
+.filter-chip{padding:6px 14px;border-radius:999px;border:1px solid var(--border);background:#fff;font-size:12px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.filter-chip.active{background:var(--indigo);color:#fff;border-color:var(--indigo);}
+
+.link-table-wrap{padding:0 18px 18px;overflow-x:auto;}
+.link-table{width:100%;border-collapse:collapse;font-size:13px;}
+.link-table th,.link-table td{padding:9px 12px;border-bottom:1px solid var(--border);text-align:left;}
+.link-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.link-table td.url-cell{font-family:var(--mono);font-size:12px;word-break:break-all;max-width:320px;}
+.status-pill{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;white-space:nowrap;}
+.status-pill.ok{background:var(--green-light);color:var(--green);}
+.status-pill.redirect{background:var(--blue-light);color:var(--blue);}
+.status-pill.broken{background:var(--red-light);color:var(--red);}
+.scope-badge{font-size:10px;font-weight:700;padding:1px 7px;border-radius:999px;background:var(--bg);color:var(--text-hint);}
+.note-row{padding:0 18px 18px;font-size:12px;color:var(--text-hint);}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Broken Link Checker
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Broken Link Checker</h1>
+  <p>Scan any page for dead links and redirects with real server-checked status codes — internal and external, with anchor text, so you know exactly what to fix.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="check-row">
+      <input type="text" id="url-input" placeholder="https://example.com/page">
+      <button class="btn btn-primary" onclick="runCheck()">Scan for Broken Links</button>
+    </div>
+
+    <div class="status-banner idle" id="status-banner" style="display:block;">Enter a URL and scan to check its links.</div>
+    <div class="summary-bar" id="summary-bar" style="display:none;">
+      <div class="summary-stat"><div class="l">Links found</div><div class="v" id="stat-total">0</div></div>
+      <div class="summary-stat"><div class="l">OK</div><div class="v ok" id="stat-ok">0</div></div>
+      <div class="summary-stat"><div class="l">Redirects</div><div class="v warn" id="stat-redirects">0</div></div>
+      <div class="summary-stat"><div class="l">Broken</div><div class="v bad" id="stat-broken">0</div></div>
+    </div>
+
+    <div class="filter-row" id="filter-row" style="display:none;">
+      <div class="filter-chip active" data-filter="all" onclick="setFilter('all')">All</div>
+      <div class="filter-chip" data-filter="broken" onclick="setFilter('broken')">Broken only</div>
+      <div class="filter-chip" data-filter="redirect" onclick="setFilter('redirect')">Redirects only</div>
+      <div class="filter-chip" data-filter="internal" onclick="setFilter('internal')">Internal only</div>
+      <div class="filter-chip" data-filter="external" onclick="setFilter('external')">External only</div>
+    </div>
+
+    <div class="link-table-wrap">
+      <table class="link-table" id="link-table" style="display:none;">
+        <thead><tr><th>Status</th><th>Scope</th><th>URL</th><th>Anchor text</th></tr></thead>
+        <tbody id="link-table-body"></tbody>
+      </table>
+    </div>
+    <div class="note-row" id="truncate-note" style="display:none;"></div>
+  </div>
+
+  <h2 class="section-title">Why this broken link checker is different</h2>
+  <p class="section-sub">Most free checkers guess at status from your browser. This one gets the real answer from the server.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🖥️</div><h3>Real server-checked status codes</h3><p>Checks run from the server side, avoiding the browser's cross-origin restrictions that hide the real status of external links.</p></div>
+    <div class="feature"><div class="ico">🔀</div><h3>Redirects shown separately</h3><p>3xx responses are grouped apart from true 4xx/5xx breaks, since a redirect usually isn't broken — just worth reviewing.</p></div>
+    <div class="feature"><div class="ico">🏷️</div><h3>Anchor text included</h3><p>See the visible link text next to each URL, so you know exactly which piece of content to fix.</p></div>
+    <div class="feature"><div class="ico">🌐</div><h3>Internal vs external breakdown</h3><p>Filter to just your own site's links or just outbound links to prioritize what matters most.</p></div>
+    <div class="feature"><div class="ico">⚡</div><h3>Checks up to 50 unique links per scan</h3><p>Deduplicates repeated links first, so a page with the same link in the header and footer isn't checked twice.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>Nothing stored</h3><p>The page and its links are checked and discarded — no history, no database of scanned sites.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why does this tool check links server-side instead of in my browser?<span class="chev">▾</span></div>
+      <div class="faq-a">Browsers block reading the real status code of cross-origin requests for security reasons, so a purely client-side checker could only tell you whether a request completed, not whether it returned a 200 or a 404. Checking from the server avoids that restriction and gives you the real status code for every link.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">How many links does this tool check per page?<span class="chev">▾</span></div>
+      <div class="faq-a">Up to 50 unique links per scan, to keep the check fast and within reasonable server limits. If a page has more, the tool tells you it truncated the list and checked the first 50 found.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What counts as a broken link?<span class="chev">▾</span></div>
+      <div class="faq-a">Any link that returns a 4xx or 5xx status code, or one that fails to respond at all (timeout, DNS failure, connection refused). Redirects (3xx) are shown separately since they aren't necessarily broken, just worth reviewing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does this check internal and external links the same way?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes, every link gets the same real status check regardless of whether it points back to your own site or somewhere else, and the results clearly label which is which.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is the page I check stored anywhere?<span class="chev">▾</span></div>
+      <div class="faq-a">No. The page is fetched, its links are checked, and the results are returned to your browser — nothing about the URL or its links is stored after the request completes.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/redirect-chain-checker">Redirect Chain Checker</a>
+    <a class="cross-link" href="/tools/indexability-checker">Indexability Checker</a>
+    <a class="cross-link" href="/tools/canonical-tag-checker">Canonical Tag Checker</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+let lastResults = [];
+let activeFilter = 'all';
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function statusPillInfo(status) {
+  if (status === null) return { cls: 'broken', label: 'Failed' };
+  if (status >= 500) return { cls: 'broken', label: status + ' Server Error' };
+  if (status >= 400) return { cls: 'broken', label: status + ' Not Found' };
+  if (status >= 300) return { cls: 'redirect', label: status + ' Redirect' };
+  return { cls: 'ok', label: status + ' OK' };
+}
+
+async function runCheck() {
+  const url = document.getElementById('url-input').value.trim();
+  const banner = document.getElementById('status-banner');
+  const summaryBar = document.getElementById('summary-bar');
+  const filterRow = document.getElementById('filter-row');
+  const table = document.getElementById('link-table');
+  const truncateNote = document.getElementById('truncate-note');
+  if (!url) return;
+
+  banner.className = 'status-banner idle';
+  banner.textContent = 'Scanning… this can take a few seconds for pages with many links.';
+  summaryBar.style.display = 'none';
+  filterRow.style.display = 'none';
+  table.style.display = 'none';
+  truncateNote.style.display = 'none';
+
+  try {
+    const res = await fetch('/api/fetch-url?mode=links&url=' + encodeURIComponent(url));
+    if (!res.ok) {
+      const errBody = await res.json().catch(() => ({}));
+      throw new Error(errBody.error || ('Request failed with status ' + res.status));
+    }
+    const data = await res.json();
+    lastResults = data.results || [];
+
+    const brokenCount = data.summary.brokenCount;
+    banner.className = 'status-banner ' + (brokenCount > 0 ? 'issues' : 'ok');
+    banner.textContent = brokenCount > 0
+      ? '✗ Found ' + brokenCount + ' broken link' + (brokenCount > 1 ? 's' : '')
+      : '✓ No broken links found';
+
+    summaryBar.style.display = 'grid';
+    document.getElementById('stat-total').textContent = data.totalLinksFound;
+    document.getElementById('stat-ok').textContent = data.summary.okCount;
+    document.getElementById('stat-redirects').textContent = data.summary.redirectCount;
+    document.getElementById('stat-broken').textContent = data.summary.brokenCount;
+
+    if (data.truncated) {
+      truncateNote.style.display = 'block';
+      truncateNote.textContent = 'This page has ' + data.totalLinksFound + ' unique links — only the first ' + data.checkedCount + ' were checked in this scan.';
+    }
+
+    filterRow.style.display = 'flex';
+    activeFilter = 'all';
+    document.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c.dataset.filter === 'all'));
+    renderTable();
+  } catch (e) {
+    banner.className = 'status-banner issues';
+    banner.textContent = '✗ Could not scan this page: ' + escapeHTML(e.message);
+  }
+}
+
+function setFilter(filter) {
+  activeFilter = filter;
+  document.querySelectorAll('.filter-chip').forEach(c => c.classList.toggle('active', c.dataset.filter === filter));
+  renderTable();
+}
+
+function renderTable() {
+  const table = document.getElementById('link-table');
+  const tbody = document.getElementById('link-table-body');
+  let filtered = lastResults;
+  if (activeFilter === 'broken') filtered = lastResults.filter(r => r.status === null || r.status >= 400);
+  else if (activeFilter === 'redirect') filtered = lastResults.filter(r => r.status >= 300 && r.status < 400);
+  else if (activeFilter === 'internal') filtered = lastResults.filter(r => r.isInternal);
+  else if (activeFilter === 'external') filtered = lastResults.filter(r => !r.isInternal);
+
+  table.style.display = filtered.length ? 'table' : 'none';
+  tbody.innerHTML = filtered.map(r => {
+    const p = statusPillInfo(r.status);
+    return '<tr>' +
+      '<td><span class="status-pill ' + p.cls + '">' + p.label + '</span></td>' +
+      '<td><span class="scope-badge">' + (r.isInternal ? 'Internal' : 'External') + '</span></td>' +
+      '<td class="url-cell">' + escapeHTML(r.url) + '</td>' +
+      '<td>' + escapeHTML(r.anchorText) + '</td>' +
+      '</tr>';
+  }).join('');
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
