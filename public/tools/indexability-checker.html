@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indexability Checker - Free All-in-One SEO Indexing Audit | SEOTriggers</title>
+<meta name="description" content="Free indexability checker that audits robots.txt, meta robots, X-Robots-Tag, and canonical tags for one URL in a single report. See exactly what's blocking a page from being indexed. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/indexability-checker">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Indexability Checker - Free All-in-One SEO Indexing Audit">
+<meta property="og:description" content="Check robots.txt, meta robots, X-Robots-Tag, and canonical signals for any URL in one unified report — no uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/indexability-checker">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Indexability Checker - Free All-in-One SEO Indexing Audit">
+<meta name="twitter:description" content="Check robots.txt, meta robots, X-Robots-Tag, and canonical signals for any URL in one unified report.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Indexability Checker",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free all-in-one indexability checker auditing robots.txt, meta robots, X-Robots-Tag, and canonical tags for a single URL, with a unified verdict on whether the page can be indexed.",
+  "url": "https://seotriggers.com/tools/indexability-checker"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Indexability Checker","item":"https://seotriggers.com/tools/indexability-checker"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What does an indexability checker actually check?","acceptedAnswer":{"@type":"Answer","text":"It checks every signal that can keep a page out of search results: whether robots.txt disallows the path for a given crawler, whether a meta robots tag or X-Robots-Tag header contains noindex, and whether the canonical tag points somewhere else."}},
+    {"@type":"Question","name":"Why would a page be indexable in robots.txt but still not get indexed?","acceptedAnswer":{"@type":"Answer","text":"Robots.txt only controls whether a crawler can request a page at all. A page can be fully crawlable and still be excluded from the index by a noindex meta tag, a noindex X-Robots-Tag header, or by a canonical tag pointing to a different URL that Google indexes instead."}},
+    {"@type":"Question","name":"Which crawler does this tool check robots.txt against?","acceptedAnswer":{"@type":"Answer","text":"Googlebot by default, since it's the most commonly relevant crawler for indexing decisions, following the same group-selection and Allow/Disallow precedence rules Google documents for robots.txt."}},
+    {"@type":"Question","name":"Why can't this tool always confirm the X-Robots-Tag header?","acceptedAnswer":{"@type":"Answer","text":"Browsers hide most response headers for cross-origin requests unless the server explicitly exposes them, so a direct browser fetch sometimes can't read X-Robots-Tag even when it's present. When that happens, the tool notes it explicitly instead of guessing."}},
+    {"@type":"Question","name":"Is a canonical mismatch the same as being blocked from indexing?","acceptedAnswer":{"@type":"Answer","text":"No. A canonical tag pointing elsewhere doesn't block indexing outright, but it tells Google to consolidate ranking signals onto the canonical target instead of the page you're checking, which has a similar practical effect for that specific URL."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.check-row{display:flex;gap:8px;padding:18px;flex-wrap:wrap;}
+.check-row input[type=text]{flex:1;min-width:220px;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.check-row input:focus{border-color:var(--indigo);}
+.check-row select{border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:inherit;font-size:13px;color:var(--text-sec);}
+.btn{border:1px solid var(--border);background:#fff;padding:10px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.verdict-banner{margin:0 18px;padding:16px 18px;border-radius:8px;font-size:15px;font-weight:700;display:none;}
+.verdict-banner.ok{background:var(--green-light);color:var(--green);}
+.verdict-banner.blocked{background:var(--red-light);color:var(--red);}
+
+.signal-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin:18px;border-radius:8px;overflow:hidden;border:1px solid var(--border);}
+@media (max-width:800px){.signal-grid{grid-template-columns:repeat(2,1fr);}}
+.signal-cell{background:#fff;padding:14px 16px;}
+.signal-cell .l{font-size:11px;font-weight:700;color:var(--text-sec);text-transform:uppercase;letter-spacing:.4px;margin-bottom:6px;}
+.signal-cell .v{font-size:14px;font-weight:700;}
+.signal-cell .v.pass{color:var(--green);}
+.signal-cell .v.fail{color:var(--red);}
+.signal-cell .v.warn{color:var(--amber);}
+.signal-cell .detail{font-size:11px;color:var(--text-hint);margin-top:4px;font-family:var(--mono);word-break:break-all;}
+
+.issue-list{padding:0 18px 18px;}
+.issue-row{display:flex;gap:8px;align-items:flex-start;padding:8px 0;font-size:13px;border-bottom:1px solid var(--border);}
+.issue-row:last-child{border-bottom:none;}
+.issue-row .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.issue-row.error{color:var(--red);} .issue-row.error .dot{background:var(--red);}
+.issue-row.warning{color:var(--amber);} .issue-row.warning .dot{background:var(--amber);}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Indexability Checker
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Indexability Checker</h1>
+  <p>Audit robots.txt, meta robots, X-Robots-Tag, and canonical tags for one URL in a single report — see exactly what's blocking a page from being indexed.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="check-row">
+      <input type="text" id="url-input" placeholder="https://example.com/page">
+      <select id="bot-select">
+        <option value="Googlebot">Googlebot</option>
+        <option value="Bingbot">Bingbot</option>
+        <option value="*">All bots (*)</option>
+      </select>
+      <button class="btn btn-primary" onclick="runCheck()">Check Indexability</button>
+    </div>
+
+    <div class="verdict-banner" id="verdict-banner"></div>
+    <div class="signal-grid" id="signal-grid" style="display:none;"></div>
+    <div class="issue-list" id="issue-list"></div>
+  </div>
+
+  <h2 class="section-title">Why this indexability checker is different</h2>
+  <p class="section-sub">Most tools check one signal at a time. This one ties all four together.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🧩</div><h3>4 signals, 1 report</h3><p>Robots.txt, meta robots, X-Robots-Tag, and canonical — checked together instead of four separate tools and four separate mental models.</p></div>
+    <div class="feature"><div class="ico">🤖</div><h3>Real robots.txt precedence rules</h3><p>Follows Google's documented group-selection and Allow/Disallow tie-break logic, not a naive "does the path appear" check.</p></div>
+    <div class="feature"><div class="ico">🎯</div><h3>Bot-specific checking</h3><p>Check against Googlebot, Bingbot, or the wildcard group — since robots.txt rules can differ per crawler.</p></div>
+    <div class="feature"><div class="ico">🔗</div><h3>Canonical awareness</h3><p>Flags when a canonical tag defers to a different URL, even if the page itself is technically indexable.</p></div>
+    <div class="feature"><div class="ico">📖</div><h3>Plain-language verdict</h3><p>One clear answer — indexable or blocked — with every contributing signal named, not just raw header dumps.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Checks run from your browser or a CORS proxy chain. Nothing about the URLs you check is stored.</p></div>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What does an indexability checker actually check?<span class="chev">▾</span></div>
+      <div class="faq-a">It checks every signal that can keep a page out of search results: whether robots.txt disallows the path for a given crawler, whether a meta robots tag or X-Robots-Tag header contains noindex, and whether the canonical tag points somewhere else.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why would a page be indexable in robots.txt but still not get indexed?<span class="chev">▾</span></div>
+      <div class="faq-a">Robots.txt only controls whether a crawler can request a page at all. A page can be fully crawlable and still be excluded from the index by a noindex meta tag, a noindex X-Robots-Tag header, or by a canonical tag pointing to a different URL that Google indexes instead.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Which crawler does this tool check robots.txt against?<span class="chev">▾</span></div>
+      <div class="faq-a">Googlebot by default, since it's the most commonly relevant crawler for indexing decisions, following the same group-selection and Allow/Disallow precedence rules Google documents for robots.txt.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Why can't this tool always confirm the X-Robots-Tag header?<span class="chev">▾</span></div>
+      <div class="faq-a">Browsers hide most response headers for cross-origin requests unless the server explicitly exposes them, so a direct browser fetch sometimes can't read X-Robots-Tag even when it's present. When that happens, the tool notes it explicitly instead of guessing.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is a canonical mismatch the same as being blocked from indexing?<span class="chev">▾</span></div>
+      <div class="faq-a">No. A canonical tag pointing elsewhere doesn't block indexing outright, but it tells Google to consolidate ranking signals onto the canonical target instead of the page you're checking, which has a similar practical effect for that specific URL.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/robots-txt-tester">Robots.txt Tester</a>
+    <a class="cross-link" href="/tools/meta-robots-tag-generator">Meta Robots Tag Generator</a>
+    <a class="cross-link" href="/tools/x-robots-tag-generator">X-Robots-Tag Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+function parseRobotsTxt(text) {
+  const lines = (text || '').split('\n').map(l => l.replace(/#.*/, '').trim());
+  const groups = [];
+  let current = null;
+  const sitemaps = [];
+  lines.forEach(line => {
+    if (!line) return;
+    const idx = line.indexOf(':');
+    if (idx === -1) return;
+    const field = line.slice(0, idx).trim().toLowerCase();
+    const value = line.slice(idx + 1).trim();
+    if (field === 'sitemap') { sitemaps.push(value); return; }
+    if (field === 'user-agent') {
+      if (!current || current.rules.length > 0) { current = { userAgents: [value.toLowerCase()], rules: [] }; groups.push(current); }
+      else current.userAgents.push(value.toLowerCase());
+    } else if (field === 'allow' || field === 'disallow') {
+      if (!current) { current = { userAgents: ['*'], rules: [] }; groups.push(current); }
+      current.rules.push({ type: field, path: value });
+    }
+  });
+  return { groups, sitemaps };
+}
+
+function selectGroup(groups, userAgent) {
+  const ua = userAgent.toLowerCase();
+  let best = null, bestLen = -1;
+  groups.forEach(g => {
+    g.userAgents.forEach(gua => {
+      if (gua === '*') return;
+      if (ua.includes(gua) && gua.length > bestLen) { best = g; bestLen = gua.length; }
+    });
+  });
+  if (best) return best;
+  return groups.find(g => g.userAgents.includes('*')) || null;
+}
+
+function pathPatternToRegex(pattern) {
+  let out = '^';
+  for (let i = 0; i < pattern.length; i++) {
+    const c = pattern[i];
+    if (c === '*') out += '.*';
+    else if (c === '$' && i === pattern.length - 1) out += '$';
+    else out += c.replace(/[.+?^${}()|[\]\\]/g, '\\$&');
+  }
+  return new RegExp(out);
+}
+
+function isPathAllowed(parsedRobots, userAgent, path) {
+  const group = selectGroup(parsedRobots.groups, userAgent);
+  if (!group || group.rules.length === 0) return true;
+  let bestMatch = null;
+  group.rules.forEach(rule => {
+    if (!rule.path && rule.type === 'disallow') return;
+    const re = pathPatternToRegex(rule.path);
+    if (re.test(path)) {
+      const len = rule.path.length;
+      if (!bestMatch || len > bestMatch.len || (len === bestMatch.len && rule.type === 'allow')) bestMatch = { type: rule.type, len };
+    }
+  });
+  if (!bestMatch) return true;
+  return bestMatch.type === 'allow';
+}
+
+function extractMetaRobots(html, botName) {
+  const results = [];
+  const re = /<meta\b[^>]*>/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) {
+    const tag = m[0];
+    const nameMatch = tag.match(/name\s*=\s*["']([^"']*)["']/i);
+    const contentMatch = tag.match(/content\s*=\s*["']([^"']*)["']/i);
+    if (!nameMatch || !contentMatch) continue;
+    const name = nameMatch[1].toLowerCase();
+    if (name === 'robots' || (botName && name === botName.toLowerCase())) results.push({ name, content: contentMatch[1] });
+  }
+  return results;
+}
+
+function extractCanonical(html) {
+  const re = /<link\b[^>]*rel\s*=\s*["']canonical["'][^>]*>/i;
+  const m = html.match(re);
+  if (!m) return null;
+  const hrefMatch = m[0].match(/href\s*=\s*["']([^"']*)["']/i);
+  return hrefMatch ? hrefMatch[1] : null;
+}
+
+function combineSignals(signals) {
+  const blockedBy = [];
+  const warnings = [];
+  if (signals.robotsTxtAllowed === false) blockedBy.push('robots.txt disallows this path for ' + (signals.userAgent || 'the checked bot') + '.');
+  const metaDirectives = (signals.metaRobotsDirectives || []).join(', ').toLowerCase();
+  if (/\bnoindex\b/.test(metaDirectives) || /\bnone\b/.test(metaDirectives)) blockedBy.push('Meta robots tag contains noindex.');
+  const xRobots = (signals.xRobotsTagDirectives || '').toLowerCase();
+  if (/\bnoindex\b/.test(xRobots) || /\bnone\b/.test(xRobots)) blockedBy.push('X-Robots-Tag HTTP header contains noindex.');
+  if (signals.canonicalUrl && signals.checkedUrl) {
+    if (normalizeUrl(signals.canonicalUrl) !== normalizeUrl(signals.checkedUrl)) {
+      warnings.push('Canonical tag points to a different URL (' + signals.canonicalUrl + ') — this page defers ranking signals there even if indexable.');
+    }
+  } else if (!signals.canonicalUrl) {
+    warnings.push('No canonical tag found — Google will pick one automatically, which may not be the URL you intend.');
+  }
+  if (signals.xRobotsTagUnknown) warnings.push('Could not verify the X-Robots-Tag header for this URL (cross-origin response headers are often hidden from the browser) — check server config directly if unsure.');
+  return { indexable: blockedBy.length === 0, blockedBy, warnings };
+}
+function normalizeUrl(u) { return (u || '').trim().replace(/\/$/, '').replace(/^http:/, 'https:'); }
+
+/* ---------- UI wiring ---------- */
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+async function fetchText(url) {
+  const attempts = [
+    () => fetch(url).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.text(); }),
+    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => r.json()).then(d => d.text || ''),
+    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => r.text())
+  ];
+  for (const attempt of attempts) {
+    try { return await attempt(); } catch (e) { /* try next */ }
+  }
+  throw new Error('Could not fetch this URL through any available method.');
+}
+
+async function runCheck() {
+  const url = document.getElementById('url-input').value.trim();
+  const bot = document.getElementById('bot-select').value;
+  const banner = document.getElementById('verdict-banner');
+  const grid = document.getElementById('signal-grid');
+  const issueList = document.getElementById('issue-list');
+  if (!url) return;
+
+  banner.style.display = 'block';
+  banner.className = 'verdict-banner';
+  banner.textContent = 'Checking…';
+  grid.style.display = 'none';
+  issueList.innerHTML = '';
+
+  let origin;
+  try { origin = new URL(url).origin; } catch (e) {
+    banner.className = 'verdict-banner blocked';
+    banner.textContent = '✗ That does not look like a valid URL.';
+    return;
+  }
+
+  let robotsTxtAllowed = true;
+  let robotsTxtFetchFailed = false;
+  try {
+    const robotsTxt = await fetchText(origin + '/robots.txt');
+    const parsed = parseRobotsTxt(robotsTxt);
+    robotsTxtAllowed = isPathAllowed(parsed, bot, new URL(url).pathname);
+  } catch (e) {
+    robotsTxtFetchFailed = true;
+  }
+
+  let html = '';
+  let pageFetchFailed = false;
+  try {
+    html = await fetchText(url);
+  } catch (e) {
+    pageFetchFailed = true;
+  }
+
+  const metaRobots = html ? extractMetaRobots(html, bot) : [];
+  const canonicalUrl = html ? extractCanonical(html) : null;
+
+  // Best-effort direct X-Robots-Tag header read (may be hidden by CORS for cross-origin)
+  let xRobotsTagDirectives = '';
+  let xRobotsTagUnknown = false;
+  try {
+    const res = await fetch(url);
+    const header = res.headers.get('x-robots-tag');
+    if (header) xRobotsTagDirectives = header;
+    else xRobotsTagUnknown = true; // could genuinely be absent, or hidden by CORS — can't be certain
+  } catch (e) {
+    xRobotsTagUnknown = true;
+  }
+
+  const result = combineSignals({
+    robotsTxtAllowed,
+    userAgent: bot,
+    metaRobotsDirectives: metaRobots.map(m => m.content),
+    xRobotsTagDirectives,
+    xRobotsTagUnknown,
+    canonicalUrl,
+    checkedUrl: url
+  });
+
+  banner.className = 'verdict-banner ' + (result.indexable ? 'ok' : 'blocked');
+  banner.textContent = result.indexable ? '✓ This page should be indexable' : '✗ This page is blocked from indexing';
+
+  grid.style.display = 'grid';
+  grid.innerHTML = [
+    { label: 'robots.txt (' + bot + ')', ok: robotsTxtAllowed, detail: robotsTxtFetchFailed ? 'Could not fetch robots.txt' : (robotsTxtAllowed ? 'Allowed' : 'Disallowed') },
+    { label: 'Meta robots', ok: !metaRobots.some(m => /noindex|none/i.test(m.content)), detail: metaRobots.length ? metaRobots.map(m => m.name + ': ' + m.content).join(' | ') : 'Not present' },
+    { label: 'X-Robots-Tag', ok: !/noindex|none/i.test(xRobotsTagDirectives), detail: xRobotsTagDirectives || (xRobotsTagUnknown ? 'Unknown (cross-origin)' : 'Not present') },
+    { label: 'Canonical', ok: !canonicalUrl || normalizeUrl(canonicalUrl) === normalizeUrl(url), detail: canonicalUrl || 'Not present' }
+  ].map(s => (
+    '<div class="signal-cell"><div class="l">' + escapeHTML(s.label) + '</div><div class="v ' + (s.ok ? 'pass' : 'fail') + '">' + (s.ok ? '✓ OK' : '✗ Issue') + '</div><div class="detail">' + escapeHTML(s.detail) + '</div></div>'
+  )).join('');
+
+  const allIssues = [
+    ...result.blockedBy.map(m => ({ level: 'error', message: m })),
+    ...result.warnings.map(m => ({ level: 'warning', message: m }))
+  ];
+  if (pageFetchFailed) allIssues.unshift({ level: 'warning', message: 'Could not fetch the page HTML directly or via fallback proxies — meta robots and canonical could not be checked.' });
+
+  issueList.innerHTML = allIssues.length
+    ? allIssues.map(i => '<div class="issue-row ' + i.level + '"><span class="dot"></span><span>' + escapeHTML(i.message) + '</span></div>').join('')
+    : '<div class="issue-row" style="color:var(--green);"><span class="dot" style="background:var(--green);"></span><span>No issues found across any signal.</span></div>';
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
