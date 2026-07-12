@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Crawler Blocker Generator - Block/Allow GPTBot, ClaudeBot & More | SEOTriggers</title>
+<meta name="description" content="Free AI crawler blocker generator for robots.txt. Allow or block GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider and more — grouped by training vs search vs user-triggered so you don't accidentally lose AI search citations. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/ai-crawler-blocker-generator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="AI Crawler Blocker Generator - Block/Allow GPTBot, ClaudeBot & More">
+<meta property="og:description" content="Generate a robots.txt block for every major AI crawler, grouped by training vs search vs user-triggered, with one-click presets. No uploads, no backend.">
+<meta property="og:url" content="https://seotriggers.com/tools/ai-crawler-blocker-generator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI Crawler Blocker Generator - Block/Allow GPTBot, ClaudeBot & More">
+<meta name="twitter:description" content="Generate a robots.txt block for every major AI crawler, grouped by training vs search vs user-triggered, with one-click presets.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "AI Crawler Blocker Generator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free robots.txt generator for AI crawlers, covering GPTBot, ClaudeBot, PerplexityBot, Google-Extended, CCBot, Bytespider and more, grouped by training vs search vs user-triggered behavior with one-click presets.",
+  "url": "https://seotriggers.com/tools/ai-crawler-blocker-generator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"AI Crawler Blocker Generator","item":"https://seotriggers.com/tools/ai-crawler-blocker-generator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"Will blocking AI training crawlers hurt my Google rankings?","acceptedAnswer":{"@type":"Answer","text":"No. GPTBot, ClaudeBot, and Google-Extended are separate from Googlebot and Bingbot, which handle regular search indexing. Blocking AI training crawlers has no effect on your position in Google or Bing search results."}},
+    {"@type":"Question","name":"What is the difference between blocking a training bot and a search bot?","acceptedAnswer":{"@type":"Answer","text":"Training bots like GPTBot and ClaudeBot bulk-collect content to improve future model versions; blocking them is a content-rights decision with no effect on visibility. Search and retrieval bots like OAI-SearchBot and PerplexityBot build the index that AI answers cite from right now; blocking them removes your content from that engine's AI-generated answers immediately."}},
+    {"@type":"Question","name":"Does robots.txt actually stop AI crawlers from accessing my content?","acceptedAnswer":{"@type":"Answer","text":"For crawlers that honor robots.txt — which most major AI companies say they do — yes. But it's an honor system, not enforcement. Bytespider and some stealth crawlers have documented histories of ignoring robots.txt, so blocking those reliably requires a server or CDN/WAF-level rule in addition to robots.txt."}},
+    {"@type":"Question","name":"Should I block all AI crawlers by default?","acceptedAnswer":{"@type":"Answer","text":"Usually not. Blocking search and user-triggered crawlers like OAI-SearchBot, PerplexityBot, and ChatGPT-User removes you entirely from AI-generated answers and citations, which is the fastest-growing discovery channel for many sites. Most site owners want to block only pure training crawlers, if anything."}},
+    {"@type":"Question","name":"Do I need to update this robots.txt block regularly?","acceptedAnswer":{"@type":"Answer","text":"Yes. New AI crawlers appear a few times a year, and vendors occasionally rename or split existing ones. Review your AI crawler rules roughly quarterly to make sure the list still matches current vendor documentation."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.presets{display:flex;flex-wrap:wrap;gap:8px;padding:14px 18px;border-bottom:1px solid var(--border);}
+.preset-btn{border:1px solid var(--border);background:#fff;padding:7px 14px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.preset-btn:hover{background:var(--bg);}
+.preset-btn.reco{border-color:var(--indigo);color:var(--indigo-dark);}
+
+.scope-row{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:1px solid var(--border);background:var(--bg);font-size:13px;color:var(--text-sec);}
+.scope-row input{font-family:var(--mono);font-size:13px;border:1px solid var(--border);border-radius:6px;padding:5px 10px;width:160px;}
+
+.gen-body{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+@media (max-width:900px){.gen-body{grid-template-columns:1fr;}}
+.category-panel{padding:18px;}
+.category-panel + .category-panel{border-left:1px solid var(--border);}
+@media (max-width:900px){.category-panel + .category-panel{border-left:none;border-top:1px solid var(--border);}}
+.cat-head{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--text-sec);margin-bottom:4px;}
+.cat-sub{font-size:12px;color:var(--text-hint);margin-bottom:12px;}
+.bot-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.bot-row:last-child{border-bottom:none;}
+.bot-info{flex:1;min-width:0;}
+.bot-name{font-family:var(--mono);font-size:13px;font-weight:600;color:var(--text);}
+.bot-vendor{font-size:11px;color:var(--text-hint);}
+.bot-note{font-size:11px;color:var(--text-sec);margin-top:2px;}
+.seg{display:flex;border:1px solid var(--border);border-radius:8px;overflow:hidden;flex-shrink:0;}
+.seg button{border:none;background:#fff;padding:5px 10px;font-size:11px;font-weight:600;color:var(--text-sec);cursor:pointer;}
+.seg button.active-allow{background:var(--green);color:#fff;}
+.seg button.active-disallow{background:var(--red);color:#fff;}
+.seg button.active-skip{background:var(--text-hint);color:#fff;}
+
+.output-section{padding:18px;border-top:1px solid var(--border);}
+.warn-list{margin-bottom:14px;}
+.warn-item{display:flex;gap:8px;align-items:flex-start;padding:8px 0;font-size:12px;color:var(--amber);}
+.warn-item .dot{width:6px;height:6px;border-radius:50%;background:var(--amber);margin-top:6px;flex-shrink:0;}
+.snippet-box{position:relative;}
+.snippet-box pre{background:#0f172a;color:#e2e8f0;border-radius:8px;padding:16px;font-family:var(--mono);font-size:12.5px;line-height:1.6;overflow-x:auto;margin:0;white-space:pre-wrap;word-break:break-word;min-height:100px;}
+.copy-btn{position:absolute;top:10px;right:10px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:#e2e8f0;padding:4px 10px;border-radius:6px;font-size:11px;font-family:inherit;cursor:pointer;}
+.copy-btn:hover{background:rgba(255,255,255,.2);}
+.download-btn{margin-top:10px;}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / AI Crawler Blocker Generator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>AI Crawler Blocker Generator</h1>
+  <p>Allow or block GPTBot, ClaudeBot, PerplexityBot, Google-Extended and more — grouped by what they actually do, so you don't accidentally block yourself out of AI search citations while trying to opt out of training.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="presets">
+      <button class="preset-btn reco" onclick="applyPreset('balanced')">⭐ Balanced default (block training, allow search)</button>
+      <button class="preset-btn" onclick="applyPreset('allow-all')">✅ Allow all (welcome mat)</button>
+      <button class="preset-btn" onclick="applyPreset('block-all')">🚫 Block all AI bots</button>
+      <button class="preset-btn" onclick="applyPreset('block-training-only')">🎓 Block training only</button>
+    </div>
+    <div class="scope-row">
+      Path scope: <input type="text" id="path-scope" value="/" oninput="render()">
+      <span style="color:var(--text-hint);">(default "/" applies to your whole site)</span>
+    </div>
+
+    <div class="gen-body">
+      <div class="category-panel">
+        <div class="cat-head">🎓 Training crawlers</div>
+        <div class="cat-sub">Bulk-collect content for future model training. Blocking these is a content-rights decision — it has no effect on whether your site appears in today's AI answers.</div>
+        <div id="bots-training"></div>
+      </div>
+      <div class="category-panel">
+        <div class="cat-head">🔍 Search &amp; retrieval crawlers</div>
+        <div class="cat-sub">Build the live index AI answers cite from right now. Blocking these removes you from that engine's AI-generated answers immediately.</div>
+        <div id="bots-search"></div>
+        <div class="cat-head" style="margin-top:18px;">👤 User-triggered fetchers</div>
+        <div class="cat-sub">Fetch one specific page live because a human asked the assistant about it. Blocking these breaks a user's explicit request.</div>
+        <div id="bots-user"></div>
+      </div>
+    </div>
+
+    <div class="output-section">
+      <div class="warn-list" id="warn-list"></div>
+      <div class="snippet-box">
+        <button class="copy-btn" onclick="copyOutput()">Copy</button>
+        <pre id="output-text"></pre>
+      </div>
+      <button class="btn preset-btn download-btn" onclick="downloadOutput()">⬇ Download as robots.txt block</button>
+    </div>
+  </div>
+
+  <h2 class="section-title">Why this AI crawler tool is different</h2>
+  <p class="section-sub">Most "block AI bots" tools give you one big list and let you toggle each one blindly. This one tells you what each toggle actually does.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">🗂️</div><h3>Grouped by real behavior</h3><p>Training, search/retrieval, and user-triggered crawlers are shown separately, because blocking each has a completely different effect.</p></div>
+    <div class="feature"><div class="ico">⭐</div><h3>Sensible default preset</h3><p>One click applies the most common real-world policy: opt out of training, stay visible in AI search citations.</p></div>
+    <div class="feature"><div class="ico">⚠️</div><h3>Compliance warnings</h3><p>Flags crawlers with a documented history of ignoring robots.txt, so you know to add a server-level rule too.</p></div>
+    <div class="feature"><div class="ico">📋</div><h3>Vendor-grouped output</h3><p>Generated robots.txt block is organized by company with comments, not a flat unreadable list.</p></div>
+    <div class="feature"><div class="ico">🎯</div><h3>Custom path scope</h3><p>Apply your rules to the whole site or a specific folder, like /premium-content/, in one field.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Nothing about your policy choices is sent anywhere. The output is yours to paste into your own robots.txt.</p></div>
+  </div>
+
+  <h2 class="section-title">How it compares</h2>
+  <p class="section-sub">A side-by-side look at other AI bot blocking approaches.</p>
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="us">SEOTriggers</th>
+      <th>Static blog-post snippets</th>
+      <th>SEO plugin toggles</th>
+      <th>CDN "Block AI Bots" switch</th>
+    </tr>
+    <tr><td>Explains training vs search vs user impact</td><td class="us yes">✓</td><td class="no">Rarely</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Granular per-bot control</td><td class="us yes">✓</td><td class="yes">Manual copy-paste</td><td class="no">Often one switch</td><td class="no">One switch</td></tr>
+    <tr><td>Compliance/enforcement warnings</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Custom path scoping</td><td class="us yes">✓</td><td class="no">Manual edit</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Free, no signup</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">Often paid</td><td class="no">Requires CDN account</td></tr>
+  </table>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Will blocking AI training crawlers hurt my Google rankings?<span class="chev">▾</span></div>
+      <div class="faq-a">No. GPTBot, ClaudeBot, and Google-Extended are separate from Googlebot and Bingbot, which handle regular search indexing. Blocking AI training crawlers has no effect on your position in Google or Bing search results.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between blocking a training bot and a search bot?<span class="chev">▾</span></div>
+      <div class="faq-a">Training bots like GPTBot and ClaudeBot bulk-collect content to improve future model versions; blocking them is a content-rights decision with no effect on visibility. Search and retrieval bots like OAI-SearchBot and PerplexityBot build the index that AI answers cite from right now; blocking them removes your content from that engine's AI-generated answers immediately.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does robots.txt actually stop AI crawlers from accessing my content?<span class="chev">▾</span></div>
+      <div class="faq-a">For crawlers that honor robots.txt — which most major AI companies say they do — yes. But it's an honor system, not enforcement. Bytespider and some stealth crawlers have documented histories of ignoring robots.txt, so blocking those reliably requires a server or CDN/WAF-level rule in addition to robots.txt.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Should I block all AI crawlers by default?<span class="chev">▾</span></div>
+      <div class="faq-a">Usually not. Blocking search and user-triggered crawlers like OAI-SearchBot, PerplexityBot, and ChatGPT-User removes you entirely from AI-generated answers and citations, which is the fastest-growing discovery channel for many sites. Most site owners want to block only pure training crawlers, if anything.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Do I need to update this robots.txt block regularly?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. New AI crawlers appear a few times a year, and vendors occasionally rename or split existing ones. Review your AI crawler rules roughly quarterly to make sure the list still matches current vendor documentation.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/robots-txt-generator">Robots.txt Generator</a>
+    <a class="cross-link" href="/tools/robots-txt-tester">Robots.txt Tester</a>
+    <a class="cross-link" href="/tools/x-robots-tag-generator">X-Robots-Tag Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+const BOTS = [
+  { agent: 'GPTBot', vendor: 'OpenAI', category: 'training', note: 'Bulk crawl for model training (GPT).' },
+  { agent: 'OAI-SearchBot', vendor: 'OpenAI', category: 'search', note: 'Builds the index ChatGPT search cites from.' },
+  { agent: 'ChatGPT-User', vendor: 'OpenAI', category: 'user', note: 'Fetches a page live when a user asks ChatGPT about it.' },
+  { agent: 'ClaudeBot', vendor: 'Anthropic', category: 'training', note: 'Bulk crawl for Claude model training.' },
+  { agent: 'Claude-SearchBot', vendor: 'Anthropic', category: 'search', note: "Builds the index Claude's search cites from." },
+  { agent: 'Claude-User', vendor: 'Anthropic', category: 'user', note: 'Fetches a page live when a user asks Claude about it.' },
+  { agent: 'PerplexityBot', vendor: 'Perplexity', category: 'search', note: "Builds Perplexity's answer index." },
+  { agent: 'Perplexity-User', vendor: 'Perplexity', category: 'user', note: 'Fetches a page live for a Perplexity user request.' },
+  { agent: 'Google-Extended', vendor: 'Google', category: 'training', note: 'Opt-out token for Gemini/Vertex AI training. Does not affect Google Search ranking.' },
+  { agent: 'Applebot-Extended', vendor: 'Apple', category: 'training', note: 'Opt-out token for Apple Intelligence training. Applebot (search) is separate.' },
+  { agent: 'Amazonbot', vendor: 'Amazon', category: 'search', note: 'Builds the index Alexa/Rufus cite from.' },
+  { agent: 'Meta-ExternalAgent', vendor: 'Meta', category: 'training', note: 'Crawls for Meta AI (Llama family) training and indexing.' },
+  { agent: 'Bytespider', vendor: 'ByteDance', category: 'training', note: 'Trains Doubao/Llama-family models. Documented history of ignoring robots.txt.' },
+  { agent: 'CCBot', vendor: 'Common Crawl', category: 'training', note: 'Public dataset that feeds many downstream model training pipelines.' },
+  { agent: 'MistralAI-User', vendor: 'Mistral', category: 'user', note: 'Fetches a page live for a Mistral/Le Chat user request.' },
+  { agent: 'DuckAssistBot', vendor: 'DuckDuckGo', category: 'search', note: "Builds the index DuckAssist's answers cite from." },
+  { agent: 'Diffbot', vendor: 'Diffbot', category: 'training', note: 'Structured-data extraction crawler used by various AI products.' }
+];
+
+function findBot(agent) { return BOTS.find(b => b.agent.toLowerCase() === String(agent).toLowerCase()); }
+
+function getPreset(name) {
+  const selections = {};
+  BOTS.forEach(b => {
+    if (name === 'allow-all') selections[b.agent] = 'allow';
+    else if (name === 'block-all') selections[b.agent] = 'disallow';
+    else if (name === 'block-training-only') selections[b.agent] = (b.category === 'training') ? 'disallow' : 'allow';
+    else if (name === 'balanced') selections[b.agent] = (b.category === 'training') ? 'disallow' : 'allow';
+  });
+  return selections;
+}
+
+function buildRobotsTxtBlock(selections, pathScope) {
+  pathScope = pathScope || '/';
+  const lines = [];
+  const byVendor = {};
+  BOTS.forEach(b => {
+    const sel = selections[b.agent];
+    if (!sel || sel === 'skip') return;
+    if (!byVendor[b.vendor]) byVendor[b.vendor] = [];
+    byVendor[b.vendor].push({ bot: b, sel });
+  });
+  Object.keys(byVendor).forEach(vendor => {
+    lines.push('# ' + vendor);
+    byVendor[vendor].forEach(({ bot, sel }) => {
+      lines.push('User-agent: ' + bot.agent);
+      lines.push(sel === 'allow' ? 'Allow: ' + pathScope : 'Disallow: ' + pathScope);
+      lines.push('');
+    });
+  });
+  while (lines.length && lines[lines.length - 1] === '') lines.pop();
+  return lines.join('\n');
+}
+
+function getComplianceWarnings(selections) {
+  const warnings = [];
+  const nonCompliant = ['Bytespider', 'Perplexity-User', 'PerplexityBot'];
+  nonCompliant.forEach(agent => {
+    if (selections[agent] === 'disallow') {
+      warnings.push(agent + ' has a documented history of not reliably honoring robots.txt — enforce this block at your server or CDN/WAF level too, not just here.');
+    }
+  });
+  if (selections['Google-Extended'] === 'disallow') {
+    warnings.push('Blocking Google-Extended only opts out of Gemini/Vertex AI training — it does not affect Google Search rankings.');
+  }
+  if (selections['GPTBot'] === 'disallow' && selections['OAI-SearchBot'] !== 'disallow') {
+    warnings.push('You are blocking GPTBot (training) but allowing OAI-SearchBot (search) — this is a common and reasonable combination: it opts out of training while staying eligible for ChatGPT Search citations.');
+  }
+  return warnings;
+}
+
+/* ---------- UI wiring ---------- */
+let selections = getPreset('balanced');
+
+function renderCategory(containerId, category) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = BOTS.filter(b => b.category === category).map(b => {
+    const sel = selections[b.agent] || 'skip';
+    return (
+      '<div class="bot-row">' +
+        '<div class="bot-info">' +
+          '<div class="bot-name">' + b.agent + '</div>' +
+          '<div class="bot-vendor">' + b.vendor + '</div>' +
+          '<div class="bot-note">' + escapeHTML(b.note) + '</div>' +
+        '</div>' +
+        '<div class="seg" data-agent="' + b.agent + '">' +
+          '<button class="' + (sel==='allow'?'active-allow':'') + '" onclick="setBot(\'' + b.agent + '\',\'allow\')">Allow</button>' +
+          '<button class="' + (sel==='disallow'?'active-disallow':'') + '" onclick="setBot(\'' + b.agent + '\',\'disallow\')">Block</button>' +
+          '<button class="' + (sel==='skip'?'active-skip':'') + '" onclick="setBot(\'' + b.agent + '\',\'skip\')">Skip</button>' +
+        '</div>' +
+      '</div>'
+    );
+  }).join('');
+}
+
+function setBot(agent, value) {
+  selections[agent] = value;
+  render();
+}
+
+function applyPreset(name) {
+  selections = getPreset(name);
+  render();
+}
+
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function render() {
+  renderCategory('bots-training', 'training');
+  renderCategory('bots-search', 'search');
+  renderCategory('bots-user', 'user');
+
+  const pathScope = document.getElementById('path-scope').value || '/';
+  const output = buildRobotsTxtBlock(selections, pathScope);
+  document.getElementById('output-text').textContent = output || '# No crawlers selected yet — choose Allow or Block above.';
+
+  const warnings = getComplianceWarnings(selections);
+  document.getElementById('warn-list').innerHTML = warnings.map(w =>
+    '<div class="warn-item"><span class="dot"></span><span>' + escapeHTML(w) + '</span></div>'
+  ).join('');
+}
+
+function copyOutput() {
+  const text = document.getElementById('output-text').textContent;
+  if (!text) return;
+  navigator.clipboard.writeText(text);
+}
+function downloadOutput() {
+  const text = document.getElementById('output-text').textContent;
+  if (!text) return;
+  const blob = new Blob([text], { type: 'text/plain' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = 'ai-crawlers-robots-block.txt';
+  a.click();
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+
+render();
+</script>
+</body>
+</html>
