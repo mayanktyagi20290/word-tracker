@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Schema Markup Validator - Free JSON-LD Rich Results Checker | SEOTriggers</title>
+<meta name="description" content="Free schema markup validator for JSON-LD structured data. Checks Article, Product, FAQPage, HowTo, BreadcrumbList, LocalBusiness, Organization and more against Google Rich Results requirements. Paste JSON-LD, paste HTML, or check a live URL. 100% client-side.">
+<link rel="canonical" href="https://seotriggers.com/tools/schema-markup-validator">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Schema Markup Validator - Free JSON-LD Rich Results Checker">
+<meta property="og:description" content="Validate JSON-LD structured data against Google Rich Results requirements — paste code, paste HTML, or check a live URL.">
+<meta property="og:url" content="https://seotriggers.com/tools/schema-markup-validator">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Schema Markup Validator - Free JSON-LD Rich Results Checker">
+<meta name="twitter:description" content="Validate JSON-LD structured data against Google Rich Results requirements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/legal.css">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Schema Markup Validator",
+  "applicationCategory": "DeveloperApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Free JSON-LD schema markup validator checking Article, Product, FAQPage, HowTo, BreadcrumbList, LocalBusiness, Organization and more against Google Rich Results requirements, running entirely client-side.",
+  "url": "https://seotriggers.com/tools/schema-markup-validator"
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {"@type":"ListItem","position":1,"name":"Home","item":"https://seotriggers.com/"},
+    {"@type":"ListItem","position":2,"name":"Tools","item":"https://seotriggers.com/tools/"},
+    {"@type":"ListItem","position":3,"name":"Schema Markup Validator","item":"https://seotriggers.com/tools/schema-markup-validator"}
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"What is the difference between this and Google's Rich Results Test?","acceptedAnswer":{"@type":"Answer","text":"Google's Rich Results Test checks live eligibility and can be slow or rate-limited. This tool runs entirely in your browser, works on JSON-LD you haven't deployed yet, and explains exactly which required or recommended property is missing for each schema type."}},
+    {"@type":"Question","name":"Which schema types does this tool check?","acceptedAnswer":{"@type":"Answer","text":"Article (and NewsArticle/BlogPosting), Product, FAQPage, HowTo, BreadcrumbList, LocalBusiness, Organization, SoftwareApplication, and WebSite, using Google's published required and recommended properties for each. Other types are still parsed and checked for basic @context/@type correctness."}},
+    {"@type":"Question","name":"Can I validate schema on a live URL instead of pasting code?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Check URL tab fetches the page's HTML and extracts every JSON-LD block automatically, so you don't have to view-source and copy it manually."}},
+    {"@type":"Question","name":"Does @graph syntax work with this validator?","acceptedAnswer":{"@type":"Answer","text":"Yes. If your JSON-LD uses an @graph array to bundle multiple schema objects in one block, each object inside is extracted and validated individually."}},
+    {"@type":"Question","name":"Is my structured data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Pasted JSON-LD and HTML are validated entirely in your browser. Checking a live URL fetches that page's HTML through your browser or a CORS proxy chain, but nothing is stored."}}
+  ]
+}
+</script>
+<style>
+:root{
+  --indigo:#6366f1; --indigo-dark:#4f46e5; --indigo-light:#eef2ff;
+  --bg:#f8fafc; --surface:#ffffff; --border:#e2e8f0;
+  --text:#0f172a; --text-sec:#475569; --text-hint:#94a3b8;
+  --green:#16a34a; --green-light:#f0fdf4;
+  --red:#dc2626; --red-light:#fef2f2;
+  --amber:#d97706; --amber-light:#fffbeb;
+  --blue:#2563eb; --blue-light:#eff6ff;
+  --radius:10px; --shadow:0 1px 2px rgba(15,23,42,.06), 0 1px 3px rgba(15,23,42,.08);
+  --mono:'JetBrains Mono', ui-monospace, monospace;
+}
+*{box-sizing:border-box;}
+body{margin:0;font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;}
+a{color:var(--indigo-dark);text-decoration:none;}
+a:hover{text-decoration:underline;}
+
+.nav{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);}
+.nav-inner{max-width:1180px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-size:19px;font-weight:800;color:var(--text);}
+.logo span{color:var(--indigo-dark);}
+.nav-links{display:flex;gap:24px;font-size:14px;font-weight:500;color:var(--text-sec);}
+.nav-links a{color:var(--text-sec);}
+
+.breadcrumb{max-width:1180px;margin:0 auto;padding:14px 24px 0;font-size:13px;color:var(--text-hint);}
+.breadcrumb a{color:var(--text-sec);}
+
+.hero{max-width:1180px;margin:0 auto;padding:28px 24px 8px;}
+.badge{display:inline-flex;align-items:center;gap:6px;background:var(--green-light);color:var(--green);font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-bottom:14px;}
+.hero h1{font-size:clamp(28px,4vw,38px);font-weight:800;margin:0 0 10px;letter-spacing:-0.02em;}
+.hero p{font-size:16px;color:var(--text-sec);max-width:700px;margin:0 0 4px;}
+
+.wrap{max-width:1180px;margin:0 auto;padding:20px 24px 60px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);}
+
+.tabs{display:flex;gap:2px;padding:0 18px;border-bottom:1px solid var(--border);background:var(--bg);}
+.tab{padding:10px 16px;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;border-bottom:2px solid transparent;}
+.tab.active{color:var(--indigo-dark);border-bottom-color:var(--indigo);}
+
+.input-area{padding:18px;}
+.input-area textarea{width:100%;min-height:220px;font-family:var(--mono);font-size:12.5px;border:1px solid var(--border);border-radius:8px;padding:14px;resize:vertical;}
+.url-row{display:flex;gap:8px;}
+.url-row input{flex:1;border:1px solid var(--border);border-radius:8px;padding:10px 14px;font-family:var(--mono);font-size:13px;outline:none;}
+.url-row input:focus{border-color:var(--indigo);}
+.btn{border:1px solid var(--border);background:#fff;padding:9px 18px;border-radius:8px;font-family:inherit;font-size:13px;font-weight:600;color:var(--text-sec);cursor:pointer;margin-top:12px;}
+.btn-primary{background:var(--indigo);border-color:var(--indigo);color:#fff;}
+.btn-primary:hover{background:var(--indigo-dark);}
+
+.summary-bar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+@media (max-width:700px){.summary-bar{grid-template-columns:repeat(2,1fr);}}
+.summary-stat{background:#fff;padding:14px 18px;}
+.summary-stat .l{font-size:11px;color:var(--text-sec);font-weight:600;text-transform:uppercase;letter-spacing:.4px;margin-bottom:4px;}
+.summary-stat .v{font-size:22px;font-weight:800;}
+.summary-stat .v.err{color:var(--red);} .summary-stat .v.warn{color:var(--amber);} .summary-stat .v.ok{color:var(--green);}
+
+.schema-block{border-bottom:1px solid var(--border);padding:16px 18px;}
+.schema-block:last-child{border-bottom:none;}
+.schema-head{display:flex;align-items:center;gap:10px;margin-bottom:10px;}
+.schema-type{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--indigo-dark);}
+.schema-badge{font-size:11px;font-weight:700;padding:2px 9px;border-radius:999px;}
+.schema-badge.ok{background:var(--green-light);color:var(--green);}
+.schema-badge.warn{background:var(--amber-light);color:var(--amber);}
+.schema-badge.err{background:var(--red-light);color:var(--red);}
+.issue-row{display:flex;gap:8px;align-items:flex-start;padding:6px 0;font-size:13px;}
+.issue-row .dot{width:6px;height:6px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.issue-row.error{color:var(--red);} .issue-row.error .dot{background:var(--red);}
+.issue-row.warning{color:var(--amber);} .issue-row.warning .dot{background:var(--amber);}
+.issue-row.info{color:var(--blue);} .issue-row.info .dot{background:var(--blue);}
+
+.section-title{font-size:24px;font-weight:800;margin:56px 0 8px;letter-spacing:-.01em;}
+.section-sub{color:var(--text-sec);font-size:14px;margin:0 0 20px;}
+.features{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media (max-width:800px){.features{grid-template-columns:1fr 1fr;}}
+@media (max-width:560px){.features{grid-template-columns:1fr;}}
+.feature{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:18px;}
+.feature .ico{font-size:22px;margin-bottom:8px;}
+.feature h3{font-size:14px;font-weight:700;margin:0 0 6px;}
+.feature p{font-size:13px;color:var(--text-sec);margin:0;}
+
+.comp-table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;font-size:13px;}
+.comp-table th,.comp-table td{padding:11px 14px;border-bottom:1px solid var(--border);text-align:center;}
+.comp-table th{background:var(--bg);font-weight:700;color:var(--text-sec);font-size:12px;}
+.comp-table td:first-child,.comp-table th:first-child{text-align:left;font-weight:600;}
+.comp-table tr:last-child td{border-bottom:none;}
+.comp-table .yes{color:var(--green);font-weight:700;}
+.comp-table .no{color:var(--text-hint);}
+.comp-table .us{background:var(--indigo-light);}
+
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{padding:16px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;}
+.faq-a{padding:0 0 16px;color:var(--text-sec);font-size:14px;display:none;}
+.faq-item.open .faq-a{display:block;}
+.faq-item.open .chev{transform:rotate(180deg);}
+.chev{transition:transform .2s;color:var(--text-hint);}
+
+.cross-links{display:flex;flex-wrap:wrap;gap:10px;}
+.cross-link{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:10px 16px;font-size:13px;font-weight:600;color:var(--text);}
+.cross-link:hover{border-color:var(--indigo);text-decoration:none;}
+
+footer{border-top:1px solid var(--border);margin-top:60px;padding:32px 24px;text-align:center;font-size:13px;color:var(--text-hint);}
+footer a{color:var(--text-sec);}
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="logo">SEO<span>Triggers</span></div>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Schema Markup Validator
+</div>
+
+<div class="hero">
+  <span class="badge">✓ 100% Free · No Signup</span>
+  <h1>Schema Markup Validator</h1>
+  <p>Validate JSON-LD structured data against Google Rich Results requirements — paste code, paste full HTML, or check a live URL. Every missing required and recommended property, explained.</p>
+</div>
+
+<div class="wrap">
+
+  <div class="card" id="tool-card">
+    <div class="tabs">
+      <div class="tab active" data-tab="paste" onclick="setTab('paste')">Paste JSON-LD</div>
+      <div class="tab" data-tab="html" onclick="setTab('html')">Paste HTML</div>
+      <div class="tab" data-tab="url" onclick="setTab('url')">Check URL</div>
+    </div>
+
+    <div id="panel-paste">
+      <div class="input-area">
+        <textarea id="jsonld-input" placeholder='{"@context":"https://schema.org","@type":"Article","headline":"...","image":"...","datePublished":"..."}'></textarea>
+        <button class="btn btn-primary" onclick="runValidateJsonLd()">Validate</button>
+      </div>
+    </div>
+
+    <div id="panel-html" style="display:none;">
+      <div class="input-area">
+        <textarea id="html-input" placeholder="Paste full page HTML here — every &lt;script type=&quot;application/ld+json&quot;&gt; block will be found and validated automatically."></textarea>
+        <button class="btn btn-primary" onclick="runValidateHtml()">Extract & Validate</button>
+      </div>
+    </div>
+
+    <div id="panel-url" style="display:none;">
+      <div class="input-area">
+        <div class="url-row">
+          <input type="text" id="url-input" placeholder="https://example.com/page">
+          <button class="btn btn-primary" style="margin-top:0;" onclick="runValidateUrl()">Fetch & Validate</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="summary-bar" id="summary-bar" style="display:none;">
+      <div class="summary-stat"><div class="l">Schema blocks found</div><div class="v" id="stat-blocks">0</div></div>
+      <div class="summary-stat"><div class="l">Errors</div><div class="v err" id="stat-errors">0</div></div>
+      <div class="summary-stat"><div class="l">Warnings</div><div class="v warn" id="stat-warnings">0</div></div>
+      <div class="summary-stat"><div class="l">Clean types</div><div class="v ok" id="stat-clean">0</div></div>
+    </div>
+
+    <div id="results-container"></div>
+  </div>
+
+  <h2 class="section-title">Why this schema validator is different</h2>
+  <p class="section-sub">Google's own testing tool checks eligibility. This one also tells you exactly what to fix.</p>
+  <div class="features">
+    <div class="feature"><div class="ico">📋</div><h3>Property-by-property breakdown</h3><p>Every missing required or recommended field is named explicitly, not just a pass/fail verdict.</p></div>
+    <div class="feature"><div class="ico">🌐</div><h3>3 ways to check</h3><p>Paste raw JSON-LD, paste full page HTML, or check a live URL — pick whichever fits your workflow.</p></div>
+    <div class="feature"><div class="ico">🕸️</div><h3>@graph support</h3><p>Bundled schema objects inside an @graph array are extracted and validated individually.</p></div>
+    <div class="feature"><div class="ico">🔁</div><h3>Duplicate @id detection</h3><p>Flags the same @id reused across schema blocks, a common copy-paste mistake.</p></div>
+    <div class="feature"><div class="ico">🛍️</div><h3>Product-specific checks</h3><p>Validates offers.price type and aggregateRating structure, not just presence of the fields.</p></div>
+    <div class="feature"><div class="ico">🔒</div><h3>100% client-side</h3><p>Pasted code and HTML never leave your browser. URL checks use your browser or a CORS proxy — nothing is stored.</p></div>
+  </div>
+
+  <h2 class="section-title">How it compares</h2>
+  <p class="section-sub">A side-by-side look at other structured data validators.</p>
+  <div style="overflow-x:auto;">
+  <table class="comp-table">
+    <tr>
+      <th>Feature</th>
+      <th class="us">SEOTriggers</th>
+      <th>Google Rich Results Test</th>
+      <th>Schema.org Validator</th>
+    </tr>
+    <tr><td>Explains each missing property</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">Generic only</td></tr>
+    <tr><td>Works on unpublished/local code</td><td class="us yes">✓</td><td class="no">✗ Live URLs only</td><td class="yes">✓</td></tr>
+    <tr><td>Paste HTML to auto-extract schema</td><td class="us yes">✓</td><td class="no">✗</td><td class="no">✗</td></tr>
+    <tr><td>Product-specific field validation</td><td class="us yes">✓</td><td class="yes">✓</td><td class="no">✗</td></tr>
+    <tr><td>Free, no rate limits</td><td class="us yes">✓</td><td class="yes">✓ (rate limited)</td><td class="yes">✓</td></tr>
+  </table>
+  </div>
+
+  <h2 class="section-title">Frequently asked questions</h2>
+  <div id="faq-list">
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">What is the difference between this and Google's Rich Results Test?<span class="chev">▾</span></div>
+      <div class="faq-a">Google's Rich Results Test checks live eligibility and can be slow or rate-limited. This tool runs entirely in your browser, works on JSON-LD you haven't deployed yet, and explains exactly which required or recommended property is missing for each schema type.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Which schema types does this tool check?<span class="chev">▾</span></div>
+      <div class="faq-a">Article (and NewsArticle/BlogPosting), Product, FAQPage, HowTo, BreadcrumbList, LocalBusiness, Organization, SoftwareApplication, and WebSite, using Google's published required and recommended properties for each. Other types are still parsed and checked for basic @context/@type correctness.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Can I validate schema on a live URL instead of pasting code?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. The Check URL tab fetches the page's HTML and extracts every JSON-LD block automatically, so you don't have to view-source and copy it manually.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Does @graph syntax work with this validator?<span class="chev">▾</span></div>
+      <div class="faq-a">Yes. If your JSON-LD uses an @graph array to bundle multiple schema objects in one block, each object inside is extracted and validated individually.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">Is my structured data uploaded anywhere?<span class="chev">▾</span></div>
+      <div class="faq-a">No. Pasted JSON-LD and HTML are validated entirely in your browser. Checking a live URL fetches that page's HTML through your browser or a CORS proxy chain, but nothing is stored.</div>
+    </div>
+  </div>
+
+  <h2 class="section-title">Related tools</h2>
+  <div class="cross-links">
+    <a class="cross-link" href="/tools/faq-schema-generator">FAQ Schema Generator</a>
+    <a class="cross-link" href="/tools/product-schema-generator">Product Schema Generator</a>
+    <a class="cross-link" href="/tools/article-schema-generator">Article Schema Generator</a>
+    <a class="cross-link" href="/tools/">Browse All Tools →</a>
+  </div>
+
+</div>
+
+<footer>
+  <div>© 2026 SEOTriggers.com — Free SEO & developer tools, no signup required.</div>
+  <div style="margin-top:8px;"><a href="/">Home</a> · <a href="/tools/">Tools</a> · <a href="/blog/">Blog</a> · <a href="/legal.html">Privacy & Terms</a></div>
+</footer>
+
+<script>
+/* ---------- Core logic (tested) ---------- */
+function extractJsonLdBlocks(html) {
+  const blocks = [];
+  const re = /<script[^>]*type\s*=\s*["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script/gi;
+  let m;
+  while ((m = re.exec(html)) !== null) blocks.push(m[1]);
+  return blocks;
+}
+
+function parseJsonLdBlocks(rawBlocks) {
+  const results = [];
+  rawBlocks.forEach((raw, blockIndex) => {
+    let data;
+    try { data = JSON.parse(raw); }
+    catch (e) { results.push({ blockIndex, parseError: e.message, type: null, data: null, raw }); return; }
+    const items = flattenGraph(data);
+    items.forEach(item => { results.push({ blockIndex, parseError: null, type: normalizeType(item['@type']), data: item, raw }); });
+  });
+  return results;
+}
+function flattenGraph(data) {
+  if (Array.isArray(data)) return data.flatMap(flattenGraph);
+  if (data && typeof data === 'object' && Array.isArray(data['@graph'])) return data['@graph'].flatMap(flattenGraph);
+  return [data];
+}
+function normalizeType(t) { if (!t) return null; if (Array.isArray(t)) return t[0]; return t; }
+
+const SCHEMA_RULES = {
+  Article: { required: ['headline', 'image', 'datePublished'], recommended: ['dateModified', 'author'] },
+  NewsArticle: { required: ['headline', 'image', 'datePublished'], recommended: ['dateModified', 'author'] },
+  BlogPosting: { required: ['headline', 'image', 'datePublished'], recommended: ['dateModified', 'author'] },
+  BreadcrumbList: { required: ['itemListElement'], recommended: [] },
+  FAQPage: { required: ['mainEntity'], recommended: [] },
+  HowTo: { required: ['name', 'step'], recommended: ['image', 'totalTime'] },
+  LocalBusiness: { required: ['name', 'address'], recommended: ['telephone', 'openingHoursSpecification', 'geo'] },
+  Organization: { required: ['name', 'url'], recommended: ['logo', 'contactPoint'] },
+  Product: { required: ['name'], recommended: ['image', 'description', 'offers', 'aggregateRating', 'review'] },
+  SoftwareApplication: { required: ['name', 'operatingSystem', 'applicationCategory'], recommended: ['offers'] },
+  WebSite: { required: ['name', 'url'], recommended: ['potentialAction'] }
+};
+
+function validateSchemaObject(item) {
+  const issues = [];
+  const data = item.data;
+  if (!data) return issues;
+  if (!data['@context']) issues.push({ level: 'error', message: 'Missing @context (should be "https://schema.org").', type: item.type });
+  if (!data['@type']) { issues.push({ level: 'error', message: 'Missing @type.', type: item.type }); return issues; }
+  const rules = SCHEMA_RULES[item.type];
+  if (!rules) { issues.push({ level: 'info', message: 'Type "' + item.type + '" has no built-in validation rules here — checked for @context/@type only.', type: item.type }); return issues; }
+  rules.required.forEach(field => { if (!(field in data) || data[field] === '' || data[field] === null) issues.push({ level: 'error', message: 'Missing required property "' + field + '" for ' + item.type + '.', type: item.type }); });
+  rules.recommended.forEach(field => { if (!(field in data)) issues.push({ level: 'warning', message: 'Missing recommended property "' + field + '" for ' + item.type + '.', type: item.type }); });
+  if (item.type === 'BreadcrumbList' && Array.isArray(data.itemListElement)) {
+    data.itemListElement.forEach((li, i) => {
+      if (li.position === undefined) issues.push({ level: 'error', message: 'BreadcrumbList item at index ' + i + ' is missing "position".', type: item.type });
+      if (!li.name) issues.push({ level: 'error', message: 'BreadcrumbList item at index ' + i + ' is missing "name".', type: item.type });
+      if (!li.item) issues.push({ level: 'warning', message: 'BreadcrumbList item at index ' + i + ' is missing "item" (URL) — required for all but the last crumb.', type: item.type });
+    });
+  }
+  if (item.type === 'FAQPage' && Array.isArray(data.mainEntity)) {
+    data.mainEntity.forEach((q, i) => {
+      if (!q.name) issues.push({ level: 'error', message: 'FAQ question at index ' + i + ' is missing "name".', type: item.type });
+      if (!q.acceptedAnswer || !q.acceptedAnswer.text) issues.push({ level: 'error', message: 'FAQ question at index ' + i + ' is missing "acceptedAnswer.text".', type: item.type });
+    });
+  }
+  if (item.type === 'HowTo' && Array.isArray(data.step)) {
+    data.step.forEach((s, i) => { if (!s.text && !s.name) issues.push({ level: 'error', message: 'HowTo step at index ' + i + ' needs a "text" or "name".', type: item.type }); });
+  }
+  if (item.type === 'Product') {
+    const hasOffers = !!data.offers;
+    const hasRating = !!data.aggregateRating || !!data.review;
+    if (!hasOffers && !hasRating) issues.push({ level: 'warning', message: 'Product has neither "offers" nor "aggregateRating"/"review" — Google generally requires at least one for rich result eligibility.', type: item.type });
+    if (data.offers && data.offers.price !== undefined && typeof data.offers.price !== 'string' && typeof data.offers.price !== 'number') issues.push({ level: 'error', message: 'Product offers.price should be a string or number.', type: item.type });
+    if (data.aggregateRating) {
+      const rv = data.aggregateRating.ratingValue;
+      if (rv === undefined) issues.push({ level: 'error', message: 'aggregateRating is missing "ratingValue".', type: item.type });
+      else if (typeof rv !== 'number' && isNaN(parseFloat(rv))) issues.push({ level: 'error', message: 'aggregateRating.ratingValue should be numeric.', type: item.type });
+      if (data.aggregateRating.reviewCount === undefined && data.aggregateRating.ratingCount === undefined) issues.push({ level: 'warning', message: 'aggregateRating is missing "reviewCount" or "ratingCount".', type: item.type });
+    }
+  }
+  return issues;
+}
+
+function validateAll(items) {
+  const allIssues = [];
+  const seenIds = new Map();
+  items.forEach(item => {
+    if (item.parseError) { allIssues.push({ level: 'error', message: 'JSON-LD block ' + (item.blockIndex + 1) + ' is not valid JSON: ' + item.parseError, type: null }); return; }
+    allIssues.push(...validateSchemaObject(item));
+    if (item.data && item.data['@id']) {
+      const id = item.data['@id'];
+      if (seenIds.has(id)) allIssues.push({ level: 'warning', message: 'Duplicate @id "' + id + '" found in more than one schema block.', type: item.type });
+      seenIds.set(id, true);
+    }
+  });
+  return allIssues;
+}
+
+/* ---------- UI wiring ---------- */
+function escapeHTML(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function setTab(name) {
+  ['paste','html','url'].forEach(t => {
+    document.getElementById('panel-' + t).style.display = (t === name) ? '' : 'none';
+    document.querySelector('.tab[data-tab="' + t + '"]').classList.toggle('active', t === name);
+  });
+}
+
+function renderResults(items) {
+  const allIssues = validateAll(items);
+  const container = document.getElementById('results-container');
+  const summaryBar = document.getElementById('summary-bar');
+
+  const validItems = items.filter(i => !i.parseError && i.type);
+  const errorCount = allIssues.filter(i => i.level === 'error').length;
+  const warningCount = allIssues.filter(i => i.level === 'warning').length;
+
+  summaryBar.style.display = 'grid';
+  document.getElementById('stat-blocks').textContent = validItems.length;
+  document.getElementById('stat-errors').textContent = errorCount;
+  document.getElementById('stat-warnings').textContent = warningCount;
+
+  let cleanCount = 0;
+  const blocksHtml = items.map((item, idx) => {
+    if (item.parseError) {
+      return '<div class="schema-block"><div class="schema-head"><span class="schema-type">Block ' + (item.blockIndex + 1) + '</span><span class="schema-badge err">Parse error</span></div>' +
+        '<div class="issue-row error"><span class="dot"></span><span>' + escapeHTML(item.parseError) + '</span></div></div>';
+    }
+    const issues = validateSchemaObject(item);
+    const errs = issues.filter(i => i.level === 'error').length;
+    const warns = issues.filter(i => i.level === 'warning').length;
+    if (errs === 0 && warns === 0) cleanCount++;
+    const badge = errs > 0 ? '<span class="schema-badge err">' + errs + ' error' + (errs>1?'s':'') + '</span>' : (warns > 0 ? '<span class="schema-badge warn">' + warns + ' warning' + (warns>1?'s':'') + '</span>' : '<span class="schema-badge ok">✓ Looks good</span>');
+    const issuesHtml = issues.map(i => '<div class="issue-row ' + i.level + '"><span class="dot"></span><span>' + escapeHTML(i.message) + '</span></div>').join('');
+    return '<div class="schema-block"><div class="schema-head"><span class="schema-type">' + escapeHTML(item.type || 'Unknown type') + '</span>' + badge + '</div>' + issuesHtml + '</div>';
+  }).join('');
+
+  document.getElementById('stat-clean').textContent = cleanCount;
+  container.innerHTML = blocksHtml || '<div style="padding:24px;text-align:center;color:var(--text-hint);font-size:13px;">No schema blocks found.</div>';
+}
+
+function runValidateJsonLd() {
+  const raw = document.getElementById('jsonld-input').value.trim();
+  if (!raw) return;
+  const items = parseJsonLdBlocks([raw]);
+  renderResults(items);
+}
+
+function runValidateHtml() {
+  const html = document.getElementById('html-input').value;
+  if (!html.trim()) return;
+  const blocks = extractJsonLdBlocks(html);
+  if (blocks.length === 0) {
+    document.getElementById('summary-bar').style.display = 'grid';
+    document.getElementById('stat-blocks').textContent = '0';
+    document.getElementById('stat-errors').textContent = '0';
+    document.getElementById('stat-warnings').textContent = '0';
+    document.getElementById('stat-clean').textContent = '0';
+    document.getElementById('results-container').innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-hint);font-size:13px;">No &lt;script type="application/ld+json"&gt; blocks found in this HTML.</div>';
+    return;
+  }
+  const items = parseJsonLdBlocks(blocks);
+  renderResults(items);
+}
+
+async function runValidateUrl() {
+  const url = document.getElementById('url-input').value.trim();
+  if (!url) return;
+  const container = document.getElementById('results-container');
+  container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-hint);font-size:13px;">Fetching…</div>';
+
+  const attempts = [
+    () => fetch(url).then(r => r.text()),
+    () => fetch('/api/fetch-url?url=' + encodeURIComponent(url)).then(r => r.json()).then(d => d.text || ''),
+    () => fetch('https://api.allorigins.win/raw?url=' + encodeURIComponent(url)).then(r => r.text())
+  ];
+  for (const attempt of attempts) {
+    try {
+      const html = await attempt();
+      const blocks = extractJsonLdBlocks(html);
+      if (blocks.length === 0) {
+        container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--text-hint);font-size:13px;">Fetched the page, but found no JSON-LD schema blocks.</div>';
+        document.getElementById('summary-bar').style.display = 'none';
+        return;
+      }
+      const items = parseJsonLdBlocks(blocks);
+      renderResults(items);
+      return;
+    } catch (e) { /* try next */ }
+  }
+  container.innerHTML = '<div style="padding:24px;text-align:center;color:var(--red);font-size:13px;">Could not fetch that URL directly or via fallback proxies.</div>';
+}
+
+function toggleFaq(el) { el.parentElement.classList.toggle('open'); }
+</script>
+</body>
+</html>
