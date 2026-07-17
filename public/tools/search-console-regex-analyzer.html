@@ -164,25 +164,60 @@
   .status-ok { background: var(--green-light); color: #14532d; }
   .status-warn { background: var(--amber-light); color: #78350f; }
 
-  /* Tabs */
-  .tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 20px 0 16px; }
-  .tab-btn { padding: 9px 16px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--surface); font-family: inherit; font-size: 13px; font-weight: 600; cursor: pointer; color: var(--ink-sec); transition: all .15s; }
-  .tab-btn.active { background: var(--brand); border-color: var(--brand); color: #fff; }
-  .tab-btn:hover:not(.active) { border-color: var(--brand); color: var(--brand); }
+  /* Category colors */
+  :root {
+    --cat-growing: #16a34a; --cat-growing-light: #f0fdf4;
+    --cat-gems: #9333ea; --cat-gems-light: #faf5ff;
+    --cat-intent: #2563eb; --cat-intent-light: #eff6ff;
+    --cat-money: #d97706; --cat-money-light: #fffbeb;
+    --cat-ai: #0d9488; --cat-ai-light: #f0fdfa;
+  }
 
-  /* Pattern cards */
-  .pattern-card { border: 1px solid var(--border); border-radius: 12px; background: var(--surface); margin-bottom: 14px; overflow: hidden; }
-  .pattern-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; padding: 16px 18px; cursor: pointer; }
-  .pattern-title { font-size: 15px; font-weight: 700; margin: 0 0 4px; }
-  .pattern-desc { font-size: 13px; color: var(--ink-sec); margin: 0; }
-  .pattern-stats { display: flex; gap: 8px; flex-shrink: 0; flex-wrap: wrap; justify-content: flex-end; }
-  .stat-pill { text-align: center; padding: 4px 10px; border-radius: 8px; background: var(--bg); min-width: 64px; }
-  .stat-pill .n { font-size: 15px; font-weight: 700; display: block; }
-  .stat-pill .l { font-size: 10px; color: var(--ink-hint); text-transform: uppercase; letter-spacing: .3px; }
+  /* Summary cards */
+  .summary-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 20px 0 6px; }
+  .summary-card { border-radius: 12px; padding: 16px 14px; cursor: pointer; border: 2px solid transparent; transition: all .15s; text-align: left; }
+  .summary-card:hover { transform: translateY(-1px); }
+  .summary-card .n { font-size: 26px; font-weight: 800; line-height: 1; display: block; margin-bottom: 6px; }
+  .summary-card .l { font-size: 13px; font-weight: 700; }
+  .summary-card .sub { font-size: 11px; opacity: .75; margin-top: 3px; }
+  .summary-card.all { background: #111827; color: #fff; }
+  .summary-card.all.is-active { border-color: #111827; box-shadow: 0 0 0 3px #11182722; }
+  .summary-card.growing { background: var(--cat-growing-light); color: var(--cat-growing); }
+  .summary-card.gems { background: var(--cat-gems-light); color: var(--cat-gems); }
+  .summary-card.intent { background: var(--cat-intent-light); color: var(--cat-intent); }
+  .summary-card.money { background: var(--cat-money-light); color: var(--cat-money); }
+  .summary-card.ai { background: var(--cat-ai-light); color: var(--cat-ai); }
+  .summary-card.growing.is-active { border-color: var(--cat-growing); }
+  .summary-card.gems.is-active { border-color: var(--cat-gems); }
+  .summary-card.intent.is-active { border-color: var(--cat-intent); }
+  .summary-card.money.is-active { border-color: var(--cat-money); }
+  .summary-card.ai.is-active { border-color: var(--cat-ai); }
+  .custom-tester-btn { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 18px; padding: 10px 18px; border-radius: 10px; border: 1.5px dashed var(--border); background: var(--surface); font-family: inherit; font-size: 13px; font-weight: 600; color: var(--ink-sec); cursor: pointer; }
+  .custom-tester-btn:hover, .custom-tester-btn.is-active { border-color: var(--brand); border-style: solid; color: var(--brand); background: var(--brand-light); }
+
+  /* Category section header */
+  .cat-section-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 2px; margin-top: 22px; }
+  .cat-section-head .title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .cat-section-head .sub { font-size: 12px; color: var(--ink-hint); font-weight: 500; }
+  .cat-section-head .count-badge { font-size: 12px; font-weight: 600; color: var(--ink-hint); }
+
+  /* Pattern cards (v2) */
+  .pattern-card { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); margin-bottom: 10px; overflow: hidden; border-left-width: 4px; }
+  .pattern-head { display: flex; align-items: center; gap: 14px; padding: 13px 16px; cursor: pointer; }
+  .match-badge { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+  .pattern-main { flex: 1; min-width: 0; }
+  .pattern-title { font-size: 14px; font-weight: 700; margin: 0 0 2px; display: flex; align-items: center; gap: 8px; }
+  .pattern-desc { font-size: 12px; color: var(--ink-sec); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .field-pill { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; color: var(--ink-hint); background: var(--bg); padding: 2px 7px; border-radius: 999px; flex-shrink: 0; }
+  .pattern-stat-row { display: flex; gap: 20px; flex-shrink: 0; }
+  .pattern-stat-row .stat { text-align: right; min-width: 56px; }
+  .pattern-stat-row .stat .v { font-size: 14px; font-weight: 700; display: block; }
+  .pattern-stat-row .stat .k { font-size: 10px; color: var(--ink-hint); text-transform: uppercase; letter-spacing: .3px; }
+  .chevron { flex-shrink: 0; color: var(--ink-hint); transition: transform .15s; }
+  .chevron.rotated { transform: rotate(180deg); }
   .pattern-body { border-top: 1px solid var(--border); padding: 14px 18px; display: none; }
   .pattern-body.open { display: block; }
   .pattern-tip { background: var(--brand-light); color: var(--brand-dark); font-size: 12px; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; }
-  .pattern-code { font-family: 'Courier New', monospace; font-size: 12px; background: #1e1e2e; color: #a6e3a1; padding: 8px 12px; border-radius: 8px; overflow-x: auto; white-space: nowrap; margin-bottom: 12px; }
   .disabled-notice { background: var(--red-light); color: #7f1d1d; font-size: 12px; padding: 10px 12px; border-radius: 8px; }
   table.result-table { width: 100%; border-collapse: collapse; font-size: 13px; }
   table.result-table th { text-align: left; padding: 8px 10px; background: var(--bg); font-size: 11px; text-transform: uppercase; letter-spacing: .3px; color: var(--ink-hint); border-bottom: 1px solid var(--border); }
@@ -235,8 +270,9 @@
   @media (max-width: 720px) {
     .custom-tester { grid-template-columns: 1fr; }
     h1 { font-size: 26px; }
-    .pattern-head { flex-direction: column; }
-    .pattern-stats { justify-content: flex-start; }
+    .summary-cards { grid-template-columns: repeat(2, 1fr); }
+    .pattern-head { flex-wrap: wrap; }
+    .pattern-stat-row { gap: 12px; order: 3; width: 100%; justify-content: flex-start; padding-left: 54px; }
   }
 </style>
 </head>
@@ -312,7 +348,8 @@
   <div id="statusBar" style="display:none;"></div>
 
   <div id="mainResults" style="display:none;">
-    <div class="tabs" id="categoryTabs"></div>
+    <div class="summary-cards" id="summaryCards"></div>
+    <button class="custom-tester-btn" id="customTesterBtn">🧪 Custom Regex Tester</button>
     <div id="tabContent"></div>
   </div>
 
@@ -752,14 +789,18 @@ function testCustomPattern(rows, fieldName, clicksCol, impressionsCol, positionC
 let STATE = {
   sources: { query: null, page: null }, // each: { rows, headers, fieldName, clicksCol, impressionsCol, positionCol }
   activeSource: null, // "query" | "page"
-  categoryResults: [], activeCategory: null,
+  categoryResults: [],
+  activeCategory: null, // null = show all categories · "CUSTOM" = custom tester · or a category name to filter
 };
 
-const CATEGORIES = ["Long-Tail Discovery", "Hidden Gems", "Search Intent", "Money Keywords", "Advanced & AI", "Custom Regex Tester"];
-const CAT_COLORS = {
-  "Long-Tail Discovery": "brand", "Hidden Gems": "purple", "Search Intent": "teal",
-  "Money Keywords": "green", "Advanced & AI": "amber", "Custom Regex Tester": "brand",
-};
+const CATEGORY_META = [
+  { name: "Long-Tail Discovery", short: "Growing", cls: "growing", icon: "🌱", sub: "Keyword growth opportunities" },
+  { name: "Hidden Gems", short: "Hidden Gems", cls: "gems", icon: "💎", sub: "Overlooked opportunity queries" },
+  { name: "Search Intent", short: "Intent", cls: "intent", icon: "🧭", sub: "What searchers actually want" },
+  { name: "Money Keywords", short: "Money", cls: "money", icon: "💰", sub: "Revenue & buyer-intent queries" },
+  { name: "Advanced & AI", short: "AI & Advanced", cls: "ai", icon: "🤖", sub: "AI queries & technical filters" },
+];
+const CATEGORY_CLASS = CATEGORY_META.reduce((acc, c) => { acc[c.name] = c.cls; return acc; }, {});
 
 function getParams() {
   return {
@@ -811,8 +852,8 @@ function renderSourceToggle(available) {
   el.style.display = "block";
   el.innerHTML = `
     <span style="font-size:13px;font-weight:600;color:var(--ink-sec);margin-right:8px;">Data source:</span>
-    <button class="tab-btn ${STATE.activeSource === "query" ? "active" : ""}" data-src="query">Queries (${STATE.sources.query.rows.length.toLocaleString()})</button>
-    <button class="tab-btn ${STATE.activeSource === "page" ? "active" : ""}" data-src="page">Pages (${STATE.sources.page.rows.length.toLocaleString()})</button>`;
+    <button class="custom-tester-btn ${STATE.activeSource === "query" ? "is-active" : ""}" data-src="query" style="display:inline-flex;margin:0 6px 0 0;border-style:solid;">Queries (${STATE.sources.query.rows.length.toLocaleString()})</button>
+    <button class="custom-tester-btn ${STATE.activeSource === "page" ? "is-active" : ""}" data-src="page" style="display:inline-flex;border-style:solid;">Pages (${STATE.sources.page.rows.length.toLocaleString()})</button>`;
   el.querySelectorAll("[data-src]").forEach(btn => {
     btn.addEventListener("click", () => {
       STATE.activeSource = btn.getAttribute("data-src");
@@ -883,41 +924,79 @@ function runAnalysis() {
   if (!s) return;
   const params = getParams();
   STATE.categoryResults = runAllPatterns(s.rows, s.fieldType, s.fieldName, s.clicksCol, s.impressionsCol, s.positionCol, params);
-  const availableCats = CATEGORIES.filter(c => c === "Custom Regex Tester" || STATE.categoryResults.some(r => r.category === c));
-  if (!STATE.activeCategory || !availableCats.includes(STATE.activeCategory)) {
-    STATE.activeCategory = availableCats[0];
+  const presentCats = CATEGORY_META.filter(c => STATE.categoryResults.some(r => r.category === c.name)).map(c => c.name);
+  if (STATE.activeCategory !== "CUSTOM" && STATE.activeCategory !== null && !presentCats.includes(STATE.activeCategory)) {
+    STATE.activeCategory = null;
   }
-  renderTabs();
-  renderTabContent();
+  renderSummaryCards();
+  renderMainContent();
 }
 
-function renderTabs() {
-  const availableCats = CATEGORIES.filter(c => c === "Custom Regex Tester" || STATE.categoryResults.some(r => r.category === c));
-  const tabsEl = document.getElementById("categoryTabs");
-  tabsEl.innerHTML = availableCats.map(cat => {
-    const count = STATE.categoryResults.filter(r => r.category === cat).length;
-    const label = cat === "Custom Regex Tester" ? "🧪 Custom Regex Tester" : `${cat} (${count})`;
-    return `<button class="tab-btn ${STATE.activeCategory === cat ? "active" : ""}" data-cat="${escapeHtml(cat)}">${label}</button>`;
-  }).join("");
-  tabsEl.querySelectorAll(".tab-btn").forEach(btn => {
-    btn.addEventListener("click", () => { STATE.activeCategory = btn.getAttribute("data-cat"); renderTabs(); renderTabContent(); });
+function renderSummaryCards() {
+  const el = document.getElementById("summaryCards");
+  const totalMatches = STATE.categoryResults.reduce((sum, r) => sum + (r.result ? r.result.matchCount : 0), 0);
+  let html = `
+    <div class="summary-card all ${STATE.activeCategory === null ? "is-active" : ""}" data-cat="__ALL__">
+      <span class="n">${STATE.categoryResults.length}</span>
+      <span class="l">All Patterns</span>
+      <div class="sub">${totalMatches.toLocaleString()} total matches</div>
+    </div>`;
+  CATEGORY_META.forEach(meta => {
+    const items = STATE.categoryResults.filter(r => r.category === meta.name);
+    if (items.length === 0) return;
+    const matches = items.reduce((sum, r) => sum + (r.result ? r.result.matchCount : 0), 0);
+    html += `
+    <div class="summary-card ${meta.cls} ${STATE.activeCategory === meta.name ? "is-active" : ""}" data-cat="${escapeHtml(meta.name)}">
+      <span class="n">${items.length}</span>
+      <span class="l">${meta.icon} ${meta.short}</span>
+      <div class="sub">${matches.toLocaleString()} matches</div>
+    </div>`;
   });
+  el.innerHTML = html;
+  el.querySelectorAll(".summary-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const cat = card.getAttribute("data-cat");
+      STATE.activeCategory = cat === "__ALL__" ? null : cat;
+      renderSummaryCards();
+      renderMainContent();
+    });
+  });
+  const customBtn = document.getElementById("customTesterBtn");
+  if (customBtn) customBtn.classList.toggle("is-active", STATE.activeCategory === "CUSTOM");
 }
 
-function renderTabContent() {
+function renderMainContent() {
   const el = document.getElementById("tabContent");
-  if (STATE.activeCategory === "Custom Regex Tester") {
+  if (STATE.activeCategory === "CUSTOM") {
     el.innerHTML = customTesterHTML();
     wireCustomTester();
     return;
   }
-  const items = STATE.categoryResults.filter(r => r.category === STATE.activeCategory);
-  el.innerHTML = items.map(patternCardHTML).join("");
-  items.forEach(item => {
+  const catsToShow = STATE.activeCategory
+    ? CATEGORY_META.filter(c => c.name === STATE.activeCategory)
+    : CATEGORY_META;
+
+  let html = "";
+  const allItems = [];
+  catsToShow.forEach(meta => {
+    const items = STATE.categoryResults.filter(r => r.category === meta.name);
+    if (items.length === 0) return;
+    html += `
+    <div class="cat-section-head">
+      <div class="title"><span style="color:var(--cat-${meta.cls});">${meta.icon}</span> ${escapeHtml(meta.name)} <span class="sub">— ${escapeHtml(meta.sub)}</span></div>
+      <div class="count-badge">${items.length} patterns</div>
+    </div>`;
+    html += items.map(patternCardHTML).join("");
+    allItems.push(...items);
+  });
+  el.innerHTML = html || `<p style="color:var(--ink-hint);font-size:13px;padding:20px 0;">No patterns available for this data source.</p>`;
+
+  allItems.forEach(item => {
     const head = document.getElementById("head-" + item.id);
     if (head) head.addEventListener("click", () => {
-      const body = document.getElementById("body-" + item.id);
-      body.classList.toggle("open");
+      document.getElementById("body-" + item.id).classList.toggle("open");
+      const chev = document.getElementById("chev-" + item.id);
+      if (chev) chev.classList.toggle("rotated");
     });
     const exportBtn = document.getElementById("export-" + item.id);
     if (exportBtn) exportBtn.addEventListener("click", (e) => { e.stopPropagation(); exportMatchesCSV(item.result.matches, item.id); });
@@ -926,23 +1005,40 @@ function renderTabContent() {
 
 function patternCardHTML(item) {
   const r = item.result;
+  const cls = CATEGORY_CLASS[item.category] || "intent";
   if (item.disabled) {
-    return `<div class="pattern-card"><div class="pattern-head"><div><p class="pattern-title">${escapeHtml(item.title)}</p><p class="pattern-desc">${escapeHtml(item.desc)}</p></div></div><div style="padding:0 18px 16px;"><div class="disabled-notice">🔒 ${escapeHtml(item.disabledReason)}</div></div></div>`;
+    return `
+    <div class="pattern-card" style="border-left-color:var(--cat-${cls});">
+      <div class="pattern-head">
+        <div class="match-badge" style="background:var(--bg);color:var(--ink-hint);">🔒</div>
+        <div class="pattern-main">
+          <p class="pattern-title">${escapeHtml(item.title)} <span class="field-pill">${item.filterType}</span></p>
+          <p class="pattern-desc">${escapeHtml(item.desc)}</p>
+        </div>
+      </div>
+      <div style="padding:0 16px 14px 70px;"><div class="disabled-notice">🔒 ${escapeHtml(item.disabledReason)}</div></div>
+    </div>`;
   }
+  const ctr = r.totalImpressions > 0 ? ((r.totalClicks / r.totalImpressions) * 100).toFixed(1) + "%" : "0.0%";
+  const hasMatches = r.matchCount > 0;
+  const badgeBg = hasMatches ? `var(--cat-${cls}-light)` : "var(--bg)";
+  const badgeColor = hasMatches ? `var(--cat-${cls})` : "var(--ink-hint)";
   const rowsHtml = r.matches.slice(0, 50).map(m => `<tr><td>${escapeHtml(m.value)}</td><td>${m.clicks}</td><td>${m.impressions}</td><td>${m.position !== null ? m.position : "—"}</td></tr>`).join("");
   return `
-  <div class="pattern-card">
+  <div class="pattern-card" style="border-left-color:var(--cat-${cls});">
     <div class="pattern-head" id="head-${item.id}">
-      <div>
-        <p class="pattern-title">${escapeHtml(item.title)}</p>
+      <div class="match-badge" style="background:${badgeBg};color:${badgeColor};">${r.matchCount}</div>
+      <div class="pattern-main">
+        <p class="pattern-title">${escapeHtml(item.title)} <span class="field-pill">${item.filterType}</span></p>
         <p class="pattern-desc">${escapeHtml(item.desc)}</p>
       </div>
-      <div class="pattern-stats">
-        <div class="stat-pill"><span class="n">${r.matchCount}</span><span class="l">Matches</span></div>
-        <div class="stat-pill"><span class="n">${r.totalImpressions.toLocaleString()}</span><span class="l">Impr.</span></div>
-        <div class="stat-pill"><span class="n">${r.totalClicks.toLocaleString()}</span><span class="l">Clicks</span></div>
-        <div class="stat-pill"><span class="n">${r.avgPosition !== null ? r.avgPosition : "—"}</span><span class="l">Avg Pos</span></div>
+      <div class="pattern-stat-row">
+        <div class="stat"><span class="v">${r.totalClicks.toLocaleString()}</span><span class="k">Clicks</span></div>
+        <div class="stat"><span class="v">${r.totalImpressions.toLocaleString()}</span><span class="k">Impr</span></div>
+        <div class="stat"><span class="v">${ctr}</span><span class="k">CTR</span></div>
+        <div class="stat"><span class="v">${r.avgPosition !== null ? r.avgPosition : "—"}</span><span class="k">Pos</span></div>
       </div>
+      <svg class="chevron" id="chev-${item.id}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
     </div>
     <div class="pattern-body" id="body-${item.id}">
       <div class="pattern-tip">💡 ${escapeHtml(item.tip)}</div>
@@ -1034,6 +1130,12 @@ uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("drag
 uploadZone.addEventListener("drop", (e) => {
   e.preventDefault(); uploadZone.classList.remove("dragover");
   if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+
+document.getElementById("customTesterBtn").addEventListener("click", () => {
+  STATE.activeCategory = "CUSTOM";
+  renderSummaryCards();
+  renderMainContent();
 });
 
 /* Re-run analysis when personalization fields change */
