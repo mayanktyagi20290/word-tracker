@@ -1,0 +1,1191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Search Console Regex Analyzer — Free GSC Query Pattern Finder | SEOTriggers</title>
+<meta name="description" content="Upload your Google Search Console export and instantly run 26 proven regex patterns — long-tail discovery, buyer intent, search intent, and AI query detection. 100% free, runs in your browser." />
+<link rel="canonical" href="https://seotriggers.com/tools/search-console-regex-analyzer" />
+<meta name="robots" content="index, follow" />
+
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Search Console Regex Analyzer — Free GSC Query Pattern Finder" />
+<meta property="og:description" content="Upload your GSC export and run 26 regex patterns instantly — no manual filtering, no regex knowledge needed." />
+<meta property="og:url" content="https://seotriggers.com/tools/search-console-regex-analyzer" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-STNE1RFPKY');
+</script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-STNE1RFPKY"></script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Search Console Regex Analyzer",
+  "url": "https://seotriggers.com/tools/search-console-regex-analyzer",
+  "applicationCategory": "SEO Tool",
+  "operatingSystem": "Any (Web Browser)",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "USD" },
+  "description": "Upload a Google Search Console export and instantly run 26 proven regex patterns to surface long-tail, buyer-intent, search-intent, and AI-driven query opportunities.",
+  "featureList": [
+    "26 pre-built GSC regex patterns across 5 categories",
+    "Custom regex tester with live match preview",
+    "Parameterized patterns for brand, competitor, and location names",
+    "Per-pattern CSV export",
+    "100% client-side — CSV never leaves the browser"
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://seotriggers.com/" },
+    { "@type": "ListItem", "position": 2, "name": "Tools", "item": "https://seotriggers.com/tools/" },
+    { "@type": "ListItem", "position": 3, "name": "Search Console Regex Analyzer", "item": "https://seotriggers.com/tools/search-console-regex-analyzer" }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Does my Search Console data get uploaded to a server?",
+      "acceptedAnswer": { "@type": "Answer", "text": "No. The CSV is parsed entirely in your browser using JavaScript. Nothing is uploaded, stored, or sent anywhere — you can disconnect from the internet after the page loads and the tool still works." }
+    },
+    {
+      "@type": "Question",
+      "name": "Where do I export the file this tool needs?",
+      "acceptedAnswer": { "@type": "Answer", "text": "In Google Search Console, open Performance, set your date range, then click Export at the top and choose Excel (.xlsx). That single file contains a Queries tab and a Pages tab plus a few others — this tool reads both automatically and lets you switch between them. A plain Queries.csv or Pages.csv export also works." }
+    },
+    {
+      "@type": "Question",
+      "name": "Why do some patterns say they're disabled?",
+      "acceptedAnswer": { "@type": "Answer", "text": "A handful of patterns need a personalized input to work correctly, such as your brand name, competitor names, or domain. Fill in the optional personalization fields above the results to enable those patterns." }
+    },
+    {
+      "@type": "Question",
+      "name": "Are these the same regex patterns Search Console itself uses?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Google Search Console's filter uses the RE2 (Golang) regex flavor, while this tool runs in JavaScript's regex engine. The patterns are functionally equivalent, but a couple were adapted slightly (for example, inline case-insensitive flags) so they compile correctly in the browser." }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I test my own regex pattern instead of the built-in ones?",
+      "acceptedAnswer": { "@type": "Answer", "text": "Yes. The Custom Regex Tester tab lets you write any pattern, choose Query or Page as the field, choose matches or does-not-match, and see live results with impression and click totals." }
+    }
+  ]
+}
+</script>
+
+<style>
+  :root {
+    --brand: #6366f1;
+    --brand-dark: #4f46e5;
+    --brand-light: #eef2ff;
+    --green: #16a34a;
+    --green-light: #f0fdf4;
+    --red: #dc2626;
+    --red-light: #fef2f2;
+    --amber: #d97706;
+    --amber-light: #fffbeb;
+    --teal: #0d9488;
+    --teal-light: #f0fdfa;
+    --purple: #9333ea;
+    --purple-light: #faf5ff;
+    --ink: #111827;
+    --ink-sec: #4b5563;
+    --ink-hint: #9ca3af;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --surface: #ffffff;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Inter', -apple-system, sans-serif; color: var(--ink); background: var(--bg); line-height: 1.5; }
+  a { color: inherit; }
+  img { max-width: 100%; }
+
+  /* Nav */
+  .nav { position: sticky; top: 0; z-index: 100; background: var(--surface); border-bottom: 1px solid var(--border); }
+  .nav-inner { max-width: 1180px; margin: 0 auto; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .logo { font-size: 19px; font-weight: 800; text-decoration: none; color: var(--ink); }
+  .logo span { color: var(--brand); }
+  .nav-links { display: flex; gap: 22px; font-size: 14px; font-weight: 500; }
+  .nav-links a { text-decoration: none; color: var(--ink-sec); }
+  .nav-links a:hover { color: var(--brand); }
+
+  /* Breadcrumb */
+  .breadcrumb { max-width: 1180px; margin: 0 auto; padding: 14px 24px 0; font-size: 13px; color: var(--ink-hint); }
+  .breadcrumb a { text-decoration: none; color: var(--ink-hint); }
+  .breadcrumb a:hover { color: var(--brand); }
+
+  /* Hero */
+  .hero { max-width: 1180px; margin: 0 auto; padding: 28px 24px 8px; }
+  .free-badge { display: inline-flex; align-items: center; gap: 6px; background: var(--green-light); color: var(--green); font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; margin-bottom: 14px; letter-spacing: .3px; }
+  h1 { font-size: 34px; font-weight: 800; margin: 0 0 12px; letter-spacing: -0.5px; }
+  .hero-sub { font-size: 16px; color: var(--ink-sec); max-width: 700px; margin: 0 0 20px; }
+
+  .container { max-width: 1180px; margin: 0 auto; padding: 0 24px 60px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; }
+
+  /* Upload */
+  .upload-zone { border: 2px dashed var(--border); border-radius: 12px; padding: 40px 24px; text-align: center; cursor: pointer; transition: all .15s; background: var(--surface); }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--brand); background: var(--brand-light); }
+  .upload-zone svg { margin-bottom: 10px; }
+  .upload-title { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
+  .upload-sub { font-size: 13px; color: var(--ink-hint); }
+  .upload-hint { font-size: 12px; color: var(--ink-hint); margin-top: 14px; }
+  #fileInput { display: none; }
+
+  /* Personalization panel */
+  .personalize { margin-top: 16px; }
+  .personalize summary { cursor: pointer; font-size: 14px; font-weight: 600; padding: 12px 16px; list-style: none; display: flex; align-items: center; gap: 8px; }
+  .personalize summary::-webkit-details-marker { display: none; }
+  .personalize-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; padding: 4px 16px 18px; }
+  .field label { display: block; font-size: 12px; font-weight: 600; color: var(--ink-sec); margin-bottom: 5px; }
+  .field input { width: 100%; padding: 8px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: inherit; font-size: 13px; outline: none; }
+  .field input:focus { border-color: var(--brand); box-shadow: 0 0 0 3px var(--brand-light); }
+  .field-hint { font-size: 11px; color: var(--ink-hint); margin-top: 4px; }
+
+  /* Status bar */
+  .status-bar { display: flex; align-items: center; gap: 12px; padding: 12px 16px; margin-top: 14px; border-radius: 10px; font-size: 13px; }
+  .status-ok { background: var(--green-light); color: #14532d; }
+  .status-warn { background: var(--amber-light); color: #78350f; }
+
+  /* Compact "file loaded" bar — replaces the big drop zone once data is in */
+  .file-loaded-bar { display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; padding: 12px 18px; border-radius: 10px; background: var(--green-light); border: 1px solid #16a34a33; }
+  .file-loaded-bar.dragover { background: var(--brand-light); border-color: var(--brand); }
+  .file-loaded-text { font-size: 13px; color: #14532d; font-weight: 500; }
+  .file-loaded-text strong { font-weight: 700; }
+  .change-file-btn { flex-shrink: 0; padding: 8px 16px; border-radius: 999px; border: 1.5px solid var(--brand); background: #fff; color: var(--brand); font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; transition: all .15s; }
+  .change-file-btn:hover { background: var(--brand); color: #fff; }
+
+  /* Category colors */
+  :root {
+    --cat-growing: #16a34a; --cat-growing-light: #f0fdf4;
+    --cat-gems: #9333ea; --cat-gems-light: #faf5ff;
+    --cat-intent: #2563eb; --cat-intent-light: #eff6ff;
+    --cat-money: #d97706; --cat-money-light: #fffbeb;
+    --cat-ai: #0d9488; --cat-ai-light: #f0fdfa;
+  }
+
+  /* Summary cards */
+  .summary-cards { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; margin: 20px 0 6px; }
+  .summary-card { border-radius: 12px; padding: 16px 14px; cursor: pointer; border: 2px solid transparent; transition: all .15s; text-align: left; }
+  .summary-card:hover { transform: translateY(-1px); }
+  .summary-card .n { font-size: 26px; font-weight: 800; line-height: 1; display: block; margin-bottom: 6px; }
+  .summary-card .l { font-size: 13px; font-weight: 700; }
+  .summary-card .sub { font-size: 11px; opacity: .75; margin-top: 3px; }
+  .summary-card.all { background: #111827; color: #fff; }
+  .summary-card.all.is-active { border-color: #111827; box-shadow: 0 0 0 3px #11182722; }
+  .summary-card.growing { background: var(--cat-growing-light); color: var(--cat-growing); }
+  .summary-card.gems { background: var(--cat-gems-light); color: var(--cat-gems); }
+  .summary-card.intent { background: var(--cat-intent-light); color: var(--cat-intent); }
+  .summary-card.money { background: var(--cat-money-light); color: var(--cat-money); }
+  .summary-card.ai { background: var(--cat-ai-light); color: var(--cat-ai); }
+  .summary-card.growing.is-active { border-color: var(--cat-growing); }
+  .summary-card.gems.is-active { border-color: var(--cat-gems); }
+  .summary-card.intent.is-active { border-color: var(--cat-intent); }
+  .summary-card.money.is-active { border-color: var(--cat-money); }
+  .summary-card.ai.is-active { border-color: var(--cat-ai); }
+  .custom-tester-btn { display: inline-flex; align-items: center; gap: 8px; margin: 4px 0 18px; padding: 10px 18px; border-radius: 10px; border: 1.5px dashed var(--border); background: var(--surface); font-family: inherit; font-size: 13px; font-weight: 600; color: var(--ink-sec); cursor: pointer; }
+  .custom-tester-btn:hover, .custom-tester-btn.is-active { border-color: var(--brand); border-style: solid; color: var(--brand); background: var(--brand-light); }
+
+  /* Category section header */
+  .cat-section-head { display: flex; align-items: center; justify-content: space-between; padding: 10px 2px; margin-top: 22px; }
+  .cat-section-head .title { font-size: 15px; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+  .cat-section-head .sub { font-size: 12px; color: var(--ink-hint); font-weight: 500; }
+  .cat-section-head .count-badge { font-size: 12px; font-weight: 600; color: var(--ink-hint); }
+
+  /* Pattern cards (v2) */
+  .pattern-card { border: 1px solid var(--border); border-radius: 10px; background: var(--surface); margin-bottom: 10px; overflow: hidden; border-left-width: 4px; }
+  .pattern-head { display: flex; align-items: center; gap: 14px; padding: 13px 16px; cursor: pointer; }
+  .match-badge { flex-shrink: 0; width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 800; }
+  .pattern-main { flex: 1; min-width: 0; }
+  .pattern-title { font-size: 14px; font-weight: 700; margin: 0 0 2px; display: flex; align-items: center; gap: 8px; }
+  .pattern-desc { font-size: 12px; color: var(--ink-sec); margin: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .field-pill { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .3px; color: var(--ink-hint); background: var(--bg); padding: 2px 7px; border-radius: 999px; flex-shrink: 0; }
+  .pattern-stat-row { display: flex; gap: 20px; flex-shrink: 0; }
+  .pattern-stat-row .stat { text-align: right; min-width: 56px; }
+  .pattern-stat-row .stat .v { font-size: 14px; font-weight: 700; display: block; }
+  .pattern-stat-row .stat .k { font-size: 10px; color: var(--ink-hint); text-transform: uppercase; letter-spacing: .3px; }
+  .chevron { flex-shrink: 0; color: var(--ink-hint); transition: transform .15s; }
+  .chevron.rotated { transform: rotate(180deg); }
+  .pattern-body { border-top: 1px solid var(--border); padding: 14px 18px; display: none; }
+  .pattern-body.open { display: block; }
+  .pattern-tip { background: var(--brand-light); color: var(--brand-dark); font-size: 12px; padding: 8px 12px; border-radius: 8px; margin-bottom: 12px; }
+  .disabled-notice { background: var(--red-light); color: #7f1d1d; font-size: 12px; padding: 10px 12px; border-radius: 8px; }
+  table.result-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.result-table th { text-align: left; padding: 8px 10px; background: var(--bg); font-size: 11px; text-transform: uppercase; letter-spacing: .3px; color: var(--ink-hint); border-bottom: 1px solid var(--border); }
+  table.result-table td { padding: 8px 10px; border-bottom: 1px solid var(--border); }
+  .export-btn { margin-top: 10px; padding: 7px 14px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); font-family: inherit; font-size: 12px; font-weight: 600; cursor: pointer; color: var(--ink-sec); }
+  .export-btn:hover { border-color: var(--brand); color: var(--brand); }
+
+  /* Custom regex tester */
+  .custom-tester { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .custom-tester textarea, .custom-tester select { width: 100%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 8px; font-family: 'Courier New', monospace; font-size: 13px; }
+  .custom-tester select { font-family: 'Inter', sans-serif; }
+  .run-btn { padding: 10px 20px; background: var(--brand); color: #fff; border: none; border-radius: 8px; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer; }
+  .run-btn:hover { background: var(--brand-dark); }
+
+  /* Empty state */
+  .empty-state { text-align: center; padding: 60px 24px; color: var(--ink-hint); }
+
+  /* Comparison table */
+  .comp-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .comp-table th, .comp-table td { padding: 12px 16px; border-bottom: 1px solid var(--border); text-align: left; }
+  .comp-table th { background: var(--bg); font-weight: 700; }
+  .comp-table td:not(:first-child), .comp-table th:not(:first-child) { text-align: center; }
+  .check { color: var(--green); font-weight: 700; }
+  .cross { color: var(--ink-hint); }
+
+  /* Features */
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+  .feature-card { padding: 18px; border: 1px solid var(--border); border-radius: 12px; background: var(--surface); }
+  .feature-card .icon { font-size: 22px; margin-bottom: 8px; }
+  .feature-card h3 { font-size: 15px; margin: 0 0 6px; }
+  .feature-card p { font-size: 13px; color: var(--ink-sec); margin: 0; }
+
+  /* FAQ */
+  .faq-item { border-bottom: 1px solid var(--border); padding: 16px 0; }
+  .faq-q { font-size: 15px; font-weight: 600; cursor: pointer; display: flex; justify-content: space-between; align-items: center; }
+  .faq-a { font-size: 14px; color: var(--ink-sec); margin-top: 10px; display: none; }
+  .faq-a.open { display: block; }
+
+  /* Cross-links */
+  .crosslink-list { display: flex; flex-wrap: wrap; gap: 10px; }
+  .crosslink-list a { text-decoration: none; font-size: 13px; padding: 8px 14px; border: 1px solid var(--border); border-radius: 999px; color: var(--ink-sec); }
+  .crosslink-list a:hover { border-color: var(--brand); color: var(--brand); }
+
+  section.block { margin-top: 44px; }
+  section.block h2 { font-size: 22px; margin: 0 0 6px; }
+  section.block .block-sub { font-size: 14px; color: var(--ink-sec); margin: 0 0 20px; }
+
+  footer { border-top: 1px solid var(--border); padding: 30px 24px; text-align: center; font-size: 13px; color: var(--ink-hint); }
+
+  @media (max-width: 720px) {
+    .custom-tester { grid-template-columns: 1fr; }
+    h1 { font-size: 26px; }
+    .summary-cards { grid-template-columns: repeat(2, 1fr); }
+    .pattern-head { flex-wrap: wrap; }
+    .pattern-stat-row { gap: 12px; order: 3; width: 100%; justify-content: flex-start; padding-left: 54px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="logo" href="/">SEO<span>Triggers</span></a>
+    <div class="nav-links">
+      <a href="/tools/">All Tools</a>
+      <a href="/blog/">Blog</a>
+    </div>
+  </div>
+</nav>
+
+<div class="breadcrumb">
+  <a href="/">Home</a> / <a href="/tools/">Tools</a> / Search Console Regex Analyzer
+</div>
+
+<div class="hero">
+  <span class="free-badge">✓ 100% Free · No Signup · Runs In Your Browser</span>
+  <h1>Search Console Regex Analyzer</h1>
+  <p class="hero-sub">Upload your Google Search Console export and instantly run 26 proven regex patterns — long-tail discovery, buyer intent, search intent classification, and AI query detection. No manual filtering, no regex knowledge required.</p>
+</div>
+
+<div class="container">
+
+  <div id="uploadContainer">
+    <div id="uploadZone" class="upload-zone">
+      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#6366f1" stroke-width="1.6"><path d="M12 16V4M12 4l-4 4M12 4l4 4"/><path d="M4 16v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+      <div class="upload-title">Drop your GSC export here, or click to browse</div>
+      <div class="upload-sub">Accepts the Excel (.xlsx) export from Search Console → Performance → Export — or a plain Queries.csv / Pages.csv</div>
+      <input type="file" id="fileInput" accept=".csv,.xlsx,.xls" />
+    </div>
+    <div class="upload-hint">Your file is parsed entirely in this browser tab. It is never uploaded or stored anywhere. The Excel export contains multiple tabs (Queries, Pages, Countries, Devices…) — this tool automatically reads the Queries and Pages tabs and ignores the rest.</div>
+  </div>
+
+  <div id="fileLoadedBar" class="file-loaded-bar" style="display:none;">
+    <span class="file-loaded-text" id="fileLoadedText"></span>
+    <button class="change-file-btn" id="changeFileBtn">📤 Change file</button>
+  </div>
+
+  <div id="sourceToggle" style="display:none;margin-top:14px;"></div>
+
+  <details class="personalize card" id="personalizePanel" style="display:none;">
+    <summary>⚙️ Personalize patterns (optional) — enables brand, competitor &amp; location-based patterns</summary>
+    <div class="personalize-grid">
+      <div class="field">
+        <label>Your brand name(s) / misspellings</label>
+        <input type="text" id="pBrand" placeholder="e.g. seotriggers, seo triggers, seotrigger" />
+        <div class="field-hint">Comma-separated. Enables 2 patterns.</div>
+      </div>
+      <div class="field">
+        <label>Competitor names</label>
+        <input type="text" id="pCompetitors" placeholder="e.g. ahrefs, semrush" />
+        <div class="field-hint">Comma-separated. Enables 1 pattern.</div>
+      </div>
+      <div class="field">
+        <label>Service-area cities / states</label>
+        <input type="text" id="pLocations" placeholder="e.g. austin, texas" />
+        <div class="field-hint">Comma-separated. Sharpens local queries.</div>
+      </div>
+      <div class="field">
+        <label>Your domain</label>
+        <input type="text" id="pDomain" placeholder="e.g. example.com" />
+        <div class="field-hint">Needed for the URL section pattern (Pages export).</div>
+      </div>
+      <div class="field">
+        <label>Site sections</label>
+        <input type="text" id="pSections" placeholder="e.g. blog, shop, docs" />
+        <div class="field-hint">Comma-separated folder names.</div>
+      </div>
+      <div class="field">
+        <label>Years to flag</label>
+        <input type="text" id="pYears" placeholder="e.g. 2025, 2026" />
+        <div class="field-hint">Defaults to 2025, 2026 if left blank.</div>
+      </div>
+    </div>
+  </details>
+
+  <div id="statusBar" style="display:none;"></div>
+
+  <div id="mainResults" style="display:none;">
+    <div class="summary-cards" id="summaryCards"></div>
+    <button class="custom-tester-btn" id="customTesterBtn">🧪 Custom Regex Tester</button>
+    <div id="tabContent"></div>
+  </div>
+
+  <div id="emptyState" class="empty-state">
+    <div style="font-size:15px;font-weight:600;color:var(--ink-sec);margin-bottom:4px;">No file uploaded yet</div>
+    <div style="font-size:13px;">Upload a Queries.csv or Pages.csv export to see pattern matches across all 5 categories.</div>
+  </div>
+
+  <!-- COMPARISON -->
+  <section class="block">
+    <h2>How this compares</h2>
+    <p class="block-sub">Honest feature comparison against manual GSC filtering and paid SEO suites.</p>
+    <div class="card" style="overflow-x:auto;">
+      <table class="comp-table">
+        <thead><tr><th>Feature</th><th>Search Console Regex Analyzer</th><th>Manual GSC UI filter</th><th>Ahrefs / Semrush</th></tr></thead>
+        <tbody>
+          <tr><td>Run all patterns at once</td><td class="check">✓ 26 at once</td><td class="cross">1 at a time</td><td class="cross">Not built-in</td></tr>
+          <tr><td>No regex knowledge required</td><td class="check">✓</td><td class="cross">Manual regex</td><td class="cross">Manual regex</td></tr>
+          <tr><td>Personalized brand/competitor patterns</td><td class="check">✓ Auto-built</td><td class="cross">Manual editing</td><td class="cross">N/A</td></tr>
+          <tr><td>Custom regex tester with live stats</td><td class="check">✓</td><td class="cross">✗</td><td class="cross">✗</td></tr>
+          <tr><td>Cost</td><td class="check">Free</td><td class="check">Free</td><td class="cross">$99+/mo</td></tr>
+          <tr><td>Data leaves your browser</td><td class="check">Never</td><td class="cross">Google's servers</td><td class="cross">Uploaded to 3rd party</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="block">
+    <h2>Features</h2>
+    <p class="block-sub">Everything you need to mine your Search Console data for opportunity.</p>
+    <div class="features-grid">
+      <div class="feature-card"><div class="icon">🔍</div><h3>26 proven patterns</h3><p>Long-tail discovery, hidden gems, search intent, money keywords, and AI query detection — all pre-built and ready to run.</p></div>
+      <div class="feature-card"><div class="icon">🧩</div><h3>Auto-parameterized</h3><p>Add your brand, competitors, and city names once — the tool rebuilds the relevant patterns automatically.</p></div>
+      <div class="feature-card"><div class="icon">🧪</div><h3>Custom regex tester</h3><p>Write your own pattern, pick Query or Page, choose matches or does-not-match, and see live results.</p></div>
+      <div class="feature-card"><div class="icon">📊</div><h3>Impressions &amp; clicks totals</h3><p>Every pattern shows match count, total impressions, total clicks, and average position — sorted by opportunity.</p></div>
+      <div class="feature-card"><div class="icon">💾</div><h3>Per-pattern CSV export</h3><p>Export any single pattern's matched queries as a clean CSV for further analysis or content planning.</p></div>
+      <div class="feature-card"><div class="icon">🔒</div><h3>100% private</h3><p>Your GSC export never leaves your browser tab — no server, no upload, no third-party storage.</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="block">
+    <h2>Frequently asked questions</h2>
+    <div id="faqList">
+      <div class="faq-item">
+        <div class="faq-q">Does my Search Console data get uploaded to a server? <span>+</span></div>
+        <div class="faq-a">No. The CSV is parsed entirely in your browser using JavaScript. Nothing is uploaded, stored, or sent anywhere — you can disconnect from the internet after the page loads and the tool still works.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Where do I export the file this tool needs? <span>+</span></div>
+        <div class="faq-a">In Google Search Console, open Performance, set your date range, then click Export at the top and choose Excel (.xlsx). That single file contains a Queries tab and a Pages tab plus a few others — this tool reads both automatically and lets you switch between them. A plain Queries.csv or Pages.csv export also works.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Why do some patterns say they're disabled? <span>+</span></div>
+        <div class="faq-a">A handful of patterns need a personalized input to work correctly, such as your brand name, competitor names, or domain. Fill in the optional personalization fields above the results to enable those patterns.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are these the same regex patterns Search Console itself uses? <span>+</span></div>
+        <div class="faq-a">Google Search Console's filter uses the RE2 (Golang) regex flavor, while this tool runs in JavaScript's regex engine. The patterns are functionally equivalent, but a couple were adapted slightly (for example, inline case-insensitive flags) so they compile correctly in the browser.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Can I test my own regex pattern instead of the built-in ones? <span>+</span></div>
+        <div class="faq-a">Yes. The Custom Regex Tester tab lets you write any pattern, choose Query or Page as the field, choose matches or does-not-match, and see live results with impression and click totals.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CROSS LINKS -->
+  <section class="block">
+    <h2>Related tools</h2>
+    <div class="crosslink-list">
+      <a href="/tools/regex-tester">Regex Tester</a>
+      <a href="/tools/broken-link-checker">Broken Link Checker</a>
+      <a href="/tools/redirect-chain-checker">Redirect Chain Checker</a>
+      <a href="/tools/canonical-tag-checker">Canonical Tag Checker</a>
+      <a href="/tools/indexability-checker">Indexability Checker</a>
+      <a href="/tools/keyword-density-checker">Keyword Density Checker</a>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  © 2026 SEOTriggers.com — Free SEO &amp; developer tools. <a href="/blog/">Blog</a> · <a href="/tools/">All Tools</a>
+</footer>
+
+<script>
+/* ===========================================================================
+   CORE ENGINE — identical logic to gscPatternEngine.js (tested standalone),
+   embedded verbatim so the browser tool and the Node test suite never drift.
+=========================================================================== */
+function detectDelimiter(text) {
+  const firstLine = (text.split(/\r\n|\r|\n/)[0] || "");
+  const candidates = [",", ";", "\t"];
+  let best = ",", bestCount = 0;
+  candidates.forEach(d => {
+    const count = firstLine.split(d).length - 1;
+    if (count > bestCount) { bestCount = count; best = d; }
+  });
+  return bestCount > 0 ? best : ",";
+}
+
+function parseCSV(text) {
+  if (!text || !text.trim()) return { headers: [], rows: [] };
+  text = text.replace(/^\uFEFF/, "");
+  const delimiter = detectDelimiter(text);
+  const rows = [];
+  let row = [];
+  let field = "";
+  let inQuotes = false;
+  const s = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  for (let i = 0; i < s.length; i++) {
+    const c = s[i];
+    if (inQuotes) {
+      if (c === '"') {
+        if (s[i + 1] === '"') { field += '"'; i++; }
+        else { inQuotes = false; }
+      } else {
+        field += c;
+      }
+    } else {
+      if (c === '"') inQuotes = true;
+      else if (c === delimiter) { row.push(field); field = ""; }
+      else if (c === '\n') { row.push(field); rows.push(row); row = []; field = ""; }
+      else field += c;
+    }
+  }
+  if (field.length > 0 || row.length > 0) { row.push(field); rows.push(row); }
+
+  const nonEmpty = rows.filter(r => !(r.length === 1 && r[0].trim() === ""));
+  if (nonEmpty.length === 0) return { headers: [], rows: [] };
+
+  const headers = nonEmpty[0].map(h => h.trim());
+  const dataRows = nonEmpty.slice(1).map(r => {
+    const obj = {};
+    headers.forEach((h, idx) => { obj[h] = (r[idx] !== undefined ? r[idx] : "").trim(); });
+    return obj;
+  });
+  return { headers, rows: dataRows };
+}
+
+function detectFieldType(headers) {
+  const queryCol = headers.find(h => h.toLowerCase() === "query" || h.toLowerCase() === "top queries" || h.toLowerCase() === "queries");
+  if (queryCol) return { fieldType: "query", fieldName: queryCol };
+  const pageCol = headers.find(h => h.toLowerCase() === "page" || h.toLowerCase() === "top pages" || h.toLowerCase() === "pages" || h.toLowerCase() === "url");
+  if (pageCol) return { fieldType: "page", fieldName: pageCol };
+  return { fieldType: "unknown", fieldName: null };
+}
+
+function findCol(headers, candidates) {
+  for (const cand of candidates) {
+    const hit = headers.find(h => h.toLowerCase() === cand);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+function toNumber(v) {
+  if (v === undefined || v === null || v === "") return 0;
+  const n = parseFloat(String(v).replace(/[,%]/g, ""));
+  return isNaN(n) ? 0 : n;
+}
+
+function sheetAOAToRows(aoa) {
+  if (!aoa || aoa.length === 0) return { headers: [], rows: [] };
+  const headers = (aoa[0] || []).map(h => (h === undefined || h === null) ? "" : String(h).trim());
+  const dataRows = aoa.slice(1)
+    .filter(r => r && r.some(c => c !== undefined && c !== null && String(c).trim() !== ""))
+    .map(r => {
+      const obj = {};
+      headers.forEach((h, idx) => {
+        const v = r[idx];
+        obj[h] = (v === undefined || v === null) ? "" : v;
+      });
+      return obj;
+    });
+  return { headers, rows: dataRows };
+}
+
+function findSheetName(sheetNames, candidates) {
+  for (const cand of candidates) {
+    const hit = sheetNames.find(s => s.toLowerCase() === cand);
+    if (hit) return hit;
+  }
+  return null;
+}
+
+function findSheetByHeaderContent(workbookSheets, sheetNames, xlsxUtils, wantFieldType, excludeNames) {
+  const exclude = excludeNames || [];
+  for (const name of sheetNames) {
+    if (exclude.includes(name)) continue;
+    const aoa = xlsxUtils.sheet_to_json(workbookSheets[name], { header: 1, defval: "" });
+    if (!aoa || aoa.length === 0) continue;
+    const headerRow = (aoa[0] || []).map(h => (h === undefined || h === null) ? "" : String(h).trim());
+    const { fieldType } = detectFieldType(headerRow);
+    if (fieldType === wantFieldType) return name;
+  }
+  return null;
+}
+
+const RAW_PATTERNS = [
+  { id: "long-tail-7", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "Long-Tail Discovery (7+ Words)",
+    desc: "Specific, low-competition queries with strong user intent that convert extremely well.",
+    tip: "Sort by impressions descending. Create dedicated pages or FAQ sections for the top ones.",
+    pattern: "(([^ ]*\\s){6,}?)", flags: "i", params: [] },
+  { id: "question-full", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "Question Keywords (Full Coverage)",
+    desc: "All question-based queries for featured snippets, People Also Ask, and AI Overviews.",
+    tip: "Export, sort by impressions, and group by topic. Answer top questions directly in your content.",
+    pattern: "^(who|what|when|where|why|how|which|is|are|can|could|should|would|will|do|does|did|was|were|if)\\s", flags: "i", params: [] },
+  { id: "how-to", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "How-To Growth Queries",
+    desc: "Tutorial and instructional intent driving consistent evergreen traffic.",
+    tip: "Compare 3-month periods to spot which how-to topics are gaining impressions.",
+    pattern: "^how (to|do|does|can|should|would|is|are|much|many|long|often)\\s", flags: "i", params: [] },
+  { id: "year-tagged", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "Year-Tagged Queries",
+    desc: "Queries where users append the current year, signaling they want fresh content.",
+    tip: "If your content is dated, a quick refresh with updated info can boost CTR dramatically.",
+    pattern: ".*({{YEARS}}).*", flags: "i", params: ["years"] },
+  { id: "comparison-alt", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "Comparison & Alternatives Queries",
+    desc: "Users actively evaluating options with high engagement and conversion potential.",
+    tip: "Create dedicated comparison pages. These convert 3–5x better than informational content.",
+    pattern: ".*(vs|versus|compare|comparison|alternative|alternatives|similar to|like|instead of|or\\s).*", flags: "i", params: [] },
+  { id: "brand-misspellings", category: "Long-Tail Discovery", filterType: "query", matchType: "matches",
+    title: "Emerging Brand Mentions (incl. Misspellings)",
+    desc: "Catch all variations of your brand including typos. Growing misspelling impressions mean increasing awareness.",
+    tip: "Enter your brand name and common misspellings in the personalization panel.",
+    pattern: "({{BRAND_VARIANTS}})", flags: "i", params: ["brandVariants"], requiresParam: true },
+  { id: "ultra-specific-10", category: "Hidden Gems", filterType: "query", matchType: "matches",
+    title: "Ultra-Specific Queries (10+ Words)",
+    desc: "Extremely long queries indicating deep, specific intent. Collectively drive massive opportunity.",
+    tip: "Bundle related super-long-tail queries into comprehensive answer sections and FAQ content.",
+    pattern: "(([^ ]*\\s){9,})", flags: "i", params: [] },
+  { id: "non-brand", category: "Hidden Gems", filterType: "query", matchType: "matches",
+    title: "Non-Brand Traffic Isolator",
+    desc: "Strip out all branded queries to see your true organic discovery performance.",
+    tip: "Enter your brand name in the personalization panel to exclude it and see pure non-brand demand.",
+    pattern: "^(?!.*({{BRAND_VARIANTS}})).*$", flags: "i", params: ["brandVariants"], requiresParam: true },
+  { id: "single-word", category: "Hidden Gems", filterType: "query", matchType: "matches",
+    title: "Single-Word Queries (Head Terms)",
+    desc: "One-word queries you appear for — often high-volume head terms you didn't know you competed for.",
+    tip: "If you have impressions but low CTR, optimize title tags and meta descriptions.",
+    pattern: "^[^ ]+$", flags: "i", params: [] },
+  { id: "numbers", category: "Hidden Gems", filterType: "query", matchType: "matches",
+    title: "Queries with Numbers (Spec Searches)",
+    desc: "Users searching with specific numbers or measurements, indicating precision intent and purchase readiness.",
+    tip: "Often product spec searches or pricing lookups. Create content matching these specific values.",
+    pattern: ".*[0-9]{2,}.*", flags: "i", params: [] },
+  { id: "competitor-names", category: "Hidden Gems", filterType: "query", matchType: "matches",
+    title: "Competitor Name Queries",
+    desc: "Queries where users mention competitors — people actively comparing and ripe for conversion.",
+    tip: "Enter up to 3 competitor names in the personalization panel to find these queries.",
+    pattern: "({{COMPETITORS}})", flags: "i", params: ["competitors"], requiresParam: true },
+  { id: "spam-junk", category: "Hidden Gems", filterType: "page", matchType: "matches",
+    title: "Indexed Junk & Spam Detection",
+    desc: "Detect hacked or injected pages and spam queries polluting your search data.",
+    tip: "If matches appear, your site may have been compromised. Investigate immediately.",
+    pattern: ".*viagra.*|.*cialis.*|.*casino.*|.*porn.*|.*www.*www.*", flags: "i", params: [] },
+  { id: "informational", category: "Search Intent", filterType: "query", matchType: "matches",
+    title: "Informational Intent Queries",
+    desc: "Users seeking knowledge — perfect for blog content, guides, and pages that build topical authority.",
+    tip: "Map these to your content calendar. Each cluster of related queries equals one pillar content piece.",
+    pattern: "^(what|how|why|when|where|who|which|explain|guide|tutorial|learn|understand|definition|meaning)\\s", flags: "i", params: [] },
+  { id: "navigational", category: "Search Intent", filterType: "query", matchType: "matches",
+    title: "Navigational Intent Queries",
+    desc: "Users trying to find a specific site or page. Reveals how people navigate to you.",
+    tip: "If these have low CTR, your sitelinks or meta descriptions need updating.",
+    pattern: ".*(login|sign in|sign up|account|dashboard|support|contact|pricing|download|app).*", flags: "i", params: [] },
+  { id: "research-phase", category: "Search Intent", filterType: "query", matchType: "matches",
+    title: "Research-Phase Queries",
+    desc: "Users in the consideration phase, evaluating options before committing.",
+    tip: "Ensure you have genuine review and testimonial content targeting these terms.",
+    pattern: ".*(review|reviews|rating|ratings|pros and cons|worth it|experience|feedback|opinion|recommend).*", flags: "i", params: [] },
+  { id: "urgency", category: "Search Intent", filterType: "query", matchType: "matches",
+    title: "Urgency & Time-Sensitive Queries",
+    desc: "Queries indicating urgency. Users need something now — extremely high conversion potential.",
+    tip: "Optimize landing pages with clear CTAs and fast load times.",
+    pattern: ".*(today|now|urgent|emergency|fast|quick|instant|asap|same day|24 hour|overnight|rush).*", flags: "i", params: [] },
+  { id: "buyer-intent", category: "Money Keywords", filterType: "query", matchType: "matches",
+    title: "Buyer Intent Keywords",
+    desc: "The highest-converting queries. Users ready to spend money — your revenue keywords.",
+    tip: "Ensure every one has a dedicated, optimized landing page with a clear purchase path.",
+    pattern: ".*(buy|purchase|order|price|pricing|cost|cheap|affordable|deal|deals|discount|coupon|sale|offer|free shipping).*", flags: "i", params: [] },
+  { id: "commercial-investigation", category: "Money Keywords", filterType: "query", matchType: "matches",
+    title: "Commercial Investigation Keywords",
+    desc: "Users actively comparing before buying — the money filter that separates browsers from buyers.",
+    tip: "Create listicle-style content like \"Best X for Y\". Include your product prominently.",
+    pattern: ".*(best|top|top 10|top 5|vs|versus|compare|comparison|alternative|alternatives|review|reviews|rated|ranking).*", flags: "i", params: [] },
+  { id: "local-transactional", category: "Money Keywords", filterType: "query", matchType: "matches",
+    title: "Local Transactional Queries",
+    desc: "Users searching with local and transactional intent. They want to buy nearby.",
+    tip: "Add your city/state in the personalization panel. Ensure your Google Business Profile is optimized.",
+    pattern: ".*(near me|nearby|in my area|local|closest|nearest{{LOCATIONS}}).*", flags: "i", params: ["locations"] },
+  { id: "pricing-cost", category: "Money Keywords", filterType: "query", matchType: "matches",
+    title: "Pricing & Cost Queries",
+    desc: "Users specifically asking about money. They've decided to buy but are comparing prices.",
+    tip: "Have transparent pricing pages. Users searching these bounce if they can't find pricing quickly.",
+    pattern: "^(how much|what does|cost of|price of|pricing for|rates for|fee|fees|quote|estimate)\\s", flags: "i", params: [] },
+  { id: "ai-generated-32", category: "Advanced & AI", filterType: "query", matchType: "matches",
+    title: "AI-Generated Query Detection (32+ Words)",
+    desc: "Detect potential AI-generated searches — ultra-long, structured queries from AI tools and voice assistants.",
+    tip: "Content answering verbose, specific questions gets cited in AI Overviews.",
+    pattern: "(([^ ]*\\s){31,})", flags: "i", params: [] },
+  { id: "ai-formal-phrasing", category: "Advanced & AI", filterType: "query", matchType: "matches",
+    title: "AI-Style Formal Phrasing Detection",
+    desc: "Catch queries with unusually formal or analytical language — a hallmark of AI-assisted searching.",
+    tip: "These AI-style queries are increasing year over year. Optimize content for AI Overviews.",
+    pattern: ".*(comprehensive|analysis of|implications of|strategies for|framework for|methodology|optimization of|systematic|evaluation of).*", flags: "i", params: [] },
+  { id: "combined-intent-location", category: "Advanced & AI", filterType: "query", matchType: "matches",
+    title: "Combined Intent + Location Filter",
+    desc: "Multi-condition regex finding queries with both a transactional keyword and a location signal.",
+    tip: "Add service-area cities in the personalization panel to see local buyer-intent queries.",
+    pattern: "^(who|what|where|when|why|how|can|should|will|is|are|do|does)\\b.*(best|hire|buy|cost|price|pricing|reviews)\\b.*(near me{{CITIES}})", flags: "i", params: ["cities"] },
+  { id: "url-section", category: "Advanced & AI", filterType: "page", matchType: "matches",
+    title: "URL Section Performance Isolation",
+    desc: "Analyze performance of specific site sections like blog, shop, or docs without leaving GSC.",
+    tip: "Enter your domain and section names in the personalization panel.",
+    pattern: "^https?://{{DOMAIN}}/({{SECTIONS}})/", flags: "i", params: ["domain", "sections"], requiresParam: true },
+  { id: "exclude-noise", category: "Advanced & AI", filterType: "page", matchType: "notMatches",
+    title: "Exclude Noise (Junk Queries & Pages)",
+    desc: "Clean your data by removing internal search pages, login URLs, staging, and pagination.",
+    tip: "Gives you a clean view of real organic content performance.",
+    pattern: ".*(/search\\?|/page/[0-9]|staging\\.|login|/wp-admin|/cart|/checkout|\\?s=).*", flags: "i", params: [] },
+  { id: "short-queries", category: "Advanced & AI", filterType: "query", matchType: "matches",
+    title: "Short Queries (Under 10 Characters)",
+    desc: "Ultra-short, high-volume head terms you may be ranking for without realizing.",
+    tip: "Short queries mean high volume. If you're getting impressions, optimize aggressively.",
+    pattern: "^.{1,10}$", flags: "i", params: [] },
+];
+
+function escapeRegex(str) {
+  return String(str).replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+function csvListToAlternation(csvStr) {
+  if (!csvStr || !csvStr.trim()) return "";
+  return csvStr.split(",").map(s => s.trim()).filter(Boolean).map(escapeRegex).join("|");
+}
+
+function buildPatternDefs(params) {
+  params = params || {};
+  const brandVariants = csvListToAlternation(params.brand);
+  const competitors = csvListToAlternation(params.competitors);
+  const locations = csvListToAlternation(params.locations);
+  const cities = csvListToAlternation(params.cities);
+  const years = (params.years && params.years.trim()) ? params.years.split(",").map(s => s.trim()).filter(Boolean).join("|") : "2025|2026";
+  const domain = params.domain ? escapeRegex(params.domain.replace(/^https?:\/\//i, "").replace(/\/$/, "")) : "yoursite\\.com";
+  const sections = params.sections ? params.sections.split(",").map(s => s.trim()).filter(Boolean).join("|") : "blog|shop|docs|resources";
+
+  return RAW_PATTERNS.map(p => {
+    let pattern = p.pattern;
+    let disabled = false;
+    let disabledReason = null;
+
+    if (pattern.includes("{{BRAND_VARIANTS}}")) {
+      if (!brandVariants) { disabled = true; disabledReason = "Enter your brand name above to enable this pattern."; }
+      pattern = pattern.replace("{{BRAND_VARIANTS}}", brandVariants || "___NO_BRAND___");
+    }
+    if (pattern.includes("{{COMPETITORS}}")) {
+      if (!competitors) { disabled = true; disabledReason = "Enter at least one competitor name above to enable this pattern."; }
+      pattern = pattern.replace("{{COMPETITORS}}", competitors || "___NO_COMPETITOR___");
+    }
+    if (pattern.includes("{{YEARS}}")) pattern = pattern.replace("{{YEARS}}", years);
+    if (pattern.includes("{{LOCATIONS}}")) pattern = pattern.replace("{{LOCATIONS}}", locations ? "|" + locations : "");
+    if (pattern.includes("{{CITIES}}")) pattern = pattern.replace("{{CITIES}}", cities ? "|" + cities : "");
+    if (pattern.includes("{{DOMAIN}}")) pattern = pattern.replace("{{DOMAIN}}", domain);
+    if (pattern.includes("{{SECTIONS}}")) {
+      if (p.requiresParam && !params.domain) { disabled = true; disabledReason = "Enter your domain above to enable this pattern."; }
+      pattern = pattern.replace("{{SECTIONS}}", sections);
+    }
+    return Object.assign({}, p, { pattern: pattern, disabled: disabled, disabledReason: disabledReason });
+  });
+}
+
+function compileRegex(patternStr, flags) {
+  try { return { regex: new RegExp(patternStr, flags || "i"), error: null }; }
+  catch (e) { return { regex: null, error: e.message }; }
+}
+
+function runPattern(rows, fieldName, clicksCol, impressionsCol, positionCol, patternDef) {
+  if (patternDef.disabled) {
+    return { id: patternDef.id, disabled: true, disabledReason: patternDef.disabledReason, matchCount: 0, totalClicks: 0, totalImpressions: 0, avgPosition: null, matches: [] };
+  }
+  const compiled = compileRegex(patternDef.pattern, patternDef.flags);
+  if (compiled.error) {
+    return { id: patternDef.id, error: compiled.error, matchCount: 0, totalClicks: 0, totalImpressions: 0, avgPosition: null, matches: [] };
+  }
+  const regex = compiled.regex;
+  const wantMatch = patternDef.matchType !== "notMatches";
+  const matches = [];
+  let totalClicks = 0, totalImpressions = 0, positionSum = 0, positionCount = 0;
+
+  rows.forEach(row => {
+    const value = row[fieldName] || "";
+    regex.lastIndex = 0;
+    const isMatch = regex.test(value);
+    if (isMatch === wantMatch) {
+      const clicks = clicksCol ? toNumber(row[clicksCol]) : 0;
+      const impressions = impressionsCol ? toNumber(row[impressionsCol]) : 0;
+      const position = positionCol ? toNumber(row[positionCol]) : null;
+      totalClicks += clicks;
+      totalImpressions += impressions;
+      if (position !== null && position > 0) { positionSum += position; positionCount++; }
+      matches.push({ value: value, clicks: clicks, impressions: impressions, position: position });
+    }
+  });
+
+  matches.sort((a, b) => b.impressions - a.impressions);
+
+  return {
+    id: patternDef.id,
+    matchCount: matches.length,
+    totalClicks: totalClicks,
+    totalImpressions: totalImpressions,
+    avgPosition: positionCount > 0 ? +(positionSum / positionCount).toFixed(1) : null,
+    matches: matches,
+  };
+}
+
+function runAllPatterns(rows, fieldType, fieldName, clicksCol, impressionsCol, positionCol, params) {
+  const patternDefs = buildPatternDefs(params).filter(p => p.filterType === fieldType);
+  return patternDefs.map(def => Object.assign({}, def, { result: runPattern(rows, fieldName, clicksCol, impressionsCol, positionCol, def) }));
+}
+
+function testCustomPattern(rows, fieldName, clicksCol, impressionsCol, positionCol, patternStr, flags, matchType) {
+  const fakeDef = { pattern: patternStr, flags: flags || "i", matchType: matchType || "matches", disabled: false };
+  return runPattern(rows, fieldName, clicksCol, impressionsCol, positionCol, fakeDef);
+}
+
+/* ===========================================================================
+   UI LOGIC
+=========================================================================== */
+let STATE = {
+  sources: { query: null, page: null }, // each: { rows, headers, fieldName, clicksCol, impressionsCol, positionCol }
+  activeSource: null, // "query" | "page"
+  categoryResults: [],
+  activeCategory: null, // null = show all categories · "CUSTOM" = custom tester · or a category name to filter
+  currentFileName: null,
+};
+
+const CATEGORY_META = [
+  { name: "Long-Tail Discovery", short: "Growing", cls: "growing", icon: "🌱", sub: "Keyword growth opportunities" },
+  { name: "Hidden Gems", short: "Hidden Gems", cls: "gems", icon: "💎", sub: "Overlooked opportunity queries" },
+  { name: "Search Intent", short: "Intent", cls: "intent", icon: "🧭", sub: "What searchers actually want" },
+  { name: "Money Keywords", short: "Money", cls: "money", icon: "💰", sub: "Revenue & buyer-intent queries" },
+  { name: "Advanced & AI", short: "AI & Advanced", cls: "ai", icon: "🤖", sub: "AI queries & technical filters" },
+];
+const CATEGORY_CLASS = CATEGORY_META.reduce((acc, c) => { acc[c.name] = c.cls; return acc; }, {});
+
+function getParams() {
+  return {
+    brand: document.getElementById("pBrand").value,
+    competitors: document.getElementById("pCompetitors").value,
+    locations: document.getElementById("pLocations").value,
+    cities: document.getElementById("pCities") ? document.getElementById("pCities").value : document.getElementById("pLocations").value,
+    domain: document.getElementById("pDomain").value,
+    sections: document.getElementById("pSections").value,
+    years: document.getElementById("pYears").value,
+  };
+}
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+}
+
+function buildSourceEntry(headers, rows) {
+  const { fieldType, fieldName } = detectFieldType(headers);
+  if (fieldType === "unknown") return null;
+  return {
+    fieldType, fieldName, rows,
+    clicksCol: findCol(headers, ["clicks"]),
+    impressionsCol: findCol(headers, ["impressions"]),
+    positionCol: findCol(headers, ["position", "average position"]),
+  };
+}
+
+function finishLoad() {
+  const available = ["query", "page"].filter(k => STATE.sources[k]);
+  if (available.length === 0) {
+    showStatus("warn", "⚠️ Couldn't find a Query or Page column in this file. Please upload the unmodified export from Search Console → Performance → Export.");
+    return;
+  }
+  STATE.activeSource = available.includes("query") ? "query" : "page";
+  document.getElementById("personalizePanel").style.display = "block";
+  renderSourceToggle(available);
+
+  const s = STATE.sources[STATE.activeSource];
+  const summary = `${available.map(k => `${STATE.sources[k].rows.length.toLocaleString()} ${k === "query" ? "queries" : "pages"}`).join(" · ")} · ${s.clicksCol ? "Clicks ✓" : "Clicks ✗"} · ${s.impressionsCol ? "Impressions ✓" : "Impressions ✗"} · ${s.positionCol ? "Position ✓" : "Position ✗"}`;
+  showFileLoadedBar(summary);
+  document.getElementById("emptyState").style.display = "none";
+  document.getElementById("mainResults").style.display = "block";
+  runAnalysis();
+}
+
+function showFileLoadedBar(summary) {
+  document.getElementById("statusBar").style.display = "none";
+  document.getElementById("uploadContainer").style.display = "none";
+  const bar = document.getElementById("fileLoadedBar");
+  bar.style.display = "flex";
+  document.getElementById("fileLoadedText").innerHTML = `✓ <strong>${escapeHtml(STATE.currentFileName || "File loaded")}</strong> — ${summary}`;
+}
+
+function renderSourceToggle(available) {
+  const el = document.getElementById("sourceToggle");
+  if (available.length < 2) { el.style.display = "none"; return; }
+  el.style.display = "block";
+  el.innerHTML = `
+    <span style="font-size:13px;font-weight:600;color:var(--ink-sec);margin-right:8px;">Data source:</span>
+    <button class="custom-tester-btn ${STATE.activeSource === "query" ? "is-active" : ""}" data-src="query" style="display:inline-flex;margin:0 6px 0 0;border-style:solid;">Queries (${STATE.sources.query.rows.length.toLocaleString()})</button>
+    <button class="custom-tester-btn ${STATE.activeSource === "page" ? "is-active" : ""}" data-src="page" style="display:inline-flex;border-style:solid;">Pages (${STATE.sources.page.rows.length.toLocaleString()})</button>`;
+  el.querySelectorAll("[data-src]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      STATE.activeSource = btn.getAttribute("data-src");
+      STATE.activeCategory = null;
+      renderSourceToggle(available);
+      const s = STATE.sources[STATE.activeSource];
+      showFileLoadedBar(`Switched to ${STATE.activeSource === "query" ? "Queries" : "Pages"} data · ${s.rows.length.toLocaleString()} rows`);
+      runAnalysis();
+    });
+  });
+}
+
+function handleFile(file) {
+  STATE.currentFileName = file.name;
+  const name = file.name.toLowerCase();
+  if (name.endsWith(".xlsx") || name.endsWith(".xls")) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      let wb;
+      try { wb = XLSX.read(new Uint8Array(e.target.result), { type: "array" }); }
+      catch (err) { showStatus("warn", "⚠️ Couldn't read that Excel file. Try re-exporting from Search Console."); return; }
+
+      const qSheetName = findSheetName(wb.SheetNames, ["queries", "top queries"])
+        || findSheetByHeaderContent(wb.Sheets, wb.SheetNames, XLSX.utils, "query", []);
+      const pSheetName = findSheetName(wb.SheetNames, ["pages", "top pages"])
+        || findSheetByHeaderContent(wb.Sheets, wb.SheetNames, XLSX.utils, "page", qSheetName ? [qSheetName] : []);
+      STATE.sources.query = null;
+      STATE.sources.page = null;
+
+      if (qSheetName) {
+        const aoa = XLSX.utils.sheet_to_json(wb.Sheets[qSheetName], { header: 1, defval: "" });
+        const { headers, rows } = sheetAOAToRows(aoa);
+        STATE.sources.query = buildSourceEntry(headers, rows);
+      }
+      if (pSheetName) {
+        const aoa = XLSX.utils.sheet_to_json(wb.Sheets[pSheetName], { header: 1, defval: "" });
+        const { headers, rows } = sheetAOAToRows(aoa);
+        STATE.sources.page = buildSourceEntry(headers, rows);
+      }
+      finishLoad();
+    };
+    reader.readAsArrayBuffer(file);
+  } else {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const { headers, rows } = parseCSV(e.target.result);
+      if (rows.length === 0) {
+        showStatus("warn", "⚠️ Could not read any rows from that file. Make sure it's a CSV export from Search Console.");
+        return;
+      }
+      const entry = buildSourceEntry(headers, rows);
+      STATE.sources.query = entry && entry.fieldType === "query" ? entry : null;
+      STATE.sources.page = entry && entry.fieldType === "page" ? entry : null;
+      finishLoad();
+    };
+    reader.readAsText(file);
+  }
+}
+
+function showStatus(type, html) {
+  const el = document.getElementById("statusBar");
+  el.style.display = "flex";
+  el.className = "status-bar " + (type === "ok" ? "status-ok" : "status-warn");
+  el.innerHTML = html;
+}
+
+function runAnalysis() {
+  const s = STATE.sources[STATE.activeSource];
+  if (!s) return;
+  const params = getParams();
+  STATE.categoryResults = runAllPatterns(s.rows, s.fieldType, s.fieldName, s.clicksCol, s.impressionsCol, s.positionCol, params);
+  const presentCats = CATEGORY_META.filter(c => STATE.categoryResults.some(r => r.category === c.name)).map(c => c.name);
+  if (STATE.activeCategory !== "CUSTOM" && STATE.activeCategory !== null && !presentCats.includes(STATE.activeCategory)) {
+    STATE.activeCategory = null;
+  }
+  renderSummaryCards();
+  renderMainContent();
+}
+
+function renderSummaryCards() {
+  const el = document.getElementById("summaryCards");
+  const totalMatches = STATE.categoryResults.reduce((sum, r) => sum + (r.result ? r.result.matchCount : 0), 0);
+  let html = `
+    <div class="summary-card all ${STATE.activeCategory === null ? "is-active" : ""}" data-cat="__ALL__">
+      <span class="n">${STATE.categoryResults.length}</span>
+      <span class="l">All Patterns</span>
+      <div class="sub">${totalMatches.toLocaleString()} total matches</div>
+    </div>`;
+  CATEGORY_META.forEach(meta => {
+    const items = STATE.categoryResults.filter(r => r.category === meta.name);
+    if (items.length === 0) return;
+    const matches = items.reduce((sum, r) => sum + (r.result ? r.result.matchCount : 0), 0);
+    html += `
+    <div class="summary-card ${meta.cls} ${STATE.activeCategory === meta.name ? "is-active" : ""}" data-cat="${escapeHtml(meta.name)}">
+      <span class="n">${items.length}</span>
+      <span class="l">${meta.icon} ${meta.short}</span>
+      <div class="sub">${matches.toLocaleString()} matches</div>
+    </div>`;
+  });
+  el.innerHTML = html;
+  el.querySelectorAll(".summary-card").forEach(card => {
+    card.addEventListener("click", () => {
+      const cat = card.getAttribute("data-cat");
+      STATE.activeCategory = cat === "__ALL__" ? null : cat;
+      renderSummaryCards();
+      renderMainContent();
+    });
+  });
+  const customBtn = document.getElementById("customTesterBtn");
+  if (customBtn) customBtn.classList.toggle("is-active", STATE.activeCategory === "CUSTOM");
+}
+
+function renderMainContent() {
+  const el = document.getElementById("tabContent");
+  if (STATE.activeCategory === "CUSTOM") {
+    el.innerHTML = customTesterHTML();
+    wireCustomTester();
+    return;
+  }
+  const catsToShow = STATE.activeCategory
+    ? CATEGORY_META.filter(c => c.name === STATE.activeCategory)
+    : CATEGORY_META;
+
+  let html = "";
+  const allItems = [];
+  catsToShow.forEach(meta => {
+    const items = STATE.categoryResults.filter(r => r.category === meta.name);
+    if (items.length === 0) return;
+    html += `
+    <div class="cat-section-head">
+      <div class="title"><span style="color:var(--cat-${meta.cls});">${meta.icon}</span> ${escapeHtml(meta.name)} <span class="sub">— ${escapeHtml(meta.sub)}</span></div>
+      <div class="count-badge">${items.length} patterns</div>
+    </div>`;
+    html += items.map(patternCardHTML).join("");
+    allItems.push(...items);
+  });
+  el.innerHTML = html || `<p style="color:var(--ink-hint);font-size:13px;padding:20px 0;">No patterns available for this data source.</p>`;
+
+  allItems.forEach(item => {
+    const head = document.getElementById("head-" + item.id);
+    if (head) head.addEventListener("click", () => {
+      document.getElementById("body-" + item.id).classList.toggle("open");
+      const chev = document.getElementById("chev-" + item.id);
+      if (chev) chev.classList.toggle("rotated");
+    });
+    const exportBtn = document.getElementById("export-" + item.id);
+    if (exportBtn) exportBtn.addEventListener("click", (e) => { e.stopPropagation(); exportMatchesCSV(item.result.matches, item.id); });
+  });
+}
+
+function patternCardHTML(item) {
+  const r = item.result;
+  const cls = CATEGORY_CLASS[item.category] || "intent";
+  if (item.disabled) {
+    return `
+    <div class="pattern-card" style="border-left-color:var(--cat-${cls});">
+      <div class="pattern-head">
+        <div class="match-badge" style="background:var(--bg);color:var(--ink-hint);">🔒</div>
+        <div class="pattern-main">
+          <p class="pattern-title">${escapeHtml(item.title)} <span class="field-pill">${item.filterType}</span></p>
+          <p class="pattern-desc">${escapeHtml(item.desc)}</p>
+        </div>
+      </div>
+      <div style="padding:0 16px 14px 70px;"><div class="disabled-notice">🔒 ${escapeHtml(item.disabledReason)}</div></div>
+    </div>`;
+  }
+  const ctr = r.totalImpressions > 0 ? ((r.totalClicks / r.totalImpressions) * 100).toFixed(1) + "%" : "0.0%";
+  const hasMatches = r.matchCount > 0;
+  const badgeBg = hasMatches ? `var(--cat-${cls}-light)` : "var(--bg)";
+  const badgeColor = hasMatches ? `var(--cat-${cls})` : "var(--ink-hint)";
+  const rowsHtml = r.matches.slice(0, 50).map(m => `<tr><td>${escapeHtml(m.value)}</td><td>${m.clicks}</td><td>${m.impressions}</td><td>${m.position !== null ? m.position : "—"}</td></tr>`).join("");
+  return `
+  <div class="pattern-card" style="border-left-color:var(--cat-${cls});">
+    <div class="pattern-head" id="head-${item.id}">
+      <div class="match-badge" style="background:${badgeBg};color:${badgeColor};">${r.matchCount}</div>
+      <div class="pattern-main">
+        <p class="pattern-title">${escapeHtml(item.title)} <span class="field-pill">${item.filterType}</span></p>
+        <p class="pattern-desc">${escapeHtml(item.desc)}</p>
+      </div>
+      <div class="pattern-stat-row">
+        <div class="stat"><span class="v">${r.totalClicks.toLocaleString()}</span><span class="k">Clicks</span></div>
+        <div class="stat"><span class="v">${r.totalImpressions.toLocaleString()}</span><span class="k">Impr</span></div>
+        <div class="stat"><span class="v">${ctr}</span><span class="k">CTR</span></div>
+        <div class="stat"><span class="v">${r.avgPosition !== null ? r.avgPosition : "—"}</span><span class="k">Pos</span></div>
+      </div>
+      <svg class="chevron" id="chev-${item.id}" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m6 9 6 6 6-6"/></svg>
+    </div>
+    <div class="pattern-body" id="body-${item.id}">
+      <div class="pattern-tip">💡 ${escapeHtml(item.tip)}</div>
+      ${r.matchCount === 0 ? `<p style="font-size:13px;color:var(--ink-hint);">No matches found in your data for this pattern.</p>` :
+      `<table class="result-table"><thead><tr><th>${item.filterType === "page" ? "Page" : "Query"}</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead><tbody>${rowsHtml}</tbody></table>
+      ${r.matches.length > 50 ? `<p style="font-size:12px;color:var(--ink-hint);margin-top:8px;">Showing top 50 of ${r.matches.length} matches by impressions. Export CSV for the full list.</p>` : ""}
+      <button class="export-btn" id="export-${item.id}">⬇ Export CSV</button>`}
+    </div>
+  </div>`;
+}
+
+function customTesterHTML() {
+  const available = ["query", "page"].filter(k => STATE.sources[k]);
+  const fieldOptions = available.map(k => `<option value="${k}" ${STATE.activeSource === k ? "selected" : ""}>${k === "query" ? "Query" : "Page"} (${STATE.sources[k].rows.length.toLocaleString()} rows loaded)</option>`).join("");
+  return `
+  <div class="card" style="padding:20px;">
+    <div class="custom-tester">
+      <div>
+        <label style="font-size:12px;font-weight:600;color:var(--ink-sec);display:block;margin-bottom:6px;">Regex pattern</label>
+        <textarea id="customPattern" rows="3" placeholder="e.g. ^(what|how|why)\\s"></textarea>
+        <div style="display:flex;gap:10px;margin-top:10px;">
+          <select id="customField" style="flex:1;">${fieldOptions}</select>
+          <select id="customMatchType" style="flex:1;">
+            <option value="matches">Matches regex</option>
+            <option value="notMatches">Does NOT match regex</option>
+          </select>
+        </div>
+        <label style="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-sec);margin-top:10px;">
+          <input type="checkbox" id="customCaseInsensitive" checked /> Case-insensitive
+        </label>
+        <button class="run-btn" id="runCustomBtn" style="margin-top:14px;">Run pattern</button>
+        <div id="customError" style="color:var(--red);font-size:12px;margin-top:8px;"></div>
+      </div>
+      <div>
+        <div id="customStats" style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px;"></div>
+        <div id="customTableWrap" style="max-height:360px;overflow:auto;"></div>
+      </div>
+    </div>
+  </div>`;
+}
+
+function wireCustomTester() {
+  document.getElementById("runCustomBtn").addEventListener("click", () => {
+    const pattern = document.getElementById("customPattern").value;
+    const field = document.getElementById("customField").value;
+    const matchType = document.getElementById("customMatchType").value;
+    const ci = document.getElementById("customCaseInsensitive").checked;
+    const errEl = document.getElementById("customError");
+    errEl.textContent = "";
+
+    const s = STATE.sources[field];
+    if (!s) {
+      errEl.textContent = `No "${field}" data loaded. Upload a file containing that field or pick the other option.`;
+      return;
+    }
+    const result = testCustomPattern(s.rows, s.fieldName, s.clicksCol, s.impressionsCol, s.positionCol, pattern, ci ? "i" : "", matchType);
+    if (result.error) { errEl.textContent = "Invalid regex: " + result.error; return; }
+
+    document.getElementById("customStats").innerHTML = `
+      <div class="stat-pill"><span class="n">${result.matchCount}</span><span class="l">Matches</span></div>
+      <div class="stat-pill"><span class="n">${result.totalImpressions.toLocaleString()}</span><span class="l">Impr.</span></div>
+      <div class="stat-pill"><span class="n">${result.totalClicks.toLocaleString()}</span><span class="l">Clicks</span></div>
+      <div class="stat-pill"><span class="n">${result.avgPosition !== null ? result.avgPosition : "—"}</span><span class="l">Avg Pos</span></div>`;
+
+    const rowsHtml = result.matches.slice(0, 100).map(m => `<tr><td>${escapeHtml(m.value)}</td><td>${m.clicks}</td><td>${m.impressions}</td><td>${m.position !== null ? m.position : "—"}</td></tr>`).join("");
+    document.getElementById("customTableWrap").innerHTML = result.matchCount === 0
+      ? `<p style="font-size:13px;color:var(--ink-hint);">No matches found.</p>`
+      : `<table class="result-table"><thead><tr><th>${field === "page" ? "Page" : "Query"}</th><th>Clicks</th><th>Impressions</th><th>Position</th></tr></thead><tbody>${rowsHtml}</tbody></table>`;
+  });
+}
+
+function exportMatchesCSV(matches, name) {
+  const header = "Value,Clicks,Impressions,Position\n";
+  const body = matches.map(m => `"${String(m.value).replace(/"/g, '""')}",${m.clicks},${m.impressions},${m.position !== null ? m.position : ""}`).join("\n");
+  const blob = new Blob([header + body], { type: "text/csv" });
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = `gsc-pattern-${name}.csv`;
+  a.click();
+}
+
+/* Upload zone wiring */
+const uploadZone = document.getElementById("uploadZone");
+const fileInput = document.getElementById("fileInput");
+uploadZone.addEventListener("click", () => fileInput.click());
+fileInput.addEventListener("change", (e) => { if (e.target.files[0]) handleFile(e.target.files[0]); });
+uploadZone.addEventListener("dragover", (e) => { e.preventDefault(); uploadZone.classList.add("dragover"); });
+uploadZone.addEventListener("dragleave", () => uploadZone.classList.remove("dragover"));
+uploadZone.addEventListener("drop", (e) => {
+  e.preventDefault(); uploadZone.classList.remove("dragover");
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+
+const fileLoadedBar = document.getElementById("fileLoadedBar");
+document.getElementById("changeFileBtn").addEventListener("click", () => fileInput.click());
+fileLoadedBar.addEventListener("dragover", (e) => { e.preventDefault(); fileLoadedBar.classList.add("dragover"); });
+fileLoadedBar.addEventListener("dragleave", () => fileLoadedBar.classList.remove("dragover"));
+fileLoadedBar.addEventListener("drop", (e) => {
+  e.preventDefault(); fileLoadedBar.classList.remove("dragover");
+  if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+});
+
+document.getElementById("customTesterBtn").addEventListener("click", () => {
+  STATE.activeCategory = "CUSTOM";
+  renderSummaryCards();
+  renderMainContent();
+});
+
+/* Re-run analysis when personalization fields change */
+["pBrand", "pCompetitors", "pLocations", "pDomain", "pSections", "pYears"].forEach(id => {
+  document.getElementById(id).addEventListener("input", () => { if (STATE.activeSource && STATE.sources[STATE.activeSource]) runAnalysis(); });
+});
+
+/* FAQ accordion */
+document.querySelectorAll(".faq-q").forEach(q => {
+  q.addEventListener("click", () => {
+    const a = q.nextElementSibling;
+    a.classList.toggle("open");
+  });
+});
+</script>
+</body>
+</html>
